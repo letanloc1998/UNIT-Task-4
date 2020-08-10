@@ -17,3 +17,20 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
   https://github.com/momo-wallet/payment
 4. Các bạn báo cáo tiến độ t4, t6 trong tuần
 5. Sử dụng spring + thymeleaf + MirageSQL
+
+## I. DANH SÁCH CHỨC NĂNG CHÍNH:
+1. Admin
+- Đăng nhập
+- Quản lý Account
+  * Chỉnh sửa thông tin
+  * Thay đổi mật khẩu 
+  * Cập nhật ảnh đại diện
+- Quản lý người dùng
+  * Thêm người dùng
+  * Sửa người dùng
+  * Xem người dùng
+  * Khóa người dùng
+- Quản lý cửa hàng
+  * Duyệt thêm cửa hàng
+  * Khóa cửa hàng
+- Quản lý category
