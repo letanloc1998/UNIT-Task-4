@@ -79,4 +79,34 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
   * Stripe
 - Xem lịch sử đơn hàng.
 
-## 
+## LIST SCREEN
+1. Home screen
+
+    https://colorlib.com/preview/theme/onetech/#
+
+    https://colorlib.com/preview/#aroma
+
+2. Login/Signin Screen
+3. Admin screen
+- Admin Account Management
+- Customer Account Management
+- Vendor Account Management
+- Category Management
+- Brand Management
+4. Customer Screen
+- Account Management
+- Address
+- Upgrade Account to vendor
+- Add to cart
+- Confirm order and Choose payment
+5. Vendor Screen
+- Account Management
+- All product 
+- Add product
+- Edit product (can't edit price)
+- Disable products
+6. Shop Screen
+- Product detail
+- Warehouse Management
+- Order
+- Details order
