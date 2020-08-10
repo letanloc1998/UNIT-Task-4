@@ -11,9 +11,7 @@
 VD product có: code, name, vendor, giá, số lượng chọn mua, số lượng còn lại trong kho vendor, category, status...
 3. Có thể sử dụng bất kỳ Cổng thanh toán các bạn làm đc. 
 - Vd Momo:  
-
   https://developers.momo.vn/#/
-  
   https://github.com/momo-wallet/payment
 4. Các bạn báo cáo tiến độ t4, t6 trong tuần
 5. Sử dụng spring + thymeleaf + MirageSQL
