@@ -1,3 +1,5 @@
+use DMS_DEV;
+
 drop table p2p_bill_item;
 drop table p2p_bill;
 drop table p2p_cart;
@@ -31,7 +33,7 @@ create table p2p_account_role (
     account bigint,
     role smallint,
 
-    constraint pk_account_role primary key (account, role),
+    constraint pk_p2p_account_role primary key (account, role),
     constraint fk_account_role_account__account_id foreign key (account) references p2p_account(id),
     constraint fk_account_role_role__role_id foreign key (role) references  p2p_role(id)
 )
@@ -101,7 +103,7 @@ create table p2p_cart (
 
     create_at datetime default getutcdate(),
 
-    constraint pk_cart primary key (account, product),
+    constraint pk_p2p_cart primary key (account, product),
     constraint fk_cart_account__account_id foreign key (account) references p2p_account(id),
     constraint fk_cart_product__product_id foreign key (product) references p2p_product(id)
 )
