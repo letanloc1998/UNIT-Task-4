@@ -17,10 +17,10 @@ create table p2p_account (
     id bigint primary key identity(1,1),
     name nvarchar(50),
     username nvarchar(50) not null,
-    password nvarchar(50) not null,
+    password nvarchar(255) not null,
     email nvarchar(50),
     phone nvarchar(20),
-    active bit default 0,
+    disable bit default 0,
     create_at datetime default getutcdate(),
 )
 

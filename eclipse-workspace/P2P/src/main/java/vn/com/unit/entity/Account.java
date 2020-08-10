@@ -17,7 +17,7 @@ public class Account {
 
 	private String phone;
 	
-	private Boolean active;
+	private Boolean disable;
 	
 	private Date createAt;
 
@@ -74,15 +74,15 @@ public class Account {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-
-	public Boolean getActive() {
-		return active;
-	}
-
-	public void setActive(Boolean active) {
-		this.active = active;
-	}
 	
+	public Boolean getDisable() {
+		return disable;
+	}
+
+	public void setDisable(Boolean disable) {
+		this.disable = disable;
+	}
+
 	public Date getCreateAt() {
 		return createAt;
 	}
