@@ -34,3 +34,49 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
   * Duyệt thêm cửa hàng
   * Khóa cửa hàng
 - Quản lý category
+  * Thêm category
+  * Sửa category
+  * Xóa category
+- Login as
+- Quản lý Branch
+  * Thêm branch
+  * Sửa branch
+  * Xóa branch
+2. Vendor
+- Đăng nhập
+- Quản lí account
+  * Chỉnh sửa thông tin
+  * Thay đổi mật khẩu 
+  * Cập nhật ảnh đại diện
+- Quản lý sản phẩm
+  * Thêm sản phẩm
+  * Sửa sản phẩm
+  * Khóa sản phẩm
+- Quản lý cửa hàng
+  * Sửa thông tin cửa hàng
+  * Khóa cửa hàng
+- Quản lí Bill
+  * Xem bill
+  * Duyệt bill
+  * Hủy bill
+- Quản lí kho hàng
+3. Customer
+- Đăng nhập
+- Đăng ký
+  * Đăng ký tài khoản
+  * Đăng kí cửa hàng
+- Quản lí Account
+  * Chỉnh sửa thông tin
+  * Thay đổi mật khẩu 
+  * Cập nhật ảnh đại diện
+- Quản lý Cart
+  * Thêm sản phẩm trong cart.
+  * Sửa sản phẩm trong cart.
+  * Xóa sản phẩm trong cart.
+- Thanh toán:
+  * MoMo
+  * Paypal
+  * Stripe
+- Xem lịch sử đơn hàng.
+
+## 
