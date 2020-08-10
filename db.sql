@@ -33,6 +33,7 @@ create table shop (
     phone nvarchar(50),
     detail nvarchar(500),
     disable bit default 0,
+    create_at datetime default getutcdate()
 )
 
 create table category (
@@ -57,13 +58,9 @@ create table product (
     constraint fk_produtc_shop__shop_id foreign key (shop) references shop(id),
 
     name varchar(255) not null,
-
     price int not null,
-
     detail nvarchar(1000),
-
     img nvarchar(500),
-
     disable bit default 0,
 
     category int,
@@ -71,6 +68,8 @@ create table product (
 
     brand int,
     constraint fk_product_brand__brand_id foreign key (brand) references brand(id),
+    
+    create_at datetime default getutcdate()
 )
 
 create table product_tag (
@@ -85,7 +84,9 @@ create table product_tag (
 create table cart (
     account bigint,
 
-    product bigint
+    product bigint,
+
+    create_at datetime default getutcdate(),
 
     constraint pk_cart primary key (account, product),
     constraint fk_cart_account__account_id foreign key (account) references account(id),
@@ -95,6 +96,8 @@ create table cart (
 create table bill (
     id bigint primary key identity(1,1),
     account bigint,
+    create_at datetime default getutcdate(),
+
     constraint fk_bill_account__account_id foreign key (account) references account(id),
 )
 
