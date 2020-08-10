@@ -1,5 +1,9 @@
 package vn.com.unit.repository;
 
-public class AccountRepository {
+import org.springframework.data.mirage.repository.MirageRepository;
+
+import vn.com.unit.entity.Account;
+
+public interface AccountRepository extends MirageRepository<Account, Long> {
 
 }

@@ -2,24 +2,26 @@ package vn.com.unit.entity;
 
 public class AccountRole {
 
-	private Long accountId;
+	private Long account;
 
-	private Long roleId;
+	private Long role;
 
-	public Long getAccountId() {
-		return accountId;
+	public Long getAccount() {
+		return account;
 	}
 
-	public void setAccountId(Long accountId) {
-		this.accountId = accountId;
+	public void setAccount(Long account) {
+		this.account = account;
 	}
 
-	public Long getRoleId() {
-		return roleId;
+	public Long getRole() {
+		return role;
 	}
 
-	public void setRoleId(Long roleId) {
-		this.roleId = roleId;
+	public void setRole(Long role) {
+		this.role = role;
 	}
+
+	
 	
 }
