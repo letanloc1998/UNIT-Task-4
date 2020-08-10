@@ -6,3 +6,5 @@ target/
 .project
 
 jboss-eap-7.3.0
+
+WebContent/
