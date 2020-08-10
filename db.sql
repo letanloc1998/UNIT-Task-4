@@ -1,7 +1,7 @@
-create table user (
+create table people (
     id bigint primary key identity(1,1),
     name nvarchar(50),
-    username nvarchar(50) not null,
+    peoplename nvarchar(50) not null,
     password nvarchar(50) not null,
     email nvarchar(50),
     phone nvarchar(20),
@@ -14,18 +14,18 @@ create table role (
     name nvarchar(50) not null
 )
 
-create table user_role (
-    user bigint,
+create table people_role (
+    people bigint,
     role bigint,
 
-    constraint pk_user_role primary key (user, role),
-    constraint fk_user_role_user__user_id foreign key (user) references user(id),
-    constraint fk_user_role_role__role_id foreign key (role) references role(id)
+    constraint pk_people_role primary key (people, role),
+    constraint fk_people_role_people__people_id foreign key (people) references people(id),
+    constraint fk_people_role_role__role_id foreign key (role) references role(id)
 )
 
 create table shop (
     id bigint primary key,
-    constraint fk_shop_id foreign key (id) references user(id)
+    constraint fk_shop_id foreign key (id) references people(id),
 
     name nvarchar(50) not null,
     address nvarchar(255),
@@ -79,19 +79,19 @@ create table product_tag (
 )
 
 create table cart (
-    user bigint,
+    people bigint,
 
     product bigint
 
-    constraint pk_cart primary key (user, product),
-    constraint fk_cart_user__user_id foreign key (user) references user(id),
+    constraint pk_cart primary key (people, product),
+    constraint fk_cart_people__people_id foreign key (people) references people(id),
     constraint fk_cart_product__product_id foreign key (product) references product(id)
 )
 
 create table bill (
     id bigint primary key identity(1,1),
-    user bigint,
-    constraint fk_bill_user__user_id foreign key (user) references user(id),
+    people bigint,
+    constraint fk_bill_people__people_id foreign key (people) references people(id),
 )
 
 create table bill_item (
