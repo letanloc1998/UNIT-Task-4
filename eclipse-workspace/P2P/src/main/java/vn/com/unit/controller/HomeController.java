@@ -22,6 +22,12 @@ public class HomeController {
         return new ModelAndView("admin/home");
     }
 	
+	@RequestMapping("/register")
+    public ModelAndView register(Model model) {
+
+        return new ModelAndView("register");
+    }
+	
 	@RequestMapping("/login")
 	public ModelAndView login(Model model) {
 
