@@ -112,7 +112,7 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 - Details 
 
 ## III. CONCEPT DATABASE
-    	use DMS_DEV;
+    use DMS_DEV;
 
         drop table p2p_bill_item;
         drop table p2p_bill;
