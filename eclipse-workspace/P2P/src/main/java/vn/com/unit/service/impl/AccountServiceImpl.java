@@ -9,6 +9,8 @@ import vn.com.unit.repository.RoleRepository;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.utils.CommonUtils;
 
+@Service
+@Transactional
 public class AccountServiceImpl implements AccountService {
 
 	@Autowired
@@ -19,7 +21,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Override
 	public Account findByUsername(String username) {
 		return accountRepository.findByUsername(username);
