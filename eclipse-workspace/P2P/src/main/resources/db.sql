@@ -20,7 +20,7 @@ create table p2p_account (
     password nvarchar(255) not null,
     email nvarchar(50),
     phone nvarchar(20),
-    active bit default 0,
+    disable bit default 0,
     create_at datetime default getutcdate(),
 )
 
