@@ -1,5 +1,11 @@
 package vn.com.unit.service;
 
-public interface RoleService {
+import java.util.List;
 
+import vn.com.unit.entity.Account;
+import vn.com.unit.entity.Role;
+
+public interface RoleService {
+	
+	public List<Role> findRolesByAccount(Account account);
 }
