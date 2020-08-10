@@ -5,8 +5,6 @@ import java.util.List;
 public class Account {
 
 	private Long id;
-	
-	private String name;
 
 	private String username;
 
