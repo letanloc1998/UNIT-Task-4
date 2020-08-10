@@ -7,9 +7,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AdminController {
+
 	@RequestMapping("/admin/home")
-    public ModelAndView adminhome(Model model) {
-        return new ModelAndView("admin/home");
-    }
-	
+	public ModelAndView home(Model model) {
+
+		return new ModelAndView("admin/home");
+	}
+
 }
