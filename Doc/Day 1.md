@@ -60,3 +60,23 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
   * Duyệt bill
   * Hủy bill
 - Quản lí kho hàng
+3. Customer
+- Đăng nhập
+- Đăng ký
+  * Đăng ký tài khoản
+  * Đăng kí cửa hàng
+- Quản lí Account
+  * Chỉnh sửa thông tin
+  * Thay đổi mật khẩu 
+  * Cập nhật ảnh đại diện
+- Quản lý Cart
+  * Thêm sản phẩm trong cart.
+  * Sửa sản phẩm trong cart.
+  * Xóa sản phẩm trong cart.
+- Thanh toán:
+  * MoMo
+  * Paypal
+  * Stripe
+- Xem lịch sử đơn hàng.
+
+## 
