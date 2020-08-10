@@ -4,3 +4,5 @@ RemoteSystemsTempFiles/
 target/
 .classpath
 .project
+
+jboss-eap-7.3.0
