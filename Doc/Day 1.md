@@ -148,8 +148,8 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
         account bigint,
         role smallint,
         constraint pk_p2p_account_role primary key (account, role),
-        constraint fk_account_role_account__account_id foreign key        (account) references p2p_account(id),
-        constraint fk_account_role_role__role_id foreign key (role)     references  p2p_role(id)
+        constraint fk_account_role_account__account_id foreign ke(account) references p2p_account(id),
+        constraint fk_account_role_role__role_id foreign key (role) references  p2p_role(id)
     )
 
     create table p2p_shop (
