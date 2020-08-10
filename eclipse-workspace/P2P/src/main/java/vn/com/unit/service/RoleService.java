@@ -1,5 +1,5 @@
 package vn.com.unit.service;
 
-public class RoleService {
+public interface RoleService {
 
 }
