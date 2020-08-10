@@ -1,5 +1,17 @@
 package vn.com.unit.service;
 
-public interface RoleService {
+import java.util.List;
 
+import org.springframework.security.core.GrantedAuthority;
+
+import vn.com.unit.entity.Account;
+import vn.com.unit.entity.Role;
+
+public interface RoleService {
+	
+	public List<GrantedAuthority> findAuthorities(Account account);
+	
+	public List<Role> findRolesByAccount(Account account);
+	
+	public List<Role> findRoleByAccountId(Long accountId);
 }

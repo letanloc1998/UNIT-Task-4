@@ -10,7 +10,8 @@
 	http://www.springframework.org/schema/security
 	https://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http pattern="/static/**" security="none" />
+ 	<http pattern="/static/**" security="none" />
+
 
 	<beans:bean id="customAuthenticationFailureHandler"
 		class="vn.com.unit.security.CustomAuthenticationFailureHandler" />
@@ -25,11 +26,8 @@
 
 		<intercept-url pattern="/login" access="permitAll" />
 
-<!-- 		<intercept-url pattern="/**"
-			access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" /> -->
-
 		<intercept-url pattern="/**"
-			access="permitAll" />
+			access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
 
 		<form-login login-page="/login"
 			login-processing-url="/login" default-target-url="/"
