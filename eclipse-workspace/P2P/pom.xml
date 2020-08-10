@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>vn.com.unit</groupId>
-	<artifactId>Task4</artifactId>
+	<artifactId>P2P</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Task4 Maven Webapp</name>
+	<name>P2P Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 
@@ -155,6 +155,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>Task4</finalName>
+		<finalName>P2P</finalName>
 	</build>
 </project>

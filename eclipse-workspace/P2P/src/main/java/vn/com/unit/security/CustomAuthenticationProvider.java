@@ -12,23 +12,23 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import vn.com.unit.entity.Account;
-import vn.com.unit.service.AccountService;
-import vn.com.unit.service.RoleService;
+//import vn.com.unit.entity.Account;
+//import vn.com.unit.service.AccountService;
+//import vn.com.unit.service.RoleService;
 
 @Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-	/** AccountService */
-	@Autowired
-	private AccountService accountService;
-	
-	@Autowired
-	private RoleService roleService;
+//	@Autowired
+//	private AccountService accountService;
+//	
+//	@Autowired
+//	private RoleService roleService;
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
+		/*
 		String username = authentication.getName();
 		String rawPassword = authentication.getCredentials().toString();
 
@@ -56,6 +56,9 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		}
 		
 		throw new BadCredentialsException("Wrong username or password");
+		*/
+		
+		return null;
 	}
 
 	@Override
