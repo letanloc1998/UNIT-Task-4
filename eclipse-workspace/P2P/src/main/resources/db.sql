@@ -1,3 +1,16 @@
+drop table p2p_bill_item;
+drop table p2p_bill;
+drop table p2p_cart;
+drop table p2p_product_tag;
+drop table p2p_product;
+drop table p2p_brand;
+drop table p2p_tag;
+drop table p2p_category;
+drop table p2p_shop;
+drop table p2p_account_role;
+drop table p2p_role;
+drop table p2p_account;
+
 create table p2p_account (
     id bigint primary key identity(1,1),
     name nvarchar(50),
@@ -104,7 +117,7 @@ create table p2p_bill (
 
 create table p2p_bill_item (
     id bigint,
-    constraint fk_bill_item_id__bill_id foreign key (id) references bill(id),
+    constraint fk_bill_item_id__bill_id foreign key (id) references p2p_bill(id),
 
     product bigint not null,
     constraint fk_bill_item_product__product_id foreign key (product) references p2p_product(id),
