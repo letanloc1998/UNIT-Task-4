@@ -10,7 +10,8 @@
 	http://www.springframework.org/schema/security
 	https://www.springframework.org/schema/security/spring-security.xsd">
 
-	<http pattern="/static/**" security="none" />
+ 	<http pattern="/static/**" security="none" />
+
 
 	<beans:bean id="customAuthenticationFailureHandler"
 		class="vn.com.unit.security.CustomAuthenticationFailureHandler" />
