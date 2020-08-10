@@ -96,6 +96,7 @@ create table cart (
 create table bill (
     id bigint primary key identity(1,1),
     account bigint,
+    address nvarchar(255),
     create_at datetime default getutcdate(),
 
     constraint fk_bill_account__account_id foreign key (account) references account(id),
