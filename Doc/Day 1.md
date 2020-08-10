@@ -253,3 +253,9 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
     insert into p2p_account_role (account, role) values (1, 1);
     insert into p2p_account_role (account, role) values (2, 2);
     insert into p2p_account_role (account, role) values (3, 3);
+
+## Lưu ý
+  - src/main/webapp
+  - Dynamic Web Module 3.0
+  - Java 1.8
+  - JavaScript: 1.0
