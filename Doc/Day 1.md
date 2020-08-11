@@ -203,22 +203,31 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 ![addproduct](https://user-images.githubusercontent.com/63025883/89880490-851a1580-dbee-11ea-87fa-6a1756a42041.png)
 
 5. Giao diện xem đơn hàng
+  * Nhấn "Cancel" để đến trang hủy đơn hàng.
+  * Nhấn "View" để đến trang chi tiết đơn hàng.
 
 ![order](https://user-images.githubusercontent.com/63025883/89881034-299c5780-dbef-11ea-9e18-f7039d907bc9.png)
 
 6. Giao diện sửa sản phẩm
 
+  * Vendor chọn thông tin cần chỉnh sửa và nhấn "Edit" để lưu thông tin.
+
 ![editproduct](https://user-images.githubusercontent.com/63025883/89880298-45532e00-dbee-11ea-9548-2ca1e7ddfa8b.png)
 
 7. Giao diện xóa sản phẩm
+  * Vendor kiểm tra lại thông tin sản phẩm cần xóa và nhấn "Delete" để xóa.
 
 ![del](https://user-images.githubusercontent.com/63025883/89881349-9b74a100-dbef-11ea-870e-7ac4ce4cf184.png)  
 
 8. Giao diện xem chi tiết đơn hàng
+  * Nhấn "Cancel Detail" để chuyến đến trang hủy đơn hàng.
+  * Nhấn "Back" để trở về trang chi tiết đơn hàng.
 
-![order_detail](https://user-images.githubusercontent.com/63025883/89881745-18a01600-dbf0-11ea-9dad-d85bf8b45129.png)
+![order_detail](https://user-images.githubusercontent.com/63025883/89888080-91f03680-dbf9-11ea-8a65-fe5d98ccc42c.png)
 
 9. Giao diện hủy đơn hàng
+  * Nhấn nút "OK" để xác nhận hủy đơn hàng.
+  * Nhấn "Cancel" hủy bỏ hủy đơn hàng.
 
 ![cancel_order](https://user-images.githubusercontent.com/63025883/89882318-dc20ea00-dbf0-11ea-9aa2-36a3518ebefc.png)
 
