@@ -100,6 +100,8 @@ create table p2p_cart (
     account bigint not null,
 
     product bigint not null,
+    
+    quantity int not null
 
     create_at datetime default getutcdate(),
 
@@ -124,7 +126,7 @@ create table p2p_bill_item (
     product bigint not null,
     constraint fk_bill_item_product__product_id foreign key (product) references p2p_product(id),
 
-    quantity bigint not null
+    quantity int not null
 
 )
 
