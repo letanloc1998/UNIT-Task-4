@@ -45,7 +45,7 @@ create table p2p_shop (
     name nvarchar(50) not null,
     address nvarchar(255),
     email nvarchar(50),
-    phone nvarchar(50),
+    phone nvarchar(20),
     detail nvarchar(500),
     disable bit default 0,
     create_at datetime default getutcdate()
