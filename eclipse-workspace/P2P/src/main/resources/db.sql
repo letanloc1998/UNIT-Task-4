@@ -58,12 +58,12 @@ create table p2p_category (
 
 create table p2p_tag (
     id bigint primary key identity(1,1),
-    name nvarchar(10),
+    name nvarchar(10) not null,
 )
 
 create table p2p_brand (
     id int primary key identity(1,1),
-    name nvarchar(50),
+    name nvarchar(50) not null,
 )
 
 create table p2p_product (
@@ -97,9 +97,9 @@ create table p2p_product_tag (
 )
 
 create table p2p_cart (
-    account bigint,
+    account bigint not null,
 
-    product bigint,
+    product bigint not null,
 
     create_at datetime default getutcdate(),
 
@@ -110,7 +110,7 @@ create table p2p_cart (
 
 create table p2p_bill (
     id bigint primary key identity(1,1),
-    account bigint,
+    account bigint not null,
     address nvarchar(255),
     create_at datetime default getutcdate(),
 
