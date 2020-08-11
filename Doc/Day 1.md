@@ -115,6 +115,9 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
   https://docs.google.com/spreadsheets/d/11HOY6Ug1ojyvybakHQizdTgF8xZgsJldb8umo4xBnUI/edit#gid=374315597
 ## IV. CONCEPT SCREEN
 
+![index](https://user-images.githubusercontent.com/63025883/89864320-f26d7c80-dbd5-11ea-9a3c-c3b2b23f913c.png)
+
+
 ## Lưu ý
   - src/main/webapp
   - Dynamic Web Module 3.0
