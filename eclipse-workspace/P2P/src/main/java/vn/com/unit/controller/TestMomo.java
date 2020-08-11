@@ -19,6 +19,8 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
+import com.mservice.allinone.models.CaptureMoMoRequest;
+
 //import com.mservice.allinone.processor.allinone.PayATM;
 
 //import com.mservice.allinone.PayGate;
@@ -56,7 +58,7 @@ public class TestMomo {
 	
 //	PartnerInfo devInfo = new PartnerInfo(partnerCode, accessKey, secretKey);
 	
-	
+/*	
 	String requestId = String.valueOf(System.currentTimeMillis());
     String orderId = String.valueOf(System.currentTimeMillis());
     
@@ -74,20 +76,38 @@ public class TestMomo {
     Environment environment = Environment.selectEnv(target, process);
     
 //    PayGate
-    
+*/  
     
     public void test() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
-    	String secretKey = environment.getPartnerInfo().getSecretKey();
-    	String data = "partnerCode=MOMO&accessKey=F8BBA842ECF85&requestId=MM1540456472575&amount=150000&orderId=MM1540456472575&orderInfo=SDK team.&returnUrl=https://momo.vn&notifyUrl=https://momo.vn&extraData=email=abc@gmail.com";
-    	String signature = Encoder.signHmacSHA256(data, secretKey);
+//    	String secretKey = environment.getPartnerInfo().getSecretKey();
+//    	String data = "partnerCode=MOMO&accessKey=F8BBA842ECF85&requestId=MM1540456472575&amount=150000&orderId=MM1540456472575&orderInfo=SDK team.&returnUrl=https://momo.vn&notifyUrl=https://momo.vn&extraData=email=abc@gmail.com";
+//    	String signature = Encoder.signHmacSHA256(data, secretKey);
     	
     	
 //    	TransactionQuery.process(env, partnerRefId, secretKey, publicKey, momoTransId, version)
 //    	PayGateRequest asdasd = new PayGateRequest(partnerCode, signature, signature, accessKey, amount, signature, data, signature, notifyUrl, returnUrl, requestType)
     	
-    	QRNotifyRequest qr = new QRNotifyRequest(status, signature, amount, error, partnerRefId, momoTransId, message, partnerCode, accessKey, partnerTransId, transType, responseTime, storeId)
+//    	QRNotifyRequest qr = new QRNotifyRequest(status, signature, amount, error, partnerRefId, momoTransId, message, partnerCode, accessKey, partnerTransId, transType, responseTime, storeId)
     	
+//    	CaptureMoMoRequest captureMoMoRequest = new CaptureMoMoRequest(partnerCode, signature, signature, accessKey, amount, signature, data, signature, notifyUrl, returnUrl, requestType);
     	
+    	// https://developers.momo.vn/v1/#cong-thanh-toan-momo-phuong-thuc-thanh-toan
+    	EnvTarget target = EnvTarget.DEV;
+    	
+        // PAY_GATE, APP_IN_APP, PAY_POS, PAY_QUERY_STATUS, PAY_REFUND, PAY_CONFIRM;
+    	ProcessType process = ProcessType.PAY_GATE;
+        Environment environment = Environment.selectEnv(target, process);
+        
+    	CaptureMoMo captureMoMo = new CaptureMoMo(environment);
+    	
+        String requestId = String.valueOf(System.currentTimeMillis());
+        
+        
+    	CaptureMoMoRequest captureMoMoRequest = captureMoMo.createPaymentCreationRequest(orderId, requestId, amount, orderInfo, returnUrl, notifyUrl, extraData);
+    	
+    	CaptureMoMoResponse captureMoMoResponse = captureMoMo.execute(captureMoMoRequest);
+    	captureMoMoResponse.getPayUrl();
+    	captureMoMoResponse.getQrCodeUrl();
     }
     
 }
