@@ -14,12 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mservice.shared.exception.MoMoException;
+import com.paypal.core.PayPalHttpClient;
 
 @Controller
 public class HomeController {
 
 	@RequestMapping("*")
     public ModelAndView home(Model model) {
+		
+		PayPalClient payPalClient = new PayPalClient();
+		PayPalHttpClient payPalHttpClient = payPalClient.client();
+		
+//		payPalHttpClient.
 		
 		TestMomo test = new TestMomo();
 		try {
