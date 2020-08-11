@@ -176,18 +176,29 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 
 ### VENDOR
 1. Trang Vendor
+  * Nhấn vào Tên cửa hàng để chuyển đến trang của hàng của mình.
+  * Nhấn nút Add để thêm sản phẩm vào giỏ hàng.
+  * Nhấn vào name để đến trang xem chi tiết sản phẩm.
 
 ![index_vendor](https://user-images.githubusercontent.com/63025883/89879804-ac241780-dbed-11ea-9a76-5d7040c74112.png)
 
 2. Giao diện cửa hàng của Vendor
+  * Nhấn vào button "Shop Management" để đến trang quản lí sản phẩm.
 
 ![shop_detail](https://user-images.githubusercontent.com/63025883/89880171-23f24200-dbee-11ea-95d2-25daedde30ff.png)
 
 3. Giao diện quản lí sản phẩm
+  * Nhấn "Back to shop " để trờ về trang cửa hàng.
+  * Nhấn "Del" đến trang xóa sản phẩm.
+  * Nhấn "Edit" đến trang sửa sản phẩm.
+  * Nhấn "Add product" chuyển đến giao diện thêm sản phẩm.
+  * Nhấn "Order" chuyến đến giao diện chi tiết đơn hàng.
 
 ![allproduct](https://user-images.githubusercontent.com/63025883/89880108-0f15ae80-dbee-11ea-9866-69fb511e294f.png)
 
 4. Giao diện thêm sản phẩm
+
+  * Vendor điền đầy đủ thông tin và nhấn "Add để thêm sản phẩm".
 
 ![addproduct](https://user-images.githubusercontent.com/63025883/89880490-851a1580-dbee-11ea-87fa-6a1756a42041.png)
 
