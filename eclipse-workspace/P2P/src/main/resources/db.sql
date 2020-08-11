@@ -39,7 +39,7 @@ create table p2p_account_role (
 )
 
 create table p2p_shop (
-    id bigint primary key,
+    account bigint primary key,
     constraint fk_shop_id foreign key (id) references p2p_account(id),
 
     name nvarchar(50) not null,
@@ -120,7 +120,7 @@ create table p2p_bill (
 )
 
 create table p2p_bill_item (
-    id bigint,
+    bill bigint,
     constraint fk_bill_item_id__bill_id foreign key (id) references p2p_bill(id),
 
     product bigint not null,
