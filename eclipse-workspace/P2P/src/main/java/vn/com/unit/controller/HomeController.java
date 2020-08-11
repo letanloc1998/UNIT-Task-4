@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mservice.shared.exception.MoMoException;
+
 @Controller
 public class HomeController {
 
@@ -21,7 +23,12 @@ public class HomeController {
 		
 		TestMomo test = new TestMomo();
 		try {
-			test.test();
+			try {
+				test.test();
+			} catch (MoMoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} catch (InvalidKeyException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
