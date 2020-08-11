@@ -113,7 +113,7 @@ create table p2p_cart (
 create table p2p_bill (
     id bigint primary key identity(1,1),
     account bigint not null,
-    address nvarchar(255),
+    address nvarchar(255) not null,
     create_at datetime default getutcdate(),
 
     constraint fk_bill_account__account_id foreign key (account) references p2p_account(id),
