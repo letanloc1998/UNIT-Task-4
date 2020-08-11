@@ -173,6 +173,44 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 
 ![success](https://user-images.githubusercontent.com/63025883/89866529-e7b4e680-dbd9-11ea-8519-9de5799a3aae.png)
 
+
+### VENDOR
+1. Trang Vendor
+
+![index_vendor](https://user-images.githubusercontent.com/63025883/89879804-ac241780-dbed-11ea-9a76-5d7040c74112.png)
+
+2. Giao diện cửa hàng của Vendor
+
+![shop_detail](https://user-images.githubusercontent.com/63025883/89880171-23f24200-dbee-11ea-95d2-25daedde30ff.png)
+
+3. Giao diện quản lí sản phẩm
+
+![allproduct](https://user-images.githubusercontent.com/63025883/89880108-0f15ae80-dbee-11ea-9866-69fb511e294f.png)
+
+4. Giao diện thêm sản phẩm
+
+![addproduct](https://user-images.githubusercontent.com/63025883/89880490-851a1580-dbee-11ea-87fa-6a1756a42041.png)
+
+5. Giao diện xem đơn hàng
+
+![order](https://user-images.githubusercontent.com/63025883/89881034-299c5780-dbef-11ea-9e18-f7039d907bc9.png)
+
+6. Giao diện sửa sản phẩm
+
+![editproduct](https://user-images.githubusercontent.com/63025883/89880298-45532e00-dbee-11ea-9548-2ca1e7ddfa8b.png)
+
+7. Giao diện xóa sản phẩm
+
+![del](https://user-images.githubusercontent.com/63025883/89881349-9b74a100-dbef-11ea-870e-7ac4ce4cf184.png)  
+
+8. Giao diện xem chi tiết đơn hàng
+
+![order_detail](https://user-images.githubusercontent.com/63025883/89881745-18a01600-dbf0-11ea-9dad-d85bf8b45129.png)
+
+9. Giao diện hủy đơn hàng
+
+![cancel_order](https://user-images.githubusercontent.com/63025883/89882318-dc20ea00-dbf0-11ea-9aa2-36a3518ebefc.png)
+
 ## Lưu ý
   - src/main/webapp
   - Dynamic Web Module 3.0
