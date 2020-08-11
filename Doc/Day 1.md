@@ -114,6 +114,8 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 ## III. CONCEPT DATABASE
   https://docs.google.com/spreadsheets/d/11HOY6Ug1ojyvybakHQizdTgF8xZgsJldb8umo4xBnUI/edit#gid=374315597
 ## IV. CONCEPT SCREEN 
+### USER
+
 1.  Giao diện trang chủ.
   * Người dùng nhấn vào Login để chuyển đến trang đăng nhập.
   * Người dùng chưa có tài khoản nhấn vào Register để đăng kí.
@@ -127,20 +129,47 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 
 2. Giao diện đăng nhập
   * Người dùng điền username và password rồi nhấn "login" để đăng nhập vào trang người dùng.
-  
+
 ![image](https://user-images.githubusercontent.com/63025883/89865026-2bf2b780-dbd7-11ea-9dc5-eb25b38ed181.png)
 
-![register](https://user-images.githubusercontent.com/63025883/89866411-aae8ef80-dbd9-11ea-8e1f-1f9c3a5353fd.png)
+3. Giao diện đăng ký người dùng
+  * Người dùng điền đầy đủ thông tin và nhấn nút Register để đăng kí tài khoản người dùng.
 
-![cart](https://user-images.githubusercontent.com/63025883/89866021-04045380-dbd9-11ea-9c37-f0bfa0e54f91.png)
+![register](https://user-images.githubusercontent.com/63025883/89875328-5187bd00-dbe7-11ea-8bcd-c5af913f93e3.png)
+
+4. Giao diện chi tiết sản phẩm
+  * Người dùng nhấn vào 2 button "+" hoặc "-" để chọn số lượng sản phẩm muốn mua.
+  * Nhấn nút "Add to cart" đế thêm sản phẩm vào giỏ hàng.
+  * Người dùng nhấn vào tên cửa hàng để chuyển đến trang cửa hàng(shop_name).
 
 ![product_detail](https://user-images.githubusercontent.com/63025883/89868464-0b2d6080-dbdd-11ea-984a-1c09162fc98e.png)
 
+5. Giao diện giỏ hàng
+  * Nhấn vào button "Del" đế xóa sản phẩm khỏi giở hàng.
+  * Nhấn vào nút "Next" để chuyến đến trang "Detail order".
+
+![cart](https://user-images.githubusercontent.com/63025883/89875663-bb07cb80-dbe7-11ea-9f9a-da59c6a5db13.png)
+
+6. Giao diện trang chi tiết đơn hàng
+  * Thông tin người dùng nhận hàng có thể lấy từ hệ thống hoặc cho người dùng nhập vào.
+  * Chọn hình thức thanh toán: Momo hoặc Paypal.
+
 ![confirm_order](https://user-images.githubusercontent.com/63025883/89866211-5ba2bf00-dbd9-11ea-9d6f-cbca31463d84.png)
+
+7. Giao diện sản phẩm người dùng tìm kiếm.
+  * Nhấn vào tên sản phẩm để đến trang chi tiết sản phẩm.
+  * Nhấn vào button "Add" để thêm sản phẩm vào giở hàng.
 
 ![product_search](https://user-images.githubusercontent.com/63025883/89866310-842ab900-dbd9-11ea-843e-a736830aa096.png)
 
+8. Giao diện cửa hàng
+  * Nhấn vào tến sản phẩm để chuyển đến trang xem chi tiết sản phẩm.
+  * Nhấn nút "Add" để thêm sản phẩm vào giỏ hàng.
+
 ![shop](https://user-images.githubusercontent.com/63025883/89866468-c8b65480-dbd9-11ea-8845-6ae6f03c7599.png)
+
+9. Giao diện thanh toàn thành công
+  * Nhấn vào button "Continue shopping" để trở về trang chủ.
 
 ![success](https://user-images.githubusercontent.com/63025883/89866529-e7b4e680-dbd9-11ea-8519-9de5799a3aae.png)
 
