@@ -75,7 +75,7 @@ create table p2p_product (
     name nvarchar(255) not null,
     price int not null check (price > 0),
     detail nvarchar(1000),
-    img nvarchar(500),
+    img nvarchar(500) not null,
     disable bit default 0,
 
     category int,
