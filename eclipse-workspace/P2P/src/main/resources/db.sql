@@ -127,7 +127,6 @@ create table p2p_bill_item (
     constraint fk_bill_item_product__product_id foreign key (product) references p2p_product(id),
 
     quantity int not null check (quantity > 0)
-
 )
 
 -- init data
