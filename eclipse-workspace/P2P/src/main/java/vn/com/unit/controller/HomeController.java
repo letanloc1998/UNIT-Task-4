@@ -1,5 +1,9 @@
 package vn.com.unit.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +18,15 @@ public class HomeController {
 
 	@RequestMapping("*")
     public ModelAndView home(Model model) {
-
+		
+		TestMomo test = new TestMomo();
+		try {
+			test.test();
+		} catch (InvalidKeyException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
         return new ModelAndView("index");
     }
 
