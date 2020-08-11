@@ -73,7 +73,7 @@ create table p2p_product (
     constraint fk_produtc_shop__shop_id foreign key (shop) references p2p_shop(id),
 
     name nvarchar(255) not null,
-    price int not null,
+    price int not null check (price > 0),
     detail nvarchar(1000),
     img nvarchar(500),
     disable bit default 0,
