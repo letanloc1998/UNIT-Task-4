@@ -17,12 +17,12 @@
 			<name>local-maven-repo</name>
 			<url>file://${pom.basedir}/local-maven-repo</url>
 		</repository>
-		
+
 		<!-- Momo -->
 		<repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
 	</repositories>
 
 	<properties>
@@ -45,6 +45,14 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
+
+		<dependency>
+			<groupId>jp.sf.amateras</groupId>
+			<artifactId>mirage</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
@@ -74,6 +82,12 @@
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mirage</artifactId>
 			<version>0.3.2.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>jp.sf.amateras</groupId>
+					<artifactId>mirage</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -158,15 +172,26 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.5.3</version>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/jp.sf.amateras/mirage -->
+		<!-- <dependency> <groupId>jp.sf.amateras</groupId> <artifactId>mirage</artifactId> 
+			<version>1.2.5</version> </dependency> -->
 		<!-- Momo -->
 		<dependency>
-            <groupId>io.github.momo-wallet</groupId>
-            <artifactId>momopayment</artifactId>
-            <version>1.0</version>
-        </dependency>
+			<groupId>io.github.momo-wallet</groupId>
+			<artifactId>momopayment</artifactId>
+			<version>1.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>jp.sf.amateras</groupId>
+					<artifactId>mirage</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 
 	</dependencies>
+
 
 	<build>
 		<finalName>P2P</finalName>
