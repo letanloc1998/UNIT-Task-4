@@ -53,7 +53,7 @@ create table p2p_shop (
 
 create table p2p_category (
     id int primary key identity(1,1),
-    name varchar(50) not null
+    name nvarchar(50) not null
 )
 
 create table p2p_tag (
