@@ -231,6 +231,13 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 
 ![cancel_order](https://user-images.githubusercontent.com/63025883/89882318-dc20ea00-dbf0-11ea-9aa2-36a3518ebefc.png)
 
+### ADMIN 
+
+1. Giao diện trang chủ
+
+2. Giao diện trang admin
+
+3.
 ## Lưu ý
   - src/main/webapp
   - Dynamic Web Module 3.0
