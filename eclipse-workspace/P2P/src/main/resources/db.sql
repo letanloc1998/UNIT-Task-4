@@ -101,7 +101,7 @@ create table p2p_cart (
 
     product bigint not null,
     
-    quantity int not null
+    quantity int not null,
 
     create_at datetime default getutcdate(),
 
