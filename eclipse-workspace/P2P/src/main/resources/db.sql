@@ -84,6 +84,8 @@ create table p2p_product (
     brand int,
     constraint fk_product_brand__brand_id foreign key (brand) references p2p_brand(id),
     
+    quantity int not null check (quantity > 0),
+
     create_at datetime default getutcdate()
 )
 
