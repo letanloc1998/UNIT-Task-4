@@ -69,7 +69,7 @@ create table p2p_brand (
 create table p2p_product (
     id bigint primary key identity(1,1),
 
-    shop bigint,
+    shop bigint not null,
     constraint fk_produtc_shop__shop_id foreign key (shop) references p2p_shop(id),
 
     name nvarchar(255) not null,
