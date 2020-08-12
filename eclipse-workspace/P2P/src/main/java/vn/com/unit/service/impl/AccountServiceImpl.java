@@ -64,7 +64,7 @@ public class AccountServiceImpl implements AccountService {
 	public List<Account> findAllAccount() {
 		List<Account> accounts = new ArrayList<Account>();
 		try {
-			accounts = accountRepository.findAllAccount();
+			accounts = accountRepository.findAllAccountActive();
 			
 			for (Account account : accounts) {
 				List<Role> roles = roleService.findRoleByAccountId(account.getId());
