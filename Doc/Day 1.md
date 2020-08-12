@@ -124,6 +124,7 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
   * Người dùng nhập thông tin vào search box và nhấn button "Search" để chuyến trang produc_search.
   * Người dùng nhấn vào tên sản phẩm đế chuyến đến trang xem chi tiết sản phẩm (product_detail).
   * Nhấn nút add để thêm sản phảm vào giỏ hàng.
+  * Nhấn vào tên người dùng để chuyển đến trang cá nhân.
 
 ![index](https://user-images.githubusercontent.com/63025883/89864320-f26d7c80-dbd5-11ea-9a3c-c3b2b23f913c.png)
 
@@ -173,6 +174,41 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 
 ![success](https://user-images.githubusercontent.com/63025883/89866529-e7b4e680-dbd9-11ea-8519-9de5799a3aae.png)
 
+10. Giao diện tài khoản
+
+  * Người dùng có thể điền username và password rồi nhấn "change" để thay đổi thông tin.
+  * Nhấn "Information" để tới giao diện thông tin người dùng.
+  * Nhấn "Your Order" để chuyển tới giao diện đơn hàng người dùng.
+  * Nhấn "Create shop" để chuyển đến giao diện tạo cửa hàng.
+  * Nhấn "Back to home" để trở về trang index.
+
+![user_management](https://user-images.githubusercontent.com/63025883/89969382-70865d80-dc80-11ea-90d7-517a22d07102.png)
+
+11. Giao diện thông tin người dùng
+
+  * Người dùng có thể thay đổi số điện thoại hoặc email rồi nhấn "Change".
+
+![user_info](https://user-images.githubusercontent.com/63025883/89969408-8431c400-dc80-11ea-9c08-ff0aca687f91.png)
+
+12. Giao diện đơn hàng người dùng
+
+  * Nhấn "View" đế chuyến đến giao diện chi tiết đơn hàng.
+  * Nhấn "Cancel" để đến giao diện hủy đơn hàng.
+
+![order](https://user-images.githubusercontent.com/63025883/89969448-9c094800-dc80-11ea-98a6-20dc5750545e.png)
+
+13. Giao diện chi tiết đơn hàng và hủy đơn hàng
+
+  * Nhấn "Cancel" để hủy đơn hàng.
+
+![cancel_order](https://user-images.githubusercontent.com/63025883/89969478-adeaeb00-dc80-11ea-8f8d-325e42c8d530.png)
+
+14. Giao diện tạo cửa hàng
+
+  * Người dùng điền đầy đủ thông tin và nhấn nút "Create" để tiến hành tạo cửa hàng.
+
+![create_shop](https://user-images.githubusercontent.com/63025883/89969514-c8bd5f80-dc80-11ea-96e6-8733a7474317.png)
+
 
 ### VENDOR
 1. Trang Vendor
@@ -198,7 +234,7 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 
 4. Giao diện thêm sản phẩm
 
-  * Vendor điền đầy đủ thông tin và nhấn "Add để thêm sản phẩm".
+  * Vendor điền đầy đủ thông tin và nhấn "Add" để thêm sản phẩm.
 
 ![addproduct](https://user-images.githubusercontent.com/63025883/89880490-851a1580-dbee-11ea-87fa-6a1756a42041.png)
 
@@ -235,9 +271,56 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 
 1. Giao diện trang chủ
 
+![index_ad](https://user-images.githubusercontent.com/63025883/89970952-2dc68480-dc84-11ea-9ce4-d0c8b74ac6d6.png)
+
 2. Giao diện trang admin
 
-3.
+![ad](https://user-images.githubusercontent.com/63025883/89970974-3dde6400-dc84-11ea-9b32-200a9d49b7df.png)
+
+3. Giao diện tài khoản
+
+![ad_account](https://user-images.githubusercontent.com/63025883/89971054-6b2b1200-dc84-11ea-9411-41941bf99f69.png)
+
+4. Giao diện thêm tài khoản
+
+![ad_account_add](https://user-images.githubusercontent.com/63025883/89971083-7da54b80-dc84-11ea-80de-e2c35a7f06ac.png)
+
+5. Giao diện khóa tài khoản người dùng
+
+![ad_account_del](https://user-images.githubusercontent.com/63025883/89971167-b6ddbb80-dc84-11ea-85c2-1d0ee4480999.png)
+
+6. Giao diện sửa tài khoản người dùng
+
+![ad_account_edit](https://user-images.githubusercontent.com/63025883/89971187-c65d0480-dc84-11ea-8a56-2ec1ac121d48.png)
+
+7. Giao diện xem loại sản phẩm
+
+![ad_category](https://user-images.githubusercontent.com/63025883/89971215-dbd22e80-dc84-11ea-801b-6206545f4c44.png)
+
+8. Giao diện thêm loại sản phẩm
+
+![ad_category_add](https://user-images.githubusercontent.com/63025883/89971251-f1475880-dc84-11ea-9c29-ebaee6f547b5.png)
+
+9. Giao diện xóa loại sản phẩm
+
+![ad_category_del](https://user-images.githubusercontent.com/63025883/89971280-0623ec00-dc85-11ea-9b9a-1ae39f6dc013.png)
+
+10. Giao diện sửa loại sản phẩm
+
+![ad_category_edit](https://user-images.githubusercontent.com/63025883/89971303-1936bc00-dc85-11ea-8965-a94fe775527a.png)
+
+11. Giao diện khóa tài khoản cửa hàng
+
+![ad_delshop](https://user-images.githubusercontent.com/63025883/89971354-353a5d80-dc85-11ea-8a19-8b59dfaa7cee.png)
+
+12. Giao diện trang cửa hàng
+
+![ad_shop](https://user-images.githubusercontent.com/63025883/89971389-4d11e180-dc85-11ea-81d7-870489b8d58a.png)
+
+13. Giao diện duyệt cửa hàng
+
+![ad_shop_edit](https://user-images.githubusercontent.com/63025883/89971421-687cec80-dc85-11ea-83b8-b474004fe54b.png)
+
 ## Lưu ý
   - src/main/webapp
   - Dynamic Web Module 3.0

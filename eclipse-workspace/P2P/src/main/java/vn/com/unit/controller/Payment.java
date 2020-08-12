@@ -1,8 +1,13 @@
 package vn.com.unit.controller;
 
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mservice.allinone.models.CaptureMoMoRequest;
@@ -34,7 +39,7 @@ public class Payment {
 			String orderInfo = "Mua cái áo màu hường 9999 đ";
 
 			String returnUrl = "http://localhost:8080/callback";
-			String notifyUrl = "http://localhost:8080/webhook/check-signature";
+			String notifyUrl = "https://1dd10ec48399.ngrok.io/webhook/momo";
 
 			String extraData = "";
 
@@ -53,6 +58,14 @@ public class Payment {
 
 		return new ModelAndView("index");
 	}
+	
+//	check-signature
+	@PostMapping("/webhook/momo")
+	public ResponseEntity<String> webhookMomo(@RequestParam Map<String, String> body) {
+		body.get("partnerCode");
+		return ResponseEntity.ok(null);
+	}
+	
 
 	@RequestMapping("/paypal")
 	public ModelAndView payPalPayment(Model model) {
