@@ -81,6 +81,11 @@ public class AccountServiceImpl implements AccountService {
 		try {
 			String username = account.getUsername();
 			String password = CommonUtils.encodePassword(account.getPassword());
+			Long account_new_id = accountRepository.createNewAccount(username, password);
+			
+			if(account_new_id != null) {
+				
+			}
 		}catch(Exception e) {
 			
 		}
