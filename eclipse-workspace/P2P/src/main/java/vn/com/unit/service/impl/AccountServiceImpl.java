@@ -59,10 +59,9 @@ public class AccountServiceImpl implements AccountService {
 		try {
 			accounts = accountRepository.findAllAccount();
 //			for (UserModel account : accounts) {
-//				List<RoleModel> roles = roleService.findRolesByAccountId(account.getId());
+//				List<RoleModel> roles = roleService.findRoleByAccountId(account.getId());
 //				account.setRoles(roles);
 //			}
-
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
