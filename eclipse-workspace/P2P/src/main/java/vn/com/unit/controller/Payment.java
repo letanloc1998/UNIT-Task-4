@@ -67,7 +67,7 @@ public class Payment {
 	}
 
 //	check-signature
-	@PostMapping("/webhook/momo")
+	@PostMapping(value = "/webhook/momo", produces = "application/json; charset=UTF-8")
 	public ResponseEntity<String> webhookMomo(@RequestParam Map<String, String> body) {
 		body.get("partnerCode");
 		body.get("accessKey");
@@ -86,17 +86,33 @@ public class Payment {
 		body.get("signature");
 
 //		partnerCode=MOMOIZCR20200811&accessKey=2cX38RzzWw1Iuh5r&requestId=1597202201403&amount=9999&orderId=1597202201403&orderInfo=Mua cÃ¡i Ã¡o mÃ u hÆ°á»ng 9999 Ä&orderType=momo_wallet&transId=2323114460&message=Success&localMessage=ThÃ nh cÃ´ng&responseTime=2020-08-12 10:17:47&errorCode=0&payType=qr&extraData=
-		String rawData = Parameter.PARTNER_CODE + "=" + body.get("partnerCode") + "&" + Parameter.ACCESS_KEY + "="
-				+ body.get("accessKey") +
+		String rawData = Parameter.PARTNER_CODE + "=" + body.get("partnerCode")
 
-				"&" + Parameter.REQUEST_ID + "=" + body.get("requestId") + "&" + Parameter.AMOUNT + "="
-				+ body.get("amount") + "&" + Parameter.ORDER_ID + "=" + body.get("orderId") + "&" + Parameter.ORDER_INFO
-				+ "=" + body.get("orderInfo") + "&" + Parameter.ORDER_TYPE + "=" + body.get("orderType") + "&"
-				+ Parameter.TRANS_ID + "=" + body.get("transId") + "&" + Parameter.MESSAGE + "=" + body.get("message")
-				+ "&" + Parameter.LOCAL_MESSAGE + "=" + body.get("localMessage") + "&" + "responseTime" + "="
-				+ body.get("responseTime") + "&" + Parameter.ERROR_CODE + "=" + body.get("errorCode") + "&"
-				+ Parameter.PAY_TYPE + "=" + body.get("payType") + "&" + Parameter.EXTRA_DATA + "="
-				+ body.get("extraData");
+				+ "&" + Parameter.ACCESS_KEY + "=" + body.get("accessKey")
+
+				+ "&" + Parameter.REQUEST_ID + "=" + body.get("requestId")
+
+				+ "&" + Parameter.AMOUNT + "=" + body.get("amount")
+
+				+ "&" + Parameter.ORDER_ID + "=" + body.get("orderId")
+
+				+ "&" + Parameter.ORDER_INFO + "=" + body.get("orderInfo")
+
+				+ "&" + Parameter.ORDER_TYPE + "=" + body.get("orderType")
+
+				+ "&" + Parameter.TRANS_ID + "=" + body.get("transId")
+
+				+ "&" + Parameter.MESSAGE + "=" + body.get("message")
+
+				+ "&" + Parameter.LOCAL_MESSAGE + "=" + body.get("localMessage")
+
+				+ "&" + "responseTime" + "=" + body.get("responseTime")
+
+				+ "&" + Parameter.ERROR_CODE + "=" + body.get("errorCode")
+
+				+ "&" + Parameter.PAY_TYPE + "=" + body.get("payType")
+
+				+ "&" + Parameter.EXTRA_DATA + "=" + body.get("extraData");
 
 		String signatureClient = null;
 		try {
@@ -116,7 +132,7 @@ public class Payment {
 		}
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-		
+
 	}
 
 	@RequestMapping("/paypal")
