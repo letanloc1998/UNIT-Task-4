@@ -132,6 +132,9 @@ create table p2p_bill_item (
 )
 
 -- init data
+
+-- acount
+
 insert into p2p_account(username, password) values ('admin', '');
 insert into p2p_account(username, password) values ('vendor', '');
 insert into p2p_account(username, password) values ('user', '');
@@ -143,3 +146,37 @@ insert into p2p_role (name) values ('ROLE_USER');
 insert into p2p_account_role (account, role) values (1, 1);
 insert into p2p_account_role (account, role) values (2, 2);
 insert into p2p_account_role (account, role) values (3, 3);
+
+-- product
+
+insert into p2p_account(username, password) values ('vendor-1', '');
+insert into p2p_account(username, password) values ('vendor-2', '');
+
+insert into p2p_account_role (account, role) values (4, 2);
+insert into p2p_account_role (account, role) values (5, 2);
+
+insert into p2p_shop (id, name) values (4, 'shop-1');
+insert into p2p_shop (id, name) values (5, 'shop-2');
+
+insert into p2p_category (name) values ('category-1');
+insert into p2p_category (name) values ('category-2');
+
+insert into p2p_brand (name) values ('brand-1');
+insert into p2p_brand (name) values ('brand-2');
+
+insert into p2p_product (shop, name, price, img, category, brand, quantity) values (4, 'product-1', 1000, '/static/product/default.png', 1, 1, 40);
+insert into p2p_product (shop, name, price, img, category, brand, quantity) values (4, 'product-2', 1500, '/static/product/default.png', 1, 2, 30);
+
+insert into p2p_product (shop, name, price, img, category, brand, quantity) values (5, 'product-3', 2000, '/static/product/default.png', 2, 1, 20);
+insert into p2p_product (shop, name, price, img, category, brand, quantity) values (5, 'product-4', 2500, '/static/product/default.png', 2, 2, 10);
+
+select product.id, product.name, product.price, product.detail, product.img,
+		product.disable, product.quantity, product.create_at,
+		category.name as category, brand.name as brand, shop.name as shop
+from p2p_product product
+left join p2p_shop shop
+on shop.id = product.shop
+left join p2p_category category
+on category.id = product.category
+left join p2p_brand brand
+on brand.id	= product.brand;
