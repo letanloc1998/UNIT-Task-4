@@ -20,15 +20,15 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 	public Long createNewAccount(@Param("username") String username, @Param("password") String password);
 	
 	@Modifying
-	public void setPassword(@Param("account_id") Long account_id, @Param("username") String password);
+	public void setPassword(@Param("account_id") Long account_id, @Param("password") String password);
 	
 	@Modifying
-	public void setPhone(@Param("account_id") Long account_id, @Param("username") String phone);
+	public void setPhone(@Param("account_id") Long account_id, @Param("phone") String phone);
 	
 	@Modifying
-	public void setEmail(@Param("account_id") Long account_id, @Param("username") String email);
+	public void setEmail(@Param("account_id") Long account_id, @Param("email") String email);
 	
 	@Modifying
-	public void setName(@Param("account_id") Long account_id, @Param("username") String name);
+	public void setName(@Param("account_id") Long account_id, @Param("name") String name);
 	
 }

@@ -1,3 +1,3 @@
 UPDATE p2p_account
-SET phone = /*name*/
+SET name = /*name*/
 WHERE id = /*account_id*/
