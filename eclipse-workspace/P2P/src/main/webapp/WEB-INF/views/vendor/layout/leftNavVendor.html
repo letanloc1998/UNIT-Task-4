@@ -18,26 +18,26 @@
         Tip 2: you can also add an image using data-image tag
     -->
 			<div class="logo">
-				<a href="http://www.creative-tim.com"
-					class="simple-text logo-normal"> Creative Tim </a>
+				<a th:href="@{/}"
+					class="simple-text logo-normal"> P2PO </a>
 			</div>
 			<div class="sidebar-wrapper">
 				<ul class="nav">
 				
 					<li th:classappend="${#request.getRequestURI() == '/vendor/home' ? 'nav-item active' : 'nav-item'}">
 					<a class="nav-link"
-						th:href="@{/admin/home}"> <i class="material-icons">dashboard</i>
+						th:href="@{/vendor/home}"> <i class="material-icons">dashboard</i>
 							<p>Dashboard</p>
 					</a></li>
-					<li th:classappend="${#request.getRequestURI().startsWith('/admin/account/') ? 'nav-item active' : 'nav-item'}">
-					<a class="nav-link" th:href="@{/admin/account/list}">
+					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/myaccount/') ? 'nav-item active' : 'nav-item'}">
+					<a class="nav-link" th:href="@{/vendor/myaccount}">
 							<i class="material-icons">person</i>
-							<p>Account</p>
+							<p>My Account</p>
 					</a></li>
-					<li th:classappend="${#request.getRequestURI().startsWith('/admin/shop/') ? 'nav-item active' : 'nav-item'}">
-					<a class="nav-link" th:href="@{/admin/shop/list}">
+					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/myshop/') ? 'nav-item active' : 'nav-item'}">
+					<a class="nav-link" th:href="@{/vendor/myshop}">
 							<i class="material-icons">content_paste</i>
-							<p>Shop</p>
+							<p>My Shop</p>
 					</a></li>
 					<li th:classappend="${#request.getRequestURI().startsWith('/admin/category/') ? 'nav-item active' : 'nav-item'}">
 					<a class="nav-link"

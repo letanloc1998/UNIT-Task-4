@@ -11,16 +11,16 @@
 <body>
   <div class="wrapper ">
         
-    <div th:replace="components/vendor/layout/leftNavVendor :: leftNavVendor"></div> 
+    <div th:replace="vendor/layout/leftNavVendor :: leftNavVendor"></div> 
     
     <div class="main-panel">
       <!-- Navbar -->
-     	<div th:replace="components/vendor/layout/HeadNavVendor :: headNavVendor"></div> 
+     	<div th:replace="admin/layout/HeadNavAdmin :: headNavAdmin"></div> 
       <!-- End Navbar -->
        <!-- content -->
-        <div th:replace="components/vendor/components/dasboard/dashboardVendor :: dashboardVendor"></div> 
+        <div th:replace="components/vendor/dashboard/dashboardVendor :: dashboardVendor"></div> 
         <!-- End content -->
-        <div th:replace="components/vendor/layout/footerVendor :: footerVendor"></div> 
+        <div th:replace="admin/layout/footerAdmin :: footerAdmin"></div> 
     </div>
   </div>
   
