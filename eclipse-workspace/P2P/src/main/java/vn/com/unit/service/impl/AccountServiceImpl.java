@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -58,17 +59,18 @@ public class AccountServiceImpl implements AccountService {
 
 		return false;
 	}
-
+//tìm tất cả user kèm role
 	@Override
 	public List<Account> findAllAccount() {
 		List<Account> accounts = new ArrayList<Account>();
 		try {
 			accounts = accountRepository.findAllAccount();
-//			for (UserModel account : accounts) {
-//				List<RoleModel> roles = roleService.findRoleByAccountId(account.getId());
-//				account.setRoles(roles);
-//			}
-		} catch (Exception e) {
+			
+			for (Account account : accounts) {
+				List<Role> roles = roleService.findRoleByAccountId(account.getId());
+				account.setRoles(roles);
+			}
+		} catch (Exception e ) {
 			// TODO: handle exception
 		}
 		return accounts;

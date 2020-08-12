@@ -10,5 +10,4 @@ import vn.com.unit.entity.Role;
 public interface RoleRepository extends MirageRepository<Role, Long> {
 
 	public List<Role> findRoleByAccountId(@Param("account_id") Long account_id);
-	
 }
