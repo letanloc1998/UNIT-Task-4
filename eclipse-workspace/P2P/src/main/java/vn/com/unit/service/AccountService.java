@@ -14,6 +14,8 @@ public interface AccountService {
 	
 	public Account createNewAccount(Account account);
 	
+	public Account getAccountRole(Account account);
+	
 	public Account getCurrentAccount();
 
 	public void setPassword(Long account_id, String password);
@@ -23,4 +25,6 @@ public interface AccountService {
 	public void setEmail(Long account_id, String name);
 	
 	public void setName(Long account_id, String name);
+	
+	public Account findById(Long id);
 }

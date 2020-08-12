@@ -24,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountRepository accountRepository;
-	
+
 	@Autowired
 	private RoleService roleService;
 
@@ -59,40 +59,44 @@ public class AccountServiceImpl implements AccountService {
 
 		return false;
 	}
+
 //tìm tất cả user kèm role
 	@Override
 	public List<Account> findAllAccount() {
 		List<Account> accounts = new ArrayList<Account>();
 		try {
 			accounts = accountRepository.findAllAccountActive();
-			
+
 			for (Account account : accounts) {
 				List<Role> roles = roleService.findRoleByAccountId(account.getId());
 				account.setRoles(roles);
 			}
-		} catch (Exception e ) {
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return accounts;
 	}
-	
+
+	// create register
 	@Override
 	public Account createNewAccount(Account account) {
 		try {
 			String username = account.getUsername();
 			String password = CommonUtils.encodePassword(account.getPassword());
-			Long account_new_id = accountRepository.createNewAccount(username, password);
 			
-			if(account_new_id != null) {
-				
-			}
-		}catch(Exception e) {
-			
+		} catch (Exception e) {
+
 		}
 		return null;
 	}
+	// getIDsetRole
 
-	//getCurrentAccount
+	public Account getAccountRole(Account account) { 
+		accountRepository.getAccountRole(account.getId());
+		return null;			
+	}
+
+	// getCurrentAccount
 	@Override
 	public Account getCurrentAccount() {
 		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
@@ -101,51 +105,62 @@ public class AccountServiceImpl implements AccountService {
 		account.setRoles(roles);
 		return account;
 	}
-	//setPassword
+
+	// setPassword
 	@Override
 	public void setPassword(Long account_id, String password) {
 		try {
 			password = CommonUtils.encodePassword(password);
-			
-			accountRepository.setPassword(account_id,password);
-		}catch (Exception e) {
-			
+
+			accountRepository.setPassword(account_id, password);
+		} catch (Exception e) {
+
 		}
-		
+
 	}
-	
-	//setPhone
+
+	// setPhone
 	@Override
 	public void setPhone(Long account_id, String phone) {
 		try {
 			accountRepository.setPhone(account_id, phone);
-		}catch (Exception e) {
-			
+		} catch (Exception e) {
+
 		}
-		
+
 	}
-	
-	//setEmail
+
+	// setEmail
 	@Override
 	public void setEmail(Long account_id, String email) {
 		try {
 			accountRepository.setEmail(account_id, email);
-		}catch (Exception e) {
-			
+		} catch (Exception e) {
+
 		}
-		
+
 	}
-	
-	//setName
+
+	// setName
 	@Override
 	public void setName(Long account_id, String name) {
 		try {
-			accountRepository.setName(account_id,name);
-		}catch (Exception e) {
-			
+			accountRepository.setName(account_id, name);
+		} catch (Exception e) {
+
 		}
-		
+
 	}
-	
+
+	// getId
+	@Override
+	public Account findById(Long id) {
+		try {
+			return accountRepository.findById(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 
 }
