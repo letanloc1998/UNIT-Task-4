@@ -35,6 +35,13 @@ public class MomoWebhook {
 		if (momoPaymentResult.checkSignature()) {
 			// error code == 0 => success => bill success => transfer to shop
 			// error code != 0 => error
+			if (momoPaymentResult.getErrorCode().equals("0")) {
+				// Handler success
+			} else {
+				// Handler error
+			}
+
+			// Return for Momo
 			return ResponseEntity.ok(null);
 		}
 
@@ -42,58 +49,6 @@ public class MomoWebhook {
 
 	}
 
-	private String getRawDataPaymentResult(Map<String, String> body) throws UnsupportedEncodingException {
-
-		String partnerCode = body.get("partnerCode");
-		String accessKey = body.get("accessKey");
-		String requestId = body.get("requestId");
-		String amount = body.get("amount");
-		String orderId = body.get("orderId");
-		String orderInfo = this.convertEncode(body.get("orderInfo"));
-		String orderType = body.get("orderType");
-		String transId = body.get("transId");
-		String message = this.convertEncode(body.get("message"));
-		String localMessage = this.convertEncode(body.get("localMessage"));
-		String payType = body.get("payType");
-		String responseTime = body.get("responseTime");
-		String errorCode = body.get("errorCode");
-		String extraData = this.convertEncode(body.get("extraData"));
-
-		String rawData = Parameter.PARTNER_CODE + "=" + partnerCode
-
-				+ "&" + Parameter.ACCESS_KEY + "=" + accessKey
-
-				+ "&" + Parameter.REQUEST_ID + "=" + requestId
-
-				+ "&" + Parameter.AMOUNT + "=" + amount
-
-				+ "&" + Parameter.ORDER_ID + "=" + orderId
-
-				+ "&" + Parameter.ORDER_INFO + "=" + orderInfo
-
-				+ "&" + Parameter.ORDER_TYPE + "=" + orderType
-
-				+ "&" + Parameter.TRANS_ID + "=" + transId
-
-				+ "&" + Parameter.MESSAGE + "=" + message
-
-				+ "&" + Parameter.LOCAL_MESSAGE + "=" + localMessage
-
-				+ "&" + "responseTime" + "=" + responseTime
-
-				+ "&" + Parameter.ERROR_CODE + "=" + errorCode
-
-				+ "&" + Parameter.PAY_TYPE + "=" + payType
-
-				+ "&" + Parameter.EXTRA_DATA + "=" + extraData;
-
-		return rawData;
-	}
-
-	// Convert encode from ISO-8859-1 to UTF-8
-	private String convertEncode(String s) throws UnsupportedEncodingException {
-		return new String(s.getBytes("ISO-8859-1"), "UTF-8");
-	}
 }
 
 class MomoPaymentResult {
@@ -168,6 +123,7 @@ class MomoPaymentResult {
 	}
 
 	public boolean checkSignature() {
+
 		try {
 			String rawData = this.getRawData();
 			String signatureClient = Encoder.signHmacSHA256(rawData, environment.getPartnerInfo().getSecretKey());
