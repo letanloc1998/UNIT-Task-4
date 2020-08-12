@@ -17,10 +17,5 @@ public class AdminController {
 
 		return new ModelAndView("admin/home");
 	}
-	@RequestMapping("/admin/account/list")
-	public ModelAndView accountList(Model model) {
-
-		return new ModelAndView("admin/account/account-table");
-	}
-
+	
 }
