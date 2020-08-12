@@ -34,10 +34,19 @@ public class VendorController {
 		return new ModelAndView("vendor/vendor");
 	}
 	
-	@RequestMapping("/vendor/myaccount") public ModelAndView accountList(Model model) {
+	@RequestMapping("/vendor/myaccount") public ModelAndView myAccount(Model model) {
 		Account account = accountService.getCurrentAccount();	
 		model.addAttribute("current_account", account);
 		return new ModelAndView("vendor/myAccount/account-table"); }
+	
+	
+	
+	  @RequestMapping("/vendor/edit-pass") public ModelAndView editPass(Model model) {
+	  Account account = accountService.getCurrentAccount();
+	  model.addAttribute("current_account", account); 
+	  return new
+	  ModelAndView("vendor/myAccount/editPass"); }
+	 
 	 
 
 }

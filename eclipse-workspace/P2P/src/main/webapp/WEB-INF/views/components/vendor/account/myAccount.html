@@ -65,7 +65,7 @@
 								</div>
 								<button th:onclick="editAccount()"
 									class="btn btn-primary pull-right">Update Profile</button>
-								<a th:href="/vendor/edit-pass"
+								<a th:href="@{/vendor/edit-pass}"
 									class="btn btn-primary pull-right">Update Password</a>
 								<div class="clearfix"></div>
 							</div>
@@ -80,12 +80,10 @@
 
 		<script th:inline="javascript">	
 		
+
+
 		const account = [[${ current_account }]];
-		
-		function resetField(){
-			$('input').val('');
-		}
-	
+
 	
 		function editAccount() {
 		    console.log("Start edit");

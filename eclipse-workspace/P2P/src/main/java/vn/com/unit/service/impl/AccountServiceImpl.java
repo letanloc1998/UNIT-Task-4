@@ -59,6 +59,24 @@ public class AccountServiceImpl implements AccountService {
 
 		return false;
 	}
+	
+	//check password
+	@Override
+	public boolean checkPass(Account account, String oldPassword) {
+		try {
+
+			String encodedPassword = account.getPassword();
+			return passwordEncoder.matches(oldPassword, encodedPassword);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return false;
+	}
+	
+	
+	
 //tìm tất cả user kèm role
 	@Override
 	public List<Account> findAllAccount() {

@@ -17,58 +17,48 @@
 						<div class="card">
 							<div class="card-header card-header-primary">
 								<h3 class="card-title">
-									Edit Your Account (ID: <span th:text="${current_account.id}"></span>)
+									Edit Password (ID: <span th:text="${current_account.id}"></span>)
 								</h3>
 							</div>
+							<form th:action="@{/editPass}" th:object="${mymodelobject}" method="GET">
 							<div class="card-body"
 								style="padding-left: 100px; padding-right: 100px">
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="bmd-label-floating">Username</label> <input
-												disabled type="text" class="form-control" name="username"
-												th:value="${current_account.username}">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="bmd-label-floating">Password</label> <input
-												disabled id="password" type="password" class="form-control"
-												name="password" th:value="${current_account.password}">
+											<label class="bmd-label-floating">Old Password</label> <input
+												id="old-password" type="password" class="form-control"
+												name="old-password">
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="bmd-label-floating">Email address</label> <input
-												type="email" id="email" class="form-control"
-												th:value="${current_account.email}">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="bmd-label-floating">Phone</label> <input
-												id="phone" type="number" class="form-control"
-												th:value="${current_account.phone}">
+											<label class="bmd-label-floating">New Password</label> <input
+												type="password" id="new-pass" name="new-pass" class="form-control">
 										</div>
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12">
+									<div class="col-md-6">
 										<div class="form-group">
-											<label class="bmd-label-floating">Full Name</label> <input
-												type="text" id="name" class="form-control"
-												th:value="${current_account.name}">
+											<label class="bmd-label-floating">Re New Password</label> <input
+												type="password" id="re-pass" name="re-pass" class="form-control">
+											<div>
+											<p id="status" style="color:red" ></p>
+											<p th:text="${result}" style="color:red" ></p>
+											</div>
 										</div>
 									</div>
 								</div>
-								<button th:onclick="editAccount()"
-									class="btn btn-primary pull-right">Update Profile</button>
-								<a th:href="/vendor/edit-pass"
-									class="btn btn-primary pull-right">Update Password</a>
+								<a href="/vendor/myaccount" class="btn btn-primary pull-right">Update
+									Profile</a>
+								<button th:onclick="" class="btn btn-primary pull-right">Update
+									Password</button>
 								<div class="clearfix"></div>
 							</div>
+							</form>
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -82,18 +72,30 @@
 		
 		const account = [[${ current_account }]];
 		
-		function resetField(){
-			$('input').val('');
-		}
+		$(document).ready(function(){
+			  $("#re-pass").focusin(function(){
+				  $("#status").text("");
+				  });
+			  $("#re-pass").focusout(function(){	  
+			    var rePass = $("#re-pass").val();
+			    var newPass = $("#new-pass").val();
+			        if(rePass != newPass){
+			        	$("#status").text("Your Password Incorrect!");
+			        }else{
+			        	$("#status").text("");
+
+			        }
+			        
+			  });
+			});
 	
 	
-		function editAccount() {
-		    console.log("Start edit");
+/* 		function checkOldPass() {
+		    console.log("Start check");
 			console.log(account);
 		    //account.password = $("#password").val();
-		    account.phone = $("#phone").val();
-		    account.email = $("#email").val();
-		    account.name = $("#name").val();
+		    var password = account.password;
+		    var type_password = $("#old-password").val();
 	
 		    var token = $("meta[name='_csrf']").attr("content");
 		    var header = $("meta[name='_csrf_header']").attr("content");
@@ -125,7 +127,7 @@
 		    });  
 	
 		    console.log("End edit");
-		}
+		} */
 		</script>
 
 	</th:block>

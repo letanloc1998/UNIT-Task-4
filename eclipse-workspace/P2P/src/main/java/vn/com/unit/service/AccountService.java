@@ -10,6 +10,8 @@ public interface AccountService {
 	
 	public boolean checkLogin(Account account, String rawPassword);
 	
+	public boolean checkPass(Account account, String oldPassword);
+	
 	public List<Account> findAllAccount();
 	
 	public Account createNewAccount(Account account);
