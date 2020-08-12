@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import vn.com.unit.entity.Account;
+import vn.com.unit.entity.Role;
 import vn.com.unit.repository.AccountRepository;
 import vn.com.unit.repository.RoleRepository;
 import vn.com.unit.service.AccountService;
+import vn.com.unit.service.RoleService;
 import vn.com.unit.utils.CommonUtils;
 
 @Service
@@ -20,6 +23,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private AccountRepository accountRepository;
+	
+	@Autowired
+	private RoleService roleService;
 
 	@Autowired
 	RoleRepository roleRepository;
@@ -66,6 +72,18 @@ public class AccountServiceImpl implements AccountService {
 			// TODO: handle exception
 		}
 		return accounts;
+	}
+	
+	
+	
+	//getCurrentAccount
+	@Override
+	public Account getCurrentAccount() {
+		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+		Account account = findByUsername(currentUsername);
+		List<Role> roles = roleService.findRoleByAccount(account);
+		account.setRoles(roles);
+		return account;
 	}
 
 }
