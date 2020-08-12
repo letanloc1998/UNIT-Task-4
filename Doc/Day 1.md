@@ -215,6 +215,7 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
   * Nhấn vào Tên cửa hàng để chuyển đến trang của hàng của mình.
   * Nhấn nút Add để thêm sản phẩm vào giỏ hàng.
   * Nhấn vào name để đến trang xem chi tiết sản phẩm.
+  * Nhấn vào tên người dùng để vào trang tài khoản( tương tự user).
 
 ![index_vendor](https://user-images.githubusercontent.com/63025883/89879804-ac241780-dbed-11ea-9a76-5d7040c74112.png)
 
@@ -271,55 +272,90 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 
 1. Giao diện trang chủ
 
+  * Nhấn "Admin Management" để chuyển đến trang admin.
+
 ![index_ad](https://user-images.githubusercontent.com/63025883/89970952-2dc68480-dc84-11ea-9ce4-d0c8b74ac6d6.png)
 
 2. Giao diện trang admin
 
+  * Nhấn vào tên người dùng để chuyển đến trang tài khoản(tương tự như user).
+  * Nhấn "Account" để chuyển qua giao diện quản lí tài khoản người dùng.
+  * Nhấn "Shop" để chuyển qua giao diện quản lí tài khoản shop.
+  * Nhấn "Category" chuyến đến giao diện quản lí loại sản phẩm.
+
 ![ad](https://user-images.githubusercontent.com/63025883/89970974-3dde6400-dc84-11ea-9b32-200a9d49b7df.png)
 
-3. Giao diện tài khoản
+3. Giao diện quản lí tài khoản người dùng
+
+  * Nhấn "Add" để chuyển đến trang thêm tài khoản người dùng.
+  * Nhấn "Edit" để chuyển đến trang sửa tài khoản người dùng.
+  * Nhấn "Del" để chuyển đến giao diện khóa tài khoản người dùng.
 
 ![ad_account](https://user-images.githubusercontent.com/63025883/89971054-6b2b1200-dc84-11ea-9411-41941bf99f69.png)
 
 4. Giao diện thêm tài khoản
 
+  * Admin điền đầy đủ thông tin và nhấn "Add" để thêm người dùng.
+
 ![ad_account_add](https://user-images.githubusercontent.com/63025883/89971083-7da54b80-dc84-11ea-80de-e2c35a7f06ac.png)
 
 5. Giao diện khóa tài khoản người dùng
+
+  * Nhấn "Delete" để khóa tài khoản người dùng.
 
 ![ad_account_del](https://user-images.githubusercontent.com/63025883/89971167-b6ddbb80-dc84-11ea-85c2-1d0ee4480999.png)
 
 6. Giao diện sửa tài khoản người dùng
 
+  * Chọn "Role" muốn chỉnh sửa và nhấn "Edit".
+
 ![ad_account_edit](https://user-images.githubusercontent.com/63025883/89971187-c65d0480-dc84-11ea-8a56-2ec1ac121d48.png)
 
 7. Giao diện xem loại sản phẩm
+
+  * Nhấn "Add" để chuyển đến trang thêm loại sản phẩm.
+  * Nhấn "Edit" để chuyển đến trang sửa loại sản phẩm.
+  * Nhấn "Del" để chuyển đến giao diện xóa loại sản phẩm.
 
 ![ad_category](https://user-images.githubusercontent.com/63025883/89971215-dbd22e80-dc84-11ea-801b-6206545f4c44.png)
 
 8. Giao diện thêm loại sản phẩm
 
+  * Điền loại sản phẩm muốn thêm và nhấn nút "Add".
+
 ![ad_category_add](https://user-images.githubusercontent.com/63025883/89971251-f1475880-dc84-11ea-9c29-ebaee6f547b5.png)
 
 9. Giao diện xóa loại sản phẩm
+
+  * Kiểm tra thông tin và nhấn "Delete" để xóa loại sản phẩm.
 
 ![ad_category_del](https://user-images.githubusercontent.com/63025883/89971280-0623ec00-dc85-11ea-9b9a-1ae39f6dc013.png)
 
 10. Giao diện sửa loại sản phẩm
 
+  *  Chỉnh sửa thông tin và nhấn "Edit" để sửa loại sản phẩm.
+
 ![ad_category_edit](https://user-images.githubusercontent.com/63025883/89971303-1936bc00-dc85-11ea-8965-a94fe775527a.png)
 
 11. Giao diện khóa tài khoản cửa hàng
 
+  * Kiểm tra thông tin và nhấn "Delete" để khóa tài khoản cửa hàng.
+
 ![ad_delshop](https://user-images.githubusercontent.com/63025883/89971354-353a5d80-dc85-11ea-8a19-8b59dfaa7cee.png)
 
-12. Giao diện trang cửa hàng
+12. Giao diện trang quản lí cửa hàng
+
+  * Nhấn "Edit" để chuyển tới giao diện duyệt cửa hàng.
+  * Nhấn "Del" để chuyển tới giao diện khóa cửa hàng.
 
 ![ad_shop](https://user-images.githubusercontent.com/63025883/89971389-4d11e180-dc85-11ea-81d7-870489b8d58a.png)
 
 13. Giao diện duyệt cửa hàng
 
-![ad_shop_edit](https://user-images.githubusercontent.com/63025883/89971421-687cec80-dc85-11ea-83b8-b474004fe54b.png)
+  * Chọn lại trạng thái cửa hàng và nhấn "Edit".
+
+![ad_shop_edit](https://user-images.githubusercontent.com/63025883/89974646-ce6d7200-dc8d-11ea-8183-a0bee00028b7.png)
+
 
 ## Lưu ý
   - src/main/webapp
