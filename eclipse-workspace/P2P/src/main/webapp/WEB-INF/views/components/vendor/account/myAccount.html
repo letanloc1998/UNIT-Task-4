@@ -25,13 +25,13 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="bmd-label-floating">Username</label> <input
-													disabled type="text" class="form-control" name="username">
+													disabled type="text" class="form-control" name="username" th:value="${current_account.username}">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="bmd-label-floating">Password</label> <input
-													type="password" class="form-control" name="password">
+													type="password" class="form-control" name="password" th:value="${current_account.password}">
 											</div>
 										</div>
 									</div>
@@ -39,13 +39,17 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="bmd-label-floating">Email address</label> <input
-													type="email" class="form-control">
+													type="email" id="email" class="form-control" th:value="${current_account.email}" >
+													<script th:inline="javascript">
+													 const account = [[${current_account}]];
+													 console.log(account)
+													</script>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="bmd-label-floating">Phone</label> <input
-													type="number" class="form-control">
+													id="phone" type="number" class="form-control" th:value="${current_account.phone}">
 											</div>
 										</div>
 									</div>
@@ -53,15 +57,7 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="bmd-label-floating">Full Name</label> <input
-													type="text" class="form-control">
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<label class="bmd-label-floating">Adress</label> <input
-													type="text" class="form-control">
+													type="text" id="name" class="form-control" th:value="${current_account.name}">
 											</div>
 										</div>
 									</div>
