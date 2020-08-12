@@ -29,7 +29,7 @@
 						th:href="@{/vendor/home}"> <i class="material-icons">dashboard</i>
 							<p>Dashboard</p>
 					</a></li>
-					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/myaccount/') ? 'nav-item active' : 'nav-item'}">
+					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/myaccount') ? 'nav-item active' : 'nav-item'}">
 					<a class="nav-link" th:href="@{/vendor/myaccount}">
 							<i class="material-icons">person</i>
 							<p>My Account</p>

@@ -12,7 +12,6 @@
 
 	<http pattern="/static/**" security="none" />
 
-
 	<beans:bean id="customAuthenticationFailureHandler"
 		class="vn.com.unit.security.CustomAuthenticationFailureHandler" />
 
@@ -29,8 +28,8 @@
 			ref="customAccessDeniedHandler" />
 
 		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/register" access="permitAll" />
 		<intercept-url pattern="/webhook/momo" access="permitAll" />
-
 
 		<intercept-url pattern="/**"
 			access="hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')" />
