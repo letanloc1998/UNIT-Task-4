@@ -1,4 +1,4 @@
-package vn.com.unit.controller;
+package vn.com.unit.controller.admin;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -9,11 +9,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 
-public class AccountController {
-	@RequestMapping("/admin/account/list")
-	public ModelAndView accountList(Model model) {
+public class AdminController {
 
-		return new ModelAndView("admin/account/account-table");
+	@RequestMapping("/admin/home")
+
+	public ModelAndView home(Model model) {
+
+		return new ModelAndView("admin/home");
 	}
-
+	
 }

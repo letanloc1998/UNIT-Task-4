@@ -1,5 +1,7 @@
 package vn.com.unit.repository;
 
+import java.util.List;
+
 import org.springframework.data.mirage.repository.MirageRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -10,5 +12,7 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 	public Account findByUsername(@Param("username") String username);
 	
 	public void updateAccountPassword(@Param("id") Long id, @Param("password") String password);
+	
+	public List<Account> findAllAccount();
 	
 }

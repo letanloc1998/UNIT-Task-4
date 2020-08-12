@@ -1,5 +1,8 @@
 package vn.com.unit.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -48,6 +51,22 @@ public class AccountServiceImpl implements AccountService {
 		}
 
 		return false;
+	}
+
+	@Override
+	public List<Account> findAllAccount() {
+		List<Account> accounts = new ArrayList<Account>();
+		try {
+			accounts = accountRepository.findAllAccount();
+//			for (UserModel account : accounts) {
+//				List<RoleModel> roles = roleService.findRolesByAccountId(account.getId());
+//				account.setRoles(roles);
+//			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return accounts;
 	}
 
 }
