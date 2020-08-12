@@ -19,17 +19,12 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 
 	public Long createNewAccount(@Param("username") String username, @Param("password") String password);
 	
+
 	@Modifying
 	public void setPassword(@Param("account_id") Long account_id, @Param("password") String password);
-	
+		
 	@Modifying
-	public void setPhone(@Param("account_id") Long account_id, @Param("phone") String phone);
-	
-	@Modifying
-	public void setEmail(@Param("account_id") Long account_id, @Param("email") String email);
-	
-	@Modifying
-	public void setName(@Param("account_id") Long account_id, @Param("name") String name);
+	public void setInfor(@Param("account_id") Long account_id, @Param("name") String name , @Param("email") String email, @Param("phone") String phone);
 	
 	public void getAccountRole(@Param("id_account") Long id_account);
 

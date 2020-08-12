@@ -18,9 +18,5 @@ public interface AccountService {
 
 	public void setPassword(Long account_id, String password);
 	
-	public void setPhone(Long account_id, String phone);
-	
-	public void setEmail(Long account_id, String name);
-	
-	public void setName(Long account_id, String name);
+	public void setInfor(Long account_id, String name, String email, String phone);
 }

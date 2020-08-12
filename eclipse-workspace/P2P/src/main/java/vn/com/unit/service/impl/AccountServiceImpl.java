@@ -114,38 +114,18 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 	
-	//setPhone
+	//setInfor
 	@Override
-	public void setPhone(Long account_id, String phone) {
+	public void setInfor(Long account_id, String name,String email, String phone) {
 		try {
-			accountRepository.setPhone(account_id, phone);
+			accountRepository.setInfor(account_id, name, email, phone);
 		}catch (Exception e) {
 			
 		}
 		
 	}
 	
-	//setEmail
-	@Override
-	public void setEmail(Long account_id, String email) {
-		try {
-			accountRepository.setEmail(account_id, email);
-		}catch (Exception e) {
-			
-		}
-		
-	}
-	
-	//setName
-	@Override
-	public void setName(Long account_id, String name) {
-		try {
-			accountRepository.setName(account_id,name);
-		}catch (Exception e) {
-			
-		}
-		
-	}
+
 	
 
 }
