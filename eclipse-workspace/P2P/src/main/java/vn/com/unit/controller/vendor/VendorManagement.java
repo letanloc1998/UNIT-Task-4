@@ -40,14 +40,11 @@ public class VendorManagement {
 		 * accountService.setPassword(account_id, new_password);
 		 */
 		
-		String new_phone = account.getPhone();
-		accountService.setPhone(account_id, new_phone);
-		
-		String new_email = account.getEmail();
-		accountService.setEmail(account_id, new_email);
-		
+		String new_phone = account.getPhone();		
+		String new_email = account.getEmail();		
 		String new_name = account.getName();
-		accountService.setName(account_id, new_name);
+		
+		accountService.setInfor(account_id, new_name, new_email, new_phone);
 		return ResponseEntity.ok(account);
 
 	}	
