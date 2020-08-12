@@ -124,6 +124,7 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
   * Người dùng nhập thông tin vào search box và nhấn button "Search" để chuyến trang produc_search.
   * Người dùng nhấn vào tên sản phẩm đế chuyến đến trang xem chi tiết sản phẩm (product_detail).
   * Nhấn nút add để thêm sản phảm vào giỏ hàng.
+  * Nhấn vào tên người dùng để chuyển đến trang cá nhân.
 
 ![index](https://user-images.githubusercontent.com/63025883/89864320-f26d7c80-dbd5-11ea-9a3c-c3b2b23f913c.png)
 
@@ -172,6 +173,41 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
   * Nhấn vào button "Continue shopping" để trở về trang chủ.
 
 ![success](https://user-images.githubusercontent.com/63025883/89866529-e7b4e680-dbd9-11ea-8519-9de5799a3aae.png)
+
+10. Giao diện tài khoản
+
+  * Người dùng có thể điền username và password rồi nhấn "change" để thay đổi thông tin.
+  * Nhấn "Information" để tới giao diện thông tin người dùng.
+  * Nhấn "Your Order" để chuyển tới giao diện đơn hàng người dùng.
+  * Nhấn "Create shop" để chuyển đến giao diện tạo cửa hàng.
+  * Nhấn "Back to home" để trở về trang index.
+
+![user_management](https://user-images.githubusercontent.com/63025883/89969382-70865d80-dc80-11ea-90d7-517a22d07102.png)
+
+11. Giao diện thông tin người dùng
+
+  * Người dùng có thể thay đổi số điện thoại hoặc email rồi nhấn "Change".
+
+![user_info](https://user-images.githubusercontent.com/63025883/89969408-8431c400-dc80-11ea-9c08-ff0aca687f91.png)
+
+12. Giao diện đơn hàng người dùng
+
+  * Nhấn "View" đế chuyến đến giao diện chi tiết đơn hàng.
+  * Nhấn "Cancel" để đến giao diện hủy đơn hàng.
+
+![order](https://user-images.githubusercontent.com/63025883/89969448-9c094800-dc80-11ea-98a6-20dc5750545e.png)
+
+13. Giao diện chi tiết đơn hàng và hủy đơn hàng
+
+  * Nhấn "Cancel" để hủy đơn hàng.
+
+![cancel_order](https://user-images.githubusercontent.com/63025883/89969478-adeaeb00-dc80-11ea-8f8d-325e42c8d530.png)
+
+14. Giao diện tạo cửa hàng
+
+  * Người dùng điền đầy đủ thông tin và nhấn nút "Create" để tiến hành tạo cửa hàng.
+
+![create_shop](https://user-images.githubusercontent.com/63025883/89969514-c8bd5f80-dc80-11ea-96e6-8733a7474317.png)
 
 
 ### VENDOR
@@ -237,7 +273,27 @@ VD product có: code, name, vendor, giá, số lượng chọn mua, số lượn
 
 2. Giao diện trang admin
 
-3.
+3. Giao diện thêm tài khoản
+
+4. Giao diện thêm sản phẩm
+
+5. Giao diện khóa tài khoản người dùng
+
+6. Giao diện sửa tài khoản người dùng
+
+7. Giao diện xem loại sản phẩm
+
+8. Giao diện thêm loại sản phẩm
+
+9. Giao diện xóa loại sản phẩm
+
+10. Giao diện sửa loại sản phẩm
+
+11. Giao diện khóa tài khoản cửa hàng
+
+12. Giao diện trang cửa hàng
+
+13. Giao diện duyệt cửa hàng
 ## Lưu ý
   - src/main/webapp
   - Dynamic Web Module 3.0
