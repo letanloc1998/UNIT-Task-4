@@ -11,4 +11,7 @@ public interface AccountService {
 	public boolean checkLogin(Account account, String rawPassword);
 	
 	public List<Account> findAllAccount();
+	
+	public Account createNewAccount(Account account);
+	public Account getCurrentAccount();
 }

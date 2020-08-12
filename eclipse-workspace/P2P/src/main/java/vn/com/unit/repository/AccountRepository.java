@@ -15,4 +15,6 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 	
 	public List<Account> findAllAccount();
 	
+	public Long createNewAccount(@Param("username") String username, @Param("password") String password);
+	
 }
