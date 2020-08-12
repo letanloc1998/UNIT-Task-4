@@ -40,7 +40,7 @@ public class MomoWebhook {
 			} else {
 				// Handler error
 			}
-			
+
 			// Return for Momo
 			return ResponseEntity.ok(null);
 		}
@@ -123,6 +123,7 @@ class MomoPaymentResult {
 	}
 
 	public boolean checkSignature() {
+
 		try {
 			String rawData = this.getRawData();
 			String signatureClient = Encoder.signHmacSHA256(rawData, environment.getPartnerInfo().getSecretKey());
