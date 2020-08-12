@@ -15,13 +15,13 @@ public class VendorController {
 
 	public ModelAndView home(Model model) {
 
-		return new ModelAndView("components/vendor/vendor");
+		return new ModelAndView("vendor/vendor");
 	}
-	/*
-	 * @RequestMapping("/admin/account/list") public ModelAndView accountList(Model
-	 * model) {
-	 * 
-	 * return new ModelAndView("admin/account/account-table"); }
-	 */
+	
+	  @RequestMapping("/vendor/myaccount") public ModelAndView accountList(Model
+	  model) {
+	  
+	  return new ModelAndView("vendor/myAccount/account-table"); }
+	 
 
 }
