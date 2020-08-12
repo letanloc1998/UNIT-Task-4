@@ -20,19 +20,29 @@ public class TestRefund {
 	
 	@RequestMapping("/refund")
 	public void test() {
+		
 		RefundMoMo refundMoMo = new RefundMoMo(environment);
-		String requestId = "1597228817961";
-		String orderId = "1597228817961";
+		String requestId = String.valueOf(System.currentTimeMillis());
+		String orderId = String.valueOf(System.currentTimeMillis());
 		String amount = "9999";
 		String transId = "2323118387";
 		RefundMoMoRequest refundMoMoRequest = refundMoMo.createRefundRequest(requestId, orderId, amount, transId);
 		
 		try {
+			Environment env = environment;
+			RefundMoMo.process(env, requestId, orderId, amount, transId);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		/*
+		try {
 			refundMoMo.execute(refundMoMoRequest);
 		} catch (MoMoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 	}
 }
