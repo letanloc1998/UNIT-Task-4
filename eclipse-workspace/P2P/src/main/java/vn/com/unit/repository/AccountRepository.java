@@ -19,6 +19,7 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 
 	public Long createNewAccount(@Param("username") String username, @Param("password") String password);
 	
+<<<<<<< Updated upstream
 	@Modifying
 	public void setPassword(@Param("account_id") Long account_id, @Param("password") String password);
 	
@@ -31,4 +32,7 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 	@Modifying
 	public void setName(@Param("account_id") Long account_id, @Param("name") String name);
 	
+=======
+	public void getAccountRole(@Param("id_account") Long id_account);
+>>>>>>> Stashed changes
 }
