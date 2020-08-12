@@ -1,9 +1,6 @@
 package vn.com.unit.controller.webhook;
 
 import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.cert.CertPathChecker;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -37,6 +34,7 @@ public class MomoWebhook {
 			// error code != 0 => error
 			if (momoPaymentResult.getErrorCode().equals("0")) {
 				// Handler success
+				// Refund if empty product in repository
 			} else {
 				// Handler error
 			}
