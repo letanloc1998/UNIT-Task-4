@@ -12,3 +12,5 @@ WebContent/
 eclipse-workspace/Servers/
 
 .vscode/
+jboss-eap-7.3/
+jboss-eap-7.3.0.zip
