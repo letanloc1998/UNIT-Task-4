@@ -10,3 +10,5 @@ jboss-eap-7.3.0
 WebContent/
 
 eclipse-workspace/Servers/
+
+.vscode/
