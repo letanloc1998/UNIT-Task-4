@@ -4,18 +4,26 @@
     xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
 <head>
-    <th:block th:include="layout/head :: head"></th:block>
-    <th:block th:include="components/vendor/layout/head-vendor :: head-vendor"></th:block>
+    <th:block th:include="admin/layout/head :: head"></th:block>
+    
 </head>
 
 <body>
-
-    <div th:replace="components/vendor/vendor :: vendor"></div> 
-
-    <div th:replace="layout/footer :: footer"></div>
+  <div class="wrapper ">
+        
+    <div th:replace="components/vendor/layout/leftNavVendor :: leftNavVendor"></div> 
     
-    <div th:replace="components/vendor/layout/footer-vendor :: footer-vendor"></div>
-
+    <div class="main-panel">
+      <!-- Navbar -->
+     	<div th:replace="components/vendor/layout/HeadNavVendor :: headNavVendor"></div> 
+      <!-- End Navbar -->
+       <!-- content -->
+        <div th:replace="components/vendor/components/dasboard/dashboardVendor :: dashboardVendor"></div> 
+        <!-- End content -->
+        <div th:replace="components/vendor/layout/footerVendor :: footerVendor"></div> 
+    </div>
+  </div>
+  
+    <th:block th:replace="layout/footer :: footer"></th:block>
 </body>
-
 </html>
