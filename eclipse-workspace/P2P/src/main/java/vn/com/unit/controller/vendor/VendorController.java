@@ -1,4 +1,4 @@
-package vn.com.unit.controller;
+package vn.com.unit.controller.vendor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

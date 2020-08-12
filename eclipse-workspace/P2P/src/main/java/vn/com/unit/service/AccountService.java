@@ -13,5 +13,14 @@ public interface AccountService {
 	public List<Account> findAllAccount();
 	
 	public Account createNewAccount(Account account);
+	
 	public Account getCurrentAccount();
+
+	public void setPassword(Long account_id, String password);
+	
+	public void setPhone(Long account_id, String phone);
+	
+	public void setEmail(Long account_id, String name);
+	
+	public void setName(Long account_id, String name);
 }
