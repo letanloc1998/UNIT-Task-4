@@ -38,10 +38,10 @@
 											<tr th:if="${!accounts.empty or accounts != null}"
 												th:each="account, i : ${accounts}">
 												<td><span th:text="${i.count}"></span></td>
-												<td><span th:text="${account.name}"></span></td>
-												<td><span th:text="${account.username}"></span></td>
-												<td><span th:text="${account.email}"></span></td>
-												<td><span th:text="${account.phone}"></span></td>
+												<td><span th:text="${account.name}"></span>name</td>
+												<td><span th:text="${account.username}">user_name</span></td>
+												<td><span th:text="${account.email}"></span>example@gmail.com</td>
+												<td><span th:text="${account.phone}"></span>0793910700</td>
 												<td><th:block th:if="${account.roles != null}"
 														th:each="role, j : ${account.roles}">
 														<th:block th:if="${j.count > 1}">- </th:block>
@@ -62,8 +62,7 @@
 														class="btn btn-large btn-info"> <i class="fa fa-eye">
 														</i>
 													</a>
-												</span> 
-												<span><a type="button"
+												</span> <span><a type="button"
 														th:href="@{'/admin/account/edit/' + ${account.id}}"
 														class="btn btn-large btn-primary"><i
 															class="fas fa-edit"></i></a> </span> <span>
@@ -72,11 +71,9 @@
 															data-toggle="modal" data-target="#deleteConfirm">
 															<i class="fas fa-trash-alt"></i>
 														</button>
-												</span>
-												</td>
+												</span></td>
 										</tbody>
 									</table>
-									
 								</div>
 							</div>
 						</div>
