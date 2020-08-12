@@ -19,13 +19,17 @@
 	<beans:bean name="customAccessDeniedHandler"
 		class="vn.com.unit.security.CustomAccessDeniedHandler" />
 
+	<http auto-config="true" use-expressions="true" pattern="/webhook/momo">
+		<csrf disabled="true" />
+	</http>
+
 	<http auto-config="true" use-expressions="true">
 
 		<access-denied-handler
 			ref="customAccessDeniedHandler" />
 
 		<intercept-url pattern="/login" access="permitAll" />
-		<intercept-url pattern="/webhook/" access="permitAll" />
+		<intercept-url pattern="/webhook/momo" access="permitAll" />
 
 
 		<intercept-url pattern="/**"
@@ -52,10 +56,6 @@
 				expired-url="/login?error=max_session" max-sessions="1" />
 		</session-management>
 
-	</http>
-
-	<http auto-config="true" use-expressions="true" pattern="/webhook/**">
-		<csrf disabled="true" />
 	</http>
 
 	<global-method-security
