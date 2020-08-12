@@ -2,6 +2,7 @@ package vn.com.unit.controller;
 
 import java.util.Map;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,8 +61,9 @@ public class Payment {
 	
 //	check-signature
 	@PostMapping("/webhook/momo")
-	public void webhookMomo(@RequestParam Map<String, String> body) {
+	public ResponseEntity<String> webhookMomo(@RequestParam Map<String, String> body) {
 		body.get("partnerCode");
+		return ResponseEntity.ok(null);
 	}
 	
 
