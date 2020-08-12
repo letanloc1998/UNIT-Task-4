@@ -25,7 +25,7 @@ import com.mservice.shared.utils.Encoder;
 import com.paypal.core.PayPalHttpClient;
 //import com.mservice.allinone.processor.allinone.PaymentResult;
 
-@Controller
+
 public class Payment {
 
 	EnvTarget target = EnvTarget.DEV;

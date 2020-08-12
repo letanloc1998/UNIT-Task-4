@@ -76,8 +76,17 @@ public class AccountServiceImpl implements AccountService {
 		return accounts;
 	}
 	
-	
-	
+	@Override
+	public Account createNewAccount(Account account) {
+		try {
+			String username = account.getUsername();
+			String password = CommonUtils.encodePassword(account.getPassword());
+		}catch(Exception e) {
+			
+		}
+		return null;
+	}
+
 	//getCurrentAccount
 	@Override
 	public Account getCurrentAccount() {
