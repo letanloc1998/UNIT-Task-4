@@ -12,11 +12,12 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <div>
-              </div>
+              <div></div>
               <div class="card-header card-header-primary">
                 <h4 class="card-title ">Account Table</h4>
-                <button type="button" class="btn btn-danger">add <i class="fas fa-plus-circle"></i></button>
+                <button type="button" class="btn btn-danger">
+                  add <i class="fas fa-plus-circle"></i>
+                </button>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -29,7 +30,7 @@
                       <th>Phone</th>
                       <th>Role</th>
                       <th>Create_at</th>
-                      <th>Action</th>
+                      <th class="text-center">Action</th>
                     </thead>
                     <tbody>
 
@@ -40,55 +41,35 @@
                         <td><span th:text="${account.email}"></span></td>
                         <td><span th:text="${account.phone}"></span></td>
                         <td></td>
-                        <td><span th:text=" ${account.createAt} ? ${#dates.format(account.createAt, 'dd-MM-yyyy')} "></span></td>
-											<!-- <td><span>
-													<p class="summary">
-														<th:block th:if="${account.roles != null}"
-															th:each="role, j : ${account.roles}">
-															<th:block th:if="${j.count > 1}">- </th:block>
-															<th:block th:if="${role.name == 'ROLE_ADMIN'}">
-																<th:block th:text="Admin"></th:block>
-															</th:block>
-															<th:block th:if="${role.name == 'ROLE_USER'}">
-																<th:block th:text="User"></th:block>
-															</th:block>
-														</th:block>
-													</p>
-
-											</span></td>
-											<td class="text-center"><span
-												th:text=" ${account.createddate} ? ${#dates.format(account.createddate, 'dd-MM-yyyy')} "></span></td>
-											<td class="text-center"><span> <a type="button"
-													th:href="@{'/admin/account/detail/' + ${account.id}}"
-													class="btn btn-large btn-info"> <i class="fa fa-eye">
-													</i>
-												</a>
-											</span> <span><a type="button"
-													th:href="@{'/admin/account/edit/' + ${account.id}}"
-													class="btn btn-large btn-primary"><i
-														class="fas fa-edit"></i></a> </span> <span>
-													<button type="button" class="btn  btn-danger"
-														th:onclick="|selectAccount(${i.index})|"
-														data-toggle="modal" data-target="#deleteConfirm">
-														<i class="fas fa-trash-alt"></i>
-													</button>
-											</span></td> -->
-
-                      </tr>
-
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <script th:inline="javascript">
+                        <td ><span th:text=" ${account.createAt} ? ${#dates.format(account.createAt, 'dd-MM-yyyy')} "></span></td>
+												<td class="text-center"><span> <a type="button"
+														th:href="@{'/admin/account/detail/' + ${account.id}}"
+														class="btn btn-large btn-info"> <i class="fa fa-eye">
+														</i>
+													</a>
+												</span> <span><a type="button"
+														th:href="@{'/admin/account/edit/' + ${account.id}}"
+														class="btn btn-large btn-primary"><i
+															class="fas fa-edit"></i></a> </span> <span>
+														<button type="button" class="btn  btn-danger"
+															th:onclick="|selectAccount(${i.index})|"
+															data-toggle="modal" data-target="#deleteConfirm">
+															<i class="fas fa-trash-alt"></i>
+														</button>
+												</span></td>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<script th:inline="javascript">
         const account = [[${ accounts }]]
         console.log([[${ accounts }]])
       </script>
-  </th:block>
+	</th:block>
 
 </body>
 
