@@ -118,6 +118,8 @@ public class Payment {
 		try {
 			signatureClient = Encoder.signHmacSHA256(rawData, environment.getPartnerInfo().getSecretKey());
 			if (signatureClient.equals(body.get("signature"))) {
+				// error code == 0 => success => bill success => transfer to shop
+				// error code != 0 => error
 				return ResponseEntity.ok(null);
 			}
 		} catch (InvalidKeyException e) {
