@@ -14,4 +14,5 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 	public void updateAccountPassword(@Param("id") Long id, @Param("password") String password);
 	
 	public List<Account> findAllAccount();
+	
 }

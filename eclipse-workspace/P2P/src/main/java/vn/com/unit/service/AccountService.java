@@ -9,5 +9,6 @@ public interface AccountService {
 	public Account findByUsername(String username);
 	
 	public boolean checkLogin(Account account, String rawPassword);
+	
 	public List<Account> findAllAccount();
 }
