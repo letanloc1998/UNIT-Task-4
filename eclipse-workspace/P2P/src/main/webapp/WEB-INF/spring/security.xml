@@ -33,7 +33,7 @@
 
 
 		<intercept-url pattern="/**"
-			access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')" />
+			access="hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')" />
 
 		<form-login login-page="/login"
 			login-processing-url="/login" default-target-url="/"

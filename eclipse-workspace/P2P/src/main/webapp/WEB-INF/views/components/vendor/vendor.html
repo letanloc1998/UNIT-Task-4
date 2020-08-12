@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head>
+    <th:block th:include="layout/head :: head"></th:block>
+    <th:block th:include="components/vendor/layout/head-vendor :: head-vendor"></th:block>
+</head>
+
+<body>
+
+    <div th:replace="components/vendor/vendor :: vendor"></div> 
+
+    <div th:replace="layout/footer :: footer"></div>
+    
+    <div th:replace="components/vendor/layout/footer-vendor :: footer-vendor"></div>
+
+</body>
+
+</html>
