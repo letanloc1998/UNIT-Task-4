@@ -68,7 +68,7 @@ public class Payment {
 
 //	check-signature
 	@PostMapping(value = "/webhook/momo", produces = "application/json; charset=UTF-8")
-	public ResponseEntity<String> webhookMomo(@RequestParam Map<String, String> body) {
+	public ResponseEntity<String> webhookMomo(@RequestParam Map<String, String> body) throws UnsupportedEncodingException {
 		body.get("partnerCode");
 		body.get("accessKey");
 		body.get("requestId");
@@ -96,15 +96,15 @@ public class Payment {
 
 				+ "&" + Parameter.ORDER_ID + "=" + body.get("orderId")
 
-				+ "&" + Parameter.ORDER_INFO + "=" + body.get("orderInfo")
+				+ "&" + Parameter.ORDER_INFO + "=" + new String(body.get("orderInfo").getBytes("ISO-8859-1"), "UTF-8")
 
 				+ "&" + Parameter.ORDER_TYPE + "=" + body.get("orderType")
 
 				+ "&" + Parameter.TRANS_ID + "=" + body.get("transId")
 
-				+ "&" + Parameter.MESSAGE + "=" + body.get("message")
+				+ "&" + Parameter.MESSAGE + "=" + new String(body.get("message").getBytes("ISO-8859-1"), "UTF-8")
 
-				+ "&" + Parameter.LOCAL_MESSAGE + "=" + body.get("localMessage")
+				+ "&" + Parameter.LOCAL_MESSAGE + "=" + new String(body.get("localMessage").getBytes("ISO-8859-1"), "UTF-8")
 
 				+ "&" + "responseTime" + "=" + body.get("responseTime")
 
