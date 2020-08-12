@@ -1,9 +1,5 @@
 package vn.com.unit.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,32 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mservice.shared.exception.MoMoException;
-import com.paypal.core.PayPalHttpClient;
-
 @Controller
 public class HomeController {
 
 	@RequestMapping("*")
     public ModelAndView home(Model model) {
-		
-		PayPalClient payPalClient = new PayPalClient();
-		PayPalHttpClient payPalHttpClient = payPalClient.client();
-		
-//		payPalHttpClient.
-		
-		TestMomo test = new TestMomo();
-		try {
-			try {
-				test.test();
-			} catch (MoMoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		} catch (InvalidKeyException | NoSuchAlgorithmException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
         return new ModelAndView("index");
     }
