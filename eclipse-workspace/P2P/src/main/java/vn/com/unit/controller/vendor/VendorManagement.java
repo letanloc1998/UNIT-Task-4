@@ -35,17 +35,19 @@ public class VendorManagement {
 	@ResponseBody
 	public ResponseEntity<Account> editAccount(@RequestBody Account account, Model model) {
 		Long account_id = account.getId();
-		String new_password = account.getPassword();
-		accountService.setPassword(account_id, new_password);
+		/*
+		 * String new_password = account.getPassword();
+		 * accountService.setPassword(account_id, new_password);
+		 */
 		
 		String new_phone = account.getPhone();
-		accountService.setPassword(account_id, new_password);
+		accountService.setPhone(account_id, new_phone);
 		
 		String new_email = account.getEmail();
-		accountService.setPassword(account_id, new_password);
+		accountService.setEmail(account_id, new_email);
 		
 		String new_name = account.getName();
-		accountService.setPassword(account_id, new_password);
+		accountService.setName(account_id, new_name);
 		return ResponseEntity.ok(account);
 
 	}	
