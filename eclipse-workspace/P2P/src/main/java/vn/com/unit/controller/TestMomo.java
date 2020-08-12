@@ -21,6 +21,8 @@ import java.security.NoSuchAlgorithmException;
 
 import com.mservice.allinone.models.CaptureMoMoRequest;
 
+import com.mservice.pay.processor.notallinone.PayConfirmation;
+
 //import com.mservice.allinone.processor.allinone.PayATM;
 
 //import com.mservice.allinone.PayGate;
