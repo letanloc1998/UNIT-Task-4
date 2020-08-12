@@ -18,15 +18,15 @@ Yêu cầu dev:
 
 2. Tự làm tài liệu thiết kế MH, DB. Thiết kế đơn giản nhưng đủ các thông tin cần thiết.
 
-  VD product có: code, name, vendor, giá, số lượng chọn mua, số lượng còn lại trong kho vendor, category, status...
+    VD product có: code, name, vendor, giá, số lượng chọn mua, số lượng còn lại trong kho vendor, category, status...
   
 3. Có thể sử dụng bất kỳ Cổng thanh toán các bạn làm đc. 
+
+    Vd Momo: 
   
-  Vd Momo: 
+    - https://developers.momo.vn/#/
   
-  - https://developers.momo.vn/#/
-  
-  - https://github.com/momo-wallet/payment
+    - https://github.com/momo-wallet/payment
 
 4. Các bạn báo cáo tiến độ t4, t6 trong tuần
 
