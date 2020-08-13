@@ -58,4 +58,13 @@ public class RoleServiceImpl implements RoleService {
 		return new ArrayList<Role>();
 	}
 
+	@Override
+	public List<Role> findRoleUserById() {
+		try {
+			return roleRepository.findRoleUserById();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return new ArrayList<Role>();
+	}
 }
