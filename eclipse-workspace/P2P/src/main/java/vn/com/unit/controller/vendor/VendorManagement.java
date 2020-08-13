@@ -48,7 +48,7 @@ public class VendorManagement {
 	}	
 	
 	
-	//list account activate pages
+	//edit password
 	@RequestMapping("/editPass")
 	public ModelAndView listaccounts1(Model model,@RequestParam(name = "old-password") String old_password, @RequestParam(name = "new-pass") String new_password) {	
 		
@@ -61,8 +61,7 @@ public class VendorManagement {
 		}
 		model.addAttribute("current_account", account); 	
 		model.addAttribute("title","Account Management");
-		return new
-				  ModelAndView("vendor/myAccount/editPass"); }
+		return new ModelAndView("vendor/myAccount/editPass"); }
 }
 
 	 

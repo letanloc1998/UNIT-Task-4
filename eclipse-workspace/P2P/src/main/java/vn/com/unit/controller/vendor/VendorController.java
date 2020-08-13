@@ -28,13 +28,15 @@ public class VendorController {
 	@Autowired
 	RoleService roleService;
 
+	
+	// home view
 	@RequestMapping("/vendor/home")
-
 	public ModelAndView home(Model model) {
-
 		return new ModelAndView("vendor/vendor");
 	}
 	
+	
+	//editAccount view
 	@RequestMapping("/vendor/myaccount") public ModelAndView myAccount(Model model,@RequestParam(name = "mode") String mode) {
 		String type = "";
 		if(mode.equals("editPass")) {
@@ -46,7 +48,20 @@ public class VendorController {
 		model.addAttribute("current_account", account);
 		return new ModelAndView(type); }
 	
-	 
-	 
+	 //editShop view
+	
+	@RequestMapping("/vendor/myshop") public ModelAndView myShop(Model model,@RequestParam(name = "mode") String mode) {
+		String type = "";
+		if(mode.equals("edit")) {
+			 type = "vendor/myShop/editShop";
+		}else {
+			type = "vendor/myShop/deleteShop";
+		}		
+		
+		Account account = accountService.getCurrentAccount();	
+		
+		
+		model.addAttribute("current_account", account);
+		return new ModelAndView(type); }
 
 }
