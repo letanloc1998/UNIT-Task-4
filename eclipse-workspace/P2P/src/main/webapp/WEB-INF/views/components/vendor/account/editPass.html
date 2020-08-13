@@ -20,44 +20,52 @@
 									Edit Password (ID: <span th:text="${current_account.id}"></span>)
 								</h3>
 							</div>
-							<form th:action="@{/editPass}" th:object="${mymodelobject}" method="GET">
-							<div class="card-body"
-								style="padding-left: 100px; padding-right: 100px">
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="bmd-label-floating">Old Password</label> <input
-												id="old-password" type="password" class="form-control"
-												name="old-password">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="bmd-label-floating">New Password</label> <input
-												type="password" id="new-pass" name="new-pass" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="bmd-label-floating">Re New Password</label> <input
-												type="password" id="re-pass" name="re-pass" class="form-control">
-											<div>
-											<p id="status" style="color:red" ></p>
-											<p th:text="${result}" style="color:red" ></p>
+							<form th:action="@{/editPass}" th:object="${mymodelobject}"
+								method="GET">
+								<div class="card-body"
+									style="padding-left: 100px; padding-right: 100px">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="bmd-label-floating">Old Password</label> <input
+													id="old-password" type="password" class="form-control"
+													name="old-password">
 											</div>
 										</div>
 									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="bmd-label-floating">New Password</label> <input
+													type="password" id="new-pass" name="new-pass"
+													class="form-control">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="bmd-label-floating">Re New Password</label> <input
+													type="password" id="re-pass" name="re-pass"
+													class="form-control">
+												<div>
+													<p id="status" style="color: red"></p>
+													<p th:text="${result}" style="color: red"></p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<button type="submit" class="btn btn-primary pull-right">Update
+										Password</button>
+									<div class="clearfix"></div>
 								</div>
-								<a href="/vendor/myaccount" class="btn btn-primary pull-right">Update
-									Profile</a>
-								<button th:onclick="" class="btn btn-primary pull-right">Update
-									Password</button>
-								<div class="clearfix"></div>
-							</div>
+							</form>
+							<form th:action="@{/vendor/myaccount}"
+								th:object="${mymodelobject}" method="GET">
+								<input type="hidden" value="edit" name="mode" id="mode" />
+								<button type="submit" class="btn btn-primary pull-right">Update
+									Profile</button>
 							</form>
 						</div>
 					</div>

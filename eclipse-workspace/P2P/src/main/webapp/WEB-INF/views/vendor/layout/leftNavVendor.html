@@ -30,7 +30,7 @@
 							<p>Dashboard</p>
 					</a></li>
 					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/myaccount') ? 'nav-item active' : 'nav-item'}">
-					<a class="nav-link" th:href="@{/vendor/myaccount}">
+					<a class="nav-link" th:href="@{/vendor/myaccount?mode=edit}">
 							<i class="material-icons">person</i>
 							<p>My Account</p>
 					</a></li>

@@ -5,6 +5,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.service.AccountService;
@@ -34,18 +35,17 @@ public class VendorController {
 		return new ModelAndView("vendor/vendor");
 	}
 	
-	@RequestMapping("/vendor/myaccount") public ModelAndView myAccount(Model model) {
+	@RequestMapping("/vendor/myaccount") public ModelAndView myAccount(Model model,@RequestParam(name = "mode") String mode) {
+		String type = "";
+		if(mode.equals("editPass")) {
+			 type = "vendor/myAccount/editPass";
+		}else {
+			type = "vendor/myAccount/account-table";
+		}		
 		Account account = accountService.getCurrentAccount();	
 		model.addAttribute("current_account", account);
-		return new ModelAndView("vendor/myAccount/account-table"); }
+		return new ModelAndView(type); }
 	
-	
-	
-	  @RequestMapping("/vendor/edit-pass") public ModelAndView editPass(Model model) {
-	  Account account = accountService.getCurrentAccount();
-	  model.addAttribute("current_account", account); 
-	  return new
-	  ModelAndView("vendor/myAccount/editPass"); }
 	 
 	 
 
