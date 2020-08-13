@@ -18,7 +18,7 @@ public class MomoPayment {
 	ProcessType process = ProcessType.PAY_GATE;
 	Environment environment = Environment.selectEnv(target, process);
 
-	@RequestMapping("/payment/momo")
+	@RequestMapping("/cart/payment/momo")
 	public ModelAndView momoPayment(Model model) {
 
 		try {
