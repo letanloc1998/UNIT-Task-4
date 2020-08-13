@@ -258,3 +258,12 @@ from (
 	on product.id = bill_item.product) bill
 group by bill.id;
 
+--select *
+--from
+--	(select p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill_item where id = 1) cart_item
+--join ( select * from  (values (1)) as temp_table(id_bill) )
+
+select 1 as bill_id, p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill_item where id = 1
+
+-- 1 as bill_id
+insert into p2p_bill_item (id, product, quantity) (select 1 as id, p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill_item where id = 1)
