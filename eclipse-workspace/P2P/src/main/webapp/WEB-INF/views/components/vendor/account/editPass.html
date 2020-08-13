@@ -20,8 +20,6 @@
 									Edit Password (ID: <span th:text="${current_account.id}"></span>)
 								</h3>
 							</div>
-							<form th:action="@{/editPass}" th:object="${mymodelobject}"
-								method="GET">
 								<div class="card-body"
 									style="padding-left: 100px; padding-right: 100px">
 									<div class="row">
@@ -60,7 +58,6 @@
 										Password</button>
 									<div class="clearfix"></div>
 								</div>
-							</form>
 							<form style="padding-left: 100px; padding-right: 100px; margin-bottom: 20px" th:action="@{/vendor/myaccount}"
 								th:object="${mymodelobject}" method="GET">
 								<input type="hidden" value="edit" name="mode" id="mode" />
