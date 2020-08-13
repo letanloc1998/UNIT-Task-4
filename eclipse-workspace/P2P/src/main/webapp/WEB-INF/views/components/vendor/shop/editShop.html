@@ -20,7 +20,7 @@
 									Edit Your Shop (SHOP ID: <span th:text="${shop.id}"></span>)
 								</h3>
 							</div>
-							<form th:action="@{/editShop}" th:object="${mymodelobject}"
+							<form th:action="@{/editshop}" th:object="${mymodelobject}"
 								method="GET">
 								<div class="card-body"
 									style="padding-left: 100px; padding-right: 100px">
@@ -61,13 +61,13 @@
 											<div class="form-group">
 												<label class="bmd-label-floating">Details</label> <input
 													id="detail" type="text" class="form-control"
-													name="deatil" th:value="${shop.detail}">
+													name="detail" th:value="${shop.detail}">
 											</div>
 										</div>
 									</div>
-
+									<p th:text="${result}" style="color: red"></p>
 									<button type="submit" class="btn btn-primary pull-right">Update
-										Password</button>
+										Shop </button>
 									<div class="clearfix"></div>
 								</div>
 							</form>
@@ -76,8 +76,7 @@
 								th:action="@{/vendor/myaccount}" th:object="${mymodelobject}"
 								method="GET">
 								<input type="hidden" value="edit" name="mode" id="mode" />
-								<button type="submit" class="btn btn-primary pull-right">Update
-									Profile</button>
+								<button type="submit" class="btn btn-primary pull-right">DELETE</button>
 							</form>
 						</div>
 					</div>

@@ -29,4 +29,16 @@ public class ShopServiceImpl implements ShopService {
 	public Shop findShopByAccountId(Long account_id) {
 		return shopRepository.findShopByAccountId(account_id);
 	}
+	
+	//setInforShop
+	@Override
+	public void saveShop(Long shop_id, String name,String email, String phone, String address, String detail) {
+		try {
+			shopRepository.saveShop(shop_id, name, email, phone, address, detail);
+		}catch (Exception e) {
+			
+		}
+
+		
+	}
 }

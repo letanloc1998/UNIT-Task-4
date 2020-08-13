@@ -1,5 +1,6 @@
 use DMS_DEV;
 
+drop table p2p_log
 drop table p2p_bill_item;
 drop table p2p_bill;
 drop table p2p_cart;
@@ -21,7 +22,7 @@ create table p2p_account (
     email nvarchar(50),
     phone nvarchar(20),
     disable bit default 0,
-    create_at datetime default getutcdate(),
+    create_at datetime default getutcdate()
 )
 
 create table p2p_role (
@@ -131,6 +132,13 @@ create table p2p_bill_item (
     quantity int not null check (quantity > 0)
 )
 
+create table p2p_log (
+	log nvarchar(2000),
+	type nvarchar(50),
+	author nvarchar(500),
+	create_at datetime default getutcdate(),
+)
+
 -- init data
 
 -- acount
@@ -180,3 +188,5 @@ left join p2p_category category
 on category.id = product.category
 left join p2p_brand brand
 on brand.id	= product.brand;
+
+-- insert into p2p_log (log, type, author) values ('log', 'test', 'Loc');
