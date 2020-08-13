@@ -7,7 +7,7 @@
 <head></head>
 
 <body>
-	<th:block th:fragment="allBill">
+	<th:block th:fragment="billItem">
 		<div class="content">
 			<div class="container-fluid">
 				<div class="row">
@@ -15,43 +15,26 @@
 						<div class="card">
 
 							<div class="card-header card-header-primary">
-								<h4 class="card-title ">All Bill List</h4>
+								<h4 class="card-title ">All Bill Item of Bill <span style="font-weight: bold" th:text="${bill_id}"></span></h4>
+								<a th:href="@{/vendor/mybill}" class="btn btn-warning">Back</a>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table">
 										<thead class=" text-primary">
+											<th>#No</th>
 											<th>ID</th>
-											<th>Address</th>
-											<th>Payment</th>
-											<th>Status</th>
-											<th>Refund</th>
-											<th>Create Day</th>
-											<th class="text-center">Action</th>
+											<th>Product</th>
+											<th>Quantity</th>
 										</thead>
 										<tbody>
 
-											<tr th:if="${!bills.empty or bills != null}"
-												th:each="bill, i : ${bills}">
-												<td><span th:text="${bill.id}"></span></td>
-												<td><span th:text="${bill.address}"></span></td>
-												<td><span th:text="${bill.payment}"></span></td>
-												<td><span th:text="${bill.status}"></span></td>
-												<td><span th:text="${bill.refund}"></span></td>
-												<td><span th:text="${bill.createAt}"></span></td>
-
-												<td class="text-center"><span> 
-												<a th:href="@{'/vendor/mybill/' + ${bill.id}}" type="button"
-														class="btn btn-large btn-info"> 
-														<i class="fa fa-eye"></i>
-													</a>
-												</span> <span>
-														<button type="button" class="btn  btn-danger"
-															th:onclick="|selectAccount(${i.index})|"
-															data-toggle="modal" data-target="#deleteConfirm">
-															<i class="fas fa-trash-alt"></i>
-														</button>
-												</span></td>
+											<tr th:if="${!billitems.empty or billitems != null}"
+												th:each="billitem, i : ${billitems}">
+												<td><span th:text="${i.count}"></span></td>
+												<td><span th:text="${billitem.id}"></span></td>
+												<td><span th:text="${billitem.product}"></span></td>
+												<td><span th:text="${billitem.quantity}"></span></td>
 										</tbody>
 									</table>
 									<!-- 									<div style="display: flex;align-items: center;">

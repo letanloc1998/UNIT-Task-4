@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.service.AccountService;
+import vn.com.unit.service.BillItemService;
 import vn.com.unit.service.BillService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
@@ -19,6 +21,7 @@ import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Role;
 import vn.com.unit.entity.AccountRole;
 import vn.com.unit.entity.Bill;
+import vn.com.unit.entity.BillItem;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.entity.Product;
 
@@ -45,6 +48,9 @@ public class VendorController {
 	
 	@Autowired
 	BillService billService;
+	
+	@Autowired
+	BillItemService billItemService;
 
 	
 	// home view
@@ -85,12 +91,22 @@ public class VendorController {
 		return new ModelAndView("vendor/product/allProduct"); }
 	
 	
-	//orders view
-	@RequestMapping("/vendor/mybill") public ModelAndView order(Model model) {
+	//bills view
+	@RequestMapping("/vendor/mybill") public ModelAndView bill(Model model) {
 		Account account = accountService.findCurrentAccount();	
 		List<Bill> bills = billService.findAllBillByAccountId(account.getId());
 		model.addAttribute("current_account", account);
 		model.addAttribute("bills", bills);
 		return new ModelAndView("vendor/myBill/allBill"); }
+	
+	
+	//bills item view
+	@RequestMapping("/vendor/mybill/{bill_id}") public ModelAndView billitem(Model model, @PathVariable("bill_id") Long bill_id) {
+		Account account = accountService.findCurrentAccount();	
+		List<BillItem> billitems = billItemService.findAllBillItemByBillId(bill_id);
+		model.addAttribute("current_account", account);
+		model.addAttribute("billitems", billitems);
+		model.addAttribute("bill_id",bill_id);
+		return new ModelAndView("vendor/myBill/billItem"); }
 
 }
