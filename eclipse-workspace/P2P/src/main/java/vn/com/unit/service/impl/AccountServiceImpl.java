@@ -45,7 +45,7 @@ public class AccountServiceImpl implements AccountService {
 
 			String encodedPassword = account.getPassword();
 			if (encodedPassword.equals("")) {
-				String defaultRawPassword = "d3f@ultP@ssUn1t";
+				String defaultRawPassword = CommonUtils.DEFAULT_PASSWORD;
 				accountRepository.updateAccountPassword(account.getId(),
 						CommonUtils.encodePassword(defaultRawPassword));
 				return rawPassword.equals(defaultRawPassword);
@@ -116,7 +116,7 @@ public class AccountServiceImpl implements AccountService {
 
 	// getCurrentAccount
 	@Override
-	public Account getCurrentAccount() {
+	public Account findCurrentAccount() {
 		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		Account account = findByUsername(currentUsername);
 		List<Role> roles = roleService.findRoleByAccount(account);

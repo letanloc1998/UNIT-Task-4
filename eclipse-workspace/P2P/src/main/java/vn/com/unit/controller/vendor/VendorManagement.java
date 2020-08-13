@@ -85,6 +85,18 @@ public class VendorManagement {
 	@RequestMapping("/deleteshop")
 	public ModelAndView deleteShop(Model model) {
 		Account account = accountService.getCurrentAccount();
+	
+	//edit SHOP
+	@RequestMapping("/editshop")
+	public ModelAndView editShop(Model model,
+									@RequestParam(name = "name") String name, 
+									@RequestParam(name = "address") String address, 
+									@RequestParam(name = "email") String email,
+									@RequestParam(name = "phone") String phone,
+									@RequestParam(name = "detail") String detail												
+			) {	
+		
+		Account account = accountService.findCurrentAccount();
 		Long shop_id = account.getId();
 		shopService.setDisableShop(shop_id);
 		Shop shop = shopService.findShopByAccountId(account.getId());
@@ -108,20 +120,6 @@ public class VendorManagement {
 
 	}	
 	
-	@RequestMapping("/editPass")
-	public ModelAndView listaccounts1(Model model, @RequestParam(name = "old-password") String old_password,
-			@RequestParam(name = "new-pass") String new_password) {
 
-		Account account = accountService.getCurrentAccount();
-		if (accountService.checkPass(account, old_password)) {
-			accountService.setAccountPassword(account.getId(), new_password);
-			model.addAttribute("result", "Change Password Success!");
-		} else {
-			model.addAttribute("result", "Fail! Incorrect Password");
-		}
-		model.addAttribute("current_account", account);
-		model.addAttribute("title", "Account Management");
-		return new ModelAndView("vendor/myAccount/editPass");
-	}
 
 }

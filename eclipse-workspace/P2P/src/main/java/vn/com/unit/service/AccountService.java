@@ -18,12 +18,12 @@ public interface AccountService {
 	
 	public Account setRoleByAccountId(Account account);
 	
-	public Account getCurrentAccount();
+	public Account findCurrentAccount();
 
 	public void setAccountPassword(Long account_id, String password);
 	
-	public void saveAccount(Long account_id, String name, String email, String phone);
-	
+	public void saveAccount(Long account_id, String name, String email, String phone);	
+		
 	public Account findAccountById(Long id);
 	
 	public int countAccountActive();

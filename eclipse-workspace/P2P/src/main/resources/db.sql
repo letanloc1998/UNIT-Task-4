@@ -22,7 +22,7 @@ create table p2p_account (
     email nvarchar(50),
     phone nvarchar(20),
     disable bit default 0,
-    create_at datetime default getutcdate(),
+    create_at datetime default getutcdate()
 )
 
 create table p2p_role (
@@ -119,6 +119,22 @@ create table p2p_bill (
     address nvarchar(255) not null,
     create_at datetime default getutcdate(),
 
+    -- 0 : wating payment
+    -- 1 : payment success
+    -- 2 : payment error
+    payment bit default 0,
+    
+    -- 0 : waiting
+    -- 1 : approve
+    -- 2 : deny
+    -- 3 : success	(approve success, shipping success)
+    -- 4 : cancel	(approve success, can't receive product/error) 
+    status bit default 0,
+    
+    -- 0 : not refund
+    -- 1 : refund success
+    refund bit default 0,
+    
     constraint fk_bill_account__account_id foreign key (account) references p2p_account(id),
 )
 
@@ -136,6 +152,7 @@ create table p2p_log (
 	log nvarchar(2000),
 	type nvarchar(50),
 	author nvarchar(500),
+	create_at datetime default getutcdate(),
 )
 
 -- init data
@@ -188,5 +205,35 @@ on category.id = product.category
 left join p2p_brand brand
 on brand.id	= product.brand;
 
-insert into p2p_log (log, type, author)
-values ('log', 'test', 'Loc');
+-- insert into p2p_log (log, type, author) values ('log', 'test', 'Loc');
+
+insert into p2p_account(username, password) values ('user-1', '');
+insert into p2p_account(username, password) values ('user-2', '');
+insert into p2p_account(username, password) values ('user-3', '');
+insert into p2p_account(username, password) values ('user-4', '');
+insert into p2p_account(username, password) values ('user-5', '');
+insert into p2p_account(username, password) values ('user-6', '');
+insert into p2p_account(username, password) values ('user-7', '');
+insert into p2p_account(username, password) values ('user-8', '');
+insert into p2p_account(username, password) values ('user-9', '');
+
+insert into p2p_account_role (account, role) values (6, 1);
+insert into p2p_account_role (account, role) values (7, 1);
+insert into p2p_account_role (account, role) values (8, 1);
+insert into p2p_account_role (account, role) values (9, 1);
+insert into p2p_account_role (account, role) values (10, 1);
+insert into p2p_account_role (account, role) values (11, 1);
+insert into p2p_account_role (account, role) values (12, 1);
+insert into p2p_account_role (account, role) values (13, 1);
+insert into p2p_account_role (account, role) values (14, 1);
+
+-- init product in cart
+insert into p2p_cart (account, product, quantity) values (3, 1, 1); -- 1000 * 1
+insert into p2p_cart (account, product, quantity) values (3, 2, 3); -- 1500 * 3
+
+insert into p2p_bill (account, address) values (3, 'HCM');
+-- select scope_identity();
+insert into p2p_bill_item (id, product, quantity) values (1, 1, 1);
+insert into p2p_bill_item (id, product, quantity) values (1, 2, 3);
+delete from p2p_cart where account = 3;
+
