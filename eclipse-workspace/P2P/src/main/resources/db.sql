@@ -190,3 +190,24 @@ left join p2p_brand brand
 on brand.id	= product.brand;
 
 -- insert into p2p_log (log, type, author) values ('log', 'test', 'Loc');
+
+insert into p2p_account(username, password) values ('user-1', '');
+insert into p2p_account(username, password) values ('user-2', '');
+insert into p2p_account(username, password) values ('user-3', '');
+insert into p2p_account(username, password) values ('user-4', '');
+insert into p2p_account(username, password) values ('user-5', '');
+insert into p2p_account(username, password) values ('user-6', '');
+insert into p2p_account(username, password) values ('user-7', '');
+insert into p2p_account(username, password) values ('user-8', '');
+insert into p2p_account(username, password) values ('user-9', '');
+
+insert into p2p_account_role (account, role) values (6, 1);
+insert into p2p_account_role (account, role) values (7, 1);
+insert into p2p_account_role (account, role) values (8, 1);
+insert into p2p_account_role (account, role) values (9, 1);
+insert into p2p_account_role (account, role) values (10, 1);
+insert into p2p_account_role (account, role) values (11, 1);
+insert into p2p_account_role (account, role) values (12, 1);
+insert into p2p_account_role (account, role) values (13, 1);
+insert into p2p_account_role (account, role) values (14, 1);
+
