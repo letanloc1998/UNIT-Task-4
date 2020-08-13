@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head>
+
+</head>
+
+<body>
+	<th:block th:fragment="deleteShop">
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="card">
+							<div class="card-header card-header-primary">
+								<h3 class="card-title">
+									Close Your Shop (SHOP ID: <span th:text="${shop.id}"></span>)
+								</h3>
+							</div>
+							<form th:action="@{/deleteshop}" th:object="${mymodelobject}"
+								method="GET">
+								<div class="card-body"
+									style="padding-left: 100px; padding-right: 100px">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<button class="btn btn-warning">ARE YOU WANT TO
+													DELETE THIS SHOP?</button>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-3">
+											<div class="form-group">
+												<label class="bmd-label-floating">Shop ID</label> <input
+													disabled id="id" type="text" class="form-control"
+													name="id" th:value="${shop.id}">
+											</div>
+										</div>
+										<div class="col-md-9">
+											<div class="form-group">
+												<label class="bmd-label-floating">Shop Name</label> <input
+													disabled id="name" type="text" class="form-control" name="name"
+													th:value="${shop.name}">
+											</div>
+										</div>
+
+									</div>
+
+									<p th:text="${result}" style="color: red"></p>
+									<button type="submit" class="btn btn-danger pull-right">DELETE
+										SHOP</button>
+									<div class="clearfix"></div>
+								</div>
+							</form>
+							<form
+								style="padding-left: 100px; padding-right: 100px; margin-bottom: 20px"
+								th:action="@{/vendor/myshop}" th:object="${mymodelobject}"
+								method="GET">
+								<input type="hidden" value="edit" name="mode" id="mode" />
+								<button type="submit" class="btn btn-primary pull-right">BACK TO EDIT</button>
+							</form>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<img alt="" src="">
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</th:block>
+</body>
+</html>
