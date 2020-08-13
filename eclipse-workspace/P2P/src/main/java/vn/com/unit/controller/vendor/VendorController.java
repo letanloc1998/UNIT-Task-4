@@ -11,12 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.service.AccountService;
+import vn.com.unit.service.BillService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Role;
 import vn.com.unit.entity.AccountRole;
+import vn.com.unit.entity.Bill;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.entity.Product;
 
@@ -40,6 +42,9 @@ public class VendorController {
 	
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	BillService billService;
 
 	
 	// home view
@@ -78,5 +83,14 @@ public class VendorController {
 		model.addAttribute("current_account", account);
 		model.addAttribute("products", products);
 		return new ModelAndView("vendor/product/allProduct"); }
+	
+	
+	//orders view
+	@RequestMapping("/vendor/mybill") public ModelAndView order(Model model) {
+		Account account = accountService.findCurrentAccount();	
+		List<Bill> bills = billService.findAllBillByAccountId(account.getId());
+		model.addAttribute("current_account", account);
+		model.addAttribute("bills", bills);
+		return new ModelAndView("vendor/myBill/allBill"); }
 
 }

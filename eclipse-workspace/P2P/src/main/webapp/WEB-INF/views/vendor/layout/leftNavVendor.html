@@ -36,13 +36,13 @@
 					</a></li>
 					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/myshop') ? 'nav-item active' : 'nav-item'}">
 					<a class="nav-link" th:href="@{/vendor/myshop}">
-							<i class="material-icons">content_paste</i>
+							<i class="material-icons">store</i>
 							<p>My Shop</p>
 					</a></li>
-					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/product') ? 'nav-item active' : 'nav-item'}">
+					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/mybill') ? 'nav-item active' : 'nav-item'}">
 					<a class="nav-link"
-						th:href="@{/vendor/product}"> <i class="material-icons">library_books</i>
-							<p>Category</p>
+						th:href="@{/vendor/mybill}"> <i class="material-icons">content_paste</i>
+							<p>My Bill</p>
 					</a></li>
 
 				</ul>
