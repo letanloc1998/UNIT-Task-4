@@ -29,7 +29,7 @@ public class AccountController {
 	public ModelAndView accountList(
 			Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-			@RequestParam(value = "limit", required = false, defaultValue = "3") int limit,
+			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
 		int totalitems= accountService.countAccountActive();
 		int totalpages = (int) Math.ceil((double) totalitems/(double) limit);
