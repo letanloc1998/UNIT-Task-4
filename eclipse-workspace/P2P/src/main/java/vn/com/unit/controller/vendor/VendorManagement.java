@@ -81,11 +81,7 @@ public class VendorManagement {
 	//view infor shop
 
 
-	// delete SHOP
-	@RequestMapping("/deleteshop")
-	public ModelAndView deleteShop(Model model) {
-		Account account = accountService.getCurrentAccount();
-	
+
 	//edit SHOP
 	@RequestMapping("/editshop")
 	public ModelAndView editShop(Model model,
@@ -106,12 +102,14 @@ public class VendorManagement {
 		return new ModelAndView("vendor/myShop/editShop");
 	}
 
+	
+	
 	// edit password
 	
 	@PutMapping("/vendor")
 	@ResponseBody
 	public ResponseEntity<Account> editPass(@RequestBody Account new_account, Model model) {
-		Account account = accountService.getCurrentAccount();
+		Account account = accountService.findCurrentAccount();
 			accountService.checkPass(account, new_account.getPassword());
 			accountService.setAccountPassword(account.getId(), new_account.getPassword());
 			model.addAttribute("result", "Change Password Success!");
