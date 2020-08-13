@@ -43,20 +43,20 @@ public class MomoPaymentResult {
 	LogService logService;
 
 	public void setMomoPaymentResult(Map<String, String> body) throws UnsupportedEncodingException {
-		partnerCode = body.get("partnerCode");
-		accessKey = body.get("accessKey");
-		requestId = body.get("requestId");
-		amount = body.get("amount");
-		orderId = body.get("orderId");
-		orderInfo = this.convertEncode(body.get("orderInfo"));
-		orderType = body.get("orderType");
-		transId = body.get("transId");
-		message = this.convertEncode(body.get("message"));
-		localMessage = this.convertEncode(body.get("localMessage"));
-		payType = body.get("payType");
-		responseTime = body.get("responseTime");
-		errorCode = body.get("errorCode");
-		extraData = this.convertEncode(body.get("extraData"));
+		partnerCode = body.get(Parameter.PARTNER_CODE);
+		accessKey = body.get(Parameter.ACCESS_KEY);
+		requestId = body.get(Parameter.REQUEST_ID);
+		amount = body.get(Parameter.AMOUNT);
+		orderId = body.get(Parameter.ORDER_ID);
+		orderInfo = this.convertEncode(body.get(Parameter.ORDER_INFO));
+		orderType = body.get(Parameter.ORDER_TYPE);
+		transId = body.get(Parameter.TRANS_ID);
+		message = this.convertEncode(body.get(Parameter.MESSAGE));
+		localMessage = this.convertEncode(body.get(Parameter.LOCAL_MESSAGE));
+		responseTime = body.get(Parameter.DATE);
+		errorCode = body.get(Parameter.ERROR_CODE);
+		payType = body.get(Parameter.PAY_TYPE);
+		extraData = this.convertEncode(body.get(Parameter.EXTRA_DATA));
 		signature = body.get("signature");
 		this.log();
 	}
@@ -87,7 +87,7 @@ public class MomoPaymentResult {
 
 				+ "&" + Parameter.LOCAL_MESSAGE + "=" + localMessage
 
-				+ "&" + "responseTime" + "=" + responseTime
+				+ "&" + Parameter.DATE + "=" + responseTime
 
 				+ "&" + Parameter.ERROR_CODE + "=" + errorCode
 
