@@ -17,8 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Role;
+import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.RoleService;
+import vn.com.unit.service.ShopService;
 
 
 
@@ -33,6 +35,9 @@ public class VendorManagement {
 
 	@Autowired
 	RoleService roleService;
+	
+	@Autowired
+	ShopService shopService;
 
 	//edit account
 	@PutMapping("/account")
@@ -45,7 +50,30 @@ public class VendorManagement {
 		accountService.saveAccount(account_id, new_name, new_email, new_phone);
 		return ResponseEntity.ok(account);
 
-	}	
+	}
+	
+	
+	//edit SHOP
+	@RequestMapping("/editshop")
+	public ModelAndView editShop(Model model,
+									@RequestParam(name = "name") String name, 
+									@RequestParam(name = "address") String address, 
+									@RequestParam(name = "email") String email,
+									@RequestParam(name = "phone") String phone,
+									@RequestParam(name = "detail") String detail												
+			) {	
+		
+		Account account = accountService.getCurrentAccount();
+		Long shop_id = account.getId();
+		shopService.saveShop(shop_id, name, email, phone, address, detail);
+		model.addAttribute("result", "Update Shop Success!");
+		Shop shop = shopService.findShopByAccountId(account.getId());
+		model.addAttribute("shop", shop);
+		model.addAttribute("current_account", account); 	
+		model.addAttribute("title","Shop Management");
+		return new ModelAndView("vendor/myShop/editShop"); }
+	
+
 	
 	
 	//edit password
