@@ -1,5 +1,7 @@
 package vn.com.unit.controller.vendor;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.service.AccountService;
+import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
 import vn.com.unit.entity.Account;
@@ -34,6 +37,9 @@ public class VendorController {
 	
 	@Autowired
 	ShopService shopService;
+	
+	@Autowired
+	ProductService productService;
 
 	
 	// home view
@@ -57,18 +63,20 @@ public class VendorController {
 	
 	 //editShop view
 	
-	@RequestMapping("/vendor/myshop") public ModelAndView myShop(Model model,@RequestParam(name = "mode") String mode) {
-		String type = "";
-		if(mode.equals("edit")) {
-			 type = "vendor/myShop/editShop";
-		}else {
-			type = "vendor/myShop/deleteShop";
-		}		
-		
+	@RequestMapping("/vendor/myshop") public ModelAndView myShop(Model model) {
 		Account account = accountService.findCurrentAccount();	
 		Shop shop = shopService.findShopByAccountId(account.getId());
 		model.addAttribute("shop", shop);
 		model.addAttribute("current_account", account);
-		return new ModelAndView(type); }
+		return new ModelAndView("vendor/myShop/editShop"); }
+	
+	
+	//products view
+	@RequestMapping("/vendor/product") public ModelAndView product(Model model) {
+		Account account = accountService.findCurrentAccount();	
+		List<Product> products = productService.findAllProductByShopId(account.getId());
+		model.addAttribute("current_account", account);
+		model.addAttribute("products", products);
+		return new ModelAndView("vendor/product/allProduct"); }
 
 }

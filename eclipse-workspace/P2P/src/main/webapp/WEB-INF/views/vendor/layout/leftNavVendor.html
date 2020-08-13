@@ -35,13 +35,13 @@
 							<p>My Account</p>
 					</a></li>
 					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/myshop') ? 'nav-item active' : 'nav-item'}">
-					<a class="nav-link" th:href="@{/vendor/myshop?mode=edit}">
+					<a class="nav-link" th:href="@{/vendor/myshop}">
 							<i class="material-icons">content_paste</i>
 							<p>My Shop</p>
 					</a></li>
-					<li th:classappend="${#request.getRequestURI().startsWith('/admin/category/') ? 'nav-item active' : 'nav-item'}">
+					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/product') ? 'nav-item active' : 'nav-item'}">
 					<a class="nav-link"
-						th:href="@{/admin/category/list}"> <i class="material-icons">library_books</i>
+						th:href="@{/vendor/product}"> <i class="material-icons">library_books</i>
 							<p>Category</p>
 					</a></li>
 

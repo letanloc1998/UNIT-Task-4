@@ -16,7 +16,7 @@ public interface AccountService {
 	
 	public Account createNewAccount(Account account);
 	
-	public Account setRoleByAccountId(Account account);
+	public void setRoleByAccountId(Long id_account, Long id_role);
 	
 	public Account findCurrentAccount();
 
