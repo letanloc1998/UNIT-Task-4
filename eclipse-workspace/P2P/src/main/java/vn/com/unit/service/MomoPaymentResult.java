@@ -109,7 +109,7 @@ public class MomoPaymentResult {
 		return false;
 	}
 
-	// convert from ISO-8859-1 to UTF-8
+	// Convert from ISO-8859-1 to UTF-8
 	private String convertEncode(String s) throws UnsupportedEncodingException {
 		return new String(s.getBytes("ISO-8859-1"), "UTF-8");
 	}
