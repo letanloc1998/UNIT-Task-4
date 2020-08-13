@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Product;
+import vn.com.unit.entity.Role;
 import vn.com.unit.repository.ShopRepository;
 import vn.com.unit.service.ShopService;
 
@@ -48,5 +49,17 @@ public class ShopServiceImpl implements ShopService {
 		} catch(Exception e) {
 			
 		}
+	}
+
+	@Override
+	public List<Shop> findAllShop(int limit, int offset) {
+		List<Shop> shops = new ArrayList<Shop>();
+		try {
+			shops = shopRepository.findAllShop(limit, offset);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return shops;
 	}
 }
