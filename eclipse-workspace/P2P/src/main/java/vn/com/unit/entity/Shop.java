@@ -19,6 +19,8 @@ public class Shop {
 	
 	private boolean disable;
 	
+	private String ownerName;
+	
 	private Date createAt;
 
 	public Shop() {
@@ -96,6 +98,18 @@ public class Shop {
 	public void setProducts(List<Product> products) {
 		this.products = products;
 	}
+
+
+
+	public String getOwnerName() {
+		return ownerName;
+	}
+
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+
+
 
 	private List<Product> products;
 	
