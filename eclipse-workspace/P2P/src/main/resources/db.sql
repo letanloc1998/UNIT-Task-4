@@ -42,7 +42,6 @@ create table p2p_account_role (
 create table p2p_shop (
     id bigint primary key,
     constraint fk_shop_id foreign key (id) references p2p_account(id),
-
     name nvarchar(50) not null,
     address nvarchar(255),
     email nvarchar(50),
@@ -237,3 +236,34 @@ insert into p2p_bill_item (id, product, quantity) values (1, 1, 1);
 insert into p2p_bill_item (id, product, quantity) values (1, 2, 3);
 delete from p2p_cart where account = 3;
 
+select bill_item.*, product.price from
+	(
+	select *
+	from p2p_bill_item
+	where id = 1
+	) bill_item
+left join p2p_product product
+on product.id = bill_item.product;
+
+select sum(bill.price)
+from (
+	select bill_item.id, (bill_item.quantity * product.price) as price
+	from
+		(
+		select *
+		from p2p_bill_item
+		where id = 1
+		) bill_item
+	left join p2p_product product
+	on product.id = bill_item.product) bill
+group by bill.id;
+
+--select *
+--from
+--	(select p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill_item where id = 1) cart_item
+--join ( select * from  (values (1)) as temp_table(id_bill) )
+
+select 1 as bill_id, p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill_item where id = 1
+
+-- 1 as bill_id
+insert into p2p_bill_item (id, product, quantity) (select 1 as id, p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill_item where id = 1)
