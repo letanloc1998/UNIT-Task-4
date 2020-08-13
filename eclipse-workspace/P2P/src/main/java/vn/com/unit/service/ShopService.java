@@ -13,4 +13,6 @@ public interface ShopService {
 	public boolean setDisableShop(Long account_id);
 	
 	public List<Shop> findAllShop(int limit,int offset);
+	
+	public int countAllShop();
 }

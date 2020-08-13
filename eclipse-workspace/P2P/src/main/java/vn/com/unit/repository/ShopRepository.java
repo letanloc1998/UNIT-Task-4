@@ -20,4 +20,6 @@ public interface ShopRepository extends MirageRepository<Shop, Long> {
 
 	@Modifying
 	public void setDisableShop(@Param("shop_id") Long shop_id);
+	
+	public int countAllShop();
 }
