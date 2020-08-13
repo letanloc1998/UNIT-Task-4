@@ -1,7 +1,5 @@
 package vn.com.unit.service;
 
-
-
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
@@ -38,7 +36,7 @@ public class MomoPaymentResult {
 	private String errorCode;
 	private String extraData;
 	private String signature;
-	
+
 	@Autowired
 	LogService logService;
 
@@ -62,7 +60,8 @@ public class MomoPaymentResult {
 	}
 
 	public void log() {
-		logService.saveLog(this.getRawData() + "&" + "signature" + "=" + signature, "webhook", this.getClass().getName());
+		String log = this.getRawData() + "&" + "signature" + "=" + signature;
+		logService.saveLog(log, "webhook", this.getClass().getName());
 	}
 
 	private String getRawData() {
@@ -119,4 +118,3 @@ public class MomoPaymentResult {
 	}
 
 }
-
