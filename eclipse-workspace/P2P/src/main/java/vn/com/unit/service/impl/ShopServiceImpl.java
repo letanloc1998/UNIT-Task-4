@@ -42,11 +42,13 @@ public class ShopServiceImpl implements ShopService {
 	//set disable shop
 	
 	@Override
-	public void setDisableShop(Long shop_id) {
+	public boolean setDisableShop(Long shop_id) {
 		try {
 			shopRepository.setDisableShop(shop_id);
+			return true;
 		} catch(Exception e) {
 			
 		}
+		return false;
 	}
 }
