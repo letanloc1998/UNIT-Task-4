@@ -41,7 +41,7 @@
 						</div>
 
 						<div class="container-login100-form-btn">
-							<button class="login100-form-btn" type="submit" >REGISTER</button>
+							<button class="login100-form-btn" onclick="addAccount()">REGISTER</button>
 						</div>
 
 						<div class="text-center p-t-136">
@@ -57,7 +57,7 @@
 
 	<script th:inline="javascript">
 				
-				const roles = [[${roles}]];
+				
 				
  				function addAccount() {
 				     var token = $("meta[name='_csrf']").attr("content");
@@ -86,15 +86,15 @@
 
 				         success: function (data, status, xhr) {
 				        	 alert(status);
-				             window.location.href = "/P2P";
+				             window.location.href = "/register";
 				         },
 				         error: function (request, status, error) {
 				              alert(status + " " + error);      
-				            // window.location.href = window.location.href; 
+				            
 				         }
 				     });  } 
  				
  				
-				</script>
+	</script>
 </body>
 </html>

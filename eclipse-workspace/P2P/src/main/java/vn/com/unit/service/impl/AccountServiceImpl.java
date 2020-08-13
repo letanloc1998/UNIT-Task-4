@@ -109,8 +109,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 	// getIDsetRole
 
-	public Account findRoleByAccountId(Account account) { 
-		accountRepository.findRoleByAccountId(account.getId());
+	public Account setRoleByAccountId(Account account) { 
+		accountRepository.setRoleByAccountId(account.getId());
 		return null;			
 	}
 
