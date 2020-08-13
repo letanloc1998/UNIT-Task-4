@@ -109,8 +109,8 @@ public class AccountServiceImpl implements AccountService {
 	}
 	// getIDsetRole
 
-	public Account getAccountRole(Account account) { 
-		accountRepository.getAccountRole(account.getId());
+	public Account findRoleByAccountId(Account account) { 
+		accountRepository.findRoleByAccountId(account.getId());
 		return null;			
 	}
 
@@ -154,9 +154,9 @@ public class AccountServiceImpl implements AccountService {
 
 	// getId
 	@Override
-	public Account findById(Long id) {
+	public Account findAccountById(Long id) {
 		try {
-			return accountRepository.findById(id);
+			return accountRepository.findAccountById(id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

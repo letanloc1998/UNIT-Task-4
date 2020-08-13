@@ -16,7 +16,7 @@ public interface AccountService {
 	
 	public Account createNewAccount(Account account);
 	
-	public Account getAccountRole(Account account);
+	public Account findRoleByAccountId(Account account);
 	
 	public Account getCurrentAccount();
 
@@ -25,5 +25,5 @@ public interface AccountService {
 	public void saveAccount(Long account_id, String name, String email, String phone);
 	
 	
-	public Account findById(Long id);
+	public Account findAccountById(Long id);
 }
