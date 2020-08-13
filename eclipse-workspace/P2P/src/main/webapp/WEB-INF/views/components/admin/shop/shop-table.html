@@ -25,16 +25,43 @@
 								<table class="table">
 										<thead class=" text-primary">
 											<th>ID</th>
-											<th>Name</th>
-											<th>Username</th>
+											<th>Owner name</th>
+											<th>Shop name</th>
 											<th>Email</th>
 											<th>Phone</th>
-											<th>Role</th>
+											<th>Status</th>
 											<th>Create_at</th>
 											<th class="text-center">Action</th>
 										</thead>
 										<tbody>
-
+											<tr th:if="${!shops.empty or shops != null}"
+												th:each="shop, i : ${shops}">
+												<td><span th:text="${i.count+(pageable.limit*(pageable.page -1))}"></span></td>
+												<td></td>
+												<td><span th:text="${shop.name}" ></span></td>
+												<td><span th:text="${shop.email}"></span></td>
+												<td><span th:text="${shop.phone}"></span></td>
+												<td>
+													<span th:text="${shop.disable}"></span>
+												</td>
+												<td><span
+													th:text=" ${shop.createAt} ? ${#dates.format(shop.createAt, 'dd-MM-yyyy')} "></span></td>
+												<td class="text-center"><span> <a type="button"
+														th:href="@{'/admin/shop/detail/' + ${shop.id}}"
+														class="btn btn-large btn-info"> <i class="fa fa-eye">
+														</i>
+													</a>
+												</span> <span><a type="button"
+														th:href="@{'/admin/shop/edit/' + ${shop.id}}"
+														class="btn btn-large btn-primary"><i
+															class="fas fa-edit"></i></a> </span> <span>
+														<button type="button" class="btn  btn-danger"
+															th:onclick="|selectAccount(${i.index})|"
+															data-toggle="modal" data-target="#deleteConfirm">
+															<i class="fas fa-trash-alt"></i>
+														</button>
+												</span></td>
+												</tr>
 											
 										</tbody>
 									</table>
