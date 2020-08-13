@@ -3,10 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+	
 
-<head></head>
-<meta th:name="_csrf" th:content="${_csrf.token}" />
-<meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
+<head>
+	<meta th:name="_csrf" th:content="${_csrf.token}" />
+	<meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
+</head>
+
 <body>
 
 
@@ -19,7 +22,7 @@
 							alt="IMG">
 					</div>
 
-					<form class="login100-form validate-form">
+					<div class="login100-form validate-form">
 						<span class="login100-form-title"> REGISTER </span>
 
 						<div class="wrap-input100 validate-input"
@@ -49,16 +52,13 @@
 								<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 							</a>
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 		</div>
-	</th:block>
-
-	<script th:inline="javascript">
-				
-				
-				
+			<script th:inline="javascript">
+	
+	
  				function addAccount() {
 				     var token = $("meta[name='_csrf']").attr("content");
 				     var header = $("meta[name='_csrf_header']").attr("content");
@@ -96,5 +96,7 @@
  				
  				
 	</script>
+	</th:block>
+
 </body>
 </html>
