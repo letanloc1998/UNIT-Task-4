@@ -22,7 +22,7 @@ import vn.com.unit.entity.Product;
 
 
 @Controller
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PreAuthorize("hasRole('ROLE_VENDOR')")
 
 public class VendorController {
 	
@@ -67,7 +67,7 @@ public class VendorController {
 		
 		Account account = accountService.getCurrentAccount();	
 		Shop shop = shopService.findShopByAccountId(account.getId());
-		model.addAttribute("your_shop", shop);
+		model.addAttribute("shop", shop);
 		model.addAttribute("current_account", account);
 		return new ModelAndView(type); }
 
