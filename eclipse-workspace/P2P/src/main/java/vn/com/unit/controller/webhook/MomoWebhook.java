@@ -3,6 +3,7 @@ package vn.com.unit.controller.webhook;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,8 @@ import com.mservice.shared.sharedmodels.Environment;
 import com.mservice.shared.sharedmodels.Environment.EnvTarget;
 import com.mservice.shared.sharedmodels.Environment.ProcessType;
 import com.mservice.shared.utils.Encoder;
+
+import vn.com.unit.service.LogService;
 
 // Handler response from Momo server after payment
 @Controller
@@ -30,8 +33,6 @@ public class MomoWebhook {
 
 		MomoPaymentResult momoPaymentResult = new MomoPaymentResult(body);
 		if (momoPaymentResult.checkSignature()) {
-			// error code == 0 => success => bill success => transfer to shop
-			// error code != 0 => error
 			if (momoPaymentResult.getErrorCode().equals("0")) {
 				// Handler success
 				// Refund if empty product in repository
@@ -70,6 +71,9 @@ class MomoPaymentResult {
 	private String errorCode;
 	private String extraData;
 	private String signature;
+	
+	@Autowired
+	LogService logService;
 
 	public MomoPaymentResult(Map<String, String> body) throws UnsupportedEncodingException {
 		partnerCode = body.get("partnerCode");
@@ -87,6 +91,11 @@ class MomoPaymentResult {
 		errorCode = body.get("errorCode");
 		extraData = this.convertEncode(body.get("extraData"));
 		signature = body.get("signature");
+		this.log();
+	}
+
+	public void log() {
+		logService.saveLog(this.getRawData() + "&" + "signature" + "=" + signature, "webhook", this.getClass().getName());
 	}
 
 	private String getRawData() {
