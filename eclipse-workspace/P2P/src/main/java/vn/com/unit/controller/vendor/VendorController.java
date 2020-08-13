@@ -10,9 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.RoleService;
+import vn.com.unit.service.ShopService;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Role;
 import vn.com.unit.entity.AccountRole;
+import vn.com.unit.entity.Shop;
+import vn.com.unit.entity.Product;
+
 
 
 
@@ -27,14 +31,19 @@ public class VendorController {
 
 	@Autowired
 	RoleService roleService;
+	
+	@Autowired
+	ShopService shopService;
 
+	
+	// home view
 	@RequestMapping("/vendor/home")
-
 	public ModelAndView home(Model model) {
-
 		return new ModelAndView("vendor/vendor");
 	}
 	
+	
+	//editAccount view
 	@RequestMapping("/vendor/myaccount") public ModelAndView myAccount(Model model,@RequestParam(name = "mode") String mode) {
 		String type = "";
 		if(mode.equals("editPass")) {
@@ -46,7 +55,20 @@ public class VendorController {
 		model.addAttribute("current_account", account);
 		return new ModelAndView(type); }
 	
-	 
-	 
+	 //editShop view
+	
+	@RequestMapping("/vendor/myshop") public ModelAndView myShop(Model model,@RequestParam(name = "mode") String mode) {
+		String type = "";
+		if(mode.equals("edit")) {
+			 type = "vendor/myShop/editShop";
+		}else {
+			type = "vendor/myShop/deleteShop";
+		}		
+		
+		Account account = accountService.getCurrentAccount();	
+		Shop shop = shopService.findShopByAccountId(account.getId());
+		model.addAttribute("your_shop", shop);
+		model.addAttribute("current_account", account);
+		return new ModelAndView(type); }
 
 }
