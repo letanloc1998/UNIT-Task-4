@@ -12,7 +12,7 @@ public interface AccountService {
 	
 	public boolean checkPass(Account account, String oldPassword);
 	
-	public List<Account> findAllAccount();
+	public List<Account> findAllAccount(int limit,int offset);
 	
 	public Account createNewAccount(Account account);
 	
@@ -24,6 +24,7 @@ public interface AccountService {
 	
 	public void saveAccount(Long account_id, String name, String email, String phone);
 	
-	
 	public Account findAccountById(Long id);
+	
+	public int countAccountActive();
 }

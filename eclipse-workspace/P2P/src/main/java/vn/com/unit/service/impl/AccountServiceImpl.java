@@ -80,10 +80,10 @@ public class AccountServiceImpl implements AccountService {
 
 //tìm tất cả user kèm role
 	@Override
-	public List<Account> findAllAccount() {
+	public List<Account> findAllAccount(int limit,int offset) {
 		List<Account> accounts = new ArrayList<Account>();
 		try {
-			accounts = accountRepository.findAllAccountActive();
+			accounts = accountRepository.findAllAccountActive(limit,offset);
 
 			for (Account account : accounts) {
 				List<Role> roles = roleService.findRoleByAccountId(account.getId());
@@ -150,8 +150,6 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
-	
-
 	// getId
 	@Override
 	public Account findAccountById(Long id) {
@@ -161,6 +159,17 @@ public class AccountServiceImpl implements AccountService {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public int countAccountActive() {
+		try {
+			return accountRepository.countAccountActive();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
