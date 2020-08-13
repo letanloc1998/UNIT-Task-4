@@ -24,7 +24,7 @@ import vn.com.unit.service.RoleService;
 
 
 @Controller
-@PreAuthorize("hasRole('ROLE_ADMIN')")
+@PreAuthorize("hasRole('ROLE_VENDOR')")
 
 public class VendorManagement {
 	

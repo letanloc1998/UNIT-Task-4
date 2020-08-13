@@ -17,12 +17,8 @@
 						<div class="card">
 							<div class="card-header card-header-primary">
 								<h3 class="card-title">
-									Edit Your Shop (ID: <span th:text="${current_account.id}"></span>)
+									Edit Your Shop (SHOP ID: <span th:text="${shop.id}"></span>)
 								</h3>
-								<script th:inline="javascript">
-									const shop = [[${your_shop}]]
-									console.log(shop)
-								</script>
 							</div>
 							<form th:action="@{/editShop}" th:object="${mymodelobject}"
 								method="GET">
@@ -31,31 +27,41 @@
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="bmd-label-floating">Old Password</label> <input
-													id="old-password" type="password" class="form-control"
-													name="old-password">
+												<label class="bmd-label-floating">Shop Name</label> <input
+													id="name" type="text" class="form-control" name="name"
+													th:value="${shop.name}">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="bmd-label-floating">Address</label> <input
+													id="address" type="text" class="form-control"
+													name="address" th:value="${shop.address}">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="bmd-label-floating">New Password</label> <input
-													type="password" id="new-pass" name="new-pass"
-													class="form-control">
+												<label class="bmd-label-floating">Phone</label> <input
+													id="phone" type="text" class="form-control" name="phone"
+													th:value="${shop.phone}">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="bmd-label-floating">Email</label> <input
+													id="email" type="text" class="form-control" name="email"
+													th:value="${shop.email}">
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="bmd-label-floating">Re New Password</label> <input
-													type="password" id="re-pass" name="re-pass"
-													class="form-control">
-												<div>
-													<p id="status" style="color: red"></p>
-													<p th:text="${result}" style="color: red"></p>
-												</div>
+												<label class="bmd-label-floating">Details</label> <input
+													id="detail" type="text" class="form-control"
+													name="deatil" th:value="${shop.detail}">
 											</div>
 										</div>
 									</div>
@@ -65,8 +71,10 @@
 									<div class="clearfix"></div>
 								</div>
 							</form>
-							<form style="padding-left: 100px; padding-right: 100px; margin-bottom: 20px" th:action="@{/vendor/myaccount}"
-								th:object="${mymodelobject}" method="GET">
+							<form
+								style="padding-left: 100px; padding-right: 100px; margin-bottom: 20px"
+								th:action="@{/vendor/myaccount}" th:object="${mymodelobject}"
+								method="GET">
 								<input type="hidden" value="edit" name="mode" id="mode" />
 								<button type="submit" class="btn btn-primary pull-right">Update
 									Profile</button>
