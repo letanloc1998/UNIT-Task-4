@@ -20,64 +20,53 @@
 									Edit Your Shop (SHOP ID: <span th:text="${shop.id}"></span>)
 								</h3>
 							</div>
-							<form th:action="@{/editshop}" th:object="${mymodelobject}"
-								method="GET">
+							<form th:action="@{/editshop}" th:object="${shop}" method="post">
 								<div class="card-body"
 									style="padding-left: 100px; padding-right: 100px">
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="bmd-label-floating">Shop Name</label> <input
-													id="name" type="text" class="form-control" name="name"
-													th:value="${shop.name}">
+												<label class="bmd-label-floating">Shop Name</label> 
+													 <input type="text" class="form-control" th:field="*{name}" />
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="bmd-label-floating">Address</label> <input
-													id="address" type="text" class="form-control"
-													name="address" th:value="${shop.address}">
+												<label class="bmd-label-floating">Address</label>
+													<input type="text" class="form-control" th:field="*{address}" />
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="bmd-label-floating">Phone</label> <input
-													id="phone" type="text" class="form-control" name="phone"
-													th:value="${shop.phone}">
+												<label class="bmd-label-floating">Phone</label>
+													<input type="text" class="form-control" th:field="*{phone}" />
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="bmd-label-floating">Email</label> <input
-													id="email" type="text" class="form-control" name="email"
-													th:value="${shop.email}">
+												<label class="bmd-label-floating">Email</label>
+													<input type="text" class="form-control" th:field="*{email}" />
 											</div>
 										</div>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="bmd-label-floating">Details</label> <input
-													id="detail" type="text" class="form-control"
-													name="detail" th:value="${shop.detail}">
+												<label class="bmd-label-floating">Details</label>
+													<input type="text" class="form-control" th:field="*{detail}" />
 											</div>
 										</div>
 									</div>
-									<p th:text="${result}" style="color: red"></p>
-									<button type="submit" class="btn btn-primary pull-right">Update
-										Shop </button>
+									<p th:text="${result}" style="color: red"></p>	
+									<input type="submit" class="btn btn-primary pull-right">
 									<div class="clearfix"></div>
 								</div>
 							</form>
-							<form
-								style="padding-left: 100px; padding-right: 100px; margin-bottom: 20px"
-								th:action="@{/vendor/myaccount}" th:object="${mymodelobject}"
-								method="GET">
-								<input type="hidden" value="edit" name="mode" id="mode" />
-								<button type="submit" class="btn btn-primary pull-right">DELETE</button>
-							</form>
+					
+								<a href="/deleteshop" type="submit" class="btn btn-primary pull-right">DELETE SHOP</a>
+							
 						</div>
 					</div>
 					<div class="col-md-4">
@@ -87,28 +76,6 @@
 			</div>
 		</div>
 
-		<script th:inline="javascript">	
-		
-		const account = [[${ current_account }]];
-		
-		$(document).ready(function(){
-			  $("#re-pass").focusin(function(){
-				  $("#status").text("");
-				  });
-			  $("#re-pass").focusout(function(){	  
-			    var rePass = $("#re-pass").val();
-			    var newPass = $("#new-pass").val();
-			        if(rePass != newPass){
-			        	$("#status").text("Your Password Incorrect!");
-			        }else{
-			        	$("#status").text("");
-
-			        }
-			        
-			  });
-			});
-
-		</script>
 
 	</th:block>
 </body>

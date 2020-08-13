@@ -9,4 +9,6 @@ public interface ShopService {
 	public Shop findShopByAccountId(Long account_id);
 	
 	public void saveShop(Long shop_id, String name, String email, String phone, String address, String detail);
+	
+	public void setDisableShop(Long account_id);
 }

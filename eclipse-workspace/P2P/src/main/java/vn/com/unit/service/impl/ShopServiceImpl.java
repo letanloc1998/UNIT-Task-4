@@ -35,10 +35,18 @@ public class ShopServiceImpl implements ShopService {
 	public void saveShop(Long shop_id, String name,String email, String phone, String address, String detail) {
 		try {
 			shopRepository.saveShop(shop_id, name, email, phone, address, detail);
-		}catch (Exception e) {
+		}catch (Exception e) {		
+		}	
+	}
+	
+	//set disable shop
+	
+	@Override
+	public void setDisableShop(Long shop_id) {
+		try {
+			shopRepository.setDisableShop(shop_id);
+		} catch(Exception e) {
 			
 		}
-
-		
 	}
 }
