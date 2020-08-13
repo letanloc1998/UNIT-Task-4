@@ -27,6 +27,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private RoleService roleService;
+	
+	@Autowired
+	AccountService accountService;
 
 	@Autowired
 	RoleRepository roleRepository;
@@ -101,6 +104,8 @@ public class AccountServiceImpl implements AccountService {
 		try {
 			String username = account.getUsername();
 			String password = CommonUtils.encodePassword(account.getPassword());
+			Long account_new_id = accountRepository.createNewAccount(username, password);
+			
 			
 		} catch (Exception e) {
 
@@ -109,9 +114,14 @@ public class AccountServiceImpl implements AccountService {
 	}
 	// getIDsetRole
 
-	public Account setRoleByAccountId(Account account) { 
-		accountRepository.setRoleByAccountId(account.getId());
-		return null;			
+	@Override
+	public void setRoleByAccountId(Long account_id, Long role_id) {
+		try {
+			accountRepository.setRoleByAccountId(account_id, role_id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 	}
 
 	// getCurrentAccount

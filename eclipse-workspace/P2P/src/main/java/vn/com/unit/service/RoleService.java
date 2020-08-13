@@ -14,4 +14,6 @@ public interface RoleService {
 	public List<Role> findRoleByAccount(Account account);
 	
 	public List<Role> findRoleByAccountId(Long accountId);
+	
+	public List<Role> findRoleUserById();
 }

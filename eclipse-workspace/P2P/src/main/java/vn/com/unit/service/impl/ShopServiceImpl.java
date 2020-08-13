@@ -64,4 +64,15 @@ public class ShopServiceImpl implements ShopService {
 		}
 		return shops;
 	}
+
+	@Override
+	public int countAllShop() {
+		// TODO Auto-generated method stub
+		try {
+			return shopRepository.countAllShop();
+			} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
 }

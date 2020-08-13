@@ -12,6 +12,7 @@ import vn.com.unit.entity.Account;
 import vn.com.unit.service.AccountService;
 
 @Controller
+
 public class UserController {
 	@Autowired
 	AccountService accountService;
@@ -20,7 +21,7 @@ public class UserController {
 	@ResponseBody
 	public ResponseEntity<Account> createAccount(@RequestBody Account account, Model model){
 		accountService.createNewAccount(account);
-		accountService.setRoleByAccountId(account);
+		
 		return ResponseEntity.ok(account);
 	}
 }
