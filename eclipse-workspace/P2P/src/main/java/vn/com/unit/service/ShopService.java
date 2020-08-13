@@ -10,7 +10,7 @@ public interface ShopService {
 	
 	public void saveShop(Long shop_id, String name, String email, String phone, String address, String detail);
 	
-	public void setDisableShop(Long account_id);
+	public boolean setDisableShop(Long account_id);
 	
 	public List<Shop> findAllShop(int limit,int offset);
 }

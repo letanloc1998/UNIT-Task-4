@@ -1,25 +1,17 @@
 package vn.com.unit.controller.vendor;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
-import vn.com.unit.entity.Role;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.RoleService;
@@ -51,62 +43,10 @@ public class VendorManagement {
 		return ResponseEntity.ok(account);
 
 	}
-
-	// edit SHOP
-
-	/*
-	 * @RequestMapping(value = { "/editshop" }, method = RequestMethod.GET) public
-	 * ModelAndView editShop(Model model,
-	 * 
-	 * @RequestParam(name = "name") String name,
-	 * 
-	 * @RequestParam(name = "address") String address,
-	 * 
-	 * @RequestParam(name = "email") String email,
-	 * 
-	 * @RequestParam(name = "phone") String phone,
-	 * 
-	 * @RequestParam(name = "detail") String detail) {
-	 * 
-	 * Account account = accountService.getCurrentAccount(); Long shop_id =
-	 * account.getId(); shopService.saveShop(shop_id, name, email, phone, address,
-	 * detail); model.addAttribute("result", "Update Shop Success!"); Shop shop =
-	 * shopService.findShopByAccountId(account.getId()); model.addAttribute("shop",
-	 * shop); model.addAttribute("current_account", account);
-	 * model.addAttribute("title", "Shop Management"); return new
-	 * ModelAndView("vendor/myShop/editShop"); }
-	 */
-
-	
-	//view infor shop
-
-
-
-	//edit SHOP
-	@RequestMapping("/editshop")
-	public ModelAndView editShop(Model model,
-									@RequestParam(name = "name") String name, 
-									@RequestParam(name = "address") String address, 
-									@RequestParam(name = "email") String email,
-									@RequestParam(name = "phone") String phone,
-									@RequestParam(name = "detail") String detail												
-			) {	
-		
-		Account account = accountService.findCurrentAccount();
-		Long shop_id = account.getId();
-		shopService.setDisableShop(shop_id);
-		Shop shop = shopService.findShopByAccountId(account.getId());
-		model.addAttribute("shop", shop);
-		model.addAttribute("current_account", account);
-		model.addAttribute("title", "Shop Management");
-		return new ModelAndView("vendor/myShop/editShop");
-	}
-
-	
 	
 	// edit password
 	
-	@PutMapping("/vendor")
+	@PutMapping("/password")
 	@ResponseBody
 	public ResponseEntity<Account> editPass(@RequestBody Account new_account, Model model) {
 		Account account = accountService.findCurrentAccount();
@@ -116,7 +56,39 @@ public class VendorManagement {
 	
 		return ResponseEntity.ok(account);
 
-	}	
+	}
+
+	// edit SHOP
+	@PutMapping("/shop")
+	@ResponseBody
+	public ResponseEntity<Shop> editShop(@RequestBody Shop shop, Model model) {
+		Long shop_id = shop.getId();
+		String phone = shop.getPhone();
+		String email = shop.getEmail();
+		String name = shop.getName();
+		String address = shop.getAddress();
+		String detail = shop.getDetail();
+		shopService.saveShop(shop_id, name, email, phone, address, detail);;
+		return ResponseEntity.ok(shop);
+
+	}
+
+	
+	//deleteShop
+	@DeleteMapping("/shop")
+	public ResponseEntity<Void> deleteShop() {
+		Account account = accountService.findCurrentAccount();
+		if (shopService.setDisableShop(account.getId())) {
+			return ResponseEntity.status(HttpStatus.OK).body(null);
+		}		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+	}
+
+
+
+	
+	
+	
 	
 
 
