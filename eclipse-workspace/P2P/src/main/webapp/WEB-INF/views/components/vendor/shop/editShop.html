@@ -19,6 +19,10 @@
 								<h3 class="card-title">
 									Edit Your Shop (ID: <span th:text="${current_account.id}"></span>)
 								</h3>
+								<script th:inline="javascript">
+									const shop = [[${your_shop}]]
+									console.log(shop)
+								</script>
 							</div>
 							<form th:action="@{/editShop}" th:object="${mymodelobject}"
 								method="GET">

@@ -53,12 +53,14 @@ public class HomeController {
 		return "redirect:/";
 	}
 	
-	@PostMapping("/account")
-	@ResponseBody
-	
-	public ResponseEntity<Account> createAccount(@RequestBody Account account, Model model){
-		Account accountCreate = accountService.createNewAccount(account);
-		Account accountRole = accountService.getAccountRole(account);
-		return ResponseEntity.ok(account);
-	}
+	/*
+	 * @PostMapping("/account")
+	 * 
+	 * @ResponseBody
+	 * 
+	 * public ResponseEntity<Account> createAccount(@RequestBody Account account,
+	 * Model model){ Account accountCreate =
+	 * accountService.createNewAccount(account); Account accountRole =
+	 * accountService.getAccountRole(account); return ResponseEntity.ok(account); }
+	 */
 }

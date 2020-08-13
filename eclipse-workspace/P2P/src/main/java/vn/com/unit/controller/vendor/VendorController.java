@@ -10,9 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.RoleService;
+import vn.com.unit.service.ShopService;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Role;
 import vn.com.unit.entity.AccountRole;
+import vn.com.unit.entity.Shop;
+import vn.com.unit.entity.Product;
+
 
 
 
@@ -27,6 +31,9 @@ public class VendorController {
 
 	@Autowired
 	RoleService roleService;
+	
+	@Autowired
+	ShopService shopService;
 
 	
 	// home view
@@ -59,8 +66,8 @@ public class VendorController {
 		}		
 		
 		Account account = accountService.getCurrentAccount();	
-		
-		
+		Shop shop = shopService.findShopByAccountId(account.getId());
+		model.addAttribute("your_shop", shop);
 		model.addAttribute("current_account", account);
 		return new ModelAndView(type); }
 

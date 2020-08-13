@@ -62,6 +62,8 @@ public class VendorManagement {
 		model.addAttribute("current_account", account); 	
 		model.addAttribute("title","Account Management");
 		return new ModelAndView("vendor/myAccount/editPass"); }
+	
+	
 }
 
 	 
