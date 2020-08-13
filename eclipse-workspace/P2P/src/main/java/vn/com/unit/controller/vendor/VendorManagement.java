@@ -78,7 +78,8 @@ public class VendorManagement {
 	@DeleteMapping("/shop")
 	public ResponseEntity<Void> deleteShop() {
 		Account account = accountService.findCurrentAccount();
-		if (shopService.setDisableShop(account.getId())) {
+		String status = "true";
+		if (shopService.setDisableShop(account.getId(),status)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

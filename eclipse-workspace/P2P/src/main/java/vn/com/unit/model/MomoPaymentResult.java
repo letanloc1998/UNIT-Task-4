@@ -1,11 +1,7 @@
-package vn.com.unit.service;
+package vn.com.unit.model;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.mservice.shared.constants.Parameter;
 import com.mservice.shared.sharedmodels.Environment;
@@ -13,8 +9,6 @@ import com.mservice.shared.sharedmodels.Environment.EnvTarget;
 import com.mservice.shared.sharedmodels.Environment.ProcessType;
 import com.mservice.shared.utils.Encoder;
 
-@Service
-@Transactional
 public class MomoPaymentResult {
 
 	EnvTarget target = EnvTarget.DEV;
@@ -37,10 +31,7 @@ public class MomoPaymentResult {
 	private String extraData;
 	private String signature;
 
-	@Autowired
-	LogService logService;
-
-	public void setMomoPaymentResult(Map<String, String> body) throws UnsupportedEncodingException {
+	public MomoPaymentResult(Map<String, String> body) throws UnsupportedEncodingException {
 		partnerCode = body.get(Parameter.PARTNER_CODE);
 		accessKey = body.get(Parameter.ACCESS_KEY);
 		requestId = body.get(Parameter.REQUEST_ID);
@@ -56,15 +47,9 @@ public class MomoPaymentResult {
 		payType = body.get(Parameter.PAY_TYPE);
 		extraData = this.convertEncode(body.get(Parameter.EXTRA_DATA));
 		signature = body.get("signature");
-		this.log();
 	}
 
-	public void log() {
-		String log = this.getRawData() + "&" + "signature" + "=" + signature;
-		logService.saveLog(log, "webhook", this.getClass().getName());
-	}
-
-	private String getRawData() {
+	public String getRawData() {
 
 		return Parameter.PARTNER_CODE + "=" + partnerCode
 
@@ -93,6 +78,11 @@ public class MomoPaymentResult {
 				+ "&" + Parameter.PAY_TYPE + "=" + payType
 
 				+ "&" + Parameter.EXTRA_DATA + "=" + extraData;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getRawData() + "&" + "signature" + "=" + signature;
 	}
 
 	public boolean checkSignature() {

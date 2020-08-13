@@ -1,3 +1,3 @@
 UPDATE p2p_shop
-SET disable = '1' 
+SET disable = /*status*/ 
 WHERE id = /*shop_id*/

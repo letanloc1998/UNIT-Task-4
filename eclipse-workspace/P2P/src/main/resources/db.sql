@@ -230,6 +230,7 @@ insert into p2p_account_role (account, role) values (14, 1);
 insert into p2p_cart (account, product, quantity) values (3, 1, 1); -- 1000 * 1
 insert into p2p_cart (account, product, quantity) values (3, 2, 3); -- 1500 * 3
 
+/*
 insert into p2p_bill (account, address) values (3, 'HCM');
 -- select scope_identity();
 insert into p2p_bill_item (id, product, quantity) values (1, 1, 1);
@@ -267,3 +268,4 @@ select 1 as bill_id, p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill
 
 -- 1 as bill_id
 insert into p2p_bill_item (id, product, quantity) (select 1 as id, p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill_item where id = 1)
+*/
