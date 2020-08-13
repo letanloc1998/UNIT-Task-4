@@ -17,6 +17,8 @@ import com.mservice.shared.sharedmodels.Environment.ProcessType;
 import vn.com.unit.service.MomoPaymentResult;
 
 // Handler response from Momo server after payment
+// Thông thường kết quả thanh toán đi theo cách IPN sẽ tới trước callback returnUrl (3s)
+
 @Controller
 public class MomoWebhook {
 
