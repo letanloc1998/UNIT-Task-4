@@ -34,10 +34,9 @@ public class ShopController {
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("admin/shop/shop-table");
-		int totalitems= 100;
+		int totalitems= shopService.countAllShop();
 		int totalpages = (int) Math.ceil((double) totalitems/(double) limit);
 		PageRequest pageable = new PageRequest(page, limit,totalitems,totalpages);
-		
 		List<Shop> shops = shopService.findAllShop(pageable.getLimit(),pageable.getOffset());
 		model.addAttribute("shops",shops);
 		model.addAttribute("pageable",pageable);
