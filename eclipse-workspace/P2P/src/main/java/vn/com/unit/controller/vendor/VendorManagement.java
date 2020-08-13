@@ -39,19 +39,10 @@ public class VendorManagement {
 	@ResponseBody
 	public ResponseEntity<Account> editAccount(@RequestBody Account account, Model model) {
 		Long account_id = account.getId();
-		/*
-		 * String new_password = account.getPassword();
-		 * accountService.setPassword(account_id, new_password);
-		 */
-		
-		String new_phone = account.getPhone();
-		accountService.setPhone(account_id, new_phone);
-		
+		String new_phone = account.getPhone();		
 		String new_email = account.getEmail();
-		accountService.setEmail(account_id, new_email);
-		
 		String new_name = account.getName();
-		accountService.setName(account_id, new_name);
+		accountService.saveAccount(account_id, new_name, new_email, new_phone);
 		return ResponseEntity.ok(account);
 
 	}	
@@ -63,7 +54,7 @@ public class VendorManagement {
 		
 		Account account = accountService.getCurrentAccount();
 		if(accountService.checkPass(account, old_password)){
-			accountService.setPassword(account.getId(), new_password);
+			accountService.setAccountPassword(account.getId(), new_password);
 			model.addAttribute("result", "Change Password Success!");
 		}else {
 			model.addAttribute("result", "Fail! Incorrect Password");

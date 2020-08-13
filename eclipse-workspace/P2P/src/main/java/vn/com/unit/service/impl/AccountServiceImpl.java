@@ -126,49 +126,31 @@ public class AccountServiceImpl implements AccountService {
 
 	// setPassword
 	@Override
-	public void setPassword(Long account_id, String password) {
+	public void setAccountPassword(Long account_id, String password) {
 		try {
 			password = CommonUtils.encodePassword(password);
 
-			accountRepository.setPassword(account_id, password);
+			accountRepository.setAccountPassword(account_id, password);
 		} catch (Exception e) {
 
 		}
 
 	}
-
-	// setPhone
+	
+	
+	//setInfor
 	@Override
-	public void setPhone(Long account_id, String phone) {
+	public void saveAccount(Long account_id, String name,String email, String phone) {
 		try {
-			accountRepository.setPhone(account_id, phone);
-		} catch (Exception e) {
-
+			accountRepository.saveAccount(account_id, name, email, phone);
+		}catch (Exception e) {
+			
 		}
 
+		
 	}
 
-	// setEmail
-	@Override
-	public void setEmail(Long account_id, String email) {
-		try {
-			accountRepository.setEmail(account_id, email);
-		} catch (Exception e) {
-
-		}
-
-	}
-
-	// setName
-	@Override
-	public void setName(Long account_id, String name) {
-		try {
-			accountRepository.setName(account_id, name);
-		} catch (Exception e) {
-
-		}
-
-	}
+	
 
 	// getId
 	@Override
