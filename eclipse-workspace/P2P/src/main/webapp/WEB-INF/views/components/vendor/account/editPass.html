@@ -56,7 +56,7 @@
 										</div>
 									</div>
 
-									<button type="submit" class="btn btn-primary pull-right">Update
+									<button onclick="editPass()" class="btn btn-primary pull-right">Update
 										Password</button>
 									<div class="clearfix"></div>
 								</div>
@@ -98,44 +98,37 @@
 			});
 	
 	
-/* 		function checkOldPass() {
-		    console.log("Start check");
+		
+		function editPass() {
+		    console.log("Start edit");
 			console.log(account);
-		    //account.password = $("#password").val();
-		    var password = account.password;
-		    var type_password = $("#old-password").val();
+		    account.password = $("#new-pass").val();
 	
 		    var token = $("meta[name='_csrf']").attr("content");
 		    var header = $("meta[name='_csrf_header']").attr("content");
-		    
-		    console.log(token)
-		    console.log(header)
-		    
 		    console.log(account)
 	
  		     $.ajax({
 		        type: "PUT",
-		        url: `/account`,
+		        url: `/vendor`,
 		        dataType: "json",
 		        contentType: "application/json",
 		        data: JSON.stringify(account),
 	
 		        beforeSend: function (xhr) {
 		            xhr.setRequestHeader(header, token);
-		        },
-	
+		        },	
 		        success: function (data, status, xhr) {
-		        	alert("Edit Information Success!");
 		        	window.location.href = window.location.href;
 		        },
 		        error: function (request, status, error) {
 		            alert(status + " " + error);
-		           // window.location.href = window.location.href;
+
 		        }
 		    });  
 	
 		    console.log("End edit");
-		} */
+		}
 		</script>
 
 	</th:block>
