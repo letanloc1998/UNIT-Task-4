@@ -57,18 +57,11 @@ public class VendorController {
 	
 	 //editShop view
 	
-	@RequestMapping("/vendor/myshop") public ModelAndView myShop(Model model,@RequestParam(name = "mode") String mode) {
-		String type = "";
-		if(mode.equals("edit")) {
-			 type = "vendor/myShop/editShop";
-		}else {
-			type = "vendor/myShop/deleteShop";
-		}		
-		
+	@RequestMapping("/vendor/myshop") public ModelAndView myShop(Model model) {
 		Account account = accountService.findCurrentAccount();	
 		Shop shop = shopService.findShopByAccountId(account.getId());
 		model.addAttribute("shop", shop);
 		model.addAttribute("current_account", account);
-		return new ModelAndView(type); }
+		return new ModelAndView("vendor/myShop/editShop"); }
 
 }
