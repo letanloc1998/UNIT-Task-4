@@ -24,7 +24,7 @@ public class Product {
 	
 	private int brand;
 	
-	private int quanlity;
+	private int quantity;
 
 	public Product() {
 		
@@ -110,12 +110,12 @@ public class Product {
 		this.brand = brand;
 	}
 
-	public int getQuanlity() {
-		return quanlity;
+	public int getQuantity() {
+		return quantity;
 	}
 
-	public void setQuanlity(int quanlity) {
-		this.quanlity = quanlity;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
 	
