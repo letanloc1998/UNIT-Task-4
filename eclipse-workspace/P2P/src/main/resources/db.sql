@@ -22,7 +22,7 @@ create table p2p_account (
     email nvarchar(50),
     phone nvarchar(20),
     disable bit default 0,
-    create_at datetime default getutcdate(),
+    create_at datetime default getutcdate()
 )
 
 create table p2p_role (
@@ -136,6 +136,7 @@ create table p2p_log (
 	log nvarchar(2000),
 	type nvarchar(50),
 	author nvarchar(500),
+	create_at datetime default getutcdate(),
 )
 
 -- init data
@@ -188,5 +189,4 @@ on category.id = product.category
 left join p2p_brand brand
 on brand.id	= product.brand;
 
-insert into p2p_log (log, type, author)
-values ('log', 'test', 'Loc');
+-- insert into p2p_log (log, type, author) values ('log', 'test', 'Loc');
