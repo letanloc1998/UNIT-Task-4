@@ -29,9 +29,9 @@ public class AccountController {
 	public ModelAndView accountList(
 			Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+			@RequestParam(value = "limit", required = false, defaultValue = "3") int limit,
 			HttpServletRequest request) {
-		int totalitems= 50;
+		int totalitems= accountService.countAccountActive();
 		int totalpages = (int) Math.ceil((double) totalitems/(double) limit);
 		PageRequest pageable = new PageRequest(page, limit,totalitems,totalpages);
 		

@@ -150,8 +150,6 @@ public class AccountServiceImpl implements AccountService {
 		
 	}
 
-	
-
 	// getId
 	@Override
 	public Account findAccountById(Long id) {
@@ -161,6 +159,17 @@ public class AccountServiceImpl implements AccountService {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public int countAccountActive() {
+		try {
+			return accountRepository.countAccountActive();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -28,5 +28,6 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 	public void setRoleByAccountId(@Param("id_account") Long id_account);
 	
 	public Account findAccountById(@Param("id") Long id);
-
+	
+	public int countAccountActive();
 }
