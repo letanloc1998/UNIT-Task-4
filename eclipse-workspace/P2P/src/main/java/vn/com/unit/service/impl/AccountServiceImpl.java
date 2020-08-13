@@ -116,7 +116,7 @@ public class AccountServiceImpl implements AccountService {
 
 	// getCurrentAccount
 	@Override
-	public Account getCurrentAccount() {
+	public Account findCurrentAccount() {
 		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		Account account = findByUsername(currentUsername);
 		List<Role> roles = roleService.findRoleByAccount(account);

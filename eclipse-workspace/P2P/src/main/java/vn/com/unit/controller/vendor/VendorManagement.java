@@ -63,7 +63,7 @@ public class VendorManagement {
 									@RequestParam(name = "detail") String detail												
 			) {	
 		
-		Account account = accountService.getCurrentAccount();
+		Account account = accountService.findCurrentAccount();
 		Long shop_id = account.getId();
 		shopService.saveShop(shop_id, name, email, phone, address, detail);
 		model.addAttribute("result", "Update Shop Success!");
@@ -80,7 +80,7 @@ public class VendorManagement {
 	@RequestMapping("/editPass")
 	public ModelAndView listaccounts1(Model model,@RequestParam(name = "old-password") String old_password, @RequestParam(name = "new-pass") String new_password) {	
 		
-		Account account = accountService.getCurrentAccount();
+		Account account = accountService.findCurrentAccount();
 		if(accountService.checkPass(account, old_password)){
 			accountService.setAccountPassword(account.getId(), new_password);
 			model.addAttribute("result", "Change Password Success!");

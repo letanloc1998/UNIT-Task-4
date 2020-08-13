@@ -51,7 +51,7 @@ public class VendorController {
 		}else {
 			type = "vendor/myAccount/account-table";
 		}		
-		Account account = accountService.getCurrentAccount();	
+		Account account = accountService.findCurrentAccount();	
 		model.addAttribute("current_account", account);
 		return new ModelAndView(type); }
 	
@@ -65,7 +65,7 @@ public class VendorController {
 			type = "vendor/myShop/deleteShop";
 		}		
 		
-		Account account = accountService.getCurrentAccount();	
+		Account account = accountService.findCurrentAccount();	
 		Shop shop = shopService.findShopByAccountId(account.getId());
 		model.addAttribute("shop", shop);
 		model.addAttribute("current_account", account);
