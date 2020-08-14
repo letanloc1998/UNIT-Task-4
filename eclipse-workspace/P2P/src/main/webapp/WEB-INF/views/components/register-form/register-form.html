@@ -85,12 +85,15 @@
                     },
 
                     success: function (data, status, xhr) {
-                        alert(status);
-                        window.location.href = "/register";
+                        try {
+                            alert(data.msg);
+                            window.location.href = `${home}/login`;
+                        } catch (error) { }
                     },
                     error: function (request, status, error) {
-                        alert(status + " " + error);
-
+                        try {
+                            alert(request.responseJSON.msg);
+                        } catch (error) { }
                     }
                 });
 
