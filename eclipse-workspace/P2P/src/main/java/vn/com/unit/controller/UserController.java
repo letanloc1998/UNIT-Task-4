@@ -20,7 +20,7 @@ public class UserController {
 	@PostMapping("/account")
 	@ResponseBody
 	public ResponseEntity<Account> createAccount(@RequestBody Account account, Model model){
-		accountService.createNewAccount(account);
+		Account accountCreate = accountService.createNewAccount(account);
 		
 		return ResponseEntity.ok(account);
 	}
