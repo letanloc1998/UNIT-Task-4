@@ -22,24 +22,24 @@ public class MomoPayment {
 
 	@Autowired
 	PaymentService paymentService;
-	
+
 	private EnvTarget target = EnvTarget.DEV;
 
 	private ProcessType process = ProcessType.PAY_GATE;
 	private Environment environment = Environment.selectEnv(target, process);
 
 	@PostMapping("/cart/payment/momo")
-	public ModelAndView momoPayment(Model model, @RequestParam(value="address") String address) {
+	public ModelAndView momoPayment(Model model, @RequestParam(value = "address") String address) {
 
 		try {
 
 			Long bill_id = paymentService.createBill(address);
-			
+
 			String total = paymentService.calculateBillTotal(bill_id).toString();
-			
+
 			CaptureMoMo captureMoMo = new CaptureMoMo(environment);
-			
-			String orderId = "B" + bill_id.toString() + "T" + String.valueOf(System.currentTimeMillis());
+
+			String orderId = bill_id.toString() + "T" + String.valueOf(System.currentTimeMillis());
 			String requestId = bill_id.toString() + orderId;
 			// => requestId.replace(orderId, ""); => bill_id
 			String amount = total;
