@@ -27,10 +27,30 @@ public class Product {
 	
 	private int quantity;
 	
+	private Brand brand_name;
+	
+	private Category category_name;
+	
 	public Product() {
 		
 	}
 	
+	public Brand getBrand_name() {
+		return brand_name;
+	}
+
+	public void setBrand_name(Brand brand_name) {
+		this.brand_name = brand_name;
+	}
+
+	public Category getCategory_name() {
+		return category_name;
+	}
+
+	public void setCategory_name(Category category_name) {
+		this.category_name = category_name;
+	}
+
 	public Long getId() {
 		return id;
 	}
