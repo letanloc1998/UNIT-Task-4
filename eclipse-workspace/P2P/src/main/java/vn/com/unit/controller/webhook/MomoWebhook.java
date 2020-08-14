@@ -42,8 +42,7 @@ public class MomoWebhook {
 		String type = "webhook";
 		String author = this.getClass().getName();
 
-		log = "/webhook/momo body | " + rawBody;
-		logService.saveLog(log, type, author);
+		log = rawBody;
 		
 		if (momoPaymentResult.checkSignature()) {
 			
@@ -51,14 +50,14 @@ public class MomoWebhook {
 				// Handler success
 				// Refund if empty product in repository
 				log = "/webhook/momo payment success | " + rawBody;
-				logService.saveLog(log, type, author);
 				
 			} else {
 				// Handler error
 				log = "/webhook/momo payment error | " + rawBody;
-				logService.saveLog(log, type, author);
+				
 			}
 
+			logService.saveLog(log, type, author);
 			// Return for Momo
 			return ResponseEntity.ok(null);
 		}
