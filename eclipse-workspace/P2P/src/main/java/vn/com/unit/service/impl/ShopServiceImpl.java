@@ -75,4 +75,16 @@ public class ShopServiceImpl implements ShopService {
 		}
 		return 0;
 	}
+
+	@Override
+	public List<Shop> findShopByStatus(int limit, int offset, int status) {
+		List<Shop> shops = new ArrayList<Shop>();
+		try {
+			shops = shopRepository.findShopByStatus(limit, offset, status);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return shops;
+	}
 }
