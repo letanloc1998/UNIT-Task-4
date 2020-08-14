@@ -34,7 +34,7 @@ public class ShopManagement {
 	ShopService shopService;
 	
 	// edit SHOP
-	@PutMapping("/shop")
+	@PutMapping("/shop/edit")
 	@ResponseBody
 	public ResponseEntity<Shop> editShop(@RequestBody Shop shop, Model model) {
 		Long shop_id = shop.getId();
@@ -50,7 +50,7 @@ public class ShopManagement {
 
 	
 	//deleteShop
-	@DeleteMapping("/shop")
+	@DeleteMapping("/shop/edit")
 	public ResponseEntity<Void> deleteShop() {
 		Account account = accountService.findCurrentAccount();
 		String status = "true";

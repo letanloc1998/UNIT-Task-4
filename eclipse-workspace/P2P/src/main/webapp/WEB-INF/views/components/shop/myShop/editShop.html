@@ -103,7 +103,7 @@
 	
   		     $.ajax({
 		        type: "PUT",
-		        url: `/shop`,
+		        url: `/shop/edit`,
 		        dataType: "json",
 		        contentType: "application/json",
 		        data: JSON.stringify(shop),
@@ -132,7 +132,7 @@
                 var header = $("meta[name='_csrf_header']").attr("content");
 
                 $.ajax({
-                    url: `/shop`,
+                    url: `/shop/delete`,
                     type: 'DELETE',
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader(header, token);
