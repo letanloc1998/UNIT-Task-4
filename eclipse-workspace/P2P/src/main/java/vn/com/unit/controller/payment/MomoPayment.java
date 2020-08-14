@@ -31,7 +31,7 @@ public class MomoPayment {
 			String orderId = String.valueOf(System.currentTimeMillis());
 			String requestId = String.valueOf(System.currentTimeMillis());
 			String amount = "9999";
-			String orderInfo = "Mua cái áo màu hường 9999 đ";
+			String orderInfo = "Mua cái áo màu hường 9999 đ" + " Address: " + address;
 
 			String returnUrl = "http://localhost:8080/callback";
 			String notifyUrl = "https://1dd10ec48399.ngrok.io/webhook/momo";

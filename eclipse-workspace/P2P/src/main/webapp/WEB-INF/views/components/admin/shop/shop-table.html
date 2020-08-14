@@ -16,21 +16,9 @@
 
 							<div class="card-header card-header-primary">
 								<h4 class="card-title ">Shop Table</h4>
-								<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-									<button class="navbar-toggler" type="button"
-										data-toggle="collapse" data-target="#navbarNavAltMarkup"
-										aria-controls="navbarNavAltMarkup" aria-expanded="false"
-										aria-label="Toggle navigation">
-										<span class="navbar-toggler-icon"></span>
-									</button>
-									<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-										<div class="navbar-nav">
-												<a class="nav-item nav-link active" href="#">Show Accept Shop<span class="sr-only">(current)</span></a>
-												<a class="nav-item nav-link" href="#">Show Deactive Shop</a> 
-										</div>
-									</div>
-								</nav>
+								   <div th:replace="components/admin/shop/head-nav-shop-table :: head-nav-shop-table"></div> 
+								
+								
 							</div>
 
 							<div class="card-body">
