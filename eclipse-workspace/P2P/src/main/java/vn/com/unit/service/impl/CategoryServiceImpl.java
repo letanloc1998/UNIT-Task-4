@@ -16,7 +16,6 @@ import vn.com.unit.repository.BrandRepository;
 import vn.com.unit.repository.CategoryRepository;
 import vn.com.unit.repository.ProductRepository;
 import vn.com.unit.repository.ShopRepository;
-import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BrandService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
@@ -24,7 +23,7 @@ import vn.com.unit.service.ShopService;
 
 @Service
 @Transactional
-public class ProductServiceImpl implements ProductService {
+public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	ShopRepository shopRepository;
@@ -38,32 +37,12 @@ public class ProductServiceImpl implements ProductService {
 	@Autowired
 	CategoryRepository categoryRepository;
 	
-	
-	@Autowired
-	BrandService brandService;
-	
-	@Autowired
-	CategoryService categoryService;
-	
 	@Override
-	public List<Product> findAllProductByShopId(Long shop_id) {
-
-		List<Product> products = new ArrayList<Product>();
-		try {
-			products = productRepository.findAllProductByShopId(shop_id);
-
-			for (Product product : products) {
-				Brand brand = brandService.findBrandByProductId(product.getId());
-				product.setBrand_name(brand);
-				Category category = categoryService.findCategoryByProductId(product.getId());
-				product.setCategory_name(category);
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+	public Category findCategoryByProductId(Long product_id) {
 		
-		return products;
-	}
+		return categoryRepository.findCategoryByProductId(product_id);
+		
+	};
 	
 
 }
