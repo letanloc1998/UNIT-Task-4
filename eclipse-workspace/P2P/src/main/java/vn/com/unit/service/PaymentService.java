@@ -8,5 +8,7 @@ public interface PaymentService {
 	public Long createBill(String address);
 	
 	public Long calculateBillTotal(Long bill_id);
+
+	public void savePaymentSuccess(Long bill_id);
 	
 }
