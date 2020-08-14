@@ -29,6 +29,7 @@
 
 		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/register" access="permitAll" />
+		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/webhook/momo" access="permitAll" />
 
 		<intercept-url pattern="/**"
