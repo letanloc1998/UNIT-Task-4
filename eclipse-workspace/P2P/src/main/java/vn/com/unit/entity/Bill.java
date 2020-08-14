@@ -7,6 +7,8 @@ public class Bill {
 
 	private Long id;
 	
+//	private Long momo_order_id;
+	
 	private String account;
 	
 	private String address;
@@ -30,6 +32,14 @@ public class Bill {
 		this.id = id;
 	}
 
+//	public Long getMomo_order_id() {
+//		return momo_order_id;
+//	}
+//
+//	public void setMomo_order_id(Long momo_order_id) {
+//		this.momo_order_id = momo_order_id;
+//	}
+	
 	public String getAccount() {
 		return account;
 	}
@@ -77,10 +87,5 @@ public class Bill {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
-
-
-
-
-	
 		
 }

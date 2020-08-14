@@ -47,6 +47,12 @@ public class BillServiceImpl implements BillService {
 		
 		billRepository.addBillItemFromCart(billId, currentAccountId);
 	}
+
+	@Override
+	public Long calculateBillTotal(Long bill_id) {
+		
+		return billRepository.calculateBillTotal(bill_id);
+	}
 	
 
 }

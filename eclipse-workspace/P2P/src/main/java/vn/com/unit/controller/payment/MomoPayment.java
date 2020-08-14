@@ -15,6 +15,7 @@ import com.mservice.shared.sharedmodels.Environment.EnvTarget;
 import com.mservice.shared.sharedmodels.Environment.ProcessType;
 
 import vn.com.unit.service.PaymentService;
+import vn.com.unit.utils.CommonUtils;
 
 @Controller
 public class MomoPayment {
@@ -32,14 +33,17 @@ public class MomoPayment {
 
 		try {
 
-			paymentService.createBill(address);
+			Long bill_id = paymentService.createBill(address);
+			
+			String total = paymentService.calculateBillTotal(bill_id).toString();
 			
 			CaptureMoMo captureMoMo = new CaptureMoMo(environment);
-
-			String orderId = String.valueOf(System.currentTimeMillis());
-			String requestId = String.valueOf(System.currentTimeMillis());
-			String amount = "9999";
-			String orderInfo = "Mua cái áo màu hường 9999 đ" + " Address: " + address;
+			
+			String orderId = "B" + bill_id.toString() + "T" + String.valueOf(System.currentTimeMillis());
+			String requestId = bill_id.toString() + orderId;
+			// => requestId.replace(orderId, ""); => bill_id
+			String amount = total;
+			String orderInfo = "Total : " + total + " Address: " + CommonUtils.convertEncode(address);
 
 			String returnUrl = "http://localhost:8080/callback";
 			String notifyUrl = "https://1dd10ec48399.ngrok.io/webhook/momo";
