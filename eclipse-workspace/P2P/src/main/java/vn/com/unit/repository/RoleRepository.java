@@ -11,5 +11,5 @@ public interface RoleRepository extends MirageRepository<Role, Long> {
 
 	public List<Role> findRoleByAccountId(@Param("account_id") Long account_id);
 	
-	public List<Role> findRoleUserById();
+	public Long findRoleIdByName(@Param("role_name") String role_name);
 }

@@ -98,14 +98,19 @@ public class AccountServiceImpl implements AccountService {
 		return accounts;
 	}
 
-	// create register
+	// create new account
 	@Override
 	public Account createNewAccount(Account account) {
 		try {
 			String username = account.getUsername();
 			String password = CommonUtils.encodePassword(account.getPassword());
 			Long account_new_id = accountRepository.createNewAccount(username, password);
-			
+			if (account_new_id != null) {
+
+				accountService.setRoleByAccountId(account_new_id, roleService.findRoleIdByName("ROLE_USER") );
+
+				return accountService.findByUsername(account.getUsername());
+			}
 			
 		} catch (Exception e) {
 
