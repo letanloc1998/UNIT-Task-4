@@ -104,7 +104,15 @@ public class MomoPaymentResult {
 //	private String convertEncode(String s) throws UnsupportedEncodingException {
 //		return new String(s.getBytes("ISO-8859-1"), "UTF-8");
 //	}
+	
+	public String getRequestId() {
+		return requestId;
+	}
 
+	public String getOrderId() {
+		return orderId;
+	}
+	
 	public String getErrorCode() {
 		return errorCode;
 	}

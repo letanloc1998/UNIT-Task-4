@@ -27,7 +27,7 @@ public class MomoWebhook {
 
 	ProcessType process = ProcessType.PAY_GATE;
 	Environment environment = Environment.selectEnv(target, process);
-	
+
 	@Autowired
 	LogService logService;
 
@@ -36,32 +36,40 @@ public class MomoWebhook {
 			throws UnsupportedEncodingException {
 
 		MomoPaymentResult momoPaymentResult = new MomoPaymentResult(body);
-		
+
 		String log = "";
-		String rawBody =  momoPaymentResult.toString();
+		String rawBody = momoPaymentResult.toString();
 		String type = "webhook";
 		String author = this.getClass().getName();
 
 		log = rawBody;
-		
+
 		if (momoPaymentResult.checkSignature()) {
-			
+
 			if (momoPaymentResult.getErrorCode().equals("0")) {
 				// Handler success
 				// Refund if empty product in repository
 				log = "/webhook/momo payment success | " + rawBody;
+
+				String order_id = momoPaymentResult.getOrderId();
+				String request_id = momoPaymentResult.getRequestId();
+				Long bill_id = Long.valueOf(request_id.replace(order_id, ""));
+
+//				update p2p_bill
+//				set payment = 1
+//				where id = /*bill_id*/
 				
 			} else {
 				// Handler error
 				log = "/webhook/momo payment error | " + rawBody;
-				
+
 			}
 
 			logService.saveLog(log, type, author);
 			// Return for Momo
 			return ResponseEntity.ok(null);
 		}
-		
+
 		log = "/webhook/momo wrong signature | " + rawBody;
 		logService.saveLog(log, type, author);
 
