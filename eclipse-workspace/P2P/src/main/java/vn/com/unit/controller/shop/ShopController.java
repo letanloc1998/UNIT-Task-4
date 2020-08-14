@@ -46,7 +46,7 @@ public class ShopController {
 
 	// edit shop view
 	@GetMapping("/shop/myshop")
-	public ModelAndView myShop(Model model) {
+	public ModelAndView editShop(Model model) {
 
 		Account account = accountService.findCurrentAccount();
 		Shop shop = shopService.findShopByAccountId(account.getId());
