@@ -14,7 +14,7 @@ public interface AccountService {
 	
 	public List<Account> findAllAccount(int limit,int offset);
 	
-	public Account createNewAccount(Account account);
+	public Account createNewAccount(Account account,String role_name);
 	
 	public void setRoleByAccountId(Long id_account, Long id_role);
 	
