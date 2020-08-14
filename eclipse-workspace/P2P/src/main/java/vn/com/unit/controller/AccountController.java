@@ -13,7 +13,7 @@ import vn.com.unit.service.AccountService;
 
 @Controller
 
-public class UserController {
+public class AccountController {
 	@Autowired
 	AccountService accountService;
 	

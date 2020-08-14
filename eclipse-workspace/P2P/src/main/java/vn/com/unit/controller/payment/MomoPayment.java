@@ -1,5 +1,6 @@
 package vn.com.unit.controller.payment;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +13,7 @@ import com.mservice.shared.sharedmodels.Environment;
 import com.mservice.shared.sharedmodels.Environment.EnvTarget;
 import com.mservice.shared.sharedmodels.Environment.ProcessType;
 
+@Controller
 public class MomoPayment {
 
 	EnvTarget target = EnvTarget.DEV;

@@ -14,19 +14,19 @@ public class HomeController {
 	
 	
 
-	@RequestMapping("*")
+	@GetMapping("*")
     public ModelAndView home(Model model) {
 		
         return new ModelAndView("index");
     }
 
-	@RequestMapping("/register")
+	@GetMapping("/register")
     public ModelAndView register(Model model) {
 		
         return new ModelAndView("register");
     }
 	
-	@RequestMapping("/login")
+	@GetMapping("/login")
 	public ModelAndView login(Model model) {
 
 		model.addAttribute("title", "Login");
