@@ -9,22 +9,21 @@
 </head>
 
 <body>
-    <th:block th:replace="layout/footer :: footer"></th:block>
   <div class="wrapper ">
         
-    <div th:replace="vendor/layout/leftNavVendor :: leftNavVendor"></div> 
+    <div th:replace="shop/layout/leftNavShop :: leftNavShop"></div> 
     
     <div class="main-panel">
       <!-- Navbar -->
-     	<div th:replace="vendor/layout/HeadNavVendor :: headNavVendor"></div> 
+     	<div th:replace="admin/layout/HeadNavAdmin :: headNavAdmin"></div> 
       <!-- End Navbar -->
        <!-- content -->
-        <div th:replace="components/shop/myShop/deleteShop :: deleteShop"></div> 
+        <div th:replace="components/shop/myProduct/shop-all-product :: shop-all-product"></div> 
         <!-- End content -->
-        <div th:replace="vendor/layout/footerVendor :: footerVendor"></div> 
+        <div th:replace="admin/layout/footerAdmin :: footerAdmin"></div> 
     </div>
   </div>
   
-
+    <th:block th:replace="layout/footer :: footer"></th:block>
 </body>
 </html>

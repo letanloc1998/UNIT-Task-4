@@ -1,5 +1,6 @@
 package vn.com.unit.controller.admin;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,5 +56,23 @@ public class AdminShopManagementController {
 
 		return new ModelAndView("admin/shop/shop-accept-table");
 	}
+	
+	@GetMapping("/admin/shop/deactive-list")
+	public ModelAndView ShopDeactiveList(Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+			HttpServletRequest request) {
+		int totalitems = shopService.countAllShop();
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
+		List<Shop> deactiveByAdmin = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(),3);
+		List<Shop> deactiveByVendor = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(),2);
+		deactiveByAdmin.addAll(deactiveByVendor);
+		model.addAttribute("shops", deactiveByAdmin);
+		model.addAttribute("pageable", pageable);
+
+		return new ModelAndView("admin/shop/shop-deactive-table");
+	}
+
 
 }

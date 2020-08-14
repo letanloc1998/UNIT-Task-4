@@ -7,7 +7,7 @@
 <head></head>
 
 <body>
-	<th:block th:fragment="allProduct">
+	<th:block th:fragment="allBill">
 		<div class="content">
 			<div class="container-fluid">
 				<div class="row">
@@ -15,43 +15,37 @@
 						<div class="card">
 
 							<div class="card-header card-header-primary">
-								<h4 class="card-title ">Products List</h4>
-								<button type="button" class="btn btn-danger">
-									add <i class="fas fa-plus-circle"></i>
-								</button>
+								<h4 class="card-title ">All Bill List</h4>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table">
 										<thead class=" text-primary">
 											<th>ID</th>
-											<th>Name</th>
-											<th>Category</th>
-											<th>Brand</th>
-											<th>Price</th>
-											<th>Quanlity</th>
+											<th>Address</th>
+											<th>Payment</th>
+											<th>Status</th>
+											<th>Refund</th>
+											<th>Create Day</th>
 											<th class="text-center">Action</th>
 										</thead>
 										<tbody>
 
-											<tr th:if="${!products.empty or products != null}"
-												th:each="product, i : ${products}">
-												<td><span th:text="${i.count}"></span></td>
-												<td><span th:text="${product.name}"></span></td>
-												<td><span th:text="${product.category}"></span></td>
-												<td><span th:text="${product.brand}"></span></td>
-												<td><span th:text="${product.price}"></span></td>
-												<td><span th:text="${product.quantity}"></span></td>
+											<tr th:if="${!bills.empty or bills != null}"
+												th:each="bill, i : ${bills}">
+												<td><span th:text="${bill.id}"></span></td>
+												<td><span th:text="${bill.address}"></span></td>
+												<td><span th:text="${bill.payment}"></span></td>
+												<td><span th:text="${bill.status}"></span></td>
+												<td><span th:text="${bill.refund}"></span></td>
+												<td><span th:text="${bill.createAt}"></span></td>
 
-												<td class="text-center"><span> <a type="button"
-														
-														class="btn btn-large btn-info"> <i class="fa fa-eye">
-														</i>
+												<td class="text-center"><span> 
+												<a th:href="@{'/vendor/mybill/' + ${bill.id}}" type="button"
+														class="btn btn-large btn-info"> 
+														<i class="fa fa-eye"></i>
 													</a>
-												</span> <span><a type="button"
-														
-														class="btn btn-large btn-primary"><i
-															class="fas fa-edit"></i></a> </span> <span>
+												</span> <span>
 														<button type="button" class="btn  btn-danger"
 															th:onclick="|selectAccount(${i.index})|"
 															data-toggle="modal" data-target="#deleteConfirm">
@@ -60,7 +54,7 @@
 												</span></td>
 										</tbody>
 									</table>
-<!-- 									<div style="display: flex;align-items: center;">
+									<!-- 									<div style="display: flex;align-items: center;">
 										<div class="btn-group">
 										<button type="button" style="background-color:#2196f3" class="btn btn-sm btn-default" th:text="${pageable.limit}"></button>
 										<button type="button" style="background-color:#2196f3"
@@ -97,17 +91,14 @@
 										</ul>
 									</nav>
 									</div> -->
-									
+
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<script th:inline="javascript">
-        const account = [[${ accounts }]]
-        console.log([[${ pageable }]])
-      </script>
+
 	</th:block>
 
 </body>

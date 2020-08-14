@@ -1,5 +1,7 @@
 package vn.com.unit.controller.shop;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
+import vn.com.unit.entity.BillItem;
+import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillItemService;
@@ -57,5 +61,33 @@ public class ShopController {
 
 		return new ModelAndView("shop/myShop/editShop");
 	}
+	
+	//product view
+	@GetMapping("/shop/myproduct")
+	public ModelAndView product(Model model) {
 
+		Account account = accountService.findCurrentAccount();	
+		List<Product> products = productService.findAllProductByShopId(account.getId());
+
+		model.addAttribute("products", products);
+		model.addAttribute("title", "Shop Management");
+
+		return new ModelAndView("shop/myProduct/shop-product");
+	}
+
+	//all bills view
+
+	/*
+	 * // edit shop view
+	 * 
+	 * @GetMapping("/shop/mybill") public ModelAndView Bill(Model model) {
+	 * 
+	 * Account account = accountService.findCurrentAccount(); List<BillItem>
+	 * billitems = billItemService.findAllBillItem();
+	 * 
+	 * model.addAttribute("title", "Shop Management");
+	 * 
+	 * return new ModelAndView("shop/myShop/myBill"); }
+	 */
+	
 }
