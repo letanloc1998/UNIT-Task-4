@@ -25,7 +25,7 @@
         var check = true;
 		var username = $('#username').val();
             if(username == ""){
-                showValidate('#usename');
+                showValidate('#username');
                 check=false;
             }
       
