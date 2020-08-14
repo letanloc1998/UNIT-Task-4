@@ -21,7 +21,6 @@ public class AccountController {
 	@ResponseBody
 	public ResponseEntity<Account> createAccount(@RequestBody Account account, Model model){
 		Account accountCreate = accountService.createNewAccount(account);
-		
 		return ResponseEntity.ok(account);
 	}
 }
