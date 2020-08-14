@@ -3,6 +3,7 @@ package vn.com.unit.repository;
 import java.util.List;
 
 import org.springframework.data.mirage.repository.MirageRepository;
+import org.springframework.data.mirage.repository.query.Modifying;
 import org.springframework.data.repository.query.Param;
 
 import vn.com.unit.entity.Bill;
@@ -15,6 +16,7 @@ public interface BillRepository extends MirageRepository<Shop, Long> {
 
 	public Long createBill(@Param("account_id") Long account_id, @Param("address") String address);
 
-	public void addBillItemFromCart(Long bill_id, Long account_id);
+	@Modifying
+	public void addBillItemFromCart(@Param("bill_id") Long bill_id, @Param("account_id") Long account_id);
 	
 }

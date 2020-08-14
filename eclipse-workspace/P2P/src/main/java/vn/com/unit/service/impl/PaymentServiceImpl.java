@@ -23,16 +23,16 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public Long createBill(String address) {
 
-		Account currentAccount = accountService.findCurrentAccount();
+		Account current_account = accountService.findCurrentAccount();
 
-		Long currentAccountId = currentAccount.getId();
+		Long current_account_id = current_account.getId();
 
 		// insert into p2p_bill (account, address) values (/*curent account id*/,
 		// /*address*/);
 		// select scope_identity(); => bill_id
-		Long billId = billService.createBill(currentAccountId, address);
+		Long bill_id = billService.createBill(current_account_id, address);
 
-		billService.addBillItemFromCart(billId, currentAccountId);
+		billService.addBillItemFromCart(bill_id, current_account_id);
 
 		// insert into p2p_bill_item (id, product, quantity) (select /*bill_id*/ as id,
 		// p2p_cart.product, p2p_cart.quantity from p2p_cart where p2p_cart.account =
@@ -40,7 +40,7 @@ public class PaymentServiceImpl implements PaymentService {
 
 		// return bill id
 
-		return billId;
+		return bill_id;
 	}
 
 }
