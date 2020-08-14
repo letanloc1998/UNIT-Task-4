@@ -13,4 +13,6 @@ public interface BillService {
 
 	public void addBillItemFromCart(Long bill_id, Long account_id);
 
+	public Long calculateBillTotal(Long bill_id);
+
 }

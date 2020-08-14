@@ -120,6 +120,9 @@ create table p2p_cart (
 
 create table p2p_bill (
     id bigint primary key identity(1,1),
+    
+    -- momo_order_id bigint,
+    
     account bigint not null,
     address nvarchar(255) not null,
     create_at datetime default getutcdate(),

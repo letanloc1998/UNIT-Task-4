@@ -9,6 +9,8 @@ import com.mservice.shared.sharedmodels.Environment.EnvTarget;
 import com.mservice.shared.sharedmodels.Environment.ProcessType;
 import com.mservice.shared.utils.Encoder;
 
+import vn.com.unit.utils.CommonUtils;
+
 public class MomoPaymentResult {
 
 	EnvTarget target = EnvTarget.DEV;
@@ -37,15 +39,15 @@ public class MomoPaymentResult {
 		requestId = body.get(Parameter.REQUEST_ID);
 		amount = body.get(Parameter.AMOUNT);
 		orderId = body.get(Parameter.ORDER_ID);
-		orderInfo = this.convertEncode(body.get(Parameter.ORDER_INFO));
+		orderInfo = CommonUtils.convertEncode(body.get(Parameter.ORDER_INFO));
 		orderType = body.get(Parameter.ORDER_TYPE);
 		transId = body.get(Parameter.TRANS_ID);
-		message = this.convertEncode(body.get(Parameter.MESSAGE));
-		localMessage = this.convertEncode(body.get(Parameter.LOCAL_MESSAGE));
+		message = CommonUtils.convertEncode(body.get(Parameter.MESSAGE));
+		localMessage = CommonUtils.convertEncode(body.get(Parameter.LOCAL_MESSAGE));
 		responseTime = body.get(Parameter.DATE);
 		errorCode = body.get(Parameter.ERROR_CODE);
 		payType = body.get(Parameter.PAY_TYPE);
-		extraData = this.convertEncode(body.get(Parameter.EXTRA_DATA));
+		extraData = CommonUtils.convertEncode(body.get(Parameter.EXTRA_DATA));
 		signature = body.get("signature");
 	}
 
@@ -98,10 +100,10 @@ public class MomoPaymentResult {
 		return false;
 	}
 
-	// Convert from ISO-8859-1 to UTF-8
-	private String convertEncode(String s) throws UnsupportedEncodingException {
-		return new String(s.getBytes("ISO-8859-1"), "UTF-8");
-	}
+//	// Convert from ISO-8859-1 to UTF-8
+//	private String convertEncode(String s) throws UnsupportedEncodingException {
+//		return new String(s.getBytes("ISO-8859-1"), "UTF-8");
+//	}
 
 	public String getErrorCode() {
 		return errorCode;

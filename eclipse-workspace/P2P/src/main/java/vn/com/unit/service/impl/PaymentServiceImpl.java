@@ -43,4 +43,10 @@ public class PaymentServiceImpl implements PaymentService {
 		return bill_id;
 	}
 
+	@Override
+	public Long calculateBillTotal(Long bill_id) {
+
+		return billService.calculateBillTotal(bill_id);
+	}
+
 }

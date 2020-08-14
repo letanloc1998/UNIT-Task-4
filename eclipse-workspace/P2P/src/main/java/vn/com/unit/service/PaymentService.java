@@ -7,4 +7,6 @@ public interface PaymentService {
 	// Return id bill
 	public Long createBill(String address);
 	
+	public Long calculateBillTotal(Long bill_id);
+	
 }
