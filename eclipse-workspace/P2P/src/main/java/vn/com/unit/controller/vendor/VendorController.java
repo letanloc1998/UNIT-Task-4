@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,14 +55,14 @@ public class VendorController {
 
 	
 	// home view
-	@RequestMapping("/vendor/home")
+	@GetMapping("/vendor/home")
 	public ModelAndView home(Model model) {
 		return new ModelAndView("vendor/vendor");
 	}
 	
 	
 	//editAccount view
-	@RequestMapping("/vendor/myaccount") public ModelAndView myAccount(Model model,@RequestParam(name = "mode") String mode) {
+	@GetMapping("/vendor/myaccount") public ModelAndView myAccount(Model model,@RequestParam(name = "mode") String mode) {
 		String type = "";
 		if(mode.equals("editPass")) {
 			 type = "vendor/myAccount/editPass";
@@ -74,7 +75,7 @@ public class VendorController {
 	
 	 //editShop view
 	
-	@RequestMapping("/vendor/myshop") public ModelAndView myShop(Model model) {
+	@GetMapping("/vendor/myshop") public ModelAndView myShop(Model model) {
 		Account account = accountService.findCurrentAccount();	
 		Shop shop = shopService.findShopByAccountId(account.getId());
 		model.addAttribute("shop", shop);
@@ -83,7 +84,7 @@ public class VendorController {
 	
 	
 	//products view
-	@RequestMapping("/vendor/product") public ModelAndView product(Model model) {
+	@GetMapping("/vendor/product") public ModelAndView product(Model model) {
 		Account account = accountService.findCurrentAccount();	
 		List<Product> products = productService.findAllProductByShopId(account.getId());
 		model.addAttribute("current_account", account);
