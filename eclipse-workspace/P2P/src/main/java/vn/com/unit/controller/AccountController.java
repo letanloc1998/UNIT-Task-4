@@ -47,5 +47,6 @@ public class AccountController {
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body("{ \"msg\" : \"You can't create an account right now. Try again later\" }");
+	
 	}
 }
