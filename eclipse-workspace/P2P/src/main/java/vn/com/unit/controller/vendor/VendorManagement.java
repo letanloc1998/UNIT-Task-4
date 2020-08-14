@@ -58,32 +58,7 @@ public class VendorManagement {
 
 	}
 
-	// edit SHOP
-	@PutMapping("/shop")
-	@ResponseBody
-	public ResponseEntity<Shop> editShop(@RequestBody Shop shop, Model model) {
-		Long shop_id = shop.getId();
-		String phone = shop.getPhone();
-		String email = shop.getEmail();
-		String name = shop.getName();
-		String address = shop.getAddress();
-		String detail = shop.getDetail();
-		shopService.saveShop(shop_id, name, email, phone, address, detail);;
-		return ResponseEntity.ok(shop);
 
-	}
-
-	
-	//deleteShop
-	@DeleteMapping("/shop")
-	public ResponseEntity<Void> deleteShop() {
-		Account account = accountService.findCurrentAccount();
-		String status = "true";
-		if (shopService.setDisableShop(account.getId(),status)) {
-			return ResponseEntity.status(HttpStatus.OK).body(null);
-		}		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-	}
 
 
 

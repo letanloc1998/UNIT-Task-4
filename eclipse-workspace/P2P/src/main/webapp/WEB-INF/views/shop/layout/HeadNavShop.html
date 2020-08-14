@@ -8,10 +8,12 @@
 <body>
     
     
-    <th:block th:fragment="headNavIndex">
+    <th:block th:fragment="headNavVendor">
          <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
-         
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;">Dashboard</a>
+          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -59,12 +61,11 @@
                   <p class="d-lg-none d-md-block">
                     Account
                   </p>
+                </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <th:block sec:authorize="hasRole('ROLE_ADMIN')"><a class="dropdown-item" href="/admin/home">Admin Page</a></th:block>
-                  <th:block sec:authorize="isAuthenticated()"><a class="dropdown-item" href="/vendor/home">My Profile</a></th:block>
-                  <th:block sec:authorize="hasRole('ROLE_VENDOR')"><a class="dropdown-item" href="/shop/home">My Shop</a></th:block>
+                  <a class="dropdown-item" href="#">Profile</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="/logout">Log out</a>
+                  <a class="dropdown-item" th:href="@{/logout}">Log out</a>
                 </div>
               </li>
             </ul>
