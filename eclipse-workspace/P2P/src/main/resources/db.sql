@@ -47,7 +47,13 @@ create table p2p_shop (
     email nvarchar(50),
     phone nvarchar(20),
     detail nvarchar(500),
-    disable bit default 0,
+    
+    -- 0 : waiting accept
+    -- 1 : active
+    -- 2 : delete by vendor (owner)
+    -- 3 : delete by admin
+    status tinyint default 0,
+    
     create_at datetime default getutcdate()
 )
 
@@ -121,18 +127,18 @@ create table p2p_bill (
     -- 0 : wating payment
     -- 1 : payment success
     -- 2 : payment error
-    payment bit default 0,
+    payment tinyint default 0,
     
     -- 0 : waiting
     -- 1 : approve
     -- 2 : deny
-    -- 3 : success	(approve success, shipping success)
+    -- 3 : complete	(approve success, shipping success)
     -- 4 : cancel	(approve success, can't receive product/error) 
-    status bit default 0,
+    status tinyint default 0,
     
     -- 0 : not refund
     -- 1 : refund success
-    refund bit default 0,
+    refund tinyint default 0,
     
     constraint fk_bill_account__account_id foreign key (account) references p2p_account(id),
 )
