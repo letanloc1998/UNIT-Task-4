@@ -132,7 +132,7 @@ create table p2p_bill (
     -- 0 : waiting
     -- 1 : approve
     -- 2 : deny
-    -- 3 : success	(approve success, shipping success)
+    -- 3 : complete	(approve success, shipping success)
     -- 4 : cancel	(approve success, can't receive product/error) 
     status tinyint default 0,
     
