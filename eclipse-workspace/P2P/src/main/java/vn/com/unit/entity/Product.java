@@ -23,7 +23,7 @@ public class Product {
 	
 	private Date createAt;
 	
-	private String brand;
+	private int brand;
 	
 	private int quantity;
 	
