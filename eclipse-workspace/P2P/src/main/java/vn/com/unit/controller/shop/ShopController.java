@@ -11,11 +11,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.BillItem;
+import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillItemService;
 import vn.com.unit.service.BillService;
+import vn.com.unit.service.BrandService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
@@ -41,6 +43,9 @@ public class ShopController {
 
 	@Autowired
 	BillItemService billItemService;
+	
+	@Autowired
+	BrandService brandService;
 
 	// home view
 	@GetMapping("/shop/home")
@@ -71,7 +76,9 @@ public class ShopController {
 
 		model.addAttribute("products", products);
 		model.addAttribute("title", "Shop Management");
-
+		Long id = (long) 1;
+		Brand brand = brandService.findBrandByProductId(id);
+		model.addAttribute("brand", brand);
 		return new ModelAndView("shop/myProduct/shop-product");
 	}
 

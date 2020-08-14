@@ -9,7 +9,7 @@ import vn.com.unit.entity.Product;
 
 public interface CategoryService {
 	
-	public Category findBrandByProductId(Long product_id);
+	public Category findCategoryByProductId(Long product_id);
 
 
 
