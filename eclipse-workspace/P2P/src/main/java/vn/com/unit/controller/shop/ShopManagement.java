@@ -50,10 +50,10 @@ public class ShopManagement {
 
 	
 	//deleteShop
-	@DeleteMapping("/shop/edit")
+	@DeleteMapping("/shop/delete")
 	public ResponseEntity<Void> deleteShop() {
 		Account account = accountService.findCurrentAccount();
-		String status = "true";
+		String status = "2";
 		if (shopService.setDisableShop(account.getId(),status)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}		

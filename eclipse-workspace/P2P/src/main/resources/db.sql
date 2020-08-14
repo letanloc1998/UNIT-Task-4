@@ -150,7 +150,9 @@ create table p2p_bill_item (
     product bigint not null,
     constraint fk_bill_item_product__product_id foreign key (product) references p2p_product(id),
 
-    quantity int not null check (quantity > 0)
+    quantity int not null check (quantity > 0),
+    
+    constraint pk_p2p_bill_item primary key (id, product)
 )
 
 create table p2p_log (
@@ -273,5 +275,5 @@ group by bill.id;
 select 1 as bill_id, p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill_item where id = 1
 
 -- 1 as bill_id
-insert into p2p_bill_item (id, product, quantity) (select 1 as id, p2p_bill_item.product, p2p_bill_item.quantity from p2p_bill_item where id = 1)
+insert into p2p_bill_item (id, product, quantity) (select 1 as id, p2p_cart.product, p2p_cart.quantity from p2p_cart where p2p_cart.account = 1)
 */

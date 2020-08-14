@@ -57,6 +57,7 @@ public class VendorController {
 	// home view
 	@GetMapping("/vendor/home")
 	public ModelAndView home(Model model) {
+		model.addAttribute("title", "Account Management");
 		return new ModelAndView("vendor/vendor");
 	}
 	
@@ -71,16 +72,9 @@ public class VendorController {
 		}		
 		Account account = accountService.findCurrentAccount();	
 		model.addAttribute("current_account", account);
+		model.addAttribute("title", "Account Management");
 		return new ModelAndView(type); }
 	
-	 //editShop view
-	
-	@GetMapping("/vendor/myshop") public ModelAndView myShop(Model model) {
-		Account account = accountService.findCurrentAccount();	
-		Shop shop = shopService.findShopByAccountId(account.getId());
-		model.addAttribute("shop", shop);
-		model.addAttribute("current_account", account);
-		return new ModelAndView("vendor/myShop/editShop"); }
 	
 	
 	//products view
@@ -98,6 +92,7 @@ public class VendorController {
 		List<Bill> bills = billService.findAllBillByAccountId(account.getId());
 		model.addAttribute("current_account", account);
 		model.addAttribute("bills", bills);
+		model.addAttribute("title", "Account Management");
 		return new ModelAndView("vendor/myBill/allBill"); }
 	
 	
@@ -108,6 +103,7 @@ public class VendorController {
 		model.addAttribute("current_account", account);
 		model.addAttribute("billitems", billitems);
 		model.addAttribute("bill_id",bill_id);
+		model.addAttribute("title", "Account Management");
 		return new ModelAndView("vendor/myBill/billItem"); }
 
 }

@@ -1,5 +1,6 @@
 package vn.com.unit.controller.payment;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,25 +14,32 @@ import com.mservice.shared.sharedmodels.Environment;
 import com.mservice.shared.sharedmodels.Environment.EnvTarget;
 import com.mservice.shared.sharedmodels.Environment.ProcessType;
 
+import vn.com.unit.service.PaymentService;
+
 @Controller
 public class MomoPayment {
 
-	EnvTarget target = EnvTarget.DEV;
+	@Autowired
+	PaymentService paymentService;
+	
+	private EnvTarget target = EnvTarget.DEV;
 
-	ProcessType process = ProcessType.PAY_GATE;
-	Environment environment = Environment.selectEnv(target, process);
+	private ProcessType process = ProcessType.PAY_GATE;
+	private Environment environment = Environment.selectEnv(target, process);
 
 	@PostMapping("/cart/payment/momo")
 	public ModelAndView momoPayment(Model model, @RequestParam(value="address") String address) {
 
 		try {
 
+			paymentService.createBill(address);
+			
 			CaptureMoMo captureMoMo = new CaptureMoMo(environment);
 
 			String orderId = String.valueOf(System.currentTimeMillis());
 			String requestId = String.valueOf(System.currentTimeMillis());
 			String amount = "9999";
-			String orderInfo = "Mua cái áo màu hường 9999 đ";
+			String orderInfo = "Mua cái áo màu hường 9999 đ" + " Address: " + address;
 
 			String returnUrl = "http://localhost:8080/callback";
 			String notifyUrl = "https://1dd10ec48399.ngrok.io/webhook/momo";
