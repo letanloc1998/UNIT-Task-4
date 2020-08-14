@@ -120,6 +120,9 @@ create table p2p_cart (
 
 create table p2p_bill (
     id bigint primary key identity(1,1),
+    
+    -- momo_order_id bigint,
+    
     account bigint not null,
     address nvarchar(255) not null,
     create_at datetime default getutcdate(),
@@ -150,7 +153,9 @@ create table p2p_bill_item (
     product bigint not null,
     constraint fk_bill_item_product__product_id foreign key (product) references p2p_product(id),
 
-    quantity int not null check (quantity > 0)
+    quantity int not null check (quantity > 0),
+    
+    constraint pk_p2p_bill_item primary key (id, product)
 )
 
 create table p2p_log (

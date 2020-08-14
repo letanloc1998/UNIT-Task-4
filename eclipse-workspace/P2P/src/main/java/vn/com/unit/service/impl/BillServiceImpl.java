@@ -35,6 +35,24 @@ public class BillServiceImpl implements BillService {
 		
 		return billRepository.findAllBillByAccountId(account_id);
 	}
+
+	@Override
+	public Long createBill(Long account_id, String address) {
+		
+		return billRepository.createBill(account_id, address);
+	}
+
+	@Override
+	public void addBillItemFromCart(Long billId, Long currentAccountId) {
+		
+		billRepository.addBillItemFromCart(billId, currentAccountId);
+	}
+
+	@Override
+	public Long calculateBillTotal(Long bill_id) {
+		
+		return billRepository.calculateBillTotal(bill_id);
+	}
 	
 	
 	
