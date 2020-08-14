@@ -23,26 +23,25 @@ import vn.com.unit.service.ShopService;
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
 public class AdminShopManagementController {
-	
+
 	@Autowired
 	private ShopService shopService;
-	
+
 	@RequestMapping("/admin/shop/list")
-	public ModelAndView ShopList(
-			Model model,
+	public ModelAndView ShopList(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
-		
-		int totalitems= shopService.countAllShop();
-		int totalpages = (int) Math.ceil((double) totalitems/(double) limit);
-		
+
+		int totalitems = shopService.countAllShop();
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-		
+
 		List<Shop> shops = shopService.findAllShop(pageable.getLimit(), pageable.getOffset());
 		model.addAttribute("shops", shops);
 		model.addAttribute("pageable", pageable);
-		
+
 		return new ModelAndView("admin/shop/shop-table");
 	}
 
