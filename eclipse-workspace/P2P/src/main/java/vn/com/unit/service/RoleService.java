@@ -2,6 +2,7 @@ package vn.com.unit.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.GrantedAuthority;
 
 import vn.com.unit.entity.Account;
@@ -15,5 +16,5 @@ public interface RoleService {
 	
 	public List<Role> findRoleByAccountId(Long accountId);
 	
-	public List<Role> findRoleUserById();
+	public Long findRoleIdByName(String role_name);
 }

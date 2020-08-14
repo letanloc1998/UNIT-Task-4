@@ -1,7 +1,8 @@
 package vn.com.unit.controller.payment;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mservice.allinone.models.CaptureMoMoRequest;
@@ -18,8 +19,8 @@ public class MomoPayment {
 	ProcessType process = ProcessType.PAY_GATE;
 	Environment environment = Environment.selectEnv(target, process);
 
-	@RequestMapping("/cart/payment/momo")
-	public ModelAndView momoPayment(Model model) {
+	@PostMapping("/cart/payment/momo")
+	public ModelAndView momoPayment(Model model, @RequestParam(value="address") String address) {
 
 		try {
 
