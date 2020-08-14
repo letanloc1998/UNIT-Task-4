@@ -6,7 +6,7 @@ from
 			(
 				select *
 				from p2p_bill_item
-				where id = 1
+				where id = /*bill_id*/
 			) bill_item
 		left join p2p_product product
 		on product.id = bill_item.product

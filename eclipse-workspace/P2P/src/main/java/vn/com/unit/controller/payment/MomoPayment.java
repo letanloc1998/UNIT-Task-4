@@ -63,6 +63,6 @@ public class MomoPayment {
 			e.printStackTrace();
 		}
 
-		return new ModelAndView("index");
+		return new ModelAndView("redirect:/cart");
 	}
 }

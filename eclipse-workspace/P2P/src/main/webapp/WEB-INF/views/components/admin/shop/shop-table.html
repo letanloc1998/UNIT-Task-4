@@ -30,7 +30,6 @@
 											<th>Shop name</th>
 											<th>Email</th>
 											<th>Phone</th>
-											<th>Status</th>
 											<th>Create_at</th>
 											<th class="text-center">Action</th>
 										</thead>
@@ -43,7 +42,6 @@
 												<td><span th:text="${shop.name}"></span></td>
 												<td><span th:text="${shop.email}"></span></td>
 												<td><span th:text="${shop.phone}"></span></td>
-												<td><span></span></td>
 												<td><span
 													th:text=" ${shop.createAt} ? ${#dates.format(shop.createAt, 'dd-MM-yyyy')} "></span></td>
 												<td class="text-center"><span> <a type="button"

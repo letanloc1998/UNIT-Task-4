@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+
+	<!-- Index -->
+    
+    <link rel="stylesheet" type="text/css" th:href="@{/static/index-template/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
+    
+	<link rel="stylesheet" type="text/css" th:href="@{/static/index-template/plugins/OwlCarousel2-2.2.1/owl.theme.default.css}">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/static/index-template/plugins/OwlCarousel2-2.2.1/animate.css}">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/static/index-template/plugins/slick-1.8.0/slick.css}">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/static/index-template/styles/main_styles.css}">
+	
+	<link rel="stylesheet" type="text/css" th:href="@{/static/index-template/styles/responsive.css}">
+</head>
+<body>
+
+	<th:block th:fragment="header_index">
+		<!-- Header -->
+
+		<header class="header">
+
+			<!-- Top Bar -->
+
+			<div class="top_bar">
+				<div class="container">
+					<div class="row">
+						<div class="col d-flex flex-row">
+							<div class="top_bar_content ml-auto">
+								<div class="top_bar_user">
+									<div class="user_icon">
+										<img th:src="@{static/index-template/images/user.svg}" alt="">
+									</div>
+									<div>
+										<a href="#">Login</a>
+									</div>
+									<div>
+										<a href="#">Register</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Header Main -->
+
+			<div class="header_main">
+				<div class="container">
+					<div class="row">
+
+						<!-- Logo -->
+						<div class="col-lg-2 col-sm-3 col-3 order-1">
+							<div class="logo_container">
+								<div class="logo">
+									<a href="#">P2PO</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Search -->
+						<div
+							class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+							<div class="header_search">
+								<div class="header_search_content">
+									<div class="header_search_form_container">
+										<form action="#" class="header_search_form clearfix">
+											<input type="search" required="required"
+												class="header_search_input"
+												placeholder="Search for products...">
+											<div class="custom_dropdown">
+												<div class="custom_dropdown_list">
+													<span class="custom_dropdown_placeholder clc">All
+														Categories</span> <i class="fas fa-chevron-down"></i>
+													<ul class="custom_list clc">
+														<li><a class="clc" href="#">All Categories</a></li>
+														<li><a class="clc" href="#">Computers</a></li>
+														<li><a class="clc" href="#">Laptops</a></li>
+														<li><a class="clc" href="#">Cameras</a></li>
+														<li><a class="clc" href="#">Hardware</a></li>
+														<li><a class="clc" href="#">Smartphones</a></li>
+													</ul>
+												</div>
+											</div>
+											<button type="submit" class="header_search_button trans_300"
+												value="Submit">
+												<img th:src="@{/static/index-template/images/search.png}"
+													alt="">
+											</button>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Cart -->
+						<div
+							class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+							<div
+								class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+
+								<div class="cart">
+									<div
+										class="cart_container d-flex flex-row align-items-center justify-content-end">
+										<div class="cart_icon">
+											<img th:src="@{/static/index-template/images/cart.png}"
+												alt="">
+											<div class="cart_count">
+												<span>10</span>
+											</div>
+										</div>
+										<div class="cart_content">
+											<div class="cart_text">
+												<a href="#">Cart</a>
+											</div>
+											<div class="cart_price">$85</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</header>
+		<!-- Banner -->
+
+		<div class="banner">
+			<div class="banner_background"
+				style="background-image: url(/static/index-template/images/banner_background.jpg)"></div>
+			<div class="container fill_height">
+				<div class="row fill_height">
+					<div class="banner_product_image">
+						<img th:src="@{/static/index-template/images/banner_product.png}"
+							alt="">
+					</div>
+					<div class="col-lg-5 offset-lg-4 fill_height">
+						<div class="banner_content">
+							<h1 class="banner_text">new era of smartphones</h1>
+							<div class="banner_price">
+								<span>$530</span>$460
+							</div>
+							<div class="banner_product_name">Apple Iphone 6s</div>
+							<div class="button banner_button">
+								<a href="#">Shop Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Characteristics -->
+		<div class="characteristics">
+			<div class="container">
+				<div class="row">
+
+					<!-- Char. Item -->
+					<div class="col-lg-3 col-md-6 char_col">
+
+						<div
+							class="char_item d-flex flex-row align-items-center justify-content-start">
+							<div class="char_icon">
+								<img th:src="@{/static/index-template/images/char_1.png}" alt="">
+							</div>
+							<div class="char_content">
+								<div class="char_title">Free Delivery</div>
+								<div class="char_subtitle">from $50</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Char. Item -->
+					<div class="col-lg-3 col-md-6 char_col">
+
+						<div
+							class="char_item d-flex flex-row align-items-center justify-content-start">
+							<div class="char_icon">
+								<img th:src="@{/static/index-template/images/char_2.png}" alt="">
+							</div>
+							<div class="char_content">
+								<div class="char_title">Free Delivery</div>
+								<div class="char_subtitle">from $50</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Char. Item -->
+					<div class="col-lg-3 col-md-6 char_col">
+
+						<div
+							class="char_item d-flex flex-row align-items-center justify-content-start">
+							<div class="char_icon">
+								<img th:src="@{/static/index-template/images/char_3.png}" alt="">
+							</div>
+							<div class="char_content">
+								<div class="char_title">Free Delivery</div>
+								<div class="char_subtitle">from $50</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Char. Item -->
+					<div class="col-lg-3 col-md-6 char_col">
+
+						<div
+							class="char_item d-flex flex-row align-items-center justify-content-start">
+							<div class="char_icon">
+								<img th:src="@{/static/index-template/images/char_4.png}" alt="">
+							</div>
+							<div class="char_content">
+								<div class="char_title">Free Delivery</div>
+								<div class="char_subtitle">from $50</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		
+
+
+
+	</th:block>
+
+</body>
+</html>
