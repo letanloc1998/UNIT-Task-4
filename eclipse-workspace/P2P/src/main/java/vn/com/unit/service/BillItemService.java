@@ -9,5 +9,7 @@ import vn.com.unit.entity.Product;
 public interface BillItemService {
 	
 	public List<BillItem> findAllBillItemByBillId(Long bill_id);
+	
+	public List<BillItem> findAllBillItem();
 
 }

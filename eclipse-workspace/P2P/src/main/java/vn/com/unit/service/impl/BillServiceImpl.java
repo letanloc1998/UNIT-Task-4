@@ -36,5 +36,7 @@ public class BillServiceImpl implements BillService {
 		return billRepository.findAllBillByAccountId(account_id);
 	}
 	
+	
+	
 
 }

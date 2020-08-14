@@ -14,5 +14,7 @@ public interface BillItemRepository extends MirageRepository<Shop, Long> {
 
 	public List<BillItem> findAllBillItemByBillId(@Param("bill_id") Long bill_id);
 	
+	public List<BillItem> findAllBillItem();
+	
 	
 }

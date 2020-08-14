@@ -77,15 +77,6 @@ public class VendorController {
 	
 	
 	
-	//products view
-	@GetMapping("/vendor/product") public ModelAndView product(Model model) {
-		Account account = accountService.findCurrentAccount();	
-		List<Product> products = productService.findAllProductByShopId(account.getId());
-		model.addAttribute("current_account", account);
-		model.addAttribute("products", products);
-		return new ModelAndView("vendor/product/allProduct"); }
-	
-	
 	//bills view
 	@RequestMapping("/vendor/mybill") public ModelAndView bill(Model model) {
 		Account account = accountService.findCurrentAccount();	

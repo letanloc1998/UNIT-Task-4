@@ -34,8 +34,13 @@
 							<i class="material-icons">store</i>
 							<p>My Shop</p>
 					</a></li>
-					<li th:classappend="${#request.getRequestURI().startsWith('/vendor/mybill') ? 'nav-item active' : 'nav-item'}">
-					<a class="nav-link"
+					<li th:classappend="${#request.getRequestURI().startsWith('/shop/myproduct') ? 'nav-item active' : 'nav-item'}">
+					<a class="nav-link" th:href="@{/shop/myproduct}">
+							<i class="material-icons">product</i>
+							<p>My Products</p>
+					</a></li>
+					<li th:classappend="${#request.getRequestURI().startsWith('/shop/mybill') ? 'nav-item active' : 'nav-item'}">
+					<a class="nav-link" 
 						> <i class="material-icons">content_paste</i>
 							<p>My Bill</p>
 					</a></li>
