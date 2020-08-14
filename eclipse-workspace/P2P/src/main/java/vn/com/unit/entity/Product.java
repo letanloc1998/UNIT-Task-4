@@ -1,6 +1,7 @@
 package vn.com.unit.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Product {
 
@@ -22,10 +23,10 @@ public class Product {
 	
 	private Date createAt;
 	
-	private int brand;
+	private String brand;
 	
 	private int quantity;
-
+	
 	public Product() {
 		
 	}
