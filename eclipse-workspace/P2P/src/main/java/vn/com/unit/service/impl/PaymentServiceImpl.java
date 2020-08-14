@@ -20,25 +20,22 @@ public class PaymentServiceImpl implements PaymentService {
 	@Autowired
 	BillService billService;
 
+	// Get current account id
+	// -- Check cart to create bill
+	// Create bill (account id, address)
+	// Move all product in cart to bill item
 	@Override
 	public Long createBill(String address) {
 
 		Account current_account = accountService.findCurrentAccount();
 
 		Long current_account_id = current_account.getId();
+		
+		// Need check cart before create bill
 
-		// insert into p2p_bill (account, address) values (/*curent account id*/,
-		// /*address*/);
-		// select scope_identity(); => bill_id
 		Long bill_id = billService.createBill(current_account_id, address);
 
 		billService.addBillItemFromCart(bill_id, current_account_id);
-
-		// insert into p2p_bill_item (id, product, quantity) (select /*bill_id*/ as id,
-		// p2p_cart.product, p2p_cart.quantity from p2p_cart where p2p_cart.account =
-		// /*current account id*/)
-
-		// return bill id
 
 		return bill_id;
 	}
@@ -49,4 +46,6 @@ public class PaymentServiceImpl implements PaymentService {
 		return billService.calculateBillTotal(bill_id);
 	}
 
+	
+	
 }
