@@ -20,25 +20,25 @@ import vn.com.unit.service.AccountService;
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
+public class AdminAccountManagementController {
 
-public class AccountManagementController {
 	@Autowired
 	private AccountService accountService;
-	
+
 	@RequestMapping("/admin/account/list")
-	public ModelAndView accountList(
-			Model model,
+	public ModelAndView accountList(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
-		int totalitems= accountService.countAccountActive();
-		int totalpages = (int) Math.ceil((double) totalitems/(double) limit);
-		
-		PageRequest pageable = new PageRequest(page, limit,totalitems,totalpages);
-		
-		List<Account> accounts = accountService.findAllAccount(pageable.getLimit(),pageable.getOffset());
-		model.addAttribute("accounts",accounts);
-		model.addAttribute("pageable",pageable);
+
+		int totalitems = accountService.countAccountActive();
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+
+		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
+
+		List<Account> accounts = accountService.findAllAccount(pageable.getLimit(), pageable.getOffset());
+		model.addAttribute("accounts", accounts);
+		model.addAttribute("pageable", pageable);
 
 		return new ModelAndView("admin/account/account-table");
 	}
