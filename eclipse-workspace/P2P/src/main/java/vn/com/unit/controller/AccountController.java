@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.service.AccountService;
@@ -19,8 +20,8 @@ public class AccountController {
 	
 	@PostMapping("/account")
 	@ResponseBody
-	public ResponseEntity<Account> createAccount(@RequestBody Account account, Model model){
-		Account accountCreate = accountService.createNewAccount(account);
-		return ResponseEntity.ok(account);
+	public ModelAndView createAccount(@RequestBody Account account, Model model){
+		accountService.createNewAccount(account, "ROLE_USER");
+		return new ModelAndView("redirect:/");
 	}
 }
