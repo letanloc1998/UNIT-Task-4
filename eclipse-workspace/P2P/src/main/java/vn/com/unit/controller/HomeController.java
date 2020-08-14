@@ -17,6 +17,7 @@ public class HomeController {
 	@GetMapping("*")
     public ModelAndView home(Model model) {
 		
+		model.addAttribute("title", "Home");
         return new ModelAndView("index");
     }
 
