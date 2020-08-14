@@ -33,30 +33,27 @@ public class AdminShopManagementController {
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-
-		List<Shop> shops = shopService.findAllShop(pageable.getLimit(), pageable.getOffset());
+		
+		List<Shop> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(),1);
 		model.addAttribute("shops", shops);
 		model.addAttribute("pageable", pageable);
 
 		return new ModelAndView("admin/shop/shop-table");
 	}
 	
-	@GetMapping("/admin/shop/accept-shop")
+	@GetMapping("/admin/shop/accept-list")
 	public ModelAndView ShopAcceptList(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
-
 		int totalitems = shopService.countAllShop();
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
-
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-
-		List<Shop> shops = shopService.findAllShop(pageable.getLimit(), pageable.getOffset());
+		List<Shop> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(),0);
 		model.addAttribute("shops", shops);
 		model.addAttribute("pageable", pageable);
 
-		return new ModelAndView("admin/shop/shop-table");
+		return new ModelAndView("admin/shop/shop-accept-table");
 	}
 
 }

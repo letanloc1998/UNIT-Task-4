@@ -18,8 +18,15 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
-					<a class="nav-item nav-link active" href="#">Accept List</a> 
-					<a class="nav-item nav-link" href="#">Deactive List</a>
+					<a 
+					th:classappend="${#request.getRequestURI().startsWith('/admin/shop/list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					th:href="@{/admin/shop/list}">Active List</a>
+					<a 
+					th:classappend="${#request.getRequestURI().startsWith('/admin/shop/accept-list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					th:href="@{/admin/shop/accept-list}">Accept List</a>
+					<a 
+					th:classappend="${#request.getRequestURI().startsWith('/admin/shop/deactive-list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					th:href="@{/admin/shop/deactive-list}">Deactive List</a> 
 				</div>
 			</div>
 		</nav>
