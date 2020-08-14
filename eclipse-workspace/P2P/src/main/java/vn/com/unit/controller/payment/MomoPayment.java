@@ -60,9 +60,8 @@ public class MomoPayment {
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
-		return new ModelAndView("index");
+		return new ModelAndView("redirect:/cart");
 	}
 }
