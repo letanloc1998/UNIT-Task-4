@@ -13,36 +13,39 @@ import vn.com.unit.entity.Account;
 import vn.com.unit.service.AccountService;
 
 @Controller
-
 public class AccountController {
+
 	@Autowired
 	AccountService accountService;
-	
-	@PostMapping("/account")
+
+	@PostMapping("/register")
 	@ResponseBody
-	public ResponseEntity<String> createAccount(@RequestBody Account account, Model model){
+	public ResponseEntity<String> createAccount(@RequestBody Account account, Model model) {
 		if (account.getUsername() == null || account.getUsername().equals("")) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Username cannot be empty\" }");
 		}
-		
+
 		if (account.getPassword() == null || account.getPassword().equals("")) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Password cannot be empty\" }");
 		}
-		
+
 		if (account.getPassword().length() < 8) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Password too short - minimum length is 8 characters\" }");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("{ \"msg\" : \"Password too short - minimum length is 8 characters\" }");
 		}
-		
+
 		if (accountService.findByUsername(account.getUsername()) != null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Username already exists\" }");
 		}
-		
+
 		Account account_new = accountService.createNewAccount(account, "ROLE_USER");
 
 		if (account_new != null) {
-			return ResponseEntity.ok("{ \"id\" : " + account_new.getId().toString() + ", \"msg\" : \"Create account successfully\" }");
+			return ResponseEntity.ok(
+					"{ \"id\" : " + account_new.getId().toString() + ", \"msg\" : \"Create account successfully\" }");
 		}
-		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"You can't create an account right now. Try again later\" }");
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+				.body("{ \"msg\" : \"You can't create an account right now. Try again later\" }");
 	}
 }

@@ -51,6 +51,7 @@
                 </div>
             </div>
         </div>
+
         <script th:inline="javascript">
 
             let home = [[@{/}]];
@@ -68,9 +69,9 @@
                 newAccount.password = $("#addpassword").val();
 
 
-                // console.log(newAccount);
+                console.log(newAccount);
                 $.ajax({
-                    url: `${home}/account`,
+                    url: `${home}/register`,
                     type: 'POST',
 
 
@@ -87,7 +88,7 @@
                     success: function (data, status, xhr) {
                         try {
                             alert(data.msg);
-                            window.location.href = `${home}/login`;
+                            // window.location.href = `${home}/login`;
                         } catch (error) { }
                     },
                     error: function (request, status, error) {
