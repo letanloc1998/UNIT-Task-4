@@ -41,6 +41,7 @@ public class ShopController {
 	// home view
 	@GetMapping("/shop/home")
 	public ModelAndView shopHome(Model model) {
+		model.addAttribute("title", "Shop Management");
 		return new ModelAndView("shop/shop");
 	}
 
@@ -52,7 +53,7 @@ public class ShopController {
 		Shop shop = shopService.findShopByAccountId(account.getId());
 
 		model.addAttribute("shop", shop);
-		model.addAttribute("current_account", account);
+		model.addAttribute("title", "Shop Management");
 
 		return new ModelAndView("shop/myShop/editShop");
 	}
