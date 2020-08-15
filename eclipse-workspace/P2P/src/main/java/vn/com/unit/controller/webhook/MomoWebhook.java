@@ -16,6 +16,7 @@ import com.mservice.shared.sharedmodels.Environment.ProcessType;
 
 import vn.com.unit.model.MomoPaymentResult;
 import vn.com.unit.service.LogService;
+import vn.com.unit.service.PaymentService;
 
 // Handler response from Momo server after payment
 // Thông thường kết quả thanh toán đi theo cách IPN sẽ tới trước callback returnUrl (3s)
@@ -30,6 +31,9 @@ public class MomoWebhook {
 
 	@Autowired
 	LogService logService;
+	
+	@Autowired
+	PaymentService paymentService;
 
 	@PostMapping(value = "/webhook/momo", produces = "application/json; charset=UTF-8")
 	public ResponseEntity<String> webhookMomo(@RequestParam Map<String, String> body)
@@ -55,6 +59,8 @@ public class MomoWebhook {
 				String request_id = momoPaymentResult.getRequestId();
 				Long bill_id = Long.valueOf(request_id.replace(order_id, ""));
 
+				paymentService.savePaymentSuccess(bill_id);
+				
 //				update p2p_bill
 //				set payment = 1
 //				where id = /*bill_id*/

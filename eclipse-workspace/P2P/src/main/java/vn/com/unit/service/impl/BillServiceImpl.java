@@ -53,6 +53,12 @@ public class BillServiceImpl implements BillService {
 		
 		return billRepository.calculateBillTotal(bill_id);
 	}
+
+	@Override
+	public void saveBillPaymentStatus(Long bill_id, int payment_status) {
+		billRepository.saveBillPaymentStatus(bill_id, payment_status);
+		
+	}
 	
 	
 	

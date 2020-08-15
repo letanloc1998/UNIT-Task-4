@@ -46,6 +46,12 @@ public class PaymentServiceImpl implements PaymentService {
 		return billService.calculateBillTotal(bill_id);
 	}
 
+	@Override
+	public void savePaymentSuccess(Long bill_id) {
+		// TODO Auto-generated method stub
+		billService.saveBillPaymentStatus(bill_id, 1);
+	}
+
 	
 	
 }
