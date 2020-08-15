@@ -83,7 +83,7 @@ public class ShopController {
 			 type = "shop/myProduct/shop-add-product";
 		}
 		if(mode.equals("edit")) {
-			 type = "shop/myProduct/shop-add-product";
+			 type = "shop/myProduct/shop-edit-product";
 		}
 		if(mode.equals("view")) {
 			 type = "shop/myProduct/shop-product";
@@ -100,6 +100,23 @@ public class ShopController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("new_product", new Product());
 		return new ModelAndView(type);
+	}
+	
+	//edit product view
+	@PostMapping("/shop/myproduct")
+	public ModelAndView editProduct(Model model, @RequestParam(name = "product_id") Long product_id) {
+		Product product = productService.findProductByProductId(product_id);
+		//Account account = accountService.findCurrentAccount();	
+		//List<Product> products = productService.findAllProductByShopId(account.getId());
+		List<Brand> brands = brandService.findAllBrand();
+		List<Category> categories = categoryService.findAllCategory();
+		model.addAttribute("product", product);
+		model.addAttribute("title", "Shop Management");
+		
+
+		model.addAttribute("brands", brands);
+		model.addAttribute("categories", categories);
+		return new ModelAndView("shop/myProduct/shop-edit-product");
 	}
 
 
