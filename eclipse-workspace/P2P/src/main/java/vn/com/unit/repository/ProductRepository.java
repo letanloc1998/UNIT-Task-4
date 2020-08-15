@@ -29,5 +29,14 @@ public interface ProductRepository extends MirageRepository<Shop, Long> {
 	@Modifying
 	public void setDisableProductByProductId(@Param("product_id") Long product_id, @Param("status") String status);
 	
-	
+	@Modifying
+	public void saveProduct(
+			@Param("product_id") Long product_id,
+			@Param("name") String name,
+			@Param("price") int price,
+			@Param("quantity") int quantity,
+			@Param("category") int category,
+			@Param("brand") int brand,
+			@Param("detail") String detail
+);
 }

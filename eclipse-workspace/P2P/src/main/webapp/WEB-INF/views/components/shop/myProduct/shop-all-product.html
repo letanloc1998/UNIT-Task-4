@@ -21,7 +21,7 @@
 								</a>
 							</div>
 							<div class="card-body">
-								<div class="table-responsive">
+								<div class="table-responsive" style="overflow: visible">
 									<table class="table">
 										<thead class=" text-primary">
 											<th>ID</th>
@@ -43,7 +43,7 @@
 												<td><span th:text="${product.brand_name.name}"></span></td>												
 												<td><span th:text="${product.price}"></span></td>
 												<td><span th:text="${product.quantity}"></span></td>
-												<td> <img class="img-product" alt="" th:src="${product.img}"> </td>
+												<td> <img class="img-product" alt="" style="border: 1px solid" th:src="${product.img}"> </td>
 												<td class="text-center">
 													<span>
 													<form th:action="@{/shop/myproduct}" method="post">

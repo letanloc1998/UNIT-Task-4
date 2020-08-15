@@ -99,5 +99,15 @@ public class ProductServiceImpl implements ProductService {
 		}
 		return false;
 	}
+	
+	@Override
+	public void saveProduct(Long product_id, String name, int price, String detail, int category, int brand, int quantity) {
+		
+		try {
+			productRepository.saveProduct(product_id, name, price, quantity, category, brand, detail);
+		}catch (Exception e) {		
+		}
+	}
+
 
 }

@@ -93,6 +93,21 @@ public class ShopManagement {
 		return "redirect:/shop/myproduct?mode=view"; 
 	}
 	
+	// edit Product
+	@PutMapping("/product/{product_id}")
+	@ResponseBody
+	public ResponseEntity<Product> editShop(@RequestBody Product product,@PathVariable("product_id") Long product_id ,Model model) {
+		String name = product.getName();
+		int category = product.getCategory();
+		int brand = product.getBrand();
+		int price = product.getPrice();
+		int quantity = product.getQuantity();
+		String detail = product.getDetail();
+		productService.saveProduct(product_id, name, price, detail, category, brand, quantity);
+		return ResponseEntity.ok(product);
+
+	}
+	
 	//deleteProduct
 	@DeleteMapping("/product/{product_id}")
 	public ResponseEntity<Void> deleteProduct(@PathVariable("product_id") Long product_id) {
