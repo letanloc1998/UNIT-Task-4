@@ -7,13 +7,22 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import vn.com.unit.entity.Account;
+import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
+import vn.com.unit.service.BillItemService;
+import vn.com.unit.service.BillService;
+import vn.com.unit.service.BrandService;
+import vn.com.unit.service.CategoryService;
+import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
 
@@ -32,6 +41,21 @@ public class ShopManagement {
 
 	@Autowired
 	ShopService shopService;
+
+	@Autowired
+	ProductService productService;
+
+	@Autowired
+	BillService billService;
+
+	@Autowired
+	BillItemService billItemService;
+	
+	@Autowired
+	BrandService brandService;
+	
+	@Autowired
+	CategoryService categoryService;
 	
 	// edit SHOP
 	@PutMapping("/shop/edit")
@@ -57,6 +81,25 @@ public class ShopManagement {
 		if (shopService.setDisableShop(account.getId(),status)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}		
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+	}
+	
+	
+	//add product
+	@PostMapping("/add-product")
+	public String addProduct(@ModelAttribute("new_product") Product new_product, Model model) {
+		Account account = accountService.findCurrentAccount();		
+		productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(), new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(), account.getId());
+		return "redirect:/shop/myproduct?mode=view"; 
+	}
+	
+	//deleteProduct
+	@DeleteMapping("/product/{product_id}")
+	public ResponseEntity<Void> deleteProduct(@PathVariable("product_id") Long product_id) {
+		String status = "1";
+		if (productService.setDisableProductByProductId(product_id,status)) {
+			return ResponseEntity.status(HttpStatus.OK).body(null);
+		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
 }

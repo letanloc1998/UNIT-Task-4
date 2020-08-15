@@ -102,12 +102,6 @@ public class ShopController {
 		return new ModelAndView(type);
 	}
 
-	//add product
-	@PostMapping("/add-product")
-	public String addProduct(@ModelAttribute("new_product") Product new_product, Model model) {
-		Account account = accountService.findCurrentAccount();		
-		productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(), new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(), account.getId());
-		return "redirect:/shop/myproduct?mode=view"; 
-	}
+
 	
 }

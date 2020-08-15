@@ -51,9 +51,8 @@
 													</a> 
 													</span> 
 													<span>
-														<button type="button" class="btn  btn-danger"
-															th:onclick="|selectAccount(${i.index})|"
-															data-toggle="modal" data-target="#deleteConfirm">
+														<button id="delete" type="button" class="btn  btn-danger"
+															th:onclick="|openDeleteModal(${product.id})|">
 															<i class="fas fa-trash-alt"></i>
 														</button>
 												</span></td>
@@ -103,13 +102,40 @@
 					</div>
 				</div>
 			</div>
+			<th:block th:replace="components/shop/myProduct/shop-delete-product-modal :: shop-delete-product-modal"></th:block>
 <script th:inline="javascript">
-	const products = [[${products}]]
-	console.log(products)
-	
-	const brand =[[${brand}]]
-	console.log(brand)
 
+	
+function openDeleteModal(product_id)
+{ 
+	console.log(product_id);
+	$('#shop-delete-product-modal').modal('show');
+	$('#deleteProduct').on('click', function () {
+		
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        $.ajax({
+            url: `/product/${product_id}`,
+            type: 'DELETE',
+
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+
+            success: function (data, status, xhr) {
+                // alert(status);
+                // To reload the page discarding the POST data(perform a GET request)
+                window.location.href = window.location.href;
+            },
+            error: function (request, status, error) {
+                alert(status);
+                // To reload the page discarding the POST data(perform a GET request)
+                window.location.href = window.location.href;
+            }
+        });
+    });
+	}
 </script>
 	</th:block>
 

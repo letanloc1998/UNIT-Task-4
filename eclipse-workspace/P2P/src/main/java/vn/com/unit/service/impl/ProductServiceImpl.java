@@ -71,5 +71,16 @@ public class ProductServiceImpl implements ProductService {
 		productRepository.createNewProduct(name, price, quantity, category, brand, detail, img, shop);
 		return null;
 	}
+	
+	@Override
+	public boolean setDisableProductByProductId(Long product_id, String status) {
+		try {
+			productRepository.setDisableProductByProductId(product_id, status);
+			return true;
+		} catch(Exception e) {
+			
+		}
+		return false;
+	}
 
 }
