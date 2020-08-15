@@ -11,5 +11,7 @@ import vn.com.unit.entity.Category;
 public interface CategoryRepository extends MirageRepository<Category, Long> {
 
 	public Category findCategoryByProductId(@Param("product_id") Long product_id);
+	
+	public List<Category> findAllCategory();
 
 }

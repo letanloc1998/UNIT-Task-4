@@ -15,10 +15,15 @@
 						<div class="card">
 
 							<div class="card-header card-header-primary">
-								<h4 class="card-title ">Products List</h4>
-								<button type="button" class="btn btn-danger">
+								<h4 class="card-title ">Products List <span th:text="${brand_name}"></span><span th:text="${category_name}"></span></h4>
+								<span th:text="${name}"></span>
+								<span th:text="${price}"></span>
+								<span th:text="${quantity}"></span>
+								<span th:text="${img}"></span>
+								<span th:text="${detail}"></span>
+								<a  th:href="@{/shop/myproduct?mode=create}" type="button" class="btn btn-danger">
 									add <i class="fas fa-plus-circle"></i>
-								</button>
+								</a>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -30,6 +35,7 @@
 											<th>Brand</th>
 											<th>Price</th>
 											<th>Quanlity</th>
+											<th>Image</th>
 											<th class="text-center">Action</th>
 										</thead>
 										<tbody>
@@ -39,20 +45,17 @@
 												<td><span th:text="${i.count}"></span></td>
 												<td><span th:text="${product.name}"></span></td>
 												<td><span th:text="${product.category_name.name}"></span></td>
-												<td><span th:text="${product.brand_name.name}"></span></td>
-												
+												<td><span th:text="${product.brand_name.name}"></span></td>												
 												<td><span th:text="${product.price}"></span></td>
 												<td><span th:text="${product.quantity}"></span></td>
-
-												<td class="text-center"><span> <a type="button"
-														
-														class="btn btn-large btn-info"> <i class="fa fa-eye">
-														</i>
-													</a>
-												</span> <span><a type="button"
-														
-														class="btn btn-large btn-primary"><i
-															class="fas fa-edit"></i></a> </span> <span>
+												<td> <img class="img-product" alt="" th:src="${product.img}"> </td>
+												<td class="text-center">
+													<span>
+													<a type="button" class="btn btn-large btn-primary">
+													<i class="fas fa-edit"></i>
+													</a> 
+													</span> 
+													<span>
 														<button type="button" class="btn  btn-danger"
 															th:onclick="|selectAccount(${i.index})|"
 															data-toggle="modal" data-target="#deleteConfirm">

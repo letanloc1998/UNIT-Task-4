@@ -11,6 +11,6 @@ public interface CategoryService {
 	
 	public Category findCategoryByProductId(Long product_id);
 
-
+	public List<Category> findAllCategory();
 
 }

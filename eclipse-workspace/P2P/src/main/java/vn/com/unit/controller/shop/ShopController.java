@@ -7,17 +7,22 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.BillItem;
 import vn.com.unit.entity.Brand;
+import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillItemService;
 import vn.com.unit.service.BillService;
 import vn.com.unit.service.BrandService;
+import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
@@ -46,6 +51,9 @@ public class ShopController {
 	
 	@Autowired
 	BrandService brandService;
+	
+	@Autowired
+	CategoryService categoryService;
 
 	// home view
 	@GetMapping("/shop/home")
@@ -69,32 +77,62 @@ public class ShopController {
 	
 	//product view
 	@GetMapping("/shop/myproduct")
-	public ModelAndView product(Model model) {
-
+	public ModelAndView product(Model model, @RequestParam(name = "mode") String mode) {
+		String type = "";
+		if(mode.equals("create")) {
+			 type = "shop/myProduct/shop-add-product";
+		}
+		if(mode.equals("edit")) {
+			 type = "shop/myProduct/shop-add-product";
+		}
+		if(mode.equals("view")) {
+			 type = "shop/myProduct/shop-product";
+		}
 		Account account = accountService.findCurrentAccount();	
 		List<Product> products = productService.findAllProductByShopId(account.getId());
-
+		List<Brand> brands = brandService.findAllBrand();
+		List<Category> categories = categoryService.findAllCategory();
 		model.addAttribute("products", products);
 		model.addAttribute("title", "Shop Management");
-		Long id = (long) 1;
-		Brand brand = brandService.findBrandByProductId(id);
-		model.addAttribute("brand", brand);
-		return new ModelAndView("shop/myProduct/shop-product");
+		
+
+		model.addAttribute("brands", brands);
+		model.addAttribute("categories", categories);
+		model.addAttribute("new_product", new Product());
+		return new ModelAndView(type);
 	}
 
-	//all bills view
+	//add product
+	@PostMapping("/add-product")
+	public String addProduct(@ModelAttribute("new_product") Product new_product, Model model) {
+		Account account = accountService.findCurrentAccount();	
+		List<Product> products = productService.findAllProductByShopId(account.getId());
+		List<Brand> brands = brandService.findAllBrand();
+		List<Category> categories = categoryService.findAllCategory();
+		model.addAttribute("products", products);
+		model.addAttribute("title", "Shop Management");
+		
 
-	/*
-	 * // edit shop view
-	 * 
-	 * @GetMapping("/shop/mybill") public ModelAndView Bill(Model model) {
-	 * 
-	 * Account account = accountService.findCurrentAccount(); List<BillItem>
-	 * billitems = billItemService.findAllBillItem();
-	 * 
-	 * model.addAttribute("title", "Shop Management");
-	 * 
-	 * return new ModelAndView("shop/myShop/myBill"); }
-	 */
+		model.addAttribute("brands", brands);
+		model.addAttribute("categories", categories);
+		//model.addAttribute("new_product", new Product());
+		/*
+		 * try { model.addAttribute("brand_name", new_product.getBrand());
+		 * model.addAttribute("category_name", new_product.getCategory());
+		 * model.addAttribute("name", new_product.getName());
+		 * model.addAttribute("quantity", new_product.getQuantity());
+		 * model.addAttribute("detail", new_product.getDetail());
+		 * model.addAttribute("price", new_product.getPrice());
+		 * model.addAttribute("img", new_product.getImg());
+		 * 
+		 * return "shop/myProduct/shop-product"; }catch(Exception e) {
+		 * 
+		 * }
+		 */
+		
+		productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(), new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(), account.getId());
+		return "shop/myProduct/shop-product";
+		/* return "redirect:/shop/myproduct?mode=view"; */
+	}
 	
 }

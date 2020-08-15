@@ -12,5 +12,15 @@ public interface ProductRepository extends MirageRepository<Shop, Long> {
 
 	public List<Product> findAllProductByShopId(@Param("shop_id") Long shop_id);
 	
+	public void createNewProduct(@Param("name") String name,
+								@Param("price") int price,
+								@Param("quantity") int quantity,
+								@Param("category") int category,
+								@Param("brand") int brand,
+								@Param("detail") String detail,
+								@Param("img") String img,
+								@Param("shop") Long shop
+			);
+	
 	
 }

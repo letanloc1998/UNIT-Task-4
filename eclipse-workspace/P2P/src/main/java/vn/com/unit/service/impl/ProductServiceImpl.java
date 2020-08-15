@@ -65,5 +65,11 @@ public class ProductServiceImpl implements ProductService {
 		return products;
 	}
 	
+	
+	@Override
+	public Product createNewProduct(String name,int price,int quantity,int category,int brand,String detail,String img,Long shop) {
+		productRepository.createNewProduct(name, price, quantity, category, brand, detail, img, shop);
+		return null;
+	}
 
 }

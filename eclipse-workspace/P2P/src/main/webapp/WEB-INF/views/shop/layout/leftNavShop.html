@@ -35,7 +35,7 @@
 							<p>My Shop</p>
 					</a></li>
 					<li th:classappend="${#request.getRequestURI().startsWith('/shop/myproduct') ? 'nav-item active' : 'nav-item'}">
-					<a class="nav-link" th:href="@{/shop/myproduct}">
+					<a class="nav-link" th:href="@{/shop/myproduct?mode=view}">
 							<i class="material-icons">product</i>
 							<p>My Products</p>
 					</a></li>
