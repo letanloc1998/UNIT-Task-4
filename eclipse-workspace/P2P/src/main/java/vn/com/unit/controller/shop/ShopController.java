@@ -105,34 +105,9 @@ public class ShopController {
 	//add product
 	@PostMapping("/add-product")
 	public String addProduct(@ModelAttribute("new_product") Product new_product, Model model) {
-		Account account = accountService.findCurrentAccount();	
-		List<Product> products = productService.findAllProductByShopId(account.getId());
-		List<Brand> brands = brandService.findAllBrand();
-		List<Category> categories = categoryService.findAllCategory();
-		model.addAttribute("products", products);
-		model.addAttribute("title", "Shop Management");
-		
-
-		model.addAttribute("brands", brands);
-		model.addAttribute("categories", categories);
-		//model.addAttribute("new_product", new Product());
-		/*
-		 * try { model.addAttribute("brand_name", new_product.getBrand());
-		 * model.addAttribute("category_name", new_product.getCategory());
-		 * model.addAttribute("name", new_product.getName());
-		 * model.addAttribute("quantity", new_product.getQuantity());
-		 * model.addAttribute("detail", new_product.getDetail());
-		 * model.addAttribute("price", new_product.getPrice());
-		 * model.addAttribute("img", new_product.getImg());
-		 * 
-		 * return "shop/myProduct/shop-product"; }catch(Exception e) {
-		 * 
-		 * }
-		 */
-		
+		Account account = accountService.findCurrentAccount();		
 		productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(), new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(), account.getId());
-		return "shop/myProduct/shop-product";
-		/* return "redirect:/shop/myproduct?mode=view"; */
+		return "redirect:/shop/myproduct?mode=view"; 
 	}
 	
 }
