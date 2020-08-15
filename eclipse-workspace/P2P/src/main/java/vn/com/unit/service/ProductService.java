@@ -11,6 +11,8 @@ public interface ProductService {
 	
 	public List<Product> findAllProductByShopId(Long shop_id);
 	
+	public Product findProductByProductId(Long product_id);
+	
 	public Product createNewProduct(String name,int price,int quantity,int category,int brand,String detail,String img,Long shop);
 	
 	public boolean setDisableProductByProductId(Long product_id, String status);

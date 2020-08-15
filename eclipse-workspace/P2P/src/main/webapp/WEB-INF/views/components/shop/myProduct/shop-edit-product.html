@@ -9,14 +9,14 @@
 </head>
 
 <body>
-	<th:block th:fragment="shop-add-product">
+	<th:block th:fragment="shop-edit-product">
 		<div class="content">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-8">
 						<div class="card">
 							<div class="card-header card-header-primary">
-								<h3 class="card-title">Add Your Product</h3>
+								<h3 class="card-title">Edit Your Product</h3>
 							</div>
 							<form th:action="@{/add-product}" th:object="${new_product}"
 								method="post">
@@ -27,23 +27,17 @@
 											<div class="form-group">
 												<label class="bmd-label-floating">Product Name</label> <input
 													id="name" name="name" type="text" class="form-control"
-													th:field="*{name}" />
+													th:value="${product.name}" />
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="bmd-label-floating">Category</label>
-												<!-- 									<input class="form-control" list="category1" id="category" name="category">
-													<datalist id="category1">
-													<th:block th:each="category2 : ${categories}">
-													  <option th:value="${category2.id}"/>													
-													</th:block>
-
-													</datalist> -->
 												<select class="form-control" id="category" name="category">
 													<th:block th:each="category : ${categories}">
-														<option th:value="${category.id}"
-															th:text="${category.name}"></option>
+															<option
+															th:attrappend="selected=${product.category_name.id == category.id}?'selected' "
+															 th:value="${category.id}" th:text="${category.name}"></option>
 													</th:block>
 												</select>
 
@@ -56,22 +50,17 @@
 											<div class="form-group">
 												<label class="bmd-label-floating">Quantity</label> <input
 													id="quantity" name="quantity" type="number"
-													class="form-control" th:field="*{quantity}" />
+													class="form-control" th:value="${product.quantity}"/>
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="form-group">
 												<label class="bmd-label-floating">Brand</label>
-												<!-- 												<input class="form-control" list="brand1" id="brand" name="brand">
-													<datalist id="brand1">
-													<th:block th:each="brand2 : ${brands}">
-													  <option th:value="${brand2.id}">dsfdsf </option>													
-													</th:block>
-
-													</datalist> -->
 												<select class="form-control" id="brand" name="brand">
 													<th:block th:each="brand : ${brands}">
-														<option th:value="${brand.id}" th:text="${brand.name}"></option>
+															<option
+															th:attrappend="selected=${product.brand_name.id == brand.id}?'selected' "
+															 th:value="${brand.id}" th:text="${brand.name}"></option>														
 													</th:block>
 												</select>
 
@@ -84,7 +73,7 @@
 											<div class="form-group">
 												<label class="bmd-label-floating">Price</label> <input
 													id="price" name="price" type="number"
-													class="form-control" th:field="*{price}" />
+													class="form-control" th:value="${product.price}" />
 											</div>
 										</div>
 										<div class="col-md-6">
@@ -99,8 +88,7 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<label class="bmd-label-floating">Details</label>
-												<textarea class="form-control" rows="5" id="details"
-													th:field="*{detail}"></textarea>
+												<textarea class="form-control" rows="5" id="details"><th:block th:text= ${product.detail}></th:block></textarea>
 
 											</div>
 									</div>

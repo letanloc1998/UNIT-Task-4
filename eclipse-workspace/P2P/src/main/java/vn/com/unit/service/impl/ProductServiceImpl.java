@@ -65,6 +65,23 @@ public class ProductServiceImpl implements ProductService {
 		return products;
 	}
 	
+	@Override
+	public Product findProductByProductId(Long product_id) {
+		
+		Product product = new Product();
+		try {
+				product = productRepository.findProductByProductId(product_id);
+				Brand brand = brandService.findBrandByProductId(product_id);
+				product.setBrand_name(brand);
+				Category category = categoryService.findCategoryByProductId(product_id);
+				product.setCategory_name(category);
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return product;
+	}
 	
 	@Override
 	public Product createNewProduct(String name,int price,int quantity,int category,int brand,String detail,String img,Long shop) {
