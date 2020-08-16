@@ -1,4 +1,4 @@
-package vn.com.unit.controller.vendor;
+package vn.com.unit.controller.profile;
 
 import java.util.List;
 
@@ -31,9 +31,9 @@ import vn.com.unit.entity.Product;
 
 
 @Controller
-@PreAuthorize("hasRole('ROLE_VENDOR')")
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')")
 
-public class VendorController {
+public class ProfileController {
 	
 	@Autowired
 	AccountService accountService;
@@ -55,20 +55,20 @@ public class VendorController {
 
 	
 	// home view
-	@GetMapping("/vendor/home")
+	@GetMapping("/profile/home")
 	public ModelAndView home(Model model) {
 		model.addAttribute("title", "Account Management");
-		return new ModelAndView("vendor/vendor");
+		return new ModelAndView("profile/profile");
 	}
 	
 	
 	//editAccount view
-	@GetMapping("/vendor/myaccount") public ModelAndView myAccount(Model model,@RequestParam(name = "mode") String mode) {
+	@GetMapping("/profile/myaccount") public ModelAndView myAccount(Model model,@RequestParam(name = "mode") String mode) {
 		String type = "";
 		if(mode.equals("editPass")) {
-			 type = "vendor/myAccount/editPass";
+			 type = "profile/myAccount/editPass";
 		}else {
-			type = "vendor/myAccount/account-table";
+			type = "profile/myAccount/account-table";
 		}		
 		Account account = accountService.findCurrentAccount();	
 		model.addAttribute("current_account", account);
@@ -78,23 +78,23 @@ public class VendorController {
 	
 	
 	//bills view
-	@RequestMapping("/vendor/mybill") public ModelAndView bill(Model model) {
+	@RequestMapping("/profile/mybill") public ModelAndView bill(Model model) {
 		Account account = accountService.findCurrentAccount();	
 		List<Bill> bills = billService.findAllBillByAccountId(account.getId());
 		model.addAttribute("current_account", account);
 		model.addAttribute("bills", bills);
 		model.addAttribute("title", "Account Management");
-		return new ModelAndView("vendor/myBill/allBill"); }
+		return new ModelAndView("profile/myBill/allBill"); }
 	
 	
 	//bills item view
-	@RequestMapping("/vendor/mybill/{bill_id}") public ModelAndView billitem(Model model, @PathVariable("bill_id") Long bill_id) {
+	@RequestMapping("/profile/mybill/{bill_id}") public ModelAndView billitem(Model model, @PathVariable("bill_id") Long bill_id) {
 		Account account = accountService.findCurrentAccount();	
 		List<BillItem> billitems = billItemService.findAllBillItemByBillId(bill_id);
 		model.addAttribute("current_account", account);
 		model.addAttribute("billitems", billitems);
 		model.addAttribute("bill_id",bill_id);
 		model.addAttribute("title", "Account Management");
-		return new ModelAndView("vendor/myBill/billItem"); }
+		return new ModelAndView("profile/myBill/billItem"); }
 
 }

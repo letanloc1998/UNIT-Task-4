@@ -90,7 +90,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public boolean setDisableProductByProductId(Long product_id, String status) {
+	public boolean setDisableProductByProductId(Long product_id, int status) {
 		try {
 			productRepository.setDisableProductByProductId(product_id, status);
 			return true;
