@@ -67,9 +67,7 @@
 														class="btn btn-large btn-primary"><i
 															class="fas fa-edit"></i></a> </span> <span>
 														<button type="button" class="btn  btn-danger"
-															th:onclick="|selectAccount(${i.index})|"
-															data-toggle="modal" data-target="#deleteConfirm">
-															<i class="fas fa-trash-alt"></i>
+															th:onclick="|DeleteAccount(${i.index})|">															<i class="fas fa-trash-alt"></i>
 														</button>
 												</span></td>
 												</tr>
