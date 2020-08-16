@@ -24,6 +24,7 @@
     </div>
   </div>
     <th:block th:replace="admin/layout/footer :: footer"></th:block>
+    
      <script th:inline="javascript">
         const shops = [[${ shops }]]
           function acceptShop(i) {
@@ -37,14 +38,24 @@
                         xhr.setRequestHeader(header, token);
                     },
                     success: function (data, status, xhr) {
-                        window.location.href = window.location.href;
+                    	Swal.fire({
+                    		  position: 'center',
+                    		  icon: 'success',
+                    		  title: 'Active Success',
+                    		  showConfirmButton: false,
+                    		  timer: 800
+                    		}).then(()=>{
+                                window.location.href = window.location.href;
+
+                    		})
                     },
                     error: function (request, status, error) {
                         alert(status);
-                        // To reload the page discarding the POST data(perform a GET request)
                         window.location.href = window.location.href;
                     }
                 });
+            
+              
             }
       </script>
 </body>
