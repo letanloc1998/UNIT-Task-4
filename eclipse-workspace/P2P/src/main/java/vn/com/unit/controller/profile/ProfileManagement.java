@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,28 +47,27 @@ public class ProfileManagement {
 	
 	// edit password
 	
-	@PutMapping("/password")
+	@PutMapping("/password/{old_password}")
 	@ResponseBody
-	public ResponseEntity<Account> editPass(@RequestBody Account new_account, Model model) {
-		Account account = accountService.findCurrentAccount();
-			accountService.checkPass(account, new_account.getPassword());
+	public ResponseEntity<String> editPass(@RequestBody Account new_account, Model model,@PathVariable("old_password") String old_password ) {
+			Account account = accountService.findCurrentAccount();
+			
+			if (new_account.getPassword() == null || new_account.getPassword().equals("")) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Password cannot be empty\" }");
+			}
+			
+			
+			if (new_account.getPassword().length() < 8) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+						.body("{ \"msg\" : \"Password too short - minimum length is 8 characters\" }");
+			}
+			
+			boolean test = accountService.checkPass(account, old_password);
+			if(test == true) {
 			accountService.setAccountPassword(account.getId(), new_account.getPassword());
-			model.addAttribute("result", "Change Password Success!");
-	
-		return ResponseEntity.ok(account);
-
-	}
-
-
-
-
-
-	
-	
-	
-	
-
-
-	
+			return ResponseEntity.status(HttpStatus.OK).body("{ \"msg\" : \"Change Passowrd success!\" }");
+			}
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Password do not match!\" }");
+			}
 
 }

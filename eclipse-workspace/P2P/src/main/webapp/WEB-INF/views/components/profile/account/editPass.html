@@ -100,14 +100,14 @@
 		    console.log("Start edit");
 			console.log(account);
 		    account.password = $("#new-pass").val();
-	
+			var old_password = $("#old-password").val();
 		    var token = $("meta[name='_csrf']").attr("content");
 		    var header = $("meta[name='_csrf_header']").attr("content");
 		    console.log(account)
 	
  		     $.ajax({
 		        type: "PUT",
-		        url: `/password`,
+		        url: `/password/${old_password}`,
 		        dataType: "json",
 		        contentType: "application/json",
 		        data: JSON.stringify(account),
@@ -116,10 +116,13 @@
 		            xhr.setRequestHeader(header, token);
 		        },	
 		        success: function (data, status, xhr) {
+		        	alert(data.msg);
 		        	window.location.href = window.location.href;
 		        },
 		        error: function (request, status, error) {
-		            alert(status + " " + error);
+                    try {
+                        alert(request.responseJSON.msg);
+                    } catch (error) { }
 
 		        }
 		    });  
