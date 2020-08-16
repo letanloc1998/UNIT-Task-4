@@ -6,10 +6,13 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -70,9 +73,18 @@ public class AdminShopManagementController {
 		deactiveByAdmin.addAll(deactiveByVendor);
 		model.addAttribute("shops", deactiveByAdmin);
 		model.addAttribute("pageable", pageable);
-
 		return new ModelAndView("admin/shop/shop-deactive-table");
 	}
-
-
+	
+	@PutMapping("/admin/shop/accept/{shop_id}")
+	public ResponseEntity<Boolean> ShopAccept(Model model,
+			@PathVariable("shop_id") Long shop_id,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+			HttpServletRequest request) {
+			Boolean shop = shopService.setDisableShop(shop_id, (long) 1);
+	
+		return ResponseEntity.ok(shop);
+	}
+	
 }

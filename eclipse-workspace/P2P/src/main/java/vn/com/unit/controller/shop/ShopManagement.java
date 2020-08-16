@@ -77,7 +77,7 @@ public class ShopManagement {
 	@DeleteMapping("/shop/delete")
 	public ResponseEntity<Void> deleteShop() {
 		Account account = accountService.findCurrentAccount();
-		String status = "2";
+		Long status = (long) 2;
 		if (shopService.setDisableShop(account.getId(),status)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}		

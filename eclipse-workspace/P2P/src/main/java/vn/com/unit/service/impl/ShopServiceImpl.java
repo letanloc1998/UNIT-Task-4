@@ -43,7 +43,7 @@ public class ShopServiceImpl implements ShopService {
 	//set disable shop
 	
 	@Override
-	public boolean setDisableShop(Long shop_id, String status) {
+	public boolean setDisableShop(Long shop_id, Long status) {
 		try {
 			shopRepository.setDisableShop(shop_id,status);
 			return true;

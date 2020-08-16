@@ -19,7 +19,7 @@ public interface ShopRepository extends MirageRepository<Shop, Long> {
 	public List<Shop> findAllShop(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 
 	@Modifying
-	public void setDisableShop(@Param("shop_id") Long shop_id,@Param("status") String status );
+	public void setDisableShop(@Param("shop_id") Long shop_id,@Param("status") Long status );
 	
 	public int countAllShop();
 	
