@@ -1,4 +1,4 @@
-package vn.com.unit.controller.vendor;
+package vn.com.unit.controller.profile;
 
 import java.util.List;
 
@@ -31,9 +31,9 @@ import vn.com.unit.entity.Product;
 
 
 @Controller
-@PreAuthorize("hasRole('ROLE_VENDOR')")
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')")
 
-public class VendorController {
+public class ProfileController {
 	
 	@Autowired
 	AccountService accountService;

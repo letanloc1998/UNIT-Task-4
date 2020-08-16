@@ -34,6 +34,7 @@
 										</div>
 										
 									</th:block>
+									 <div><th:block sec:authorize="isAuthenticated()"><p>Hi, <span sec:authentication="name"></span></p></th:block></div>
 									<th:block sec:authorize="isAuthenticated()">
 										 <div class="nav-item dropdown">
 							                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,7 +51,7 @@
 							                </div>
 							              </div>
 							         </th:block>
-							         <div><th:block sec:authorize="isAuthenticated()"><p>Hi, <span sec:authentication="name"></span></p></th:block></div>
+							        
 								</div>
 							</div>
 						</div>
