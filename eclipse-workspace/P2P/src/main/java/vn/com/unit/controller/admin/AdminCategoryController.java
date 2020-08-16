@@ -32,9 +32,7 @@ public class AdminCategoryController {
 
 		int totalitems =  categoryService.countAllCategory();
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
-
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-
 		List<Category> categories = categoryService.findCategoryPageable(pageable.getLimit(), pageable.getOffset());
 		model.addAttribute("categories", categories);
 		model.addAttribute("pageable", pageable);
