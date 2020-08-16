@@ -1,4 +1,4 @@
-package vn.com.unit.controller.vendor;
+package vn.com.unit.controller.profile;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,9 +18,9 @@ import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
 
 @Controller
-@PreAuthorize("hasRole('ROLE_VENDOR')")
+@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')")
 
-public class VendorManagement {
+public class ProfileManagement {
 
 	@Autowired
 	AccountService accountService;
