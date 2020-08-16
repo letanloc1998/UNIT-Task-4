@@ -11,17 +11,17 @@
 <body>
   <div class="wrapper ">
         
-    <div th:replace="vendor/layout/leftNavVendor :: leftNavVendor"></div> 
+    <div th:replace="profile/layout/leftNavProfile :: leftNavProfile"></div> 
     
     <div class="main-panel">
       <!-- Navbar -->
-     	<div th:replace="vendor/layout/HeadNavVendor :: headNavVendor"></div> 
+     	<div th:replace="profile/layout/HeadNavProfile :: headNavProfile"></div> 
       <!-- End Navbar -->
        <!-- content -->
-        <div th:replace="components/vendor/product/allProduct :: allProduct"></div> 
+        <div th:replace="components/profile/account/myAccount :: account-table"></div> 
 
         <!-- End content -->
-        <div th:replace="vendor/layout/footerVendor :: footerVendor"></div> 
+        <div th:replace="profile/layout/footerProfile :: footerProfile"></div> 
     </div>
   </div>
   

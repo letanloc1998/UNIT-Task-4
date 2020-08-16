@@ -65,7 +65,7 @@
 								</div>
 								<button th:onclick="editAccount()"
 									class="btn btn-primary pull-right">Update Profile</button>
-								<form th:action="@{/vendor/myaccount}" th:object="${mymodelobject}" method="GET">
+								<form th:action="@{/profile/myaccount}" th:object="${mymodelobject}" method="GET">
 								<input type="hidden" value="editPass" name="mode" id="mode" />
 								<button type="submit"
 									class="btn btn-primary pull-right">Update Password</button>
