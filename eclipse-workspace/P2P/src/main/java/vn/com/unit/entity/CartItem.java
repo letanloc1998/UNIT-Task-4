@@ -16,6 +16,8 @@ public class CartItem {
 	
 	private Long quantity;
 	
+	private Long total;
+	
 	private Date createAt;
 
 	public Long getAccount() {
@@ -62,6 +64,10 @@ public class CartItem {
 		return quantity;
 	}
 
+	public Long getTotal() {
+		return price*quantity;
+	}
+	
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
