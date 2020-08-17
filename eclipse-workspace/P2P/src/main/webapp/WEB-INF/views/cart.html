@@ -260,7 +260,7 @@
 
         <!-- Cart -->
 
-        <div th:unless="list_cart_item != null and !list_cart_item.empty" class="cart_section">
+        <div th:unless="${list_cart_item != null and !list_cart_item.empty}" class="cart_section">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -270,7 +270,7 @@
             </div>
         </div>
 
-        <div th:if="list_cart_item != null and !list_cart_item.empty" class="cart_section">
+        <div th:if="${list_cart_item != null and !list_cart_item.empty}" class="cart_section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
