@@ -20,4 +20,10 @@ public interface CategoryService {
 	public Long createCategory(Category category);
 	
 	public Category findCategoryByName(String Name);
+	
+	public Category findCategoryById(Long id);
+	
+	public void updateCategoryById(Category category);
+	
+	public void deleteCategoryById(Long id,Long disable);
 }

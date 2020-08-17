@@ -22,4 +22,10 @@ public interface CategoryRepository extends MirageRepository<Category, Long> {
 	public Long createCategory(@Param("name") String name);
 	
 	public Category findCategoryByName(@Param("name") String name);
+	
+	public Category findCategoryById(@Param("id") Long id);
+	
+	public void updateCategoryById(@Param("id") Long id,@Param("name") String name);
+	
+	public void deleteCategoryById(@Param("id") Long id,@Param("disable") Long disable);
 }

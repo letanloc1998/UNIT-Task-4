@@ -38,10 +38,11 @@
 												<td class="text-center"><span> 
 												</span> 
 												<span>
-														<button type="button" class="btn  btn-primary"
-															th:onclick="|EditCategory(${category.id})|">
-															<i class="fas fa-edit"></i>
-														</button>
+														
+														<span><a type="button"
+													th:href="@{'/admin/category/edit/' + ${category.id}}"
+													class="btn btn-large btn-primary"><i
+														class="fas fa-edit"></i></a> </span>
 														<button type="button" class="btn  btn-danger"
 															th:onclick="|DeleteCategory(${category.id})|">
 															<i class="fas fa-trash-alt"></i>
