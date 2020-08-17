@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<th:block th:if="${shop.status == 1}">
+<th:block th:if="${shop != null && shop.status != null && shop.status == 1}">
   <div class="wrapper ">
         
     <div th:replace="shop/layout/leftNavShop :: leftNavShop"></div> 
@@ -27,7 +27,7 @@
 
     <th:block th:replace="layout/footer :: footer"></th:block>
 </th:block>
-<th:block th:if="${shop.status != 1}">
+<th:block th:if="${shop != null && shop.status != null && shop.status != 1}">
   <div class="wrapper ">  
     <div class="main-panel">
       <!-- End Navbar -->
