@@ -3,9 +3,13 @@ package vn.com.unit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.CartItem;
@@ -18,7 +22,7 @@ public class CartController {
 
 	@Autowired
 	CartService cartService;
-	
+
 	@Autowired
 	CategoryService categoryService;
 
@@ -34,19 +38,26 @@ public class CartController {
 //			) cart
 //		left join p2p_product product
 //		on product.id = cart.product
-		
+
 		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 
 		List<CartItem> list_cart_item = cartService.findAllCartItemByCurrentAccount();
 
 		model.addAttribute("list_cart_item", list_cart_item);
-		
+
 		Long total = cartService.calculateCartTotalByCurrentAccount();
-		
+
 		model.addAttribute("total", total);
 
 		model.addAttribute("title", "Cart");
 		return new ModelAndView("/cart");
+	}
+
+	@PostMapping("/cart/add")
+	@ResponseBody
+	public ResponseEntity<String> add(Model model, @RequestParam(value = "product_id") Long product_id) {
+		
+		return ResponseEntity.ok(null);
 	}
 
 }
