@@ -12,5 +12,6 @@ public interface BrandRepository extends MirageRepository<Brand, Long> {
 	public Brand findBrandByProductId(@Param("product_id") Long product_id);
 	
 	public List<Brand> findAllBrand();
-
+	
+	public List<Brand> findBrandPageable(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 }
