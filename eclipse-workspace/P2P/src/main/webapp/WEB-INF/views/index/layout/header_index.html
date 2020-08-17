@@ -35,10 +35,8 @@
                                         </div>
 
                                     </th:block>
-                                    <div>
-                                        <th:block sec:authorize="isAuthenticated()">
-                                            <p>Hi, <span sec:authentication="name"></span></p>
-                                        </th:block>
+                                    <div sec:authorize="isAuthenticated()">
+                                        <p>Hi, <span sec:authentication="name"></span></p>
                                     </div>
                                     <th:block sec:authorize="isAuthenticated()">
                                         <div class="nav-item dropdown">
