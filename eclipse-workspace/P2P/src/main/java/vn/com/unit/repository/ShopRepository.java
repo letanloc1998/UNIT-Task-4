@@ -15,6 +15,9 @@ public interface ShopRepository extends MirageRepository<Shop, Long> {
 	
 	@Modifying
 	public void saveShop(@Param("shop_id") Long shop_id, @Param("name") String name , @Param("email") String email, @Param("phone") String phone,@Param("address") String address,@Param("detail") String detail);
+
+	@Modifying
+	public void createShop(@Param("account_id") Long account_id ,@Param("name") String name , @Param("email") String email, @Param("phone") String phone,@Param("address") String address,@Param("detail") String detail,@Param("status") int status);
 	
 	public List<Shop> findAllShop(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 

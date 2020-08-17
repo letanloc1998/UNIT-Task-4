@@ -40,6 +40,16 @@ public class ShopServiceImpl implements ShopService {
 		}	
 	}
 	
+	
+	//createShop
+	@Override
+	public void createShop(Long account_id,String name,String email, String phone, String address, String detail, int status) {
+		try {
+			shopRepository.createShop(account_id, name, email, phone, address, detail,status);
+		}catch (Exception e) {		
+		}	
+	}
+	
 	//set disable shop
 	
 	@Override
