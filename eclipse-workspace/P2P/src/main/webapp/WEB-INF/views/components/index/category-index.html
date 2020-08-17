@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 <head>
-	<th:block th:include="index/layout/index-head :: index-head"></th:block> 
+	 
 </head>
 <body>
 	<th:block th:fragment="category-index">
@@ -62,7 +62,7 @@
 									<div
 										class="popular_category d-flex flex-column align-items-center justify-content-center">
 										<div class="popular_category_image">
-											<img src="images/popular_2.png" alt="">
+											<img th:src="@{static/template/ontech/images/popular_2.png}" alt="">
 										</div>
 										<div class="popular_category_text">2</div>
 									</div>
@@ -73,7 +73,7 @@
 									<div
 										class="popular_category d-flex flex-column align-items-center justify-content-center">
 										<div class="popular_category_image">
-											<img src="images/popular_3.png" alt="">
+											<img th:src="@{static/template/ontech/images/popular_3.png}" alt="">
 										</div>
 										<div class="popular_category_text">3</div>
 									</div>
@@ -84,7 +84,7 @@
 									<div
 										class="popular_category d-flex flex-column align-items-center justify-content-center">
 										<div class="popular_category_image">
-											<img src="images/popular_4.png" alt="">
+											<img th:src="@{static/template/ontech/images/popular_4.png}" alt="">
 										</div>
 										<div class="popular_category_text">4</div>
 									</div>
@@ -95,7 +95,7 @@
 									<div
 										class="popular_category d-flex flex-column align-items-center justify-content-center">
 										<div class="popular_category_image">
-											<img src="images/popular_5.png" alt="">
+											<img th:src="@{static/template/ontech/images/popular_5.png}" alt="">
 										</div>
 										<div class="popular_category_text">5</div>
 									</div>
@@ -106,7 +106,7 @@
 									<div
 										class="popular_category d-flex flex-column align-items-center justify-content-center">
 										<div class="popular_category_image">
-											<img src="images/popular_5.png" alt="">
+											<img th:src="@{static/template/ontech/images/popular_5.png}" alt="">
 										</div>
 										<div class="popular_category_text">6</div>
 									</div>
@@ -126,6 +126,6 @@
 			</div>
 		</div>
 	</th:block>
-	<th:block th:replace="index/layout/index-footer :: index-footer"></th:block>  
+	  
 </body>
 </html>
