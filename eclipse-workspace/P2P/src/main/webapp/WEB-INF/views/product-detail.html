@@ -6,7 +6,9 @@
 <head>
     <th:block th:include="layout/head :: head"></th:block>
     <th:block th:include="index/layout/index-head :: index-head"></th:block>
-    <link rel="stylesheet" th:href="@{/static/index-template/styles/product_style.css}"> 
+    <link rel="stylesheet" th:href="@{/static/index-template/styles/product_style.css}">
+    <link rel="stylesheet" th:href="@{/static/index-template/styles/zoom.css}">
+
 </head>
 
 <body>
@@ -16,7 +18,12 @@
 	
 		 <div th:replace="index/layout/header_index :: header_index"></div>
 		 
-		 <div th:replace="components/index/product/product-detail :: product-detail"></div>   
+		 <div th:replace="components/index/product/layout/category-product :: category-product"></div>
+		 
+		 <div th:replace="components/index/product/product-detail :: product-detail"></div>
+		 
+		 <div th:replace="components/index/product/layout/product-slide :: product-slide"></div> 
+		   
 		 
 		<div th:replace="index/layout/footer_index_template :: footer_index_template"></div>
 
@@ -24,7 +31,13 @@
 	  
     <th:block th:replace="layout/footer :: footer"></th:block>
     <th:block th:replace="index/layout/index-footer :: index-footer"></th:block>
+    <script th:src="@{/static/index-template/js/jquery.zoom.js}"></script>
     <script th:src="@{/static/index-template/js/product_custom.js}"></script>
+    <script>
+	$(document).ready(function(){
+		  $('#product_img').zoom();
+		});
+    </script>
 
 </body>
 </html>

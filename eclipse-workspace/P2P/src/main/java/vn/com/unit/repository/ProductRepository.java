@@ -13,6 +13,8 @@ public interface ProductRepository extends MirageRepository<Shop, Long> {
 
 	public List<Product> findAllProductByShopId(@Param("shop_id") Long shop_id);
 	
+	public List<Product> findAllProductByCategoryId(@Param("category_id") int category_id);
+	
 	public Product findProductByProductId(@Param("product_id") Long product_id); 
 	
 	@Modifying

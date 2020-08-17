@@ -65,6 +65,28 @@ public class ProductServiceImpl implements ProductService {
 		return products;
 	}
 	
+	
+	@Override
+	public List<Product> findAllProductByCategoryId(int category_id) {
+
+		List<Product> products = new ArrayList<Product>();
+		try {
+			products = productRepository.findAllProductByCategoryId(category_id);
+
+			for (Product product : products) {
+				Brand brand = brandService.findBrandByProductId(product.getId());
+				product.setBrand_name(brand);
+				Category category = categoryService.findCategoryByProductId(product.getId());
+				product.setCategory_name(category);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return products;
+	}
+	
+	
 	@Override
 	public Product findProductByProductId(Long product_id) {
 		

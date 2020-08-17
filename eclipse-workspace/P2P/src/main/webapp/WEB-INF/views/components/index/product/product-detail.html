@@ -12,24 +12,38 @@
 	<th:block th:fragment="product-detail">
 		<div class="single_product">
 			<div class="container">
-				<div class="row">
-
+				<div class="row">	
+				<div class="col-lg-2 order-lg-1 order-2">
+					<ul class="image_list">
+						<li th:data-image="${product.img}"><img th:src="${product.img}" alt=""></li>
+						<li th:data-image="${product.img}"><img th:src="${product.img}" alt=""></li>
+						<li th:data-image="${product.img}"><img th:src="${product.img}" alt=""></li>
+					</ul>
+				</div>
 					<!-- Selected Image -->
 					<div class="col-lg-5 order-lg-2 order-1">
 						<div class="image_selected">
-							<img style="height:400px; width: 400px" th:src="${product.img}" alt="">
+						<span class="zoom" id="product_img">
+							<img style="height: 400px; width: 400px" th:src="${product.img}"
+								alt="">
+						</span>		
 						</div>
 					</div>
 
 					<!-- Description -->
 					<div class="col-lg-5 order-3">
 						<div class="product_description">
-							<div class="product_category" th:text="${product.category_name.name}"></div>
-							<div class="product_category" th:text="${product.brand_name.name}"></div>
-							<div class="product_name" th:text="${product.name}"></div>
-							<div class="product_text">
-								<p th:text="${product.detail}"></p>
+							<div style="font-size: 20px; font-weight: bold; color: blue"
+								th:text="${product.category_name.name}"></div>
+							<div style="font-size: 20px; font-weight: bold; color: red"
+								th:text="${product.brand_name.name}"></div>
+							<div style="text-transform: uppercase;" class="product_name" th:text="${product.name}"></div>
+							<div class="rating_r rating_r_4 arrivals_single_rating">
+								<i></i><i></i><i></i><i></i><i></i>
 							</div>
+							<br>
+							<h3>Detail:</h3>
+							<div style="text-align:left" th:text="${product.detail}"></div>
 							<div class="order_info d-flex flex-row">
 								<form action="#">
 									<div class="clearfix" style="z-index: 1000;">
@@ -49,10 +63,11 @@
 												</div>
 											</div>
 										</div>
-
 									</div>
-
-									<div class="product_price" th:text="${product.price}"></div>
+									<span style="color:red;text-transform: uppercase;" id="status-quantity"></span>
+									<br>
+									<span style="font-size: 20px; color: red; font-weight:bold" >Price:</span>
+									<div class="product_price" th:text="${product.price}"></div><span class="product_price">$</span>
 									<div class="button_container">
 										<button type="button" class="button cart_button">Add
 											to Cart</button>
@@ -70,6 +85,11 @@
 			</div>
 		</div>
 		<script th:inline="javascript">
+		
+		
+
+		
+		
 		const product = [[${product}]];
 		const maxVal = [[${product.quantity}]];
 		console.log(maxVal)
@@ -87,12 +107,14 @@
 
 				incButton.on('click', function()
 				{
+					$('#status-quantity').text("")
 					originalVal = input.val();
 					endVal = parseFloat(originalVal) + 1;
 					if(endVal > maxVal){
 						endVal = parseFloat(endVal) - 1;
 						console.log(endVal)
-						alert("k du so luong")
+						$('#status-quantity').text("Not enough quantity!")
+						
 					}
 					
 					input.val(endVal);
@@ -100,13 +122,15 @@
 
 				decButton.on('click', function()
 				{
+					$('#status-quantity').text("")
 					originalVal = input.val();
 					if(originalVal > 0)
 					{
 						endVal = parseFloat(originalVal) - 1;
 						if(endVal == 0){
 							endVal = parseFloat(endVal) + 1;
-							alert("So luong > 0")
+							$('#status-quantity').text("Quantity must be > 0")
+							
 						}
 						console.log(endVal)
 						input.val(endVal);

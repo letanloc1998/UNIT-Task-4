@@ -8,7 +8,7 @@
 <th:block th:include="layout/head :: head"></th:block>
 <th:block th:include="index/layout/index-head :: index-head"></th:block>
 <link rel="stylesheet"
-	th:href="@{/static/index-template/styles/product_style.css}">
+	th:href="@{/static/index-template/styles/shop_style.css}">
 </head>
 
 <body>
@@ -27,9 +27,9 @@
 					<div class="col-lg-3">
 						<div
 							th:replace="components/index/shop/layout/left-nav-shop :: left-nav-shop"></div>
-						<div
-							th:replace="components/index/shop/shop-product-list :: shop-product-list"></div>
 					</div>
+					<div
+						th:replace="components/index/shop/shop-product-list :: shop-product-list"></div> 	
 				</div>
 			</div>
 		</div>
@@ -42,6 +42,6 @@
 
 	<th:block th:replace="layout/footer :: footer"></th:block>
 	<th:block th:replace="index/layout/index-footer :: index-footer"></th:block>
-	<script th:src="@{/static/index-template/js/product_custom.js}"></script>
+	<script th:src="@{/static/index-template/js/shop_custom.js}"></script>
 </body>
 </html>
