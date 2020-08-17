@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
 <head></head>
 
 <body>
 
-	<th:block th:fragment="index-footer">
-	<!--Index  -->
-	
-		<script th:src="@{/static/index-template/plugins/greensock/TweenMax.min.js}"></script>
-		<script th:src="@{/static/index-template/plugins/greensock/TimelineMax.min.js}"></script>
-		<script th:src="@{/static/index-template/plugins/scrollmagic/ScrollMagic.min.js}"></script>
-		<script th:src="@{/static/index-template/plugins/greensock/animation.gsap.min.js}"></script>
-		<script th:src="@{/static/index-template/plugins/greensock/ScrollToPlugin.min.js}"></script>
-		<script th:src="@{/static/index-template/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
-		<script th:src="@{/static/index-template/plugins/slick-1.8.0/slick.js}"></script>
-		<script th:src="@{/static/index-template/plugins/easing/easing.js}"></script>
-		<script th:src="@{/static/index-template/js/custom.js}"></script>
-	</th:block>
+    <th:block th:fragment="index-footer">
+        <!--Index  -->
+
+        <script th:src="@{/static/index-template/plugins/greensock/TweenMax.min.js}"></script>
+        <script th:src="@{/static/index-template/plugins/greensock/TimelineMax.min.js}"></script>
+        <script th:src="@{/static/index-template/plugins/scrollmagic/ScrollMagic.min.js}"></script>
+        <script th:src="@{/static/index-template/plugins/greensock/animation.gsap.min.js}"></script>
+        <script th:src="@{/static/index-template/plugins/greensock/ScrollToPlugin.min.js}"></script>
+        <script th:src="@{/static/index-template/plugins/OwlCarousel2-2.2.1/owl.carousel.js}"></script>
+        <script th:src="@{/static/index-template/plugins/slick-1.8.0/slick.js}"></script>
+        <script th:src="@{/static/index-template/plugins/easing/easing.js}"></script>
+        <script th:src="@{/static/index-template/js/custom.js}"></script>
+
+        <script th:inline="javascript">
+            let home = [[@{/}]];
+
+            if (home.slice(home.length - 1) == "/") {
+                home = home.slice(0, -1);
+            }
+
+            function addCart(product_id) {
+
+                let token = $("meta[name='_csrf']").attr("content");
+                let header = $("meta[name='_csrf_header']").attr("content");
+
+                $.ajax({
+                        url: `${home}/cart/add`,
+                        type: 'PUT',
+
+                        dataType: "json",
+                        contentType: "application/json",
+
+                        data: JSON.stringify(`{"product_id" : ${product_id}}`),
+
+                        beforeSend: function (xhr) {
+                            xhr.setRequestHeader(header, token);
+                        },
+
+                        // success: function (data, status, xhr) {
+                        //     window.location.href = window.location.href;
+                        // },
+                        // error: function (request, status, error) {
+                        //     window.location.href = window.location.href;
+                        // }
+                    });
+
+            }
+        </script>
+    </th:block>
 
 </body>
 

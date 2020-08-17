@@ -7,24 +7,24 @@
 <head></head>
 
 <body>
-	<th:block th:fragment="category-add">
+	<th:block th:fragment="category-edit">
 		<div class="content">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card">
 							<div class="card-header card-header-primary">
-								<h4 class="card-title ">Category Add</h4>
+								<h4 class="card-title ">Category Edit</h4>
 							</div>
 							<div class="card-body">
-								<form >
+								<form  th:object="${category}">
 
 									<div class="form-group row">
 										<label for="addCategoryName"
 											class="col-sm-4 col-form-label">Category Name</label>
 										<div class="col-sm-8">
-											<input type="text" class="form-control"
-												id="addCategoryName" placeholder="Enter new category" />
+											<input type="text" class="form-control" th:field="*{name}"
+												id="CategoryName" placeholder="Enter new category" />
 										</div>
 									</div>
 
@@ -32,7 +32,7 @@
 										style="display: flex; flex-direction: row; justify-content: flex-end;">
 										<button 
 											type="button" 
-											onClick="AddCategory()" 
+											onClick="editCategory()" 
 											class="btn btn-success">Save <i class="fas fa-save"></i></button>
 										
 										<a th:href="@{/admin/category/list}" type="button"

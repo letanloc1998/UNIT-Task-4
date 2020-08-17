@@ -59,7 +59,8 @@ create table p2p_shop (
 
 create table p2p_category (
     id int primary key identity(1,1),
-    name nvarchar(50) not null unique
+    name nvarchar(50) not null unique,
+    disable bit default 0
 )
 
 create table p2p_tag (

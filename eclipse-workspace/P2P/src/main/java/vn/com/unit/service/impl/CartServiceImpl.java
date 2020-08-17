@@ -41,4 +41,10 @@ public class CartServiceImpl implements CartService {
 		return cartRepository.calculateCartTotalByAccountId(account_id);
 	}
 
+	@Override
+	public void addCartItemCurentAccount(Long product_id, int quantity) {
+		Long curent_account_id = accountService.findCurrentAccount().getId();
+		cartRepository.addCartItemCurentAccount(curent_account_id, product_id, quantity);
+	}
+
 }
