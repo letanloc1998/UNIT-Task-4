@@ -6,8 +6,7 @@
 
 <head>
 	<th:block th:include="admin/layout/head :: head"></th:block>
-	<meta th:name="_csrf" th:content="${_csrf.token}" />
-	<meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
+
 </head>
 
 <body>
@@ -30,43 +29,39 @@
 	<th:block th:replace="admin/layout/footer :: footer"></th:block>
 
 	<script>
-				function addAccount() {
-					var token = $("meta[name='_csrf']").attr("content");
-				    var header = $("meta[name='_csrf_header']").attr("content");
-		
-					let newAccount = new Object();
-					newAccount.username = $("#addAccountUsername").val();
-					newAccount.password = $("#addAccountPassword").val();
+		function AddAccount() {
+			var token = $("meta[name='_csrf']").attr("content");
+			var header = $("meta[name='_csrf_header']").attr("content");
+			console.log(token,header)
+			let newAccount = new Object();
+			newAccount.username = $("#addAccountUsername").val();
+			newAccount.password = $("#addAccountPassword").val();
+
+			$.ajax({
+				url: `/admin/account/add`,
+				type: 'POST',
+				dataType: "json",
+				contentType: "application/json",
+				data: JSON.stringify(newAccount),
+				beforeSend: function (xhr) {
+					xhr.setRequestHeader(header, token);
+				},
+				success: function (data, status, xhr) {
+					 try {
+                         alert(data.msg);
+                         window.location.href = `/admin/account/list`;
+                     } catch (error) { }
+
+				},
+				error: function (request, status, error) {
+					  try {
+                          alert(request.responseJSON.msg);
+                      } catch (error) { }
+                  }
 				
-					$.ajax({
-						url: `/admin/account/add`,
-						type: 'POST',
-						dataType: "json",
-						contentType: "application/json",
-						data: JSON.stringify(newAccount),
-						beforeSend: function (xhr) {
-							xhr.setRequestHeader(header, token);
-						},
-						success: function (data, status, xhr) {
-							console.log(data);
-							// To reload the page discarding the POST data(perform a GET request)
-							/* window.location.href = "/task2/admin/account/list"; */
-		
-						},
-						error: function (request, status, error) {
-							console.log(err);
-							alert(status + " " + error);
-		
-		
-							// console.log(request);
-							// console.log(status);
-							// console.log(error);
-							// To reload the page discarding the POST data(perform a GET request)
-							window.location.href = window.location.href;
-						}
-					});
-				}
-		
-			</script>
+			});
+		}
+
+	</script>
 </body>
 </html>
