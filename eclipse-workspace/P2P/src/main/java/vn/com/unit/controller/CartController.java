@@ -33,6 +33,10 @@ public class CartController {
 		List<CartItem> list_cart_item = cartService.findAllCartItemByCurrentAccount();
 
 		model.addAttribute("list_cart_item", list_cart_item);
+		
+		Long total = cartService.calculateCartTotalByCurrentAccount();
+		
+		model.addAttribute("total", total);
 
 		model.addAttribute("title", "Cart");
 		return new ModelAndView("/cart");
