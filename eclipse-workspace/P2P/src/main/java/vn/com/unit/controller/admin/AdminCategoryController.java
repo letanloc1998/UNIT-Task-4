@@ -5,11 +5,15 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
@@ -36,8 +40,14 @@ public class AdminCategoryController {
 		List<Category> categories = categoryService.findCategoryPageable(pageable.getLimit(), pageable.getOffset());
 		model.addAttribute("categories", categories);
 		model.addAttribute("pageable", pageable);
-
 		return new ModelAndView("admin/category/category-table");
 	}
 
+	@PostMapping("/admin/category/add")
+	@ResponseBody
+	public ResponseEntity<Long> createAccount(@RequestBody Category category, Model model) {
+		Long category_id = categoryService.createCategory(category);
+		return ResponseEntity.ok(category_id);
+		
+	}
 }
