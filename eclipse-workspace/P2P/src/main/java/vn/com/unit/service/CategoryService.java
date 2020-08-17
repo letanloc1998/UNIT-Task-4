@@ -16,4 +16,6 @@ public interface CategoryService {
 	public List<Category> findCategoryPageable(int limit,int offset);
 	
 	public int countAllCategory();
+		
+	public Long createCategory(Category category);
 }
