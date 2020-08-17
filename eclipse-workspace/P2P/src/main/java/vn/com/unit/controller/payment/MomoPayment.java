@@ -33,7 +33,9 @@ public class MomoPayment {
 
 		try {
 
-			Long bill_id = paymentService.createBill(address);
+			String convert_address = CommonUtils.convertEncode(address);
+					
+			Long bill_id = paymentService.createBill(convert_address);
 
 			String total = paymentService.calculateBillTotal(bill_id).toString();
 
@@ -43,10 +45,10 @@ public class MomoPayment {
 			String requestId = bill_id.toString() + orderId;
 			// => requestId.replace(orderId, ""); => bill_id
 			String amount = total;
-			String orderInfo = "Total : " + total + " Address: " + CommonUtils.convertEncode(address);
+			String orderInfo = "Total : " + total + " Address: " + convert_address;
 
 			String returnUrl = "http://localhost:8080/callback";
-			String notifyUrl = "https://1dd10ec48399.ngrok.io/webhook/momo";
+			String notifyUrl = "https://babfc163c78c.ngrok.io/webhook/momo";
 
 			String extraData = "";
 
