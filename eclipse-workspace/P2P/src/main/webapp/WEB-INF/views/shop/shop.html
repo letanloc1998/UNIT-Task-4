@@ -40,5 +40,19 @@
 
     <th:block th:replace="layout/footer :: footer"></th:block>
 </th:block>
+
+<th:block th:if="${shop == null}">
+  <div class="wrapper ">  
+    <div class="main-panel">
+      <!-- End Navbar -->
+       <!-- content -->
+         <div th:replace="components/shop/myShop/create-shop :: create-shop"></div> 
+        <!-- End content -->
+        <div th:replace="admin/layout/footerAdmin :: footerAdmin"></div> 
+    </div>
+  </div>
+
+    <th:block th:replace="layout/footer :: footer"></th:block>
+</th:block>
 </body>
 </html>

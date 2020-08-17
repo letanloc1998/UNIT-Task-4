@@ -60,7 +60,11 @@ public class ShopController {
 	public ModelAndView shopHome(Model model) {
 		Account account = accountService.findCurrentAccount();
 		Shop shop = shopService.findShopByAccountId(account.getId());
-
+		
+		if(shop == null) {
+			return new ModelAndView("shop/myShop/create-shop");
+		}
+		
 		model.addAttribute("shop", shop);
 		model.addAttribute("title", "Shop Management");
 		return new ModelAndView("shop/shop");
