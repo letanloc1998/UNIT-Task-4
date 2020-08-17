@@ -272,7 +272,7 @@
 
                                     <li class="cart_item clearfix">
                                         <div class="cart_item_image"><img
-                                                th:src="@{__${cart_item.img}__}" alt="">
+                                                th:src="@{__${cart_item.img}__}" th:onerror="this.onerror=null;this.src='/static/product/default.png';" alt="">
                                         </div>
                                         <div
                                             class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
@@ -280,11 +280,11 @@
                                                 <div class="cart_item_title">Name</div>
                                                 <div class="cart_item_text" th:text="${cart_item.name}">Product Name</div>
                                             </div>
-                                            <div class="cart_item_color cart_info_col">
+                                            <!-- <div class="cart_item_color cart_info_col">
                                                 <div class="cart_item_title">Color</div>
                                                 <div class="cart_item_text"><span
                                                         style="background-color:#999999;"></span>Silver</div>
-                                            </div>
+                                            </div> -->
                                             <div class="cart_item_quantity cart_info_col">
                                                 <div class="cart_item_title">Quantity</div>
                                                 <div class="cart_item_text" th:text="${cart_item.quantity}">0</div>
@@ -295,7 +295,7 @@
                                             </div>
                                             <div class="cart_item_total cart_info_col">
                                                 <div class="cart_item_title">Total</div>
-                                                <div class="cart_item_text" th:text="${cart_item.quantity * cart_item.price}">$2000</div>
+                                                <div class="cart_item_text" th:text="${cart_item.total}">$999999999</div>
                                             </div>
                                         </div>
                                     </li>
@@ -307,7 +307,7 @@
                             <div class="order_total">
                                 <div class="order_total_content text-md-right">
                                     <div class="order_total_title">Order Total:</div>
-                                    <div class="order_total_amount">$2000</div>
+                                    <div class="order_total_amount" th:text="${total}">$2000</div>
                                 </div>
                             </div>
 
