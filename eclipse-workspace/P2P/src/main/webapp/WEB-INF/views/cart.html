@@ -5,263 +5,272 @@
 
 <head>
     <th:block th:include="layout/head :: head"></th:block>
-	<!-- <th:block th:include="index/layout/index-head :: index-head"></th:block>  -->
+    <!-- <th:block th:include="index/layout/index-head :: index-head"></th:block>  -->
     <meta name="description" content="P2PO">
 
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">--> 
-	
-   
+	<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">-->
+
+
     <link rel="stylesheet" type="text/css" th:href="@{/static/template/ontech/styles/cart_styles.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/static/template/ontech/styles/cart_responsive.css}">
-    
-   
+
+
 </head>
 
 <body>
 
     <div class="super_container">
 
-         <div th:replace="index/layout/header_index :: header_index"></div>
+        <div th:replace="index/layout/header_index :: header_index"></div>
 
-            <!-- Main Navigation -->
+        <!-- Main Navigation -->
 
-            <nav class="main_nav">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
+        <nav class="main_nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
 
-                            <div class="main_nav_content d-flex flex-row">
+                        <div class="main_nav_content d-flex flex-row">
 
-                                <!-- Categories Menu -->
+                            <!-- Categories Menu -->
 
-                                <div class="cat_menu_container">
-                                    <div
-                                        class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-                                        <div class="cat_burger"><span></span><span></span><span></span></div>
-                                        <div class="cat_menu_text">categories</div>
-                                    </div>
-
-                                    <ul class="cat_menu">
-                                        <li><a href="#">Computers & Laptops <i
-                                                    class="fas fa-chevron-right ml-auto"></i></a></li>
-                                        <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                                        <li class="hassubs">
-                                            <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                            <ul>
-                                                <li class="hassubs">
-                                                    <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item<i
-                                                                    class="fas fa-chevron-right"></i></a></li>
-                                                        <li><a href="#">Menu Item<i
-                                                                    class="fas fa-chevron-right"></i></a></li>
-                                                        <li><a href="#">Menu Item<i
-                                                                    class="fas fa-chevron-right"></i></a></li>
-                                                        <li><a href="#">Menu Item<i
-                                                                    class="fas fa-chevron-right"></i></a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                        <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                                        <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                                        <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                                        <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a>
-                                        </li>
-                                        <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
-                                    </ul>
+                            <div class="cat_menu_container">
+                                <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cat_burger"><span></span><span></span><span></span></div>
+                                    <div class="cat_menu_text">categories</div>
                                 </div>
 
-                                <!-- Main Nav Menu -->
-
-                                <div class="main_nav_menu ml-auto">
-                                    <ul class="standard_dropdown main_nav_dropdown">
-                                        <li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
-                                        <li class="hassubs">
-                                            <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                        </li>
-                                                        <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                        </li>
-                                                        <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="hassubs">
-                                            <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-                                            <ul>
-                                                <li>
-                                                    <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    <ul>
-                                                        <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                        </li>
-                                                        <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                        </li>
-                                                        <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="hassubs">
-                                            <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-                                            <ul>
-                                                <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="product.html">Product<i
-                                                            class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="blog_single.html">Blog Post<i
-                                                            class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="regular.html">Regular Post<i
-                                                            class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-                                                <li><a href="contact.html">Contact<i
-                                                            class="fas fa-chevron-down"></i></a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                        <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-                                    </ul>
-                                </div>
-
-                                <!-- Menu Trigger -->
-
-                                <div class="menu_trigger_container ml-auto">
-                                    <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
-                                        <div class="menu_burger">
-                                            <div class="menu_trigger_text">menu</div>
-                                            <div class="cat_burger menu_burger_inner">
-                                                <span></span><span></span><span></span></div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <ul class="cat_menu">
+                                    <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a>
+                                    </li>
+                                    <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
+                                    <li class="hassubs">
+                                        <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
+                                        <ul>
+                                            <li class="hassubs">
+                                                <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
+                                                <ul>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a>
+                                    </li>
+                                    <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
+                                    <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a>
+                                    </li>
+                                    <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                                </ul>
                             </div>
+
+                            <!-- Main Nav Menu -->
+
+                            <div class="main_nav_menu ml-auto">
+                                <ul class="standard_dropdown main_nav_dropdown">
+                                    <li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
+                                    <li class="hassubs">
+                                        <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
+                                        <ul>
+                                            <li>
+                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                <ul>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="hassubs">
+                                        <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
+                                        <ul>
+                                            <li>
+                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                <ul>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="hassubs">
+                                        <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
+                                        <ul>
+                                            <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a>
+                                            </li>
+                                            <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="blog_single.html">Blog Post<i
+                                                        class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="regular.html">Regular Post<i
+                                                        class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Menu Trigger -->
+
+                            <div class="menu_trigger_container ml-auto">
+                                <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
+                                    <div class="menu_burger">
+                                        <div class="menu_trigger_text">menu</div>
+                                        <div class="cat_burger menu_burger_inner">
+                                            <span></span><span></span><span></span></div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-            </nav>
+            </div>
+        </nav>
 
-            <!-- Menu -->
+        <!-- Menu -->
 
-            <div class="page_menu">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
+        <div class="page_menu">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
 
-                            <div class="page_menu_content">
+                        <div class="page_menu_content">
 
-                                <div class="page_menu_search">
-                                    <form action="#">
-                                        <input type="search" required="required" class="page_menu_search_input"
-                                            placeholder="Search for products...">
-                                    </form>
+                            <div class="page_menu_search">
+                                <form action="#">
+                                    <input type="search" required="required" class="page_menu_search_input"
+                                        placeholder="Search for products...">
+                                </form>
+                            </div>
+                            <ul class="page_menu_nav">
+                                <li class="page_menu_item has-children">
+                                    <a href="#">Language<i class="fa fa-angle-down"></i></a>
+                                    <ul class="page_menu_selection">
+                                        <li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Italian<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
+                                    </ul>
+                                </li>
+                                <li class="page_menu_item has-children">
+                                    <a href="#">Currency<i class="fa fa-angle-down"></i></a>
+                                    <ul class="page_menu_selection">
+                                        <li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">EUR Euro<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
+                                    </ul>
+                                </li>
+                                <li class="page_menu_item">
+                                    <a href="index.html">Home<i class="fa fa-angle-down"></i></a>
+                                </li>
+                                <li class="page_menu_item has-children">
+                                    <a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
+                                    <ul class="page_menu_selection">
+                                        <li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
+                                        <li class="page_menu_item has-children">
+                                            <a href="#">Menu Item<i class="fa fa-angle-down"></i></a>
+                                            <ul class="page_menu_selection">
+                                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                                <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                    </ul>
+                                </li>
+                                <li class="page_menu_item has-children">
+                                    <a href="#">Featured Brands<i class="fa fa-angle-down"></i></a>
+                                    <ul class="page_menu_selection">
+                                        <li><a href="#">Featured Brands<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                    </ul>
+                                </li>
+                                <li class="page_menu_item has-children">
+                                    <a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
+                                    <ul class="page_menu_selection">
+                                        <li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                        <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
+                                    </ul>
+                                </li>
+                                <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
+                                </li>
+                                <li class="page_menu_item"><a href="contact.html">contact<i
+                                            class="fa fa-angle-down"></i></a></li>
+                            </ul>
+
+                            <div class="menu_contact">
+                                <div class="menu_contact_item">
+                                    <div class="menu_contact_icon"><img
+                                            th:src="@{/static/template/ontech/images/phone_white.png}" alt=""></div>
+                                    +38 068 005 3570
                                 </div>
-                                <ul class="page_menu_nav">
-                                    <li class="page_menu_item has-children">
-                                        <a href="#">Language<i class="fa fa-angle-down"></i></a>
-                                        <ul class="page_menu_selection">
-                                            <li><a href="#">English<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Italian<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Spanish<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Japanese<i class="fa fa-angle-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="page_menu_item has-children">
-                                        <a href="#">Currency<i class="fa fa-angle-down"></i></a>
-                                        <ul class="page_menu_selection">
-                                            <li><a href="#">US Dollar<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">EUR Euro<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">GBP British Pound<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">JPY Japanese Yen<i class="fa fa-angle-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="page_menu_item">
-                                        <a href="index.html">Home<i class="fa fa-angle-down"></i></a>
-                                    </li>
-                                    <li class="page_menu_item has-children">
-                                        <a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
-                                        <ul class="page_menu_selection">
-                                            <li><a href="#">Super Deals<i class="fa fa-angle-down"></i></a></li>
-                                            <li class="page_menu_item has-children">
-                                                <a href="#">Menu Item<i class="fa fa-angle-down"></i></a>
-                                                <ul class="page_menu_selection">
-                                                    <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="page_menu_item has-children">
-                                        <a href="#">Featured Brands<i class="fa fa-angle-down"></i></a>
-                                        <ul class="page_menu_selection">
-                                            <li><a href="#">Featured Brands<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="page_menu_item has-children">
-                                        <a href="#">Trending Styles<i class="fa fa-angle-down"></i></a>
-                                        <ul class="page_menu_selection">
-                                            <li><a href="#">Trending Styles<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="page_menu_item"><a href="blog.html">blog<i
-                                                class="fa fa-angle-down"></i></a></li>
-                                    <li class="page_menu_item"><a href="contact.html">contact<i
-                                                class="fa fa-angle-down"></i></a></li>
-                                </ul>
-
-                                <div class="menu_contact">
-                                    <div class="menu_contact_item">
-                                        <div class="menu_contact_icon"><img
-                                                th:src="@{/static/template/ontech/images/phone_white.png}" alt=""></div>
-                                        +38 068 005 3570
-                                    </div>
-                                    <div class="menu_contact_item">
-                                        <div class="menu_contact_icon"><img
-                                                th:src="@{/static/template/ontech/images/mail_white.png}" alt=""></div>
-                                        <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
-                                    </div>
+                                <div class="menu_contact_item">
+                                    <div class="menu_contact_icon"><img
+                                            th:src="@{/static/template/ontech/images/mail_white.png}" alt=""></div>
+                                    <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
         </header>
 
         <!-- Cart -->
 
-        <div class="cart_section">
+        <div th:unless="list_cart_item != null and !list_cart_item.empty" class="cart_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1 class="text-center">Nothing in cart</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="list_cart_item != null and !list_cart_item.empty" class="cart_section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 offset-lg-1">
@@ -271,14 +280,16 @@
                                 <ul class="cart_list">
 
                                     <li class="cart_item clearfix" th:each="cart_item : ${list_cart_item}">
-                                        <div class="cart_item_image"><img
-                                                th:src="@{__${cart_item.img}__}" th:onerror="this.onerror=null;this.src=[[@{/static/img/default.png}]];" alt="">
+                                        <div class="cart_item_image"><img th:src="@{__${cart_item.img}__}"
+                                                th:onerror="this.onerror=null;this.src=[[@{/static/img/default.png}]];"
+                                                alt="">
                                         </div>
                                         <div
                                             class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                             <div class="cart_item_name cart_info_col">
                                                 <div class="cart_item_title">Name</div>
-                                                <div class="cart_item_text" th:text="${cart_item.name}">Product Name</div>
+                                                <div class="cart_item_text" th:text="${cart_item.name}">Product Name
+                                                </div>
                                             </div>
                                             <!-- <div class="cart_item_color cart_info_col">
                                                 <div class="cart_item_title">Color</div>
@@ -291,11 +302,13 @@
                                             </div>
                                             <div class="cart_item_price cart_info_col">
                                                 <div class="cart_item_title">Price</div>
-                                                <div class="cart_item_text" th:text="${cart_item.price}">$999999999</div>
+                                                <div class="cart_item_text" th:text="${cart_item.price}">$999999999
+                                                </div>
                                             </div>
                                             <div class="cart_item_total cart_info_col">
                                                 <div class="cart_item_title">Total</div>
-                                                <div class="cart_item_text" th:text="${cart_item.total}">$999999999</div>
+                                                <div class="cart_item_text" th:text="${cart_item.total}">$999999999
+                                                </div>
                                             </div>
                                         </div>
                                     </li>
@@ -317,7 +330,8 @@
                                 <form action="#" class="newsletter_form" style="float: right;">
                                     <input type="email" class="newsletter_input" required="required"
                                         placeholder="Enter your address">
-                                    <button class="button cart_button_checkout" style="margin-top: 30px">Payment</button>
+                                    <button class="button cart_button_checkout"
+                                        style="margin-top: 30px">Payment</button>
                                 </form>
                             </div>
                         </div>
@@ -482,7 +496,7 @@
     <script th:src="@{/static/template/ontech/plugins/greensock/ScrollToPlugin.min.js}"></script>
     <script th:src="@{/static/template/ontech/plugins/easing/easing.js}"></script>
     <script th:src="@{/static/template/ontech/js/cart_custom.js}"></script>
-    
+
 </body>
 
 </html>
