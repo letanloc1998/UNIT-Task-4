@@ -44,7 +44,7 @@
 														<div class="product_price" th:text="${product.price}"></div>
 														<div class="product_name">
 															<div>
-																<a href="" th:text="${product.name}"></a>
+																<a th:href="@{|product/__${product.id}__|}" th:text="${product.name}"></a>
 															</div>
 														</div>
 														<div class="product_extras">
