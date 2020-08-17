@@ -10,8 +10,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,23 +47,58 @@ public class AdminCategoryController {
 		return new ModelAndView("admin/category/category-table");
 	}
 	@GetMapping("/admin/category/add")
-	public ModelAndView accountAdd(Model model,
+	public ModelAndView categoryAdd(Model model,
 			HttpServletRequest request) {
 
 		return new ModelAndView("admin/category/category-add");
 	}
 	
+	@GetMapping("/admin/category/edit/{category_id}")
+	public ModelAndView categoryEdit(@PathVariable("category_id") long category_id, Model model,
+			HttpServletRequest request) {
+		Category category = categoryService.findCategoryById(category_id);
+		model.addAttribute("category",category);
+		return new ModelAndView("admin/category/category-edit");
+	}
+	
 	@PostMapping("/admin/category/add")
 	@ResponseBody
-	public ResponseEntity<String> createAccount(@RequestBody Category category, Model model) {
+	public ResponseEntity<String> createCategory(@RequestBody Category category, Model model) {
 		if (categoryService.findCategoryByName(category.getName()) != null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Category already exists\" }");}
 		Long category_id = categoryService.createCategory(category);
 		if (category_id != null) {
 			return ResponseEntity.ok("{ \"id\" : " + category_id + ", \"msg\" : \"Create category successfully\" }");
 		}
+		if (category.getName() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
+		}
+
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body("{ \"msg\" : \"You can't create an category right now. Try again later\" }");
 		
 	}
+	@PutMapping("/admin/category/edit")
+	@ResponseBody
+	public ResponseEntity<String> editCategory(@RequestBody Category category, Model model) {
+		
+		
+		if (categoryService.findCategoryByName(category.getName()) != null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Category already exists\" }");}
+		
+		if (category.getName() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
+		}
+		categoryService.updateCategoryById(category);
+
+		return ResponseEntity.ok(null);
+	}
+	
+	@DeleteMapping("/admin/category/delete/{category_id}")
+	public ResponseEntity<Boolean> AdminDisableShop(Model model, @PathVariable("category_id") Long category_id,
+			HttpServletRequest request) {
+		categoryService.deleteCategoryById(category_id,(long) 1);
+		return  ResponseEntity.ok(null);
+	}
+	
 }

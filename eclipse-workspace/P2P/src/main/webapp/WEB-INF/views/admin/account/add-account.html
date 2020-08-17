@@ -55,7 +55,11 @@
 				},
 				error: function (request, status, error) {
 					  try {
-                          alert(request.responseJSON.msg);
+						  Swal.fire({
+							  icon: 'error',
+							  title: 'Oops...',
+							  text: request.responseJSON.msg,
+							})
                       } catch (error) { }
                   }
 				

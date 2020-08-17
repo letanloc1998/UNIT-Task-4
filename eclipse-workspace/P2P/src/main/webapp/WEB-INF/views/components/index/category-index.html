@@ -40,78 +40,24 @@
 					</div>
 
 					<!-- Popular Categories Slider -->
-
+					
 					<div class="col-lg-10">
 						<div class="popular_categories_slider_container">
 							<div class="owl-carousel owl-theme popular_categories_slider">
-
+								<th:block th:each="category : ${categories}">
 								<!-- Popular Categories Item -->
 								<div class="owl-item">
 									<div
 										class="popular_category d-flex flex-column align-items-center justify-content-center">
 										<div class="popular_category_image">
-											<img th:src="@{static/template/ontech/images/popular_1.png}"
+											<img th:src="@{static/template/ontech/images/popular_5.png}"
 												alt="">
 										</div>
-										<div class="popular_category_text">1</div>
+										<div class="popular_category_text" th:text="${category.name}"></div>
 									</div>
 								</div>
 
-								<!-- Popular Categories Item -->
-								<div class="owl-item">
-									<div
-										class="popular_category d-flex flex-column align-items-center justify-content-center">
-										<div class="popular_category_image">
-											<img th:src="@{static/template/ontech/images/popular_2.png}" alt="">
-										</div>
-										<div class="popular_category_text">2</div>
-									</div>
-								</div>
-
-								<!-- Popular Categories Item -->
-								<div class="owl-item">
-									<div
-										class="popular_category d-flex flex-column align-items-center justify-content-center">
-										<div class="popular_category_image">
-											<img th:src="@{static/template/ontech/images/popular_3.png}" alt="">
-										</div>
-										<div class="popular_category_text">3</div>
-									</div>
-								</div>
-
-								<!-- Popular Categories Item -->
-								<div class="owl-item">
-									<div
-										class="popular_category d-flex flex-column align-items-center justify-content-center">
-										<div class="popular_category_image">
-											<img th:src="@{static/template/ontech/images/popular_4.png}" alt="">
-										</div>
-										<div class="popular_category_text">4</div>
-									</div>
-								</div>
-
-								<!-- Popular Categories Item -->
-								<div class="owl-item">
-									<div
-										class="popular_category d-flex flex-column align-items-center justify-content-center">
-										<div class="popular_category_image">
-											<img th:src="@{static/template/ontech/images/popular_5.png}" alt="">
-										</div>
-										<div class="popular_category_text">5</div>
-									</div>
-								</div>
-
-								<!-- Popular Categories Item -->
-								<div class="owl-item">
-									<div
-										class="popular_category d-flex flex-column align-items-center justify-content-center">
-										<div class="popular_category_image">
-											<img th:src="@{static/template/ontech/images/popular_5.png}" alt="">
-										</div>
-										<div class="popular_category_text">6</div>
-									</div>
-								</div>
-
+								
 							</div>
 						</div>
 					</div>

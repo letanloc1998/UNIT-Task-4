@@ -46,14 +46,26 @@
 				},
 				success: function (data, status, xhr) {
 					 try {
-/*                          alert(data.msg);
- */                         window.location.href = `/admin/category/list`;
+                          Swal.fire({
+               		  position: 'center',
+               		  icon: 'success',
+               		  title: 'Insert Success',
+               		  showConfirmButton: false,
+               		  timer: 800
+                   		}).then(()=>{
+                               window.location.href = '/admin/category/list';
+
+                   		})             
                      } catch (error) { }
 
 				},
 				error: function (request, status, error) {
 					  try {
-                          alert(request.responseJSON.msg);
+						  Swal.fire({
+							  icon: 'error',
+							  title: 'Oops...',
+							  text: request.responseJSON.msg,
+							})
                       } catch (error) { }
                   }
 				
