@@ -69,7 +69,7 @@
                                                             <span
                                                                 style="font-size: 16px; font-weight: 300; line-height: 56px; color: #000; -webkit-transition: all 200ms ease; -moz-transition: all 200ms ease; -ms-transition: all 200ms ease; -o-transition: all 200ms ease; transition: all 200ms ease;">
                                                                 Hi, <span sec:authentication="name"></span>
-                                                        </span>
+                                                            </span>
                                                         </div>
                                                         <div class="user_icon">
                                                             <img th:src="@{static/index-template/images/user.svg}"
@@ -77,20 +77,20 @@
                                                         </div> <i class="fas fa-chevron-down"></i>
                                                     </a>
                                                     <ul>
-                                                        <li sec:authorize="hasRole('ROLE_ADMIN')">
-                                                            <a href="/admin/home">Admin Page</a>
+                                                        <li sec:authorize="hasRole('ROLE_ADMIN')" style="height: 35px;">
+                                                            <a href="/admin/home" style="line-height: 35px;">Admin Page</a>
                                                         </li>
-                                                        <li sec:authorize="isAuthenticated()">
-                                                            <a href="/profile/home">My Profile</a>
+                                                        <li sec:authorize="isAuthenticated()" style="height: 35px;">
+                                                            <a href="/profile/home" style="line-height: 35px;">My Profile</a>
                                                         </li>
-                                                        <li sec:authorize="hasRole('ROLE_VENDOR')">
-                                                            <a href="/shop/home">My Shop</a>
+                                                        <li sec:authorize="hasRole('ROLE_VENDOR')" style="height: 35px;">
+                                                            <a href="/shop/home" style="line-height: 35px;">My Shop</a>
                                                         </li>
 
-                                                        <li sec:authorize="isAuthenticated()"><a href="/logout">Log
-                                                                out</a></li>
-                                                        <li sec:authorize="!isAuthenticated()">
-                                                            <a href="/login">Login</a>
+                                                        <li sec:authorize="isAuthenticated()" style="height: 35px;">
+                                                            <a href="/logout" style="line-height: 35px;">Log out</a></li>
+                                                        <li sec:authorize="!isAuthenticated()" style="height: 35px;">
+                                                            <a href="/login" style="line-height: 35px;">Login</a>
                                                         </li>
 
                                                     </ul>
