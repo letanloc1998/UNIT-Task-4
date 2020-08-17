@@ -268,9 +268,9 @@
                         <div class="cart_container">
                             <div class="cart_title">Shopping Cart</div>
                             <div class="cart_items">
-                                <ul class="cart_list" th:each="cart_item : ${list_cart_item}">
+                                <ul class="cart_list">
 
-                                    <li class="cart_item clearfix">
+                                    <li class="cart_item clearfix" th:each="cart_item : ${list_cart_item}">
                                         <div class="cart_item_image"><img
                                                 th:src="@{__${cart_item.img}__}" th:onerror="this.onerror=null;this.src='/static/product/default.png';" alt="">
                                         </div>
