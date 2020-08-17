@@ -138,7 +138,7 @@
                         <div class="col-lg-2 col-sm-3 col-3 order-1">
                             <div class="logo_container">
                                 <div class="logo">
-                                    <a href="/index.html">P2PO</a>
+                                    <a th:href="@{/}">P2PO</a>
                                 </div>
                             </div>
                         </div>
@@ -177,7 +177,7 @@
                         <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
 
-                                <div class="cart">
+                                <a class="cart" th:href="@{/cart}">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
                                             <img th:src="@{static/index-template/images/cart.png}" alt="">
@@ -187,12 +187,12 @@
                                         </div>
                                         <div class="cart_content">
                                             <div class="cart_text">
-                                                <a th:href="@{/cart}">Cart</a>
+                                                <span>Cart</span>
                                             </div>
                                             <div class="cart_price">$85</div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>

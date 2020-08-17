@@ -227,15 +227,15 @@ insert into p2p_account(username, password) values ('user-7', '');
 insert into p2p_account(username, password) values ('user-8', '');
 insert into p2p_account(username, password) values ('user-9', '');
 
-insert into p2p_account_role (account, role) values (6, 1);
-insert into p2p_account_role (account, role) values (7, 1);
-insert into p2p_account_role (account, role) values (8, 1);
-insert into p2p_account_role (account, role) values (9, 1);
-insert into p2p_account_role (account, role) values (10, 1);
-insert into p2p_account_role (account, role) values (11, 1);
-insert into p2p_account_role (account, role) values (12, 1);
-insert into p2p_account_role (account, role) values (13, 1);
-insert into p2p_account_role (account, role) values (14, 1);
+insert into p2p_account_role (account, role) values (6, 3);
+insert into p2p_account_role (account, role) values (7, 3);
+insert into p2p_account_role (account, role) values (8, 3);
+insert into p2p_account_role (account, role) values (9, 3);
+insert into p2p_account_role (account, role) values (10, 3);
+insert into p2p_account_role (account, role) values (11, 3);
+insert into p2p_account_role (account, role) values (12, 3);
+insert into p2p_account_role (account, role) values (13, 3);
+insert into p2p_account_role (account, role) values (14, 3);
 
 -- init product in cart
 insert into p2p_cart (account, product, quantity) values (3, 1, 1); -- 1000 * 1
