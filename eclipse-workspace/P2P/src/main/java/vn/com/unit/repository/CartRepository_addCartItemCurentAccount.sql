@@ -1,0 +1,1 @@
+insert into p2p_cart (account, product, quantity) values (/*account_id*/, /*product_id*/, /*quantity*/);

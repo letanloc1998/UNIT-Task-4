@@ -5,6 +5,9 @@
 
 <head th:fragment="index-head">
 
+    <meta th:name="_csrf" th:content="${_csrf.token}" />
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
+
     <!-- Index -->
     
     <link rel="stylesheet" type="text/css" th:href="@{/static/template/ontech/plugins/OwlCarousel2-2.2.1/owl.carousel.css}">
