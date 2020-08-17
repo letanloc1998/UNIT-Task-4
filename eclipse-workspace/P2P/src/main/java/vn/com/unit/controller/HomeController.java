@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Category;
 import vn.com.unit.service.CategoryService;
+import vn.com.unit.utils.CommonUtils;
 
 @Controller
 public class HomeController {
@@ -23,10 +24,12 @@ public class HomeController {
 	@GetMapping("*")
     public ModelAndView home(Model model) {
 		
+		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
+		
 		model.addAttribute("title", "Home");
 		
-		List<Category> categories = categoryService.findAllCategory();
-		model.addAttribute("categories", categories);
+//		List<Category> categories = categoryService.findAllCategory();
+//		model.addAttribute("categories", categories);
 		
         return new ModelAndView("index");
     }
