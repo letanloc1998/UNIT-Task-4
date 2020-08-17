@@ -58,5 +58,16 @@ public class BrandServiceImpl implements BrandService {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public int countAllBrand() {
+		// TODO Auto-generated method stub
+		try {
+			return brandRepository.countAllBrand();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return  0;
 	};
 }

@@ -13,5 +13,5 @@ public interface BrandService {
 
 	public List<Brand> findAllBrand();
 	public List<Brand> findBrandPageable(int limit,int offset);
-
+	public int countAllBrand();
 }

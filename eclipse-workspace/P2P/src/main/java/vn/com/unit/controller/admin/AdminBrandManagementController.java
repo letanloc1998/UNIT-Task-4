@@ -28,7 +28,7 @@ public class AdminBrandManagementController {
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
 
-		int totalitems = 100;
+		int totalitems = brandService.countAllBrand();
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
