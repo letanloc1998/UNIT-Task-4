@@ -272,13 +272,13 @@
 
                                     <li class="cart_item clearfix">
                                         <div class="cart_item_image"><img
-                                                th:src="@{/static/template/ontech/images/shopping_cart.jpg}" alt="">
+                                                th:src="@{__${cart_item.img}__}" alt="">
                                         </div>
                                         <div
                                             class="cart_item_info d-flex flex-md-row flex-column justify-content-between">
                                             <div class="cart_item_name cart_info_col">
                                                 <div class="cart_item_title">Name</div>
-                                                <div class="cart_item_text" th:text="${cart_item.product}">MacBook Air 13</div>
+                                                <div class="cart_item_text" th:text="${cart_item.name}">Product Name</div>
                                             </div>
                                             <div class="cart_item_color cart_info_col">
                                                 <div class="cart_item_title">Color</div>
@@ -287,15 +287,15 @@
                                             </div>
                                             <div class="cart_item_quantity cart_info_col">
                                                 <div class="cart_item_title">Quantity</div>
-                                                <div class="cart_item_text" th:text="${cart_item.quantity}">1</div>
+                                                <div class="cart_item_text" th:text="${cart_item.quantity}">0</div>
                                             </div>
                                             <div class="cart_item_price cart_info_col">
                                                 <div class="cart_item_title">Price</div>
-                                                <div class="cart_item_text">$2000</div>
+                                                <div class="cart_item_text" th:text="${cart_item.price}">$999999999</div>
                                             </div>
                                             <div class="cart_item_total cart_info_col">
                                                 <div class="cart_item_title">Total</div>
-                                                <div class="cart_item_text">$2000</div>
+                                                <div class="cart_item_text" th:text="${cart_item.quantity * cart_item.price}">$2000</div>
                                             </div>
                                         </div>
                                     </li>
