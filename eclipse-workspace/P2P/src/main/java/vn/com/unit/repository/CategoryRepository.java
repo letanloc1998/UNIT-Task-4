@@ -20,4 +20,6 @@ public interface CategoryRepository extends MirageRepository<Category, Long> {
 	public int countAllCategory();
 	
 	public Long createCategory(@Param("name") String name);
+	
+	public Category findCategoryByName(@Param("name") String name);
 }
