@@ -28,7 +28,7 @@ public class ProductController {
 		
 
 		model.addAttribute("title", product.getName());
-        return new ModelAndView("product_detail");
+        return new ModelAndView("product-detail");
     }
 	
 }

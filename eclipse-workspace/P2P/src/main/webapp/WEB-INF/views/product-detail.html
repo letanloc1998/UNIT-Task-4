@@ -5,7 +5,8 @@
 
 <head>
     <th:block th:include="layout/head :: head"></th:block>
-    <th:block th:include="index/layout/index-head :: index-head"></th:block> 
+    <th:block th:include="index/layout/index-head :: index-head"></th:block>
+    <link rel="stylesheet" th:href="@{/static/index-template/styles/product_style.css}"> 
 </head>
 
 <body>
@@ -14,10 +15,8 @@
 	<div class="super_container">
 	
 		 <div th:replace="index/layout/header_index :: header_index"></div>
-		 <h1 th:text="${product.name}"></h1>
-<!-- 		 <div th:replace="index/layout/index-banner :: index-banner"></div>
 		 
-		 <div th:replace="index/category/category :: category"></div>    -->
+		 <div th:replace="components/product/product-detail :: product-detail"></div>   
 		 
 		<div th:replace="index/layout/footer_index_template :: footer_index_template"></div>
 
@@ -25,6 +24,7 @@
 	  
     <th:block th:replace="layout/footer :: footer"></th:block>
     <th:block th:replace="index/layout/index-footer :: index-footer"></th:block>
+    <script th:src="@{/static/index-template/js/product_custom.js}"></script>
 
 </body>
 </html>

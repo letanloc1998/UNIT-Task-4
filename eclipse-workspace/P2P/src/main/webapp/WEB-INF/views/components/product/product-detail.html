@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head>
+
+</head>
+
+<body>
+	<th:block th:fragment="product-detail">
+		<div class="single_product">
+			<div class="container">
+				<div class="row">
+
+					<!-- Selected Image -->
+					<div class="col-lg-5 order-lg-2 order-1">
+						<div class="image_selected">
+							<img style="height:400px; width: 400px" th:src="${product.img}" alt="">
+						</div>
+					</div>
+
+					<!-- Description -->
+					<div class="col-lg-5 order-3">
+						<div class="product_description">
+							<div class="product_category" th:text="${product.category_name.name}"></div>
+							<div class="product_category" th:text="${product.brand_name.name}"></div>
+							<div class="product_name" th:text="${product.name}"></div>
+							<div class="product_text">
+								<p th:text="${product.detail}"></p>
+							</div>
+							<div class="order_info d-flex flex-row">
+								<form action="#">
+									<div class="clearfix" style="z-index: 1000;">
+
+										<!-- Product Quantity -->
+										<div class="product_quantity clearfix">
+											<span>Quantity: </span> <input id="quantity_input"
+												type="text" pattern="[0-9]*" value="1">
+											<div class="quantity_buttons">
+												<div id="quantity_inc_button"
+													class="quantity_inc quantity_control">
+													<i class="fas fa-chevron-up"></i>
+												</div>
+												<div id="quantity_dec_button"
+													class="quantity_dec quantity_control">
+													<i class="fas fa-chevron-down"></i>
+												</div>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="product_price" th:text="${product.price}"></div>
+									<div class="button_container">
+										<button type="button" class="button cart_button">Add
+											to Cart</button>
+										<div class="product_fav">
+											<i class="fas fa-heart"></i>
+										</div>
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<script th:inline="javascript">
+		const product = [[${product}]];
+		const maxVal = [[${product.quantity}]];
+		console.log(maxVal)
+		function initQuantity()
+		{
+			// Handle product quantity input
+			if($('.product_quantity').length)
+			{
+				var input = $('#quantity_input');
+				var incButton = $('#quantity_inc_button');
+				var decButton = $('#quantity_dec_button');
+
+				var originalVal;
+				var endVal;
+
+				incButton.on('click', function()
+				{
+					originalVal = input.val();
+					endVal = parseFloat(originalVal) + 1;
+					if(endVal > maxVal){
+						endVal = parseFloat(endVal) - 1;
+						console.log(endVal)
+						alert("k du so luong")
+					}
+					
+					input.val(endVal);
+				});
+
+				decButton.on('click', function()
+				{
+					originalVal = input.val();
+					if(originalVal > 0)
+					{
+						endVal = parseFloat(originalVal) - 1;
+						if(endVal == 0){
+							endVal = parseFloat(endVal) + 1;
+							alert("So luong > 0")
+						}
+						console.log(endVal)
+						input.val(endVal);
+					}
+				});
+			}
+		}
+		
+		</script>
+	</th:block>
+</body>
+</html>
