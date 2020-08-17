@@ -71,4 +71,15 @@ public class CategoryServiceImpl implements CategoryService {
 		return 0;
 	}
 
+	@Override
+	public Long createCategory(Category category) {
+		// TODO Auto-generated method stub
+		try {
+			return categoryRepository.createCategory(category.getName());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
 }

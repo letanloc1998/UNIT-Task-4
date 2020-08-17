@@ -451,11 +451,11 @@ section
 {
 	display: inline-block;
 }
-.top_bar_user div:nth-child(2)
+/* .top_bar_user div:nth-child(2)
 {
 	margin-right: 21px;
-}
-.top_bar_user div:nth-child(2)::after
+} */
+/* .top_bar_user div:nth-child(2)::after
 {
 	display: block;
 	position: absolute;
@@ -470,6 +470,10 @@ section
 	height: 17px;
 	background: rgba(0,0,0,0.1);
 	content: '';
+} */
+.horizontal-divider{
+	margin-left: 7px;
+	margin-right: 7px;
 }
 .top_bar_user a
 {

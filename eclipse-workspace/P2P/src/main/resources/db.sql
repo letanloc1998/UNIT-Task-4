@@ -17,7 +17,7 @@ drop table p2p_account;
 create table p2p_account (
     id bigint primary key identity(1,1),
     name nvarchar(50),
-    username nvarchar(50) not null,
+    username nvarchar(50) not null unique,
     password nvarchar(255) not null,
     email nvarchar(50),
     phone nvarchar(20),
@@ -27,7 +27,7 @@ create table p2p_account (
 
 create table p2p_role (
     id smallint primary key identity(1,1),
-    name nvarchar(50) not null
+    name nvarchar(50) not null unique
 )
 
 create table p2p_account_role (
@@ -42,7 +42,7 @@ create table p2p_account_role (
 create table p2p_shop (
     id bigint primary key,
     constraint fk_shop_id foreign key (id) references p2p_account(id),
-    name nvarchar(50) not null,
+    name nvarchar(50) not null unique,
     address nvarchar(255),
     email nvarchar(50),
     phone nvarchar(20),
@@ -59,17 +59,17 @@ create table p2p_shop (
 
 create table p2p_category (
     id int primary key identity(1,1),
-    name nvarchar(50) not null
+    name nvarchar(50) not null unique
 )
 
 create table p2p_tag (
     id bigint primary key identity(1,1),
-    name nvarchar(10) not null,
+    name nvarchar(10) not null unique,
 )
 
 create table p2p_brand (
     id int primary key identity(1,1),
-    name nvarchar(50) not null,
+    name nvarchar(50) not null unique,
 )
 
 create table p2p_product (
