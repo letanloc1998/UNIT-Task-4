@@ -10,12 +10,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.CartItem;
 import vn.com.unit.service.CartService;
+import vn.com.unit.service.CategoryService;
+import vn.com.unit.utils.CommonUtils;
 
 @Controller
 public class CartController {
 
 	@Autowired
 	CartService cartService;
+	
+	@Autowired
+	CategoryService categoryService;
 
 	@GetMapping("/cart")
 	public ModelAndView cart(Model model) {
@@ -29,6 +34,8 @@ public class CartController {
 //			) cart
 //		left join p2p_product product
 //		on product.id = cart.product
+		
+		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 
 		List<CartItem> list_cart_item = cartService.findAllCartItemByCurrentAccount();
 
