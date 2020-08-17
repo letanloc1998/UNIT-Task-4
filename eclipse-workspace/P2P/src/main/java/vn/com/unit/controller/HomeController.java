@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Category;
+import vn.com.unit.entity.Product;
 import vn.com.unit.service.CategoryService;
+import vn.com.unit.service.ProductService;
 import vn.com.unit.utils.CommonUtils;
 
 @Controller
@@ -20,6 +22,9 @@ public class HomeController {
 	
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	
+	ProductService productService;
 
 	@GetMapping("*")
     public ModelAndView home(Model model) {
@@ -30,6 +35,9 @@ public class HomeController {
 		
 //		List<Category> categories = categoryService.findAllCategory();
 //		model.addAttribute("categories", categories);
+		
+		List<Product> product = productService.findAllProduct();
+		model.addAttribute("product", product);
 		
         return new ModelAndView("index");
     }

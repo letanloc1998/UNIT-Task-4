@@ -18,5 +18,6 @@ public interface ProductService {
 	public boolean setDisableProductByProductId(Long product_id, int status);
 	
 	public void saveProduct(Long product_id, String name, int price, String detail, int category, int brand, int quantity);
-
+	
+	public List<Product> findAllProduct();
 }

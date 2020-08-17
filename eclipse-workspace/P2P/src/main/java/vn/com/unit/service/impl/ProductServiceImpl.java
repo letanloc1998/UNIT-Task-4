@@ -108,6 +108,12 @@ public class ProductServiceImpl implements ProductService {
 		}catch (Exception e) {		
 		}
 	}
+	
+	@Override
+	public List<Product> findAllProduct(){
+		
+		return productRepository.findAllProduct();
+	}
 
 
 }
