@@ -18,4 +18,6 @@ public interface CategoryRepository extends MirageRepository<Category, Long> {
 	public List<Category> findCategoryPageable(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 	
 	public int countAllCategory();
+	
+	public Long createCategory(@Param("name") String name);
 }
