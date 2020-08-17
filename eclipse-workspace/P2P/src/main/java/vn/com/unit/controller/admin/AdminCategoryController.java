@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -42,12 +43,24 @@ public class AdminCategoryController {
 		model.addAttribute("pageable", pageable);
 		return new ModelAndView("admin/category/category-table");
 	}
+	@GetMapping("/admin/category/add")
+	public ModelAndView accountAdd(Model model,
+			HttpServletRequest request) {
 
+		return new ModelAndView("admin/category/category-add");
+	}
+	
 	@PostMapping("/admin/category/add")
 	@ResponseBody
-	public ResponseEntity<Long> createAccount(@RequestBody Category category, Model model) {
+	public ResponseEntity<String> createAccount(@RequestBody Category category, Model model) {
+		if (categoryService.findCategoryByName(category.getName()) != null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Category already exists\" }");}
 		Long category_id = categoryService.createCategory(category);
-		return ResponseEntity.ok(category_id);
+		if (category_id != null) {
+			return ResponseEntity.ok("{ \"id\" : " + category_id + ", \"msg\" : \"Create category successfully\" }");
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+				.body("{ \"msg\" : \"You can't create an category right now. Try again later\" }");
 		
 	}
 }

@@ -82,4 +82,15 @@ public class CategoryServiceImpl implements CategoryService {
 		return null;
 	}
 
+	@Override
+	public Category findCategoryByName(String Name) {
+		// TODO Auto-generated method stub
+		try {
+			return categoryRepository.findCategoryByName(Name);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
 }

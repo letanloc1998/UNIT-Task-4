@@ -62,7 +62,8 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public Long findRoleIdByName(String role_name){
 		try {
-			return roleRepository.findRoleIdByName(role_name);
+			Long i = roleRepository.findRoleIdByName(role_name); 
+			return i;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

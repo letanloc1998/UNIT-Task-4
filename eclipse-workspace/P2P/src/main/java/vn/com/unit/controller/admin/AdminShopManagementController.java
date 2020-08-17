@@ -2,6 +2,7 @@ package vn.com.unit.controller.admin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,7 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Shop;
 import vn.com.unit.pageable.PageRequest;
+import vn.com.unit.service.AccountService;
+import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
+import vn.com.unit.entity.Role;
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -28,7 +32,11 @@ public class AdminShopManagementController {
 
 	@Autowired
 	private ShopService shopService;
-
+	@Autowired
+	private AccountService accountService;
+	
+	@Autowired
+	private RoleService roleService;
 	@GetMapping("/admin/shop/list")
 	public ModelAndView ShopList(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -77,13 +85,22 @@ public class AdminShopManagementController {
 		model.addAttribute("pageable", pageable);
 		return new ModelAndView("admin/shop/shop-deactive-table");
 	}
-
 	@PutMapping("/admin/shop/accept/{shop_id}")
 	public ResponseEntity<Boolean> ShopAccept(Model model, @PathVariable("shop_id") Long shop_id,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
 		if (shopService.setDisableShop(shop_id, (long) 1)) {
+			List<Role> roles = roleService.findRoleByAccountId(shop_id);
+			int index = IntStream.range(0,roles.size()  )
+					.filter(i -> "ROLE_VENDOR".equals(roles.get(i).getName()))
+					.findFirst()
+					.orElse(-1);
+			
+			if(index < 0) {
+				
+				accountService.setRoleByAccountId(shop_id, roleService.findRoleIdByName("ROLE_VENDOR"));
+			}
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
