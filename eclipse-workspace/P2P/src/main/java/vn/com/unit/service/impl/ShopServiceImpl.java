@@ -50,6 +50,17 @@ public class ShopServiceImpl implements ShopService {
 		}	
 	}
 	
+	@Override
+	public boolean setActivateShop(Long shop_id, int status) {
+		try {
+			shopRepository.setActivateShop(shop_id,status);
+			return true;
+		} catch(Exception e) {
+			
+		}
+		return false;
+	}
+	
 	//set disable shop
 	
 	@Override

@@ -17,7 +17,7 @@ public class Shop {
 	
 	private String detail;
 	
-	private boolean disable;
+	private int status;
 	
 	private String ownerName;
 	
@@ -75,12 +75,14 @@ public class Shop {
 		this.detail = detail;
 	}
 
-	public boolean isDisable() {
-		return disable;
+
+
+	public int getStatus() {
+		return status;
 	}
 
-	public void setDisable(boolean disable) {
-		this.disable = disable;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 	public Date getCreateAt() {

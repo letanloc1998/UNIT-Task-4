@@ -10,6 +10,8 @@ public interface ShopService {
 	
 	public void saveShop(Long shop_id, String name, String email, String phone, String address, String detail);
 	
+	public boolean setActivateShop(Long shop_id, int status);
+	
 	public void createShop(Long account_id,String name, String email, String phone, String address, String detail, int status);
 	
 	public boolean setDisableShop(Long account_id, Long status);
