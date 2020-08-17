@@ -66,8 +66,14 @@ public class ProfileController {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@GetMapping("/profile/createshop")
 	public ModelAndView createShop(Model model) {
+		Account account = accountService.findCurrentAccount();
+		Shop shop = shopService.findShopByAccountId(account.getId());
+		if(shop == null) {
+			model.addAttribute("title", "Account Management");
+			return new ModelAndView("profile/shop/create-shop");
+		}
 		model.addAttribute("title", "Account Management");
-		return new ModelAndView("profile/shop/create-shop");
+		return new ModelAndView("profile/shop/wait-confirm-shop");
 	}
 	
 	
