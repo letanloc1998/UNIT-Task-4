@@ -189,8 +189,8 @@ insert into p2p_account(username, password) values ('vendor-2', '');
 insert into p2p_account_role (account, role) values (4, 2);
 insert into p2p_account_role (account, role) values (5, 2);
 
-insert into p2p_shop (id, name) values (4, 'shop-1');
-insert into p2p_shop (id, name) values (5, 'shop-2');
+insert into p2p_shop (id, name, status) values (4, 'shop-1', 1);
+insert into p2p_shop (id, name, status) values (5, 'shop-2', 1);
 
 insert into p2p_category (name) values ('category-1');
 insert into p2p_category (name) values ('category-2');
