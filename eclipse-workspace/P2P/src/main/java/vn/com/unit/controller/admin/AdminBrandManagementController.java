@@ -5,14 +5,20 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Brand;
+import vn.com.unit.entity.Category;
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.BrandService;
 
@@ -38,5 +44,30 @@ public class AdminBrandManagementController {
 		model.addAttribute("pageable", pageable);
 
 		return new ModelAndView("admin/brand/brand-table");
+	}
+	
+	@GetMapping("/admin/brand/add")
+	public ModelAndView categoryAdd(Model model,
+			HttpServletRequest request) {
+
+		return new ModelAndView("admin/brand/brand-add");
+	}
+	
+	@PostMapping("/admin/brand/add")
+	@ResponseBody
+	public ResponseEntity<String> createCategory(@RequestBody Brand brand, Model model) {
+		if (brandService.findBrandByName(brand.getName()) != null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"brand already exists\" }");}
+		Long brand_id = brandService.createCategory(brand);
+		if (brand_id != null) {
+			return ResponseEntity.ok("{ \"id\" : " + brand_id + ", \"msg\" : \"Create brand successfully\" }");
+		}
+		if (brand.getName() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
+		}
+
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+				.body("{ \"msg\" : \"You can't create an brand right now. Try again later\" }");
+		
 	}
 }

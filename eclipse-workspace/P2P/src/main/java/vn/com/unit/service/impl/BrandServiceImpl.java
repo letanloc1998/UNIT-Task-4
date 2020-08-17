@@ -69,5 +69,27 @@ public class BrandServiceImpl implements BrandService {
 			// TODO: handle exception
 		}
 		return  0;
+	}
+
+	@Override
+	public Long createCategory(Brand brand) {
+		// TODO Auto-generated method stub
+		try {
+			return brandRepository.createNewBrand(brand.getName());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	@Override
+	public Brand findBrandByName(String name) {
+		// TODO Auto-generated method stub
+		try {
+			return brandRepository.findBrandByName(name);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	};
 }
