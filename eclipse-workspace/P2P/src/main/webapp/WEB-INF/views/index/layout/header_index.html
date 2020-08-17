@@ -21,6 +21,7 @@
                         <div class="col d-flex flex-row">
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_user">
+
                                     <th:block sec:authorize="!isAuthenticated()">
 
                                         <div class="user_icon">
@@ -29,37 +30,47 @@
                                         <div>
                                             <a href="/login">Login</a>
                                         </div>
+                                        <div class="horizontal-divider">
+                                            <a href="">|</a>
+                                        </div>
                                         <div>
                                             <a href="/register">Register</a>
                                         </div>
 
                                     </th:block>
-                                    <div sec:authorize="isAuthenticated()">
-                                        <p>Hi, <span sec:authentication="name"></span></p>
-                                    </div>
+
+
                                     <th:block sec:authorize="isAuthenticated()">
-                                        <div class="nav-item dropdown">
-                                            <a class="nav-link" href="javascript:;" id="navbarDropdownProfile"
-                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="material-icons">person</i></a>
+                                        <div style="margin-right: 7px;">
+                                            <a>Hi, <span sec:authentication="name"></span></a>
+                                        </div>
 
-                                            <div class="dropdown-menu dropdown-menu-right"
-                                                aria-labelledby="navbarDropdownProfile">
-
-                                                <th:block sec:authorize="hasRole('ROLE_ADMIN')"><a class="dropdown-item"
-                                                        href="/admin/home">Admin Page</a></th:block>
-                                                <th:block sec:authorize="isAuthenticated()"><a class="dropdown-item"
-                                                        href="/profile/home">My Profile</a></th:block>
-                                                <th:block sec:authorize="hasRole('ROLE_VENDOR')"><a
-                                                        class="dropdown-item" href="/shop/home">My Shop</a></th:block>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" sec:authorize="isAuthenticated()"
-                                                    href="/logout">Log out</a>
-                                                <th:block sec:authorize="!isAuthenticated()"><a class="dropdown-item"
-                                                        href="/login">Login</a></th:block>
-                                            </div>
+                                        <div class="user_icon">
+                                            <img th:src="@{static/index-template/images/user.svg}" alt="">
                                         </div>
                                     </th:block>
+
+                                    <!-- <div class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                                        <a class="nav-link" href="javascript:;" id="navbarDropdownProfile"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="material-icons">person</i></a>
+
+                                        <div class="dropdown-menu dropdown-menu-right"
+                                            aria-labelledby="navbarDropdownProfile">
+
+                                            <th:block sec:authorize="hasRole('ROLE_ADMIN')"><a class="dropdown-item"
+                                                    href="/admin/home">Admin Page</a></th:block>
+                                            <th:block sec:authorize="isAuthenticated()"><a class="dropdown-item"
+                                                    href="/profile/home">My Profile</a></th:block>
+                                            <th:block sec:authorize="hasRole('ROLE_VENDOR')"><a class="dropdown-item"
+                                                    href="/shop/home">My Shop</a></th:block>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" sec:authorize="isAuthenticated()"
+                                                href="/logout">Log out</a>
+                                            <th:block sec:authorize="!isAuthenticated()"><a class="dropdown-item"
+                                                    href="/login">Login</a></th:block>
+                                        </div>
+                                    </div> -->
 
                                 </div>
                             </div>
@@ -143,7 +154,7 @@
         </header>
 
     </th:block>
-	
+
 </body>
 
 </html>
