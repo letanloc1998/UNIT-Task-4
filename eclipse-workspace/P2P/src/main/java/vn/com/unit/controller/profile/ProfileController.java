@@ -63,7 +63,7 @@ public class ProfileController {
 	}
 	
 	// create shop view
-	@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasAnyRole('ROLE_USER','ROLE_VENDOR')")
 	@GetMapping("/profile/createshop")
 	public ModelAndView createShop(Model model) {
 		Account account = accountService.findCurrentAccount();
