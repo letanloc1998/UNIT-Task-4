@@ -25,7 +25,7 @@
                                     <th:block sec:authorize="!isAuthenticated()">
 
                                         <div class="user_icon">
-                                            <img th:src="@{static/index-template/images/user.svg}" alt="">
+                                            <img th:src="@{/static/index-template/images/user.svg}" alt="">
                                         </div>
                                         <div>
                                             <a href="/login">Login</a>
@@ -52,7 +52,7 @@
                                                             </span>
                                                         </div>
                                                         <div class="user_icon">
-                                                            <img th:src="@{static/index-template/images/user.svg}"
+                                                            <img th:src="@{/static/index-template/images/user.svg}"
                                                                 alt="">
                                                         </div> <i class="fas fa-chevron-down"></i>
                                                     </a>
@@ -145,7 +145,7 @@
                                                 </div>
                                             </div>
                                             <button type="submit" class="header_search_button trans_300" value="Submit">
-                                                <img th:src="@{static/index-template/images/search.png}" alt="">
+                                                <img th:src="@{/static/index-template/images/search.png}" alt="">
                                             </button>
                                         </form>
                                     </div>
@@ -157,7 +157,7 @@
                             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                             
                             	<div class="wishlist d-flex flex-row align-items-center justify-content-end">
-									<div class="wishlist_icon"><img th:src="@{static/template/ontech/images/heart.png}" alt=""></div>
+									<div class="wishlist_icon"><img th:src="@{/static/template/ontech/images/heart.png}" alt=""></div>
 									<div class="wishlist_content">
 										<div class="wishlist_text"><a href="#">Wishlist</a></div>
 										<div class="wishlist_count">115</div>
@@ -167,7 +167,7 @@
                                 <div class="cart" th:onclick="window.location=[[@{/cart}]];">
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
-                                            <img th:src="@{static/index-template/images/cart.png}" alt="">
+                                            <img th:src="@{/static/index-template/images/cart.png}" alt="">
                                             <div class="cart_count">
                                                 <span>10</span>
                                             </div>
