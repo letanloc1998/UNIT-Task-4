@@ -77,7 +77,7 @@ public class ShopManagement {
 	@DeleteMapping("/shop/delete")
 	public ResponseEntity<Void> deleteShop() {
 		Account account = accountService.findCurrentAccount();
-		String status = "2";
+		Long status = (long) 2;
 		if (shopService.setDisableShop(account.getId(),status)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}		
@@ -111,7 +111,7 @@ public class ShopManagement {
 	//deleteProduct
 	@DeleteMapping("/product/{product_id}")
 	public ResponseEntity<Void> deleteProduct(@PathVariable("product_id") Long product_id) {
-		String status = "1";
+		int status = 1;
 		if (productService.setDisableProductByProductId(product_id,status)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}

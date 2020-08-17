@@ -187,4 +187,15 @@ public class AccountServiceImpl implements AccountService {
 		return 0;
 	}
 
+	@Override
+	public boolean setDisableAccount(Long account_id, Long disable) {
+		try {
+			accountRepository.setDisableAccount(account_id, disable);
+			return true;
+		} catch(Exception e) {
+			
+		}
+		return false;
+	}
+
 }

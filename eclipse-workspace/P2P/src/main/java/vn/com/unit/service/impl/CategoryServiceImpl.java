@@ -49,4 +49,26 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryRepository.findAllCategory();
 	}
 
+	@Override
+	public List<Category> findCategoryPageable(int limit, int offset) {
+		// TODO Auto-generated method stub
+		try {
+			return categoryRepository.findCategoryPageable(limit, offset);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	@Override
+	public int countAllCategory() {
+		// TODO Auto-generated method stub
+		try {
+			return categoryRepository.countAllCategory();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
+
 }

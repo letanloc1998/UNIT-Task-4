@@ -28,5 +28,6 @@ public interface AccountService {
 	
 	public int countAccountActive();
 	
+	public boolean setDisableAccount(Long account_id, Long disable);
 
 }
