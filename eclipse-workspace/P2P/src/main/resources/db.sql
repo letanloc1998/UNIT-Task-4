@@ -198,8 +198,8 @@ insert into p2p_category (name) values ('category-2');
 insert into p2p_brand (name) values ('brand-1');
 insert into p2p_brand (name) values ('brand-2');
 
-insert into p2p_product (shop, name, price, img, category, brand, quantity) values (4, 'product-1', 1000, '/static/product/default.png', 1, 1, 40);
-insert into p2p_product (shop, name, price, img, category, brand, quantity) values (4, 'product-2', 1500, '/static/product/default.png', 1, 2, 30);
+insert into p2p_product (shop, name, price, img, category, brand, quantity, detail) values (4, 'product-1', 1000, '/static/product/default.png', 1, 1, 40, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.');
+insert into p2p_product (shop, name, price, img, category, brand, quantity, detail) values (4, 'product-2', 1500, '/static/product/default.png', 1, 2, 30, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.');
 
 insert into p2p_product (shop, name, price, img, category, brand, quantity) values (5, 'product-3', 2000, '/static/product/default.png', 2, 1, 20);
 insert into p2p_product (shop, name, price, img, category, brand, quantity) values (5, 'product-4', 2500, '/static/product/default.png', 2, 2, 10);

@@ -1779,7 +1779,7 @@ select option
 	-ms-transform: translate(-50%, -50%);
 	-o-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
-	font-family: 'FontAwesome';
+	font-family: 'Font Awesome\ 5 Free';
 	content: '\f00c';
 	color: #FFFFFF;
 }
@@ -2145,7 +2145,7 @@ select option
 }
 .rating_r i::before
 {
-	font-family: 'FontAwesome';
+	font-family: 'Font Awesome\ 5 Free';
 	content: "\f006";
 	font-style: normal;
 	font-size: 19px;
