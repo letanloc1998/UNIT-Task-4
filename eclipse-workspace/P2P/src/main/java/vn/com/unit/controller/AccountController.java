@@ -1,5 +1,6 @@
 package vn.com.unit.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ public class AccountController {
 
 	@Autowired
 	AccountService accountService;
+	
+	
 
 	@PostMapping("/register")
 	@ResponseBody
@@ -49,4 +52,7 @@ public class AccountController {
 				.body("{ \"msg\" : \"You can't create an account right now. Try again later\" }");
 	
 	}
+	
+	
+	
 }
