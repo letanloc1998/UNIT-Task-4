@@ -10,4 +10,5 @@ public interface CartService {
 	
 	public List<CartItem> findAllCartItemByAccountId(Long account_id);
 
+	public Long calculateCartTotalByCurrentAccount();
 }

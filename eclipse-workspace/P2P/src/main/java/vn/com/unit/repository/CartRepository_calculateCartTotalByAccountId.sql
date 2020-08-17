@@ -1,5 +1,5 @@
-select cart.*, product.img, product.name, product.price
-from
+select sum(cart.quantity * product.price)
+from 
 	(
 	select *
 	from p2p_cart

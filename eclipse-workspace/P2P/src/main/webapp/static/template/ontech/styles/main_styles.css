@@ -378,11 +378,11 @@ section
 	color: #000000;
 	line-height: 56px;
 	white-space: nowrap;
-	-webkit-transition: all 200ms ease;
+/* 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
+	transition: all 200ms ease; */
 }
 .standard_dropdown li a:hover
 {
@@ -481,11 +481,11 @@ section
 	font-weight: 300;
 	line-height: 56px;
 	color: #000;
-	-webkit-transition: all 200ms ease;
+/* 	-webkit-transition: all 200ms ease;
 	-moz-transition: all 200ms ease;
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
+	transition: all 200ms ease; */
 }
 .top_bar_user a:hover
 {

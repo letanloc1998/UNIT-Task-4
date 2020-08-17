@@ -65,7 +65,7 @@
                                         <div class="top_bar_menu">
                                             <ul class="standard_dropdown top_bar_dropdown">
                                                 <li class="p-0"><a href="#">
-                                                        <div style="margin-right: 7px;">
+                                                        <div style="margin-right: 7px; margin-left: 13px;">
                                                             <span
                                                                 style="font-size: 16px; font-weight: 300; line-height: 56px; color: #000; -webkit-transition: all 200ms ease; -moz-transition: all 200ms ease; -ms-transition: all 200ms ease; -o-transition: all 200ms ease; transition: all 200ms ease;">
                                                                 Hi, <span sec:authentication="name"></span>
@@ -187,7 +187,7 @@
                                         </div>
                                         <div class="cart_content">
                                             <div class="cart_text">
-                                                <span>Cart</span>
+                                                <a th:href="@{/cart}">Cart</a>
                                             </div>
                                             <div class="cart_price">$85</div>
                                         </div>
