@@ -2149,28 +2149,29 @@ select option
 }
 .rating_r i::before
 {
-	font-family: 'FontAwesome';
-	content: "\f006";
+	font-family: 'Font Awesome\ 5 Free';
+	content: "\f005";
 	font-style: normal;
 	font-size: 19px;
 	margin-right: 4px;
 	color: #f5e211;
+	font-weight: 500;
 }
-.rating_r_1 i:first-child::before{content: "\f005";}
-.rating_r_2 i:first-child::before{content: "\f005";}
-.rating_r_2 i:nth-child(2)::before{content: "\f005";}
-.rating_r_3 i:first-child::before{content: "\f005";}
-.rating_r_3 i:nth-child(2)::before{content: "\f005";}
-.rating_r_3 i:nth-child(3)::before{content: "\f005";}
-.rating_r_4 i:first-child::before{content: "\f005";}
-.rating_r_4 i:nth-child(2)::before{content: "\f005";}
-.rating_r_4 i:nth-child(3)::before{content: "\f005";}
-.rating_r_4 i:nth-child(4)::before{content: "\f005";}
-.rating_r_5 i:first-child::before{content: "\f005";}
-.rating_r_5 i:nth-child(2)::before{content: "\f005";}
-.rating_r_5 i:nth-child(3)::before{content: "\f005";}
-.rating_r_5 i:nth-child(4)::before{content: "\f005";}
-.rating_r_5 i:nth-child(5)::before{content: "\f005";}
+.rating_r_1 i:first-child::before{content: "\f005"; font-weight: 501;}
+.rating_r_2 i:first-child::before{content: "\f005"; font-weight: 501;}
+.rating_r_2 i:nth-child(2)::before{content: "\f005"; font-weight: 501;}
+.rating_r_3 i:first-child::before{content: "\f005"; font-weight: 501;}
+.rating_r_3 i:nth-child(2)::before{content: "\f005"; font-weight: 501;}
+.rating_r_3 i:nth-child(3)::before{content: "\f005"; font-weight: 501;}
+.rating_r_4 i:first-child::before{content: "\f005"; font-weight: 501;}
+.rating_r_4 i:nth-child(2)::before{content: "\f005"; font-weight: 501;}
+.rating_r_4 i:nth-child(3)::before{content: "\f005"; font-weight: 501;}
+.rating_r_4 i:nth-child(4)::before{content: "\f005"; font-weight: 501;}
+.rating_r_5 i:first-child::before{content: "\f005"; font-weight: 501;}
+.rating_r_5 i:nth-child(2)::before{content: "\f005"; font-weight: 501;}
+.rating_r_5 i:nth-child(3)::before{content: "\f005"; font-weight: 501;}
+.rating_r_5 i:nth-child(4)::before{content: "\f005"; font-weight: 501;}
+.rating_r_5 i:nth-child(5)::before{content: "\f005"; font-weight: 501;}
 .banner_2_button
 {
 	margin-top: 43px;
