@@ -241,6 +241,10 @@ insert into p2p_account_role (account, role) values (14, 3);
 insert into p2p_cart (account, product, quantity) values (3, 1, 1); -- 1000 * 1
 insert into p2p_cart (account, product, quantity) values (3, 2, 3); -- 1500 * 3
 
+--
+-- init product in cart
+insert into p2p_cart (account, product, quantity) values (6, 1, 2); -- 1000 * 1
+insert into p2p_cart (account, product, quantity) values (6, 2, 2); -- 1500 * 3
 /*
 insert into p2p_bill (account, address) values (3, 'HCM');
 -- select scope_identity();
