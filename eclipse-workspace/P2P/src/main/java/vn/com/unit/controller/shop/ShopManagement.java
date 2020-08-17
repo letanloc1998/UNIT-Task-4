@@ -74,6 +74,17 @@ public class ShopManagement {
 		return ResponseEntity.status(HttpStatus.OK).body("{ \"msg\" : \"Your Shop Create Success! Please waitting for admin check!\" }");
 
 	}
+	//activate shop
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PutMapping("/shop/activate")
+	@ResponseBody
+	public ResponseEntity<String> activateShop( Model model) {
+		Account account = accountService.findCurrentAccount();
+		int status = 0;
+		shopService.setActivateShop(account.getId(),status);
+		return ResponseEntity.status(HttpStatus.OK).body("{ \"msg\" : \"Activate Request have been send! Please waitting for admin check!\" }");
+
+	}
 	
 	
 	// edit SHOP

@@ -72,6 +72,14 @@ public class ProfileController {
 			model.addAttribute("title", "Account Management");
 			return new ModelAndView("profile/shop/create-shop");
 		}
+		if(shop.getStatus() == 1) {
+			model.addAttribute("title", "Account Management");
+			return new ModelAndView("profile/shop/exisist-shop");
+		}
+		if(shop.getStatus() == 2 ||shop.getStatus() == 3) {
+			model.addAttribute("title", "Account Management");
+			return new ModelAndView("profile/shop/activate-shop");
+		}
 		model.addAttribute("title", "Account Management");
 		return new ModelAndView("profile/shop/wait-confirm-shop");
 	}
