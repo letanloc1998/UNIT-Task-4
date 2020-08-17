@@ -1,149 +1,154 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
 <head>
 
-	
+
 </head>
+
 <body>
 
-	<th:block th:fragment="header_index">
-		<!-- Header -->
+    <th:block th:fragment="header_index">
+        <!-- Header -->
 
-		<header class="header">
+        <header class="header">
 
-			<!-- Top Bar -->
+            <!-- Top Bar -->
 
-			<div class="top_bar">
-				<div class="container">
-					<div class="row">
-						<div class="col d-flex flex-row">
-							<div class="top_bar_content ml-auto">
-								<div class="top_bar_user">
-									<th:block sec:authorize="!isAuthenticated()">
-		
-										<div class="user_icon">
-											<img th:src="@{static/index-template/images/user.svg}" alt="">
-										</div>
-										<div>
-											<a href="/login">Login</a>
-										</div>
-										<div>
-											<a href="/register">Register</a>
-										</div>
-										
-									</th:block>
-									 <div><th:block sec:authorize="isAuthenticated()"><p>Hi, <span sec:authentication="name"></span></p></th:block></div>
-									<th:block sec:authorize="isAuthenticated()">
-										 <div class="nav-item dropdown">
-							                <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							                  <i class="material-icons">person</i></a>
-							         
-							                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-							                  
-							                  <th:block sec:authorize="hasRole('ROLE_ADMIN')"><a class="dropdown-item" href="/admin/home">Admin Page</a></th:block>
-							                  <th:block sec:authorize="isAuthenticated()"><a class="dropdown-item" href="/profile/home">My Profile</a></th:block>
-							                  <th:block sec:authorize="hasRole('ROLE_VENDOR')"><a class="dropdown-item" href="/shop/home">My Shop</a></th:block>
-							                  <div class="dropdown-divider"></div>
-							                  <a class="dropdown-item" sec:authorize="isAuthenticated()" href="/logout">Log out</a>
-							                  <th:block sec:authorize="!isAuthenticated()"><a class="dropdown-item" href="/login">Login</a></th:block>
-							                </div>
-							              </div>
-							         </th:block>
-							        
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+            <div class="top_bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col d-flex flex-row">
+                            <div class="top_bar_content ml-auto">
+                                <div class="top_bar_user">
+                                    <th:block sec:authorize="!isAuthenticated()">
 
-			<!-- Header Main -->
+                                        <div class="user_icon">
+                                            <img th:src="@{static/index-template/images/user.svg}" alt="">
+                                        </div>
+                                        <div>
+                                            <a href="/login">Login</a>
+                                        </div>
+                                        <div>
+                                            <a href="/register">Register</a>
+                                        </div>
 
-			<div class="header_main">
-				<div class="container">
-					<div class="row">
+                                    </th:block>
+                                    <div>
+                                        <th:block sec:authorize="isAuthenticated()">
+                                            <p>Hi, <span sec:authentication="name"></span></p>
+                                        </th:block>
+                                    </div>
+                                    <th:block sec:authorize="isAuthenticated()">
+                                        <div class="nav-item dropdown">
+                                            <a class="nav-link" href="javascript:;" id="navbarDropdownProfile"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="material-icons">person</i></a>
 
-						<!-- Logo -->
-						<div class="col-lg-2 col-sm-3 col-3 order-1">
-							<div class="logo_container">
-								<div class="logo">
-									<a href="/index.html">P2PO</a>
-								</div>
-							</div>
-						</div>
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                aria-labelledby="navbarDropdownProfile">
 
-						<!-- Search -->
-						<div
-							class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-							<div class="header_search">
-								<div class="header_search_content">
-									<div class="header_search_form_container">
-										<form action="#" class="header_search_form clearfix">
-											<input type="search" required="required"
-												class="header_search_input"
-												placeholder="Search for products...">
-											<div class="custom_dropdown">
-												<div class="custom_dropdown_list">
-													<span class="custom_dropdown_placeholder clc">All
-														Categories</span> <i class="fas fa-chevron-down"></i>
-													<ul class="custom_list clc">
-														<li><a class="clc" href="#">All Categories</a></li>
-														<li><a class="clc" href="#">Computers</a></li>
-														<li><a class="clc" href="#">Laptops</a></li>
-														<li><a class="clc" href="#">Cameras</a></li>
-														<li><a class="clc" href="#">Hardware</a></li>
-														<li><a class="clc" href="#">Smartphones</a></li>
-													</ul>
-												</div>
-											</div>
-											<button type="submit" class="header_search_button trans_300"
-												value="Submit">
-												<img th:src="@{static/index-template/images/search.png}"
-													alt="">
-											</button>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- Cart -->
-						<div
-							class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
-							<div
-								class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                                                <th:block sec:authorize="hasRole('ROLE_ADMIN')"><a class="dropdown-item"
+                                                        href="/admin/home">Admin Page</a></th:block>
+                                                <th:block sec:authorize="isAuthenticated()"><a class="dropdown-item"
+                                                        href="/profile/home">My Profile</a></th:block>
+                                                <th:block sec:authorize="hasRole('ROLE_VENDOR')"><a
+                                                        class="dropdown-item" href="/shop/home">My Shop</a></th:block>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" sec:authorize="isAuthenticated()"
+                                                    href="/logout">Log out</a>
+                                                <th:block sec:authorize="!isAuthenticated()"><a class="dropdown-item"
+                                                        href="/login">Login</a></th:block>
+                                            </div>
+                                        </div>
+                                    </th:block>
 
-								<div class="cart">
-									<div
-										class="cart_container d-flex flex-row align-items-center justify-content-end">
-										<div class="cart_icon">
-											<img th:src="@{static/index-template/images/cart.png}"
-												alt="">
-											<div class="cart_count">
-												<span>10</span>
-											</div>
-										</div>
-										<div class="cart_content">
-											<div class="cart_text">
-												<a href="/cart.html">Cart</a>
-											</div>
-											<div class="cart_price">$85</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Header Main -->
+
+            <div class="header_main">
+                <div class="container">
+                    <div class="row">
+
+                        <!-- Logo -->
+                        <div class="col-lg-2 col-sm-3 col-3 order-1">
+                            <div class="logo_container">
+                                <div class="logo">
+                                    <a href="/index.html">P2PO</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Search -->
+                        <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
+                            <div class="header_search">
+                                <div class="header_search_content">
+                                    <div class="header_search_form_container">
+                                        <form action="#" class="header_search_form clearfix">
+                                            <input type="search" required="required" class="header_search_input"
+                                                placeholder="Search for products...">
+                                            <div class="custom_dropdown">
+                                                <div class="custom_dropdown_list">
+                                                    <span class="custom_dropdown_placeholder clc">All
+                                                        Categories</span> <i class="fas fa-chevron-down"></i>
+                                                    <ul class="custom_list clc">
+                                                        <li><a class="clc" href="#">All Categories</a></li>
+                                                        <li><a class="clc" href="#">Computers</a></li>
+                                                        <li><a class="clc" href="#">Laptops</a></li>
+                                                        <li><a class="clc" href="#">Cameras</a></li>
+                                                        <li><a class="clc" href="#">Hardware</a></li>
+                                                        <li><a class="clc" href="#">Smartphones</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="header_search_button trans_300" value="Submit">
+                                                <img th:src="@{static/index-template/images/search.png}" alt="">
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Cart -->
+                        <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                            <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+
+                                <div class="cart">
+                                    <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                        <div class="cart_icon">
+                                            <img th:src="@{static/index-template/images/cart.png}" alt="">
+                                            <div class="cart_count">
+                                                <span>10</span>
+                                            </div>
+                                        </div>
+                                        <div class="cart_content">
+                                            <div class="cart_text">
+                                                <a th:href="@{/cart}">Cart</a>
+                                            </div>
+                                            <div class="cart_price">$85</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-		</header>
-		
+        </header>
 
 
-	</th:block>
+
+    </th:block>
 
 </body>
+
 </html>
