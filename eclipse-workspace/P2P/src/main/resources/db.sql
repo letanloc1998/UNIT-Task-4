@@ -16,8 +16,8 @@ drop table p2p_account;
 
 create table p2p_account (
     id bigint primary key identity(1,1),
-    name nvarchar(50) unique,
-    username nvarchar(50) not null,
+    name nvarchar(50),
+    username nvarchar(50) not null unique,
     password nvarchar(255) not null,
     email nvarchar(50),
     phone nvarchar(20),
