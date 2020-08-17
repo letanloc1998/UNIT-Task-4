@@ -41,12 +41,56 @@
 
 
                                     <th:block sec:authorize="isAuthenticated()">
-                                        <div style="margin-right: 7px;">
+                                        <!-- <div style="margin-right: 7px;">
                                             <a>Hi, <span sec:authentication="name"></span></a>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="user_icon">
+                                        <!-- <div class="user_icon">
                                             <img th:src="@{static/index-template/images/user.svg}" alt="">
+                                        </div> -->
+                                        <!-- <div class="user_icon custom_dropdown">
+											<div class="custom_dropdown_list">
+												<span class="custom_dropdown_placeholder clc">All Categories</span>
+												<i class="fas fa-chevron-down"></i>
+												<ul class="custom_list clc">
+													<li><a class="clc" href="#">All Categories</a></li>
+													<li><a class="clc" href="#">Computers</a></li>
+													<li><a class="clc" href="#">Laptops</a></li>
+													<li><a class="clc" href="#">Cameras</a></li>
+													<li><a class="clc" href="#">Hardware</a></li>
+													<li><a class="clc" href="#">Smartphones</a></li>
+												</ul>
+											</div>
+                                        </div> -->
+                                        <div class="top_bar_menu">
+                                            <ul class="standard_dropdown top_bar_dropdown">
+                                                <li class="p-0">
+                                                    <a href="#">
+                                                        <div style="margin-right: 7px;">
+                                                            <p style="
+                                                                font-size: 16px;
+                                                                font-weight: 300;
+                                                                line-height: 56px;
+                                                                color: #000;
+                                                                -webkit-transition: all 200ms ease;
+                                                                -moz-transition: all 200ms ease;
+                                                                -ms-transition: all 200ms ease;
+                                                                -o-transition: all 200ms ease;
+                                                                transition: all 200ms ease;
+                                                            ">Hi, <span sec:authentication="name"></span></p>
+                                                        </div>
+                                                        <div class="user_icon">
+                                                            <img th:src="@{static/index-template/images/user.svg}"
+                                                                alt="">
+                                                        </div><i class="fas fa-chevron-down"></i>
+                                                    </a>
+                                                    <ul>
+                                                        <li><a href="#">Italian</a></li>
+                                                        <li><a href="#">Spanish</a></li>
+                                                        <li><a href="#">Japanese</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </th:block>
 
