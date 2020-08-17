@@ -29,7 +29,7 @@ import vn.com.unit.service.ShopService;
 
 
 @Controller
-@PreAuthorize("hasRole('ROLE_VENDOR')")
+
 
 public class ShopManagement {
 
@@ -57,7 +57,27 @@ public class ShopManagement {
 	@Autowired
 	CategoryService categoryService;
 	
+	
+	//create shop
+	@PreAuthorize("hasRole('ROLE_USER')")
+	@PostMapping("/shop/create")
+	@ResponseBody
+	public ResponseEntity<String> createShop(@RequestBody Shop new_shop, Model model) {
+		Account account = accountService.findCurrentAccount();
+		String phone = new_shop.getPhone();
+		String email = new_shop.getEmail();
+		String name = new_shop.getName();
+		String address = new_shop.getAddress();
+		String detail = new_shop.getDetail();
+		int status = 0;
+		shopService.createShop(account.getId(),name, email, phone, address, detail,status);;
+		return ResponseEntity.status(HttpStatus.OK).body("{ \"msg\" : \"Your Shop Create Success! Please waitting for admin check!\" }");
+
+	}
+	
+	
 	// edit SHOP
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PutMapping("/shop/edit")
 	@ResponseBody
 	public ResponseEntity<Shop> editShop(@RequestBody Shop shop, Model model) {
@@ -74,6 +94,7 @@ public class ShopManagement {
 
 	
 	//deleteShop
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@DeleteMapping("/shop/delete")
 	public ResponseEntity<Void> deleteShop() {
 		Account account = accountService.findCurrentAccount();
@@ -86,6 +107,7 @@ public class ShopManagement {
 	
 	
 	//add product
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PostMapping("/add-product")
 	public String addProduct(@ModelAttribute("new_product") Product new_product, Model model) {
 		Account account = accountService.findCurrentAccount();		
@@ -94,6 +116,7 @@ public class ShopManagement {
 	}
 	
 	// edit Product
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PutMapping("/product/{product_id}")
 	@ResponseBody
 	public ResponseEntity<Product> editShop(@RequestBody Product product,@PathVariable("product_id") Long product_id ,Model model) {
@@ -109,6 +132,7 @@ public class ShopManagement {
 	}
 	
 	//deleteProduct
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@DeleteMapping("/product/{product_id}")
 	public ResponseEntity<Void> deleteProduct(@PathVariable("product_id") Long product_id) {
 		int status = 1;
