@@ -29,7 +29,7 @@ public class UploadImgService {
 			width = 1024;
 			height = 1024;
 		}
-		
+
 		String time = String.valueOf(System.currentTimeMillis());
 
 		String multipart_file_name = time + "_" + multipartFile.getOriginalFilename();
@@ -39,6 +39,7 @@ public class UploadImgService {
 		File temp_file = new File(file_path);
 
 		try {
+
 			multipartFile.transferTo(temp_file);
 
 			Map<String, String> config = new HashMap<String, String>();
