@@ -17,6 +17,10 @@ public interface BrandService {
 	public Long createCategory(Brand brand);
 	
 	public Brand findBrandByName(String name);
-
 	
+	public Brand findBrandById(Long id);
+	
+	public void updateBrandById(Brand brand);
+	public void deleteBrandById(Long id,Long disable);
+
 }

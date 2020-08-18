@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Category;
@@ -27,7 +29,7 @@ public class HomeController {
 	ProductService productService;
 
 	@GetMapping("*")
-    public ModelAndView home(Model model) {
+    public ModelAndView home(Model model, String name) {
 		
 		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 		
@@ -39,6 +41,16 @@ public class HomeController {
 		List<Product> product = productService.findAllProduct();
 		model.addAttribute("product", product);
 		
+		/*
+		 * ModelAndView manv = new ModelAndView();
+		 * 
+		 * manv.addObject("searchTerm", searchName); manv.addObject("searchResult",
+		 * productService.findProductByName(searchName))
+		 */;
+		 
+		/* List<Product> product1 = productService.findProductByName(name); */
+		
+	    
         return new ModelAndView("index");
     }
 

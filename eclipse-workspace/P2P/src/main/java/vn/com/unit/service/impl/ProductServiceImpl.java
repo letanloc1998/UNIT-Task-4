@@ -136,6 +136,17 @@ public class ProductServiceImpl implements ProductService {
 		
 		return productRepository.findAllProduct();
 	}
+	
+	@Override
+	public List<Product> findProductByName(String name){
+		List<Product> product = new ArrayList<Product>();
+		try {
+			product = productRepository.findProductByName(name);
+		}catch(Exception e) {
+			
+		}
+		return product;
+	}
 
 
 }
