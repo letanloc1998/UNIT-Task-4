@@ -50,12 +50,13 @@
 									style="max-width: 115px; max-height: 115px;">
 							</div>
 							<div class="product_content">
-								<div class="product_price" th:text="${product.price}"></div>
+								<div class="product_price"><th:block th:inline="text">$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}]]</th:block></div>
 								<div class="product_name">
 									<div>
 										<a th:text="${product.name}"
 											th:href="@{'/product/' + ${product.id}}" tabindex="0"></a>
 									</div>
+									<button th:onclick="|addCart(__${product.id}__)|" class="btn btn-primary">Add to Cart</button>
 								</div>
 							</div>
 							<div class="product_fav">
