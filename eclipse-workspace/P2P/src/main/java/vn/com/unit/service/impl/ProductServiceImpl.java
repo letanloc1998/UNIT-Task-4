@@ -107,11 +107,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<Product> findAllProductByCategoryIdAndBrandId(Long category_id,Long brand_id) {
+	public List<Product> findAllProductByCategoryIdAndBrandId(Long category_id,Long brand_id,Long shop_id,int limit,int offset) {
 
 		List<Product> products = new ArrayList<Product>();
 		try {
-			products = productRepository.findAllProductByCategoryIdAndBrandId(category_id, brand_id);
+			products = productRepository.findAllProductByCategoryIdAndBrandId(category_id, brand_id, shop_id, limit, offset);
 
 			for (Product product : products) {
 				Brand brand = brandService.findBrandByProductId(product.getId());
@@ -197,6 +197,18 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stubr
 		try {
 			return productRepository.countAllProductByShopId(shop_id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
+
+
+	@Override
+	public int countAllProductByCategoryIdAndBrandId(Long category_id, Long brand_id, Long shop_id) {
+		// TODO Auto-generated method stub
+		try {
+			return productRepository.countAllProductByCategoryIdAndBrandId(category_id, brand_id,shop_id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

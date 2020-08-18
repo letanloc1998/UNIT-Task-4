@@ -15,7 +15,7 @@ public interface ProductService {
 	
 	public List<Product> findAllProductByBrandId(Long brand_id);
 	
-	public List<Product> findAllProductByCategoryIdAndBrandId(Long category_id, Long brand_id);
+	public List<Product> findAllProductByCategoryIdAndBrandId(Long category_id, Long brand_id,Long shop_id,int limit,int offset);
 	
 	public Product findProductByProductId(Long product_id);
 	
@@ -30,4 +30,6 @@ public interface ProductService {
 	public List<Product> findProductByName(String name);
 	
 	public int CountAllProductByShopId(Long shop_id);
+	
+	public int countAllProductByCategoryIdAndBrandId(Long category_id, Long brand_id,Long shop_id);
 }

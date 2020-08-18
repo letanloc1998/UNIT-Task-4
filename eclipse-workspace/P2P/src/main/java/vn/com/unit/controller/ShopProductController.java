@@ -49,41 +49,45 @@ public class ShopProductController {
 			model.addAttribute("brands", brands);
 			model.addAttribute("categories", categories);
 			//get product by category
-			if(category_id != null && brand_id == null) {
-				//get all products  by scategory
-				List<Product> products = productService.findAllProductByCategoryId(category_id);
-				model.addAttribute("products", products);
-				model.addAttribute("title", shop.getName());
-		        return new ModelAndView("shop");
-			}
-			if(brand_id != null && category_id == null) {
-				//get all products  by brand
-				List<Product> products = productService.findAllProductByBrandId(brand_id);
-				model.addAttribute("products", products);
-				model.addAttribute("title", shop.getName());
-		        return new ModelAndView("shop");
-			}
-			if(category_id != null & brand_id != null) {
+//			if(category_id != null && brand_id == null) {
+//				//get all products  by scategory
+//				List<Product> products = productService.findAllProductByCategoryId(category_id);
+//				model.addAttribute("products", products);
+//				model.addAttribute("title", shop.getName());
+//		        return new ModelAndView("shop");
+//			}
+//			if(brand_id != null && category_id == null) {
+//				//get all products  by brand
+//				List<Product> products = productService.findAllProductByBrandId(brand_id);
+//				model.addAttribute("products", products);
+//				model.addAttribute("title", shop.getName());
+//		        return new ModelAndView("shop");
+//			}
+//			if(category_id != null || brand_id != null) {
 				//get all products  by category and brand
-				List<Product> products = productService.findAllProductByCategoryIdAndBrandId(category_id, brand_id);
+				int totalitems = productService.countAllProductByCategoryIdAndBrandId(category_id, brand_id,shop_id);
+				PageRequest pageable = new PageRequest(page, limit, totalitems);
+				
+				List<Product> products = productService.findAllProductByCategoryIdAndBrandId(category_id, brand_id, shop_id, pageable.getLimit(),pageable.getOffset());
+			
 				model.addAttribute("products", products);
+				model.addAttribute("pageable", pageable);
 				model.addAttribute("title", shop.getName());
 		        return new ModelAndView("shop");
-			}
+//			}
 			
 			//get all products  by shop
 			
-			int totalitems = productService.CountAllProductByShopId(shop_id);
-			int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
-
-			PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-			
-			List<Product> products = productService.findAllProductByShopId(shop_id,pageable.getLimit(), pageable.getOffset());
-			model.addAttribute("pageable", pageable);
-
-			model.addAttribute("products", products);
-			model.addAttribute("title", shop.getName());
-	        return new ModelAndView("shop");
+//			int totalitems = productService.CountAllProductByShopId(shop_id);
+//
+//			PageRequest pageable = new PageRequest(page, limit, totalitems);
+//			
+//			List<Product> products = productService.findAllProductByShopId(shop_id,pageable.getLimit(), pageable.getOffset());
+//			model.addAttribute("pageable", pageable);
+//
+//			model.addAttribute("products", products);
+//			model.addAttribute("title", shop.getName());
+//	        return new ModelAndView("shop");
     }
 	
 }

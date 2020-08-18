@@ -42,7 +42,22 @@ public class PageRequest {
 		this.end = getEnd();
 		this.items= getItems();
 	}
+	public PageRequest(int page, int limit, int countAll) {
+		if(limit > 50) {
+			limit = 50;
+		}
+		this.page = page;
+		this.limit = limit;
+		this.countAll = countAll;
+		this.totalPages = (int) Math.ceil((double) countAll / (double) limit);
+		this.preMaxPage = getPreMaxPage();
+		this.nextMaxPage = getNextMaxPage();
 
+		this.half = getHalf();
+		this.start = getStart();
+		this.end = getEnd();
+		this.items= getItems();
+	}
 	public int getHalf() {
 		this.half = (int) Math.floor(maxPage / 2);
 
