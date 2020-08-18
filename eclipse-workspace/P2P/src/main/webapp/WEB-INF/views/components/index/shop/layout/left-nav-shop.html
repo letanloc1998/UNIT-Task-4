@@ -16,12 +16,34 @@
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories" style="cursor:pointer">
 								<li th:each="category : ${categories}" >
-								<a 
-								th:styleappend ="${(param.category != null) and (#strings.equals(param.category[0], #strings.toString(category.id)))} ? 'color: red' : 'color: black' " 
+								<a
+								th:if="${(param.brand == null) and (param.category == null)}"
+								th:styleappend ="${(param.category != null) and (#strings.equals(param.category[0], #strings.toString(category.id)))} ? 'color: red' : 'color: black' "
+								th:text="${category.name}" 
+								th:href="@{'/shop/' + ${shop.id} +'?category=' + ${category.id}}"></a>
+								
+								<a
+								th:if="${(param.brand == null) and (param.category != null)}"
+								th:styleappend ="${(param.category != null) and (#strings.equals(param.category[0], #strings.toString(category.id)))} ? 'color: red' : 'color: black' "
+								th:text="${category.name}" 
+								th:href="@{'/shop/' + ${shop.id} +'?category=' + ${category.id}}"></a>
+								
+								<a
+								th:if="${(param.brand != null) and (param.category == null)}"
+								th:styleappend ="${(param.category != null) and (#strings.equals(param.category[0], #strings.toString(category.id)))} ? 'color: red' : 'color: black' "
+								th:text="${category.name}" 
+								th:href="@{/shop/__${shop.id}__(category=${category.id} , brand=${param.brand})}"></a>
+								
+								<a
+								th:if="${(param.brand != null) and (param.category != null)}"
+								th:styleappend ="${(param.category != null) and (#strings.equals(param.category[0], #strings.toString(category.id)))} ? 'color: red' : 'color: black' "
 								th:text="${category.name}"
-								th:href="@{'/shop/' + ${shop.id} +'?category=' + ${category.id}}" >
-								</a>
+								th:href="@{/shop/__${shop.id}__(category=${category.id} , brand=${param.brand})}"								
+								></a>
+								
 								</li>
+								
+								
 							</ul>
 						</div>
 						<div class="sidebar_section">
@@ -35,12 +57,24 @@
 								th:text="${brand.name}" 
 								th:href="@{'/shop/' + ${shop.id} +'?brand=' + ${brand.id}}"></a>
 								
-								<!-- if param has category -->
+								<a
+								th:if="${(param.brand != null) and (param.category == null)}"
+								th:styleappend ="${(param.brand != null) and (#strings.equals(param.brand[0], #strings.toString(brand.id)))} ? 'color: red' : 'color: black' "
+								th:text="${brand.name}" 
+								th:href="@{'/shop/' + ${shop.id} +'?brand=' + ${brand.id}}"></a>
+								
 								<a
 								th:if="${(param.brand == null) and (param.category != null)}"
 								th:styleappend ="${(param.brand != null) and (#strings.equals(param.brand[0], #strings.toString(brand.id)))} ? 'color: red' : 'color: black' "
 								th:text="${brand.name}" 
-								th:href="@{'/shop/' + ${shop.id} +'?category=' +${param.category[0]} +'&brand=' + ${brand.id}}"></a>
+								th:href="@{/shop/__${shop.id}__(category=${param.category} , brand=${brand.id})}"></a>
+								
+								<a
+								th:if="${(param.brand != null) and (param.category != null)}"
+								th:styleappend ="${(param.brand != null) and (#strings.equals(param.brand[0], #strings.toString(brand.id)))} ? 'color: red' : 'color: black' "
+								th:text="${brand.name}" 
+								th:href="@{/shop/__${shop.id}__(category=${param.category} , brand=${brand.id})}"></a>
+								
 								</li>
 							</ul>
 						</div>
