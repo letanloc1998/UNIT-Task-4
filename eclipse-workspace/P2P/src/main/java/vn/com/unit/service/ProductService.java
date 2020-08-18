@@ -9,7 +9,7 @@ import vn.com.unit.entity.Product;
 
 public interface ProductService {
 	
-	public List<Product> findAllProductByShopId(Long shop_id);
+	public List<Product> findAllProductByShopId(Long shop_id,int limit,int offset);
 	
 	public List<Product> findAllProductByCategoryId(Long category_id);
 	
@@ -28,4 +28,6 @@ public interface ProductService {
 	public List<Product> findAllProduct();
 	
 	public List<Product> findProductByName(String name);
+	
+	public int CountAllProductByShopId(Long shop_id);
 }

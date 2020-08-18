@@ -46,11 +46,11 @@ public class ProductServiceImpl implements ProductService {
 	CategoryService categoryService;
 	
 	@Override
-	public List<Product> findAllProductByShopId(Long shop_id) {
+	public List<Product> findAllProductByShopId(Long shop_id,int limit,int offset) {
 
 		List<Product> products = new ArrayList<Product>();
 		try {
-			products = productRepository.findAllProductByShopId(shop_id);
+			products = productRepository.findAllProductByShopId(shop_id, limit, offset);
 
 			for (Product product : products) {
 				Brand brand = brandService.findBrandByProductId(product.getId());
@@ -186,6 +186,18 @@ public class ProductServiceImpl implements ProductService {
 			
 		}
 		return product;
+	}
+
+
+	@Override
+	public int CountAllProductByShopId(Long shop_id) {
+		// TODO Auto-generated method stubr
+		try {
+			return productRepository.countAllProductByShopId(shop_id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
 	}
 
 

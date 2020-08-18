@@ -28,8 +28,9 @@ public class TestUploadImg {
 //		return null;
 //	}
 	
+//	, @RequestBody String json
 	@PostMapping("/test/upload")
-	public ModelAndView saveFile(Model model, @RequestBody String json, @RequestParam("file") MultipartFile file) {
+	public ModelAndView saveFile(Model model, @RequestParam("file") MultipartFile file) {
 		
 		
 		return null;

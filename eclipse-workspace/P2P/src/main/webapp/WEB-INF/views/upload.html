@@ -18,7 +18,7 @@
 	<form th:action="|@{/test/upload?__${_csrf.parameterName}__=__${_csrf.token}__}|" method="POST"
 		enctype="multipart/form-data">
 
-		<input type="file" name="img"> <input type="text" name="name">
+		<input type="file" name="file"> <input type="text" name="name">
 
 		<input type="hidden" th:name="${_csrf.parameterName}"
 			th:value="${_csrf.token}" />

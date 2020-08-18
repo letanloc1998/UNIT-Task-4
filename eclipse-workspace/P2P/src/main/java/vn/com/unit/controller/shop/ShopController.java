@@ -2,6 +2,8 @@ package vn.com.unit.controller.shop;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
+import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillItemService;
 import vn.com.unit.service.BillService;
@@ -85,7 +88,13 @@ public class ShopController {
 	
 	//product view
 	@GetMapping("/shop/myproduct")
-	public ModelAndView product(Model model, @RequestParam(name = "mode") String mode) {
+	public ModelAndView product(
+			Model model,
+			@RequestParam(name = "mode") String mode,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+			HttpServletRequest request
+			) {
 		String type = "";
 		if(mode.equals("create")) {
 			 type = "shop/myProduct/shop-add-product";
@@ -96,13 +105,24 @@ public class ShopController {
 		if(mode.equals("view")) {
 			 type = "shop/myProduct/shop-product";
 		}
+		
+		
+		
 		Account account = accountService.findCurrentAccount();	
-		List<Product> products = productService.findAllProductByShopId(account.getId());
+		int totalitems = productService.CountAllProductByShopId((long) account.getId());
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+
+		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
+		
+		List<Product> products = productService.findAllProductByShopId(account.getId(),pageable.getLimit(), pageable.getOffset());
+		
+		
 		List<Brand> brands = brandService.findAllBrand();
 		List<Category> categories = categoryService.findAllCategory();
 		model.addAttribute("products", products);
 		model.addAttribute("title", "Shop Management");
 		
+		model.addAttribute("pageable", pageable);
 
 		model.addAttribute("brands", brands);
 		model.addAttribute("categories", categories);
