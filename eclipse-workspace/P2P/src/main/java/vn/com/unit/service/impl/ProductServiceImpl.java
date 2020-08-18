@@ -67,11 +67,51 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 	@Override
-	public List<Product> findAllProductByCategoryId(int category_id) {
+	public List<Product> findAllProductByCategoryId(Long category_id) {
 
 		List<Product> products = new ArrayList<Product>();
 		try {
 			products = productRepository.findAllProductByCategoryId(category_id);
+
+			for (Product product : products) {
+				Brand brand = brandService.findBrandByProductId(product.getId());
+				product.setBrand_name(brand);
+				Category category = categoryService.findCategoryByProductId(product.getId());
+				product.setCategory_name(category);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return products;
+	}
+	
+	@Override
+	public List<Product> findAllProductByBrandId(Long brand_id) {
+
+		List<Product> products = new ArrayList<Product>();
+		try {
+			products = productRepository.findAllProductByBrandId(brand_id);
+
+			for (Product product : products) {
+				Brand brand = brandService.findBrandByProductId(product.getId());
+				product.setBrand_name(brand);
+				Category category = categoryService.findCategoryByProductId(product.getId());
+				product.setCategory_name(category);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return products;
+	}
+	
+	@Override
+	public List<Product> findAllProductByCategoryIdAndBrandId(Long category_id,Long brand_id) {
+
+		List<Product> products = new ArrayList<Product>();
+		try {
+			products = productRepository.findAllProductByCategoryIdAndBrandId(category_id, brand_id);
 
 			for (Product product : products) {
 				Brand brand = brandService.findBrandByProductId(product.getId());
