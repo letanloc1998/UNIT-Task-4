@@ -11,7 +11,11 @@ public interface ProductService {
 	
 	public List<Product> findAllProductByShopId(Long shop_id);
 	
-	public List<Product> findAllProductByCategoryId(int category_id);
+	public List<Product> findAllProductByCategoryId(Long category_id);
+	
+	public List<Product> findAllProductByBrandId(Long brand_id);
+	
+	public List<Product> findAllProductByCategoryIdAndBrandId(Long category_id, Long brand_id);
 	
 	public Product findProductByProductId(Long product_id);
 	

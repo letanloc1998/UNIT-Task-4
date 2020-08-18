@@ -34,7 +34,8 @@ public class ProductController {
     public ModelAndView home(Model model, @PathVariable ("product_id") Long product_id) {
 		Product product = productService.findProductByProductId(product_id);
 		model.addAttribute("product", product);
-		List<Product> products = productService.findAllProductByCategoryId(product.getCategory());
+		Long id = (long) product.getCategory();
+		List<Product> products = productService.findAllProductByCategoryId(id);
 		model.addAttribute("products", products);
 		List<Brand> brands = brandService.findAllBrand();
 		List<Category> categories = categoryService.findAllCategory();
