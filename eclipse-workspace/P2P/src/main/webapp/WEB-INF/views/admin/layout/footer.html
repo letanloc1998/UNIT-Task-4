@@ -10,15 +10,15 @@
 
 	<th:block th:fragment="footer">
 	
-		<script th:src="@{/static/jquery-3.5.1.min.js}"></script>
-		<script th:src="@{/static/popper.min.js}"></script>
+	    <script th:src="@{/static/admin/js/core/jquery.min.js}"></script>
+	    <script th:src="@{/static/admin/js/core/popper.min.js}"></script>
 		<script th:src="@{/static/bootstrap-4.5.0-dist/js/bootstrap.min.js}"></script>
 		<script th:src="@{/static/admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
 		<script th:src="@{/static/admin/js/plugins/sweetalert2@9.js}"></script>
 		<script>
     $(document).ready(function() {
       $().ready(function() {
-        $sidebar = $('.sidebar');
+        $sidebar = $('.sidebar-wrapper');
 
         $sidebar_img_container = $sidebar.find('.sidebar-background');
 

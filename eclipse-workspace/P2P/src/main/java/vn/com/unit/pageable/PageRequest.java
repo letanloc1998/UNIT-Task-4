@@ -27,6 +27,9 @@ public class PageRequest {
 	private int nextMaxPage;
 
 	public PageRequest(int page, int limit, int countAll, int totalPages) {
+		if(limit > 50) {
+			limit = 50;
+		}
 		this.page = page;
 		this.limit = limit;
 		this.countAll = countAll;
