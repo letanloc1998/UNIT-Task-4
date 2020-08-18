@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Brand;
@@ -31,17 +32,45 @@ public class ShopProductController {
 	CategoryService categoryService;
 	
 	@GetMapping("/shop/{shop_id}")
-    public ModelAndView home(Model model, @PathVariable ("shop_id") Long shop_id) {
+    public ModelAndView home(Model model, @PathVariable ("shop_id") Long shop_id, @RequestParam(value = "category",required=false) Long category_id
+    																			, @RequestParam(value = "brand",required=false) Long brand_id) {
+		//get all infor of shop
 		Shop shop = shopService.findShopByAccountId(shop_id);
-		List<Product> products = productService.findAllProductByShopId(shop_id);
-		model.addAttribute("products", products);
 		model.addAttribute("shop", shop);
-		
+		//get brand and category
 		List<Brand> brands = brandService.findAllBrand();
 		List<Category> categories = categoryService.findAllCategory();
 		model.addAttribute("brands", brands);
 		model.addAttribute("categories", categories);
-
+		//get product by category
+		if(category_id != null && brand_id == null) {
+			//get all products  by scategory
+			List<Product> products = productService.findAllProductByCategoryId(category_id);
+			model.addAttribute("products", products);
+			model.addAttribute("title", shop.getName());
+	        return new ModelAndView("shop");
+		}
+		if(brand_id != null && category_id == null) {
+			//get all products  by brand
+			List<Product> products = productService.findAllProductByBrandId(brand_id);
+			model.addAttribute("products", products);
+			model.addAttribute("title", shop.getName());
+	        return new ModelAndView("shop");
+		}
+		if(category_id != null & brand_id != null) {
+			//get all products  by category and brand
+			List<Product> products = productService.findAllProductByCategoryIdAndBrandId(category_id, brand_id);
+			model.addAttribute("products", products);
+			model.addAttribute("title", shop.getName());
+	        return new ModelAndView("shop");
+		}
+		
+		
+		
+		
+		//get all products  by shop
+		List<Product> products = productService.findAllProductByShopId(shop_id);
+		model.addAttribute("products", products);
 		model.addAttribute("title", shop.getName());
         return new ModelAndView("shop");
     }
