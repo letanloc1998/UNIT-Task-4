@@ -63,10 +63,10 @@ public class CartController {
 //	public ResponseEntity<String> add(Model model, @RequestBody Map<String, String> json) {
 	@PutMapping("/cart/add")
 	@ResponseBody
-	public ResponseEntity<String> add(Model model, @RequestBody String json) {
+	public ResponseEntity<String> add(Model model, @RequestBody Map<String, String> json) {
 		
 //		insert into p2p_cart (account, product, quantity) values (3, 1, 1);
-//		cartService.addCartItemCurentAccount(Long.valueOf(json.get("product_id")), 1);
+		cartService.addCartItemCurentAccount(Long.valueOf(json.get("product_id")), 1);
 		
 		return ResponseEntity.ok(null);
 	}
