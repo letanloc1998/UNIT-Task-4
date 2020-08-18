@@ -27,9 +27,7 @@
     <th:block th:replace="admin/layout/footer :: footer"></th:block>
     
     <script th:inline="javascript">
-        const accounts = [[${ accounts }]]
-          function DeleteCategory(id) {
-            console.log(id)
+          function DeleteBrand(id) {
 
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
@@ -45,7 +43,7 @@
                 		
                 	  if (result.value) {
                          	    	 $.ajax({
-                                         url: `/admin/category/delete/${id}`,
+                                         url: `/admin/brand/delete/${id}`,
                                          type: 'DELETE',
                                          beforeSend: function (xhr) {
                                              xhr.setRequestHeader(header, token);

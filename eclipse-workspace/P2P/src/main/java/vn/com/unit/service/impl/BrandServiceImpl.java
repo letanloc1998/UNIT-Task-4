@@ -91,5 +91,38 @@ public class BrandServiceImpl implements BrandService {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public Brand findBrandById(Long id) {
+		// TODO Auto-generated method stub
+		try {
+			return brandRepository.findBrandById(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	@Override
+	public void updateBrandById(Brand brand) {
+		// TODO Auto-generated method stub
+		try {
+			brandRepository.updateBrandById(brand.getName(),brand.getId());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+
+	@Override
+	public void deleteBrandById(Long id, Long disable) {
+		// TODO Auto-generated method stub
+		
+		try {
+			brandRepository.deleteBrandById(id, disable);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	};
 }
