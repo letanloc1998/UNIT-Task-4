@@ -31,6 +31,10 @@
 
                 let token = $("meta[name='_csrf']").attr("content");
                 let header = $("meta[name='_csrf_header']").attr("content");
+                // let data = new Object();
+                // data.product_id = product_id;
+                let data = `{"product_id" : ${product_id}}`;
+                console.log(data);
 
                 $.ajax({
                         url: `${home}/cart/add`,
@@ -39,7 +43,9 @@
                         dataType: "json",
                         contentType: "application/json",
 
-                        data: JSON.stringify(`{"product_id" : ${product_id}}`),
+                        // data: JSON.stringify(`{"product_id" : ${product_id}}`),
+                        data: `{"product_id" : ${product_id}}`,
+                        // data: JSON.stringify(data),
 
                         beforeSend: function (xhr) {
                             xhr.setRequestHeader(header, token);
