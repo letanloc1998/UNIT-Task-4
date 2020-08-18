@@ -75,8 +75,6 @@ public class Shop {
 		this.detail = detail;
 	}
 
-
-
 	public int getStatus() {
 		return status;
 	}
@@ -101,8 +99,6 @@ public class Shop {
 		this.products = products;
 	}
 
-
-
 	public String getOwnerName() {
 		return ownerName;
 	}
@@ -110,8 +106,6 @@ public class Shop {
 	public void setOwnerName(String ownerName) {
 		this.ownerName = ownerName;
 	}
-
-
 
 	private List<Product> products;
 	

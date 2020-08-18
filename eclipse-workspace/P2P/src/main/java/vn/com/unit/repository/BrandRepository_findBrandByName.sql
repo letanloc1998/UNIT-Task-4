@@ -1,3 +1,3 @@
 select *
 from p2p_brand
-where name = /*name*/
+where name = /*name*/ AND disable = 0

@@ -65,14 +65,16 @@ public class AdminCategoryController {
 	@ResponseBody
 	public ResponseEntity<String> createCategory(@RequestBody Category category, Model model) {
 		if (categoryService.findCategoryByName(category.getName()) != null) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Category already exists\" }");}
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Category already exists\" }");
+			}
+		if (category.getName() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
+		}
 		Long category_id = categoryService.createCategory(category);
 		if (category_id != null) {
 			return ResponseEntity.ok("{ \"id\" : " + category_id + ", \"msg\" : \"Create category successfully\" }");
 		}
-		if (category.getName() == null) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
-		}
+		
 
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body("{ \"msg\" : \"You can't create an category right now. Try again later\" }");
@@ -91,7 +93,7 @@ public class AdminCategoryController {
 		}
 		categoryService.updateCategoryById(category);
 
-		return ResponseEntity.ok(null);
+		return ResponseEntity.ok("{ \"msg\" : \"update category successfully\" }");
 	}
 	@DeleteMapping("/admin/category/delete/{category_id}")
 	public ResponseEntity<Boolean> AdminDisableShop(Model model, @PathVariable("category_id") Long category_id,

@@ -7,40 +7,40 @@
 <head></head>
 
 <body>
-	<th:block th:fragment="category-edit">
+	<th:block th:fragment="brand-edit">
 		<div class="content">
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="card">
 							<div class="card-header card-header-primary">
-								<h4 class="card-title ">Category Edit</h4>
+								<h4 class="card-title ">Brand Edit</h4>
 							</div>
 							<div class="card-body">
-								<form  th:object="${category}">
+								<form  th:object="${brand}">
 
 									<div class="form-group row">
-										<label for="CategoryName"
-											class="col-sm-4 col-form-label">Category Name</label>
+										<label for="BrandName"
+											class="col-sm-4 col-form-label">Brand Name</label>
 										<div class="col-sm-8">
 											<input type="text" class="form-control" th:field="*{name}"
-												id="CategoryName" placeholder="Enter new category" />
+												id="BrandName" placeholder="Enter new Brand" />
 										</div>
 									</div>
-								</form>
 
 									<div class="card-footer"
 										style="display: flex; flex-direction: row; justify-content: flex-end;">
 										<button 
 											type="button" 
-											onClick="editCategory()" 
+											onClick="editBrand()" 
 											class="btn btn-success">Save <i class="fas fa-save"></i></button>
 										
-										<a th:href="@{/admin/category/list}" type="button"
+										<a th:href="@{/admin/brand/list}" type="button"
 											class="btn btn-danger"> Return <i
 											class="fas fa-sign-out-alt"></i>
 										</a>
 									</div>
+								</form>
 							</div>
 						</div>
 					</div>
