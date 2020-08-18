@@ -26,8 +26,7 @@
 								th:if="${(param.brand == null) and (param.category != null)}"
 								th:styleappend ="${(param.category != null) and (#strings.equals(param.category[0], #strings.toString(category.id)))} ? 'color: red' : 'color: black' "
 								th:text="${category.name}" 
-								th:href="@{'/shop/' + ${shop.id} +'?category=' + ${category.id}}"></a>
-								
+								th:href="@{'/shop/' + ${shop.id} +'?category=' + ${category.id}}"></a>								
 								<a
 								th:if="${(param.brand != null) and (param.category == null)}"
 								th:styleappend ="${(param.category != null) and (#strings.equals(param.category[0], #strings.toString(category.id)))} ? 'color: red' : 'color: black' "

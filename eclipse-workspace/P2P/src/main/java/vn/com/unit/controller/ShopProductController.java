@@ -69,7 +69,9 @@ public class ShopProductController {
 				PageRequest pageable = new PageRequest(page, limit, totalitems);
 				
 				List<Product> products = productService.findAllProductByCategoryIdAndBrandId(category_id, brand_id, shop_id, pageable.getLimit(),pageable.getOffset());
-			
+				
+				int total = productService.countAllProductByCategoryIdAndBrandId(category_id, brand_id, shop_id);
+				model.addAttribute("total", total);
 				model.addAttribute("products", products);
 				model.addAttribute("pageable", pageable);
 				model.addAttribute("title", shop.getName());
