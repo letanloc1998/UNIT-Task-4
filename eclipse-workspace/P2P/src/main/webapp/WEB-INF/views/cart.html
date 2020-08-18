@@ -263,8 +263,11 @@
         <div th:unless="${list_cart_item != null and !list_cart_item.empty}" class="cart_section">
             <div class="container">
                 <div class="row">
-                    <div class="col">
+                    <div class="col text-center">
                         <h1 class="text-center">Nothing in cart</h1>
+                        <div class="button banner_button">
+                            <a th:href="@{/}">Shop Now</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -302,12 +305,12 @@
                                             </div>
                                             <div class="cart_item_price cart_info_col">
                                                 <div class="cart_item_title">Price</div>
-                                                <div class="cart_item_text" th:text="${cart_item.price}">$999999999
+                                                <div class="cart_item_text">$<th:block th:text="${cart_item.price}">$999999999</th:block>
                                                 </div>
                                             </div>
                                             <div class="cart_item_total cart_info_col">
                                                 <div class="cart_item_title">Total</div>
-                                                <div class="cart_item_text" th:text="${cart_item.total}">$999999999
+                                                <div class="cart_item_text">$<th:block th:text="${cart_item.total}">$999999999</th:block>
                                                 </div>
                                             </div>
                                         </div>
@@ -320,7 +323,7 @@
                             <div class="order_total">
                                 <div class="order_total_content text-md-right">
                                     <div class="order_total_title">Order Total:</div>
-                                    <div class="order_total_amount" th:text="${total}">$2000</div>
+                                    <div class="order_total_amount">$<th:block th:text="${total}"></th:block></div>
                                 </div>
                             </div>
 
