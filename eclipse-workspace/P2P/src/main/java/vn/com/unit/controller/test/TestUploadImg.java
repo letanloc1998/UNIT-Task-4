@@ -18,7 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cloudinary.Cloudinary;
+import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
+
+import vn.com.unit.service.UploadImgService;
 
 @Controller
 public class TestUploadImg {
@@ -40,8 +43,8 @@ public class TestUploadImg {
 	@PostMapping("/test/upload")
 	public ModelAndView saveFile(Model model, @RequestParam("file") MultipartFile multipartFile,
 			HttpServletRequest request) throws IllegalStateException, IOException {
-
-//		String yourSystemPath = System.getProperty("jboss.home.url") /*OPTIONAL*/ + "/want/to/save/here";
+/*
+//		String yourSystemPath = System.getProperty("jboss.home.url") + "/want/to/save/here";
 //		File fileToSave = new File(yourSystemPath,"foo.bar");  
 //		Writer out = new OutputStreamWriter(new FileOutputStream(fileToSave), "UTF-8");
 //		
@@ -73,13 +76,15 @@ public class TestUploadImg {
 //		Map params = ObjectUtils.asMap("public_id", "my_folder/my_sub_folder/my_dog", "overwrite", true,
 //				"notification_url", "https://mysite/notify_endpoint", "resource_type", "video");
 		
-		Map<String, String> params = new HashMap<String, String>();
+		Map<String, Object> params = new HashMap<String, Object>();
 		params.put("folder", "p2po");
 //		params.put("public_id", multipart_file_name);
 		params.put("public_id", time);
 		params.put("overwrite", "false");
 //		params.put("notification_url", "https://mysite/notify_endpoint");
 //		params.put("resource_type", "https://mysite/notify_endpoint");
+		
+//		params.put("transformation", new Transformation().width(1920).quality("auto").fetchFormat("auto").crop("scale"));
 		
 //		cloudinary.uploader().upload("sample_file.jpg",
 //				  ObjectUtils.asMap(
@@ -94,7 +99,13 @@ public class TestUploadImg {
 
 		String url = (String) uploadResult.get("url");
 		
+		url = url.replace("/image/upload/", "/image/upload/q_auto/w_200,h_200/");
+		
 		temp_file.delete();
+*/
+
+//		String url = UploadImgService.uploadCloudinary(multipartFile);
+		String url = UploadImgService.uploadCloudinary(multipartFile, 150, 150);
 		
 		return new ModelAndView("redirect:" + url);
 	}
