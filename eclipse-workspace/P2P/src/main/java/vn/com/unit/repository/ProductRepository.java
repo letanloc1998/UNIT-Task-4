@@ -11,7 +11,7 @@ import vn.com.unit.entity.Shop;
 
 public interface ProductRepository extends MirageRepository<Shop, Long> {
 
-	public List<Product> findAllProductByShopId(@Param("shop_id") Long shop_id);
+	public List<Product> findAllProductByShopId(@Param("shop_id") Long shop_id,@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 	
 	public List<Product> findAllProductByCategoryId(@Param("category_id") int category_id);
 	
@@ -45,4 +45,6 @@ public interface ProductRepository extends MirageRepository<Shop, Long> {
 	public List<Product> findAllProduct();
 	
 	public List<Product> findProductByName(@Param("name") String name);
+	
+	public int countAllProductByShopId(@Param("shop_id") Long shop_id);
 }
