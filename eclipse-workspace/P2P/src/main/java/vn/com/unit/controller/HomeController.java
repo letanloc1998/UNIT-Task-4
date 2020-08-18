@@ -6,14 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
@@ -29,7 +27,7 @@ public class HomeController {
 	ProductService productService;
 
 	@GetMapping("*")
-    public ModelAndView home(Model model, String name) {
+    public ModelAndView home(Model model, @Param("name") String name) {
 		
 		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 		
@@ -38,17 +36,16 @@ public class HomeController {
 //		List<Category> categories = categoryService.findAllCategory();
 //		model.addAttribute("categories", categories);
 		
-		List<Product> product = productService.findAllProduct();
-		model.addAttribute("product", product);
-		
 		/*
-		 * ModelAndView manv = new ModelAndView();
-		 * 
-		 * manv.addObject("searchTerm", searchName); manv.addObject("searchResult",
-		 * productService.findProductByName(searchName))
-		 */;
+		 * List<Product> product = productService.findAllProduct();
+		 * model.addAttribute("product", product);
+		 */
 		 
-		/* List<Product> product1 = productService.findProductByName(name); */
+	
+		 
+		List<Product> product = productService.findProductByName(name);
+		model.addAttribute("product", product);
+		model.addAttribute("name", name);
 		
 	    
         return new ModelAndView("index");
