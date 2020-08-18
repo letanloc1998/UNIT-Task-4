@@ -47,5 +47,49 @@ public class BrandServiceImpl implements BrandService {
 	public List<Brand> findAllBrand(){
 		
 		return brandRepository.findAllBrand();
+	}
+
+	@Override
+	public List<Brand> findBrandPageable(int limit, int offset) {
+		// TODO Auto-generated method stub
+		try {
+			return brandRepository.findBrandPageable(limit, offset);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	@Override
+	public int countAllBrand() {
+		// TODO Auto-generated method stub
+		try {
+			return brandRepository.countAllBrand();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return  0;
+	}
+
+	@Override
+	public Long createCategory(Brand brand) {
+		// TODO Auto-generated method stub
+		try {
+			return brandRepository.createNewBrand(brand.getName());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	@Override
+	public Brand findBrandByName(String name) {
+		// TODO Auto-generated method stub
+		try {
+			return brandRepository.findBrandByName(name);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	};
 }

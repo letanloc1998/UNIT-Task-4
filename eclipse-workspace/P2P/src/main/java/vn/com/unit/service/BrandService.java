@@ -12,5 +12,11 @@ public interface BrandService {
 	public Brand findBrandByProductId(Long product_id);
 
 	public List<Brand> findAllBrand();
+	public List<Brand> findBrandPageable(int limit,int offset);
+	public int countAllBrand();
+	public Long createCategory(Brand brand);
+	
+	public Brand findBrandByName(String name);
 
+	
 }
