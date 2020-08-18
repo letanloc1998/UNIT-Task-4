@@ -10,5 +10,7 @@ public interface PaymentService {
 	public Long calculateBillTotal(Long bill_id);
 
 	public void savePaymentSuccess(Long bill_id);
+
+	public void savePaymentError(Long bill_id);
 	
 }

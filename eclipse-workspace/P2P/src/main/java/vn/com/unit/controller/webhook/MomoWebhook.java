@@ -50,14 +50,16 @@ public class MomoWebhook {
 
 		if (momoPaymentResult.checkSignature()) {
 
+			String order_id = momoPaymentResult.getOrderId();
+			String request_id = momoPaymentResult.getRequestId();
+			Long bill_id = Long.valueOf(request_id.replace(order_id, ""));
+			
 			if (momoPaymentResult.getErrorCode().equals("0")) {
 				// Handler success
 				// Refund if empty product in repository
 				log = "/webhook/momo payment success | " + rawBody;
 
-				String order_id = momoPaymentResult.getOrderId();
-				String request_id = momoPaymentResult.getRequestId();
-				Long bill_id = Long.valueOf(request_id.replace(order_id, ""));
+				
 
 				paymentService.savePaymentSuccess(bill_id);
 				
@@ -68,6 +70,8 @@ public class MomoWebhook {
 			} else {
 				// Handler error
 				log = "/webhook/momo payment error | " + rawBody;
+				
+				paymentService.savePaymentError(bill_id);
 
 			}
 
