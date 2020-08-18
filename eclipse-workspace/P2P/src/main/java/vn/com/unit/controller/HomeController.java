@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Product;
@@ -36,20 +37,25 @@ public class HomeController {
 //		List<Category> categories = categoryService.findAllCategory();
 //		model.addAttribute("categories", categories);
 		
-		/*
-		 * List<Product> product = productService.findAllProduct();
-		 * model.addAttribute("product", product);
-		 */
-		 
-	
-		 
-		List<Product> product = productService.findProductByName(name);
-		model.addAttribute("product", product);
-		model.addAttribute("name", name);
 		
-	    
+		  List<Product> product = productService.findAllProduct();
+		  model.addAttribute("product", product);
+		 
         return new ModelAndView("index");
     }
+	
+	@GetMapping("/product-by-search")
+    public ModelAndView test(Model model, @RequestParam("name") String name) {
+		 
+		List<Product> products = productService.findProductByName(name);
+		model.addAttribute("products", products);
+		model.addAttribute("name", name);
+	    
+        return new ModelAndView("product-by-search");
+    }
+	
+	
+	
 
 	@GetMapping("/register")
     public ModelAndView register(Model model) {

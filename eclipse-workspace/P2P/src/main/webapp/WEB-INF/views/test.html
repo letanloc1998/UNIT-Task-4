@@ -7,7 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<th:block th:each="product : ${product}">
+	<script th:inline="javascript">
+	const test=[[${products}]]
+		console.log(test);
+	const name1 = [[${name}]]
+	console.log(name1);
+	</script>
+	<th:block th:each="product : ${products}">
 		<span th:text="${product.name}"></span>
 </body>
 </html>
