@@ -42,7 +42,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public void addCartItemCurentAccount(Long product_id, int quantity) {
+	public void addCartItemCurrentAccount(Long product_id, int quantity) {
 		Long curent_account_id = accountService.findCurrentAccount().getId();
 
 //		select quantity
@@ -52,9 +52,9 @@ public class CartServiceImpl implements CartService {
 		Integer quantity_in_cart = cartRepository.findProductQuantityInCart(curent_account_id, product_id);
 
 		if (quantity_in_cart == null) {
-			cartRepository.addCartItemCurentAccount(curent_account_id, product_id, quantity);
+			cartRepository.addCartItemCurrentAccount(curent_account_id, product_id, quantity);
 		} else {
-			cartRepository.addCartItemCurentAccount(curent_account_id, product_id, quantity_in_cart + quantity);
+			cartRepository.addCartItemCurrentAccount(curent_account_id, product_id, quantity_in_cart + quantity);
 		}
 
 	}

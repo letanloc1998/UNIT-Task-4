@@ -15,7 +15,7 @@ public interface CartRepository extends MirageRepository<CartItem, Long> {
 	public Long calculateCartTotalByAccountId(@Param("account_id") Long account_id);
 
 	@Modifying
-	public void addCartItemCurentAccount(@Param("account_id") Long account_id, @Param("product_id") Long product_id,
+	public void addCartItemCurrentAccount(@Param("account_id") Long account_id, @Param("product_id") Long product_id,
 			@Param("quantity") int quantity);
 
 	public Integer findProductQuantityInCart(@Param("account_id") Long account_id, @Param("product_id") Long product_id);
