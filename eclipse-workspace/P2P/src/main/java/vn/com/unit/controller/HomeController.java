@@ -82,6 +82,8 @@ public class HomeController {
 	@GetMapping("/product-by-search")
 	public ModelAndView test(Model model, @RequestParam("name") String name) {
 		
+		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
+		
 		List<Product> products = productService.findProductByName(name);
 		model.addAttribute("products", products);
 		model.addAttribute("name", name);
