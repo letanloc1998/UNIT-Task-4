@@ -16,6 +16,10 @@
 		<script th:src="@{/static/admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
 		<script th:src="@{/static/admin/js/plugins/sweetalert2@9.js}"></script>
 		<script>
+		
+		$(function () {
+			  $('[data-toggle="tooltip"]').tooltip()
+			})
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar-wrapper');

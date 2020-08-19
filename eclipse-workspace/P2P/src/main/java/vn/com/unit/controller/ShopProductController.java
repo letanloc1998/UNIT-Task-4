@@ -74,20 +74,7 @@ public class ShopProductController {
 				model.addAttribute("pageable", pageable);
 				model.addAttribute("title", shop.getName());
 		        return new ModelAndView("shop");
-//			}
-			
-			//get all products  by shop
-			
-//			int totalitems = productService.CountAllProductByShopId(shop_id);
-//
-//			PageRequest pageable = new PageRequest(page, limit, totalitems);
-//			
-//			List<Product> products = productService.findAllProductByShopId(shop_id,pageable.getLimit(), pageable.getOffset());
-//			model.addAttribute("pageable", pageable);
-//
-//			model.addAttribute("products", products);
-//			model.addAttribute("title", shop.getName());
-//	        return new ModelAndView("shop");
+
     }
 	
 }

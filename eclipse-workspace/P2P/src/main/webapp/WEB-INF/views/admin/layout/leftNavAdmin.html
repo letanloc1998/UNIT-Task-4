@@ -49,6 +49,11 @@
 							th:href="@{/admin/brand/list}"> <i class="fas fa-star"></i>
 								<p>Brand</p>
 						</a></li>
+					<li th:classappend="${#request.getRequestURI().startsWith('/admin/log/') ? 'nav-item active' : 'nav-item'}">
+						<a class="nav-link"
+							th:href="@{/admin/log/list}"> <i class="fas fa-credit-card"></i>
+								<p>Payment Log</p>
+						</a></li>
 
 				</ul>
 			</div>
