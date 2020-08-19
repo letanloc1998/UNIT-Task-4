@@ -38,7 +38,7 @@ public class ShopProductController {
     		@RequestParam(value = "category",required=false) Long category_id, 
     		@RequestParam(value = "brand",required=false) Long brand_id,
     		@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit
+			@RequestParam(value = "limit", required = false, defaultValue = "12") int limit
     		) {
 			//get all infor of shop
 			Shop shop = shopService.findShopByAccountId(shop_id);
