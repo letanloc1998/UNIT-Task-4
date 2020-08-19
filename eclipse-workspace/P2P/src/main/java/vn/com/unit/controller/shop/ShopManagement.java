@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Product;
@@ -25,6 +27,7 @@ import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
+import vn.com.unit.service.UploadImgService;
 
 
 
@@ -120,7 +123,12 @@ public class ShopManagement {
 	//add product
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PostMapping("/add-product")
-	public String addProduct(@ModelAttribute("new_product") Product new_product, Model model) {
+	public String addProduct(@ModelAttribute("new_product") Product new_product,  @RequestParam("file") MultipartFile multipartFile, Model model) {
+		
+		String url = UploadImgService.uploadCloudinary(multipartFile);
+		
+		new_product.setImg(url);
+		
 		Account account = accountService.findCurrentAccount();		
 		productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(), new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(), account.getId());
 		return "redirect:/shop/myproduct?mode=view"; 

@@ -15,6 +15,8 @@ public interface CategoryRepository extends MirageRepository<Category, Long> {
 	
 	public List<Category> findAllCategory();
 	
+	public List<Category> findAllCategoryByShopId(@Param("shop_id") Long shop_id );
+	
 	public List<Category> findCategoryPageable(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 	
 	public int countAllCategory();

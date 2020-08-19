@@ -44,8 +44,8 @@ public class ShopProductController {
 			Shop shop = shopService.findShopByAccountId(shop_id);
 			model.addAttribute("shop", shop);
 			//get brand and category
-			List<Brand> brands = brandService.findAllBrand();
-			List<Category> categories = categoryService.findAllCategory();
+			List<Brand> brands = brandService.findAllBrandByShopId(shop.getId());
+			List<Category> categories = categoryService.findAllCategoryByShopId(shop.getId());
 			model.addAttribute("brands", brands);
 			model.addAttribute("categories", categories);
 			//get product by category
@@ -69,7 +69,9 @@ public class ShopProductController {
 				PageRequest pageable = new PageRequest(page, limit, totalitems);
 				
 				List<Product> products = productService.findAllProductByCategoryIdAndBrandId(category_id, brand_id, shop_id, pageable.getLimit(),pageable.getOffset());
-			
+				
+				int total = productService.countAllProductByCategoryIdAndBrandId(category_id, brand_id, shop_id);
+				model.addAttribute("total", total);
 				model.addAttribute("products", products);
 				model.addAttribute("pageable", pageable);
 				model.addAttribute("title", shop.getName());

@@ -17,7 +17,7 @@ public class CartServiceImpl implements CartService {
 
 	@Autowired
 	AccountService accountService;
-	
+
 	@Autowired
 	CartRepository cartRepository;
 
@@ -31,7 +31,7 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public List<CartItem> findAllCartItemByAccountId(Long account_id) {
-	
+
 		return cartRepository.findAllCartItemByAccountId(account_id);
 	}
 
@@ -44,7 +44,19 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public void addCartItemCurentAccount(Long product_id, int quantity) {
 		Long curent_account_id = accountService.findCurrentAccount().getId();
-		cartRepository.addCartItemCurentAccount(curent_account_id, product_id, quantity);
+
+//		select quantity
+//		from p2p_cart
+//		where account = 1 and product = 2
+
+		Integer quantity_in_cart = cartRepository.findProductQuantityInCart(curent_account_id, product_id);
+
+		if (quantity_in_cart == null) {
+			cartRepository.addCartItemCurentAccount(curent_account_id, product_id, quantity);
+		} else {
+			cartRepository.addCartItemCurentAccount(curent_account_id, product_id, quantity_in_cart + quantity);
+		}
+
 	}
 
 }
