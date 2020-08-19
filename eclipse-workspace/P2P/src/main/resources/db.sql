@@ -168,16 +168,16 @@ create table p2p_log (
 	create_at datetime default getutcdate(),
 )
 
-insert into p2p_account(username, password) values ('admin', '');
-insert into p2p_role (name) values ('ROLE_ADMIN');
-insert into p2p_role (name) values ('ROLE_VENDOR');
-insert into p2p_role (name) values ('ROLE_USER');
-insert into p2p_account_role (account, role) values (1, 1);
+--insert into p2p_account(username, password) values ('admin', '');
+--insert into p2p_role (name) values ('ROLE_ADMIN');
+--insert into p2p_role (name) values ('ROLE_VENDOR');
+--insert into p2p_role (name) values ('ROLE_USER');
+--insert into p2p_account_role (account, role) values (1, 1);
 
 -- init data
 
 -- acount
-/*
+
 insert into p2p_account(username, password) values ('admin', '');
 insert into p2p_account(username, password) values ('vendor', '');
 insert into p2p_account(username, password) values ('user', '');
@@ -288,7 +288,7 @@ insert into p2p_product (shop, name, price, img, category, brand, quantity, deta
 insert into p2p_product (shop, name, price, img, category, brand, quantity, detail) values (6, 'product-2', 1500, '/static/default.png', 1, 2, 30, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.');
 insert into p2p_product (shop, name, price, img, category, brand, quantity, detail) values (6, 'product-1', 1000, '/static/default.png', 1, 1, 40, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum. laoreet turpis, nec sollicitudin dolor cursus at. Maecenas aliquet, dolor a faucibus efficitur, nisi tellus cursus urna, eget dictum lacus turpis.');
 
-
+/*
 select product.id, product.name, product.price, product.detail, product.img,
 		product.disable, product.quantity, product.create_at,
 		category.name as category, brand.name as brand, shop.name as shop
