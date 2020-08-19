@@ -12,38 +12,46 @@
 	<th:block th:fragment="product-detail">
 		<div class="single_product">
 			<div class="container">
-				<div class="row">	
-				<div class="col-lg-2 order-lg-1 order-2">
-					<ul class="image_list">
-						<li th:data-image="${product.img}"><img th:src="${product.img}" alt=""></li>
-						<li th:data-image="${product.img}"><img th:src="${product.img}" alt=""></li>
-						<li th:data-image="${product.img}"><img th:src="${product.img}" alt=""></li>
-					</ul>
-				</div>
+				<div class="row">
+					<div class="col-lg-2 order-lg-1 order-2">
+						<ul class="image_list">
+							<li th:data-image="${product.img}"><img
+								th:src="${product.img}" alt=""></li>
+							<li th:data-image="${product.img}"><img
+								th:src="${product.img}" alt=""></li>
+							<li th:data-image="${product.img}"><img
+								th:src="${product.img}" alt=""></li>
+						</ul>
+					</div>
 					<!-- Selected Image -->
 					<div class="col-lg-5 order-lg-2 order-1">
 						<div class="image_selected">
-						<span class="zoom" id="product_img">
-							<img style="height: 400px; width: 400px" th:src="${product.img}"
+							<span class="zoom" id="product_img"> <img
+								style="height: 400px; width: 400px" th:src="${product.img}"
 								alt="">
-						</span>		
+							</span>
 						</div>
 					</div>
 
 					<!-- Description -->
 					<div class="col-lg-5 order-3">
 						<div class="product_description">
-							<div style="font-size: 20px; font-weight: bold; color: blue"
-								th:text="${product.category_name.name}"></div>
-							<div style="font-size: 20px; font-weight: bold; color: red"
-								th:text="${product.brand_name.name}"></div>
-							<div style="text-transform: uppercase;" class="product_name" th:text="${product.name}"></div>
+							<div style="text-transform: uppercase;" class="product_name"
+								th:text="${product.name}"></div>
 							<div class="rating_r rating_r_4 arrivals_single_rating">
 								<i></i><i></i><i></i><i></i><i></i>
 							</div>
-							<br>
+							<span>Shop:&nbsp</span><a style="font-size: 18px; color: gray"
+								th:text="${shop.name}" th:href="@{'/shop/' + ${shop.id}}"></a>
+								<br>
+							<span>Category:&nbsp</span><a style="font-size: 18px; color: gray"
+								th:text="${product.category_name.name}"></a>
+								<br>
+							<span>Brand:&nbsp</span><a style="font-size: 18px; color: gray"
+								th:text="${product.brand_name.name}"></a>
+							<br><br>
 							<h3>Detail:</h3>
-							<div style="text-align:left" th:text="${product.detail}"></div>
+							<div style="text-align: left" th:text="${product.detail}"></div>
 							<div class="order_info d-flex flex-row">
 								<form action="#">
 									<div class="clearfix" style="z-index: 1000;">
@@ -64,10 +72,11 @@
 											</div>
 										</div>
 									</div>
-									<span style="color:red;text-transform: uppercase;" id="status-quantity"></span>
-									<br>
-									<span style="font-size: 20px; color: red; font-weight:bold" >Price:</span>
-									<div class="product_price" th:text="${product.price}"></div><span class="product_price">$</span>
+									<span style="color: red; text-transform: uppercase;"
+										id="status-quantity"></span> <br> <span
+										style="font-size: 20px; color: red; font-weight: bold">Price:</span>
+									<div class="product_price" th:text="${product.price}"></div>
+									<span class="product_price">$</span>
 									<div class="button_container">
 										<button type="button" class="button cart_button">Add
 											to Cart</button>

@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
+import vn.com.unit.entity.Shop;
 import vn.com.unit.service.BrandService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
@@ -33,6 +34,7 @@ public class ProductController {
 	@GetMapping("/product/{product_id}")
     public ModelAndView home(Model model, @PathVariable ("product_id") Long product_id) {
 		Product product = productService.findProductByProductId(product_id);
+		Shop shop = shopService.findShopByAccountId(product.getShop());
 		model.addAttribute("product", product);
 		Long id = (long) product.getCategory();
 		List<Product> products = productService.findAllProductByCategoryId(id);
@@ -41,6 +43,7 @@ public class ProductController {
 		List<Category> categories = categoryService.findAllCategory();
 		model.addAttribute("brands", brands);
 		model.addAttribute("categories", categories);
+		model.addAttribute("shop", shop);
 		model.addAttribute("title", product.getName());
         return new ModelAndView("product-detail");
     }
