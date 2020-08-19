@@ -17,6 +17,7 @@ import vn.com.unit.service.BrandService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.ShopService;
+import vn.com.unit.utils.CommonUtils;
 
 @Controller
 public class ProductController {
@@ -33,6 +34,9 @@ public class ProductController {
 	
 	@GetMapping("/product/{product_id}")
     public ModelAndView home(Model model, @PathVariable ("product_id") Long product_id) {
+		
+		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
+		
 		Product product = productService.findProductByProductId(product_id);
 		Shop shop = shopService.findShopByAccountId(product.getShop());
 		model.addAttribute("product", product);

@@ -19,6 +19,13 @@
         <script th:src="@{/static/index-template/plugins/slick-1.8.0/slick.js}"></script>
         <script th:src="@{/static/index-template/plugins/easing/easing.js}"></script>
         <script th:src="@{/static/index-template/js/custom.js}"></script>
+          <!--  Notifications Plugin    -->
+          <script th:src="@{/static/admin/js/plugins/perfect-scrollbar.jquery.min.js}"></script>
+		<script th:src="@{/static/admin/js/plugins/bootstrap-notify.js}"></script>
+		  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+		<script th:src="@{/static/admin/js/material-dashboard.js?v=2.1.2}" type="text/javascript"></script>
+		        
+        
         
        
 
@@ -65,9 +72,10 @@
                         xhr.setRequestHeader(header, token);
                     },
 
-                    // success: function (data, status, xhr) {
+                     success: function (data, status, xhr) {
+                    	 md.showAddProductNoti('bottom','right',data.msg)
                     //     window.location.href = window.location.href;
-                    // },
+                    },
                     error: function (request, status, error) {
 
                         try {

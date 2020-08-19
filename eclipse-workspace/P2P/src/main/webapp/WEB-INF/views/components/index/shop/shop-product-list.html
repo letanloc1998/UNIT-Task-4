@@ -38,10 +38,12 @@
 				</div>
 			</div>
 			<div class="row">
-				<th:block th:each="product : ${products}">
+				<th:block th:if="${ shop != null}"
+					th:each="product : ${products}">
 					<div class="col-lg-3">
-					<div class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
-						<div class="product_border"></div>
+						<div
+							class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
+							<div class="product_border"></div>
 
 							<div
 								class="product_image d-flex flex-column align-items-center justify-content-center">
@@ -50,13 +52,16 @@
 									style="max-width: 115px; max-height: 115px;">
 							</div>
 							<div class="product_content">
-								<div class="product_price"><th:block th:inline="text">$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}]]</th:block></div>
+								<div class="product_price">
+									<th:block th:inline="text">$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}]]</th:block>
+								</div>
 								<div class="product_name">
 									<div>
 										<a th:text="${product.name}"
 											th:href="@{'/product/' + ${product.id}}" tabindex="0"></a>
 									</div>
-									<button th:onclick="|addCart(__${product.id}__)|" class="btn btn-primary">Add to Cart</button>
+									<button th:onclick="|addCart(__${product.id}__)|"
+										class="btn btn-primary">Add to Cart</button>
 								</div>
 							</div>
 							<div class="product_fav">
@@ -66,8 +71,36 @@
 					</div>
 
 				</th:block>
+
+			</div>
+			<div style="display: flex; align-items: center;">
+
+				<nav th:if="${pageable.totalPages > 0}" class="pagination">
+					<ul class="pagination" style="margin-bottom: 0px;">
+						<li
+							th:class="${pageable.preMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
+							<a class="page-link" th:with="result=${ pageable.page - 1}"
+							th:href="@{/admin/category/list(limit=${pageable.limit}, page=${result})}"><i
+								class="fas fa-arrow-left"></i></a>
+						</li>
+
+						<li th:each="item : ${pageable.items}"
+							th:class="${item.current == true} ? 'page-item active' : 'page-item'">
+							<!--  --> <a
+							th:href="@{/admin/category/list(limit=${pageable.limit}, page=${item.number})}"
+							class="page-link" th:text="${item.number}"> </a>
+						</li>
+						<li
+							th:class="${pageable.nextMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
+							<a class="page-link" th:with="result=${ pageable.page + 1}"
+							th:href="@{/admin/category/list(limit=${pageable.limit}, page=${result})}"><i
+								class="fas fa-arrow-right"></i></a>
+						</li>
+					</ul>
+				</nav>
 			</div>
 		</div>
+
 	</th:block>
 </body>
 </html>
