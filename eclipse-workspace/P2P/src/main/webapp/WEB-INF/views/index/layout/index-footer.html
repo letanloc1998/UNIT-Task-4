@@ -38,7 +38,12 @@
 
                 try {
                     let quantity = $('#quantity_input').val();
-                    data = `{"product_id" : ${product_id},"quantity" : ${quantity}}`;
+                    if (typeof quantity === 'undefined') {
+                        
+                    }
+                    else {
+                        data = `{"product_id" : ${product_id},"quantity" : ${quantity}}`;
+                    }
                 } catch (error) {
 
                 }
