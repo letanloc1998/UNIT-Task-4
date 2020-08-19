@@ -183,6 +183,24 @@ md = {
     });
   },
 
+
+  showAddProductNoti: function(from, align,mess) {
+
+
+    $.notify({
+      icon: '<i class="fas fa-bell"></i>',
+      message: mess,
+
+    }, {
+      type: 'success',
+      timer: 500,
+      placement: {
+        from: from,
+        align: align
+      }
+    });
+  },
+
   initDocumentationCharts: function() {
     if ($('#dailySalesChart').length != 0 && $('#websiteViewsChart').length != 0) {
       /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
