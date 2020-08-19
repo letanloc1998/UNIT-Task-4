@@ -280,9 +280,34 @@
                         <div class="cart_container">
                             <div class="cart_title">Shopping Cart</div>
                             <div class="cart_items">
-                                <ul class="cart_list">
+                                <div class="cart_list">
 
-                                    <li class="cart_item clearfix" th:each="cart_item : ${list_cart_item}">
+                                    <table class="table table-striped">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Total</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr th:each="cart_item, i : ${list_cart_item}" th:onclick="window.location=[[@{/product/__${cart_item.product}__}]];">
+                                            <th scope="row" th:text="${i.count}">1</th>
+                                            <td><img th:src="@{__${cart_item.img}__}"
+                                                th:onerror="this.onerror=null;this.src=[[@{/static/img/default.png}]];"
+                                                alt="" style="width: 100px; height:100px;"></td>
+                                            <td th:text="${cart_item.name}">Product Name</td>
+                                            <td th:text="${cart_item.quantity}">999999999</td>
+                                            <td>$<th:block th:text="${cart_item.price}">999999999</th:block></td>
+                                            <td>$<th:block th:text="${cart_item.total}">999999999</th:block></td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+
+                                    <!-- <li class="cart_item clearfix" th:each="cart_item : ${list_cart_item}">
                                         <div class="cart_item_image"><img th:src="@{__${cart_item.img}__}"
                                                 th:onerror="this.onerror=null;this.src=[[@{/static/img/default.png}]];"
                                                 alt="">
@@ -294,11 +319,7 @@
                                                 <div class="cart_item_text" th:text="${cart_item.name}">Product Name
                                                 </div>
                                             </div>
-                                            <!-- <div class="cart_item_color cart_info_col">
-                                                <div class="cart_item_title">Color</div>
-                                                <div class="cart_item_text"><span
-                                                        style="background-color:#999999;"></span>Silver</div>
-                                            </div> -->
+                                            
                                             <div class="cart_item_quantity cart_info_col">
                                                 <div class="cart_item_title">Quantity</div>
                                                 <div class="cart_item_text" th:text="${cart_item.quantity}">0</div>
@@ -314,9 +335,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> -->
 
-                                </ul>
+                                </div>
                             </div>
 
                             <!-- Order Total -->

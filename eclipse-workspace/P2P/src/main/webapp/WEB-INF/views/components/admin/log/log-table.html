@@ -19,23 +19,23 @@
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
-									<table class="table" style="table-layout: fixed;">
+									<table class="table">
 										<thead class=" text-primary">
 											<th>ID</th>
 											<th>Log</th>
 											<th>Type</th>
 											<th>Author</th>
-											<th>Create Date</th>
+											<th style="white-space: nowrap">Create Date</th>
 										</thead>
 										<tbody>
 											<tr th:if="${!logs.empty or logs != null}" th:each="log, i : ${logs}">
 												<td><span
 														th:text="${i.count+(pageable.limit*(pageable.page -1))}"></span>
 												</td>
-												<td class="text-truncate"><span th:text="${log.log}"></span></td>
+												<td><span th:text="${log.log}"></span></td>
 												<td><span th:text="${log.type}"></span></td>
 												<td><span th:text="${log.author}"></span></td>
-												<td><span th:text=" ${log.createAt} ? ${#dates.format(log.createAt, 'dd-MM-yyyy')} "></span></td>
+												<td><span style="white-space: nowrap" th:text=" ${log.createAt} ? ${#dates.format(log.createAt, 'dd-MM-yyyy')} "></span></td>
 										</tr> 
  							</tbody>
 									</table>
