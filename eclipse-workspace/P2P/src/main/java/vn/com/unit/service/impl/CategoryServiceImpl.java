@@ -40,6 +40,11 @@ public class CategoryServiceImpl implements CategoryService {
 	public List<Category> findAllCategory(){
 		return categoryRepository.findAllCategory();
 	}
+	
+	@Override
+	public List<Category> findAllCategoryByShopId(Long shop_id){
+		return categoryRepository.findAllCategoryByShopId(shop_id);
+	}
 
 	@Override
 	public List<Category> findCategoryPageable(int limit, int offset) {
