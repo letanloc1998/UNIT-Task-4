@@ -188,7 +188,7 @@ md = {
 
 
     $.notify({
-      icon: '<i class="fas fa-bell"></i>',
+      icon: "add_alert",
       message: mess,
 
     }, {

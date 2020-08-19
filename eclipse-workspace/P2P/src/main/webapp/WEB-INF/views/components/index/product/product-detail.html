@@ -102,6 +102,9 @@
 		const product = [[${product}]];
 		const maxVal = [[${product.quantity}]];
 		console.log(maxVal)
+		function test(){
+			alert("success");
+		}
 		function initQuantity()
 		{
 			// Handle product quantity input
@@ -125,7 +128,7 @@
 						$('#status-quantity').text("Not enough quantity!")
 						
 					}
-					
+					console.log(endVal);
 					input.val(endVal);
 				});
 
