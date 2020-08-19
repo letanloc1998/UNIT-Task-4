@@ -9,7 +9,7 @@
 
     <th:block th:fragment="index-footer">
         <!--Index  -->
-		
+
         <script th:src="@{/static/index-template/plugins/greensock/TweenMax.min.js}"></script>
         <script th:src="@{/static/index-template/plugins/greensock/TimelineMax.min.js}"></script>
         <script th:src="@{/static/index-template/plugins/scrollmagic/ScrollMagic.min.js}"></script>
@@ -36,37 +36,44 @@
                 let data = `{"product_id" : ${product_id}}`;
                 // console.log(data);
 
+                try {
+                    let quantity = $('#quantity_input').val();
+                    data = `{"product_id" : ${product_id},"quantity" : ${quantity}}`;
+                } catch (error) {
+
+                }
+
                 $.ajax({
-                        url: `${home}/cart/add`,
-                        type: 'PUT',
+                    url: `${home}/cart/add`,
+                    type: 'PUT',
 
-                        dataType: "json",
-                        contentType: "application/json",
+                    dataType: "json",
+                    contentType: "application/json",
 
-                        // data: JSON.stringify(`{"product_id" : ${product_id}}`),
-                        data: `{"product_id" : ${product_id}}`,
-                        // data: JSON.stringify(data),
+                    // data: JSON.stringify(`{"product_id" : ${product_id}}`),
+                    data: data,
+                    // data: JSON.stringify(data),
 
-                        beforeSend: function (xhr) {
-                            xhr.setRequestHeader(header, token);
-                        },
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
 
-                        // success: function (data, status, xhr) {
-                        //     window.location.href = window.location.href;
-                        // },
-                        error: function (request, status, error) {
-                            
-                            try {
-                                if (request.status == 405) {
-                                    window.location.href = `${home}/login`;
-                                }
-                                // console.log(request.status);
-                                // console.log(status);
-                                // console.log(error);
-                                // window.location.href = `${home}/login`;
-                            } catch (error) { }
-                        }
-                    });
+                    // success: function (data, status, xhr) {
+                    //     window.location.href = window.location.href;
+                    // },
+                    error: function (request, status, error) {
+
+                        try {
+                            if (request.status == 405) {
+                                window.location.href = `${home}/login`;
+                            }
+                            // console.log(request.status);
+                            // console.log(status);
+                            // console.log(error);
+                            // window.location.href = `${home}/login`;
+                        } catch (error) { }
+                    }
+                });
 
             }
         </script>
