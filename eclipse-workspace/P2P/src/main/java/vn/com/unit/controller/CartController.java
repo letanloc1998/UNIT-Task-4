@@ -73,7 +73,7 @@ public class CartController {
 			quantity = Integer.valueOf(json.get("quantity"));
 		}
 		
-		cartService.addCartItemCurentAccount(Long.valueOf(json.get("product_id")), quantity);
+		cartService.addCartItemCurrentAccount(Long.valueOf(json.get("product_id")), quantity);
 		
 		return ResponseEntity.ok(
 				"{\"msg\" : \"Add product succes! Please check again!\" }");

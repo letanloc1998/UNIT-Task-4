@@ -12,5 +12,7 @@ public interface CartService {
 
 	public Long calculateCartTotalByCurrentAccount();
 
-	public void addCartItemCurentAccount(Long product_id, int i);
+	public void addCartItemCurrentAccount(Long product_id, int i);
+	
+//	public void deleteCartItemCurrentAccountByProductId(Long product_id);
 }
