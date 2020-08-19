@@ -76,7 +76,6 @@ public class ShopProductController {
 				model.addAttribute("pageable", pageable);
 				model.addAttribute("title", shop.getName());
 		        return new ModelAndView("shop");
-
     }
 	
 }
