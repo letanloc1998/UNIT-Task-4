@@ -52,13 +52,25 @@ public class UploadImgService {
 			params.put("folder", "p2po");
 			params.put("public_id", time);
 			params.put("overwrite", "false");
-
+//			params.put("background_removal", "cloudinary_ai:fine_edges");
+//			params.put("background_removal", "cloudinary_ai");
 			params.put("transformation",
 					new Transformation().width(1024).height(1024).quality("auto").fetchFormat("auto").crop("limit"));
 
-			Map uploadResult = cloudinary.uploader().upload(temp_file, params);
+			String url = "";
+			
+//			try {
+//				params.put("background_removal", "cloudinary_ai:fine_edges");
+//				Map uploadResult = cloudinary.uploader().upload(temp_file, params);
+//				url = (String) uploadResult.get("url");
+//				url = url.replace(".jpg", "png");
+//			} catch (Exception e) {
+//				Map uploadResult = cloudinary.uploader().upload(temp_file, params);
+//				url = (String) uploadResult.get("url");
+//			}
 
-			String url = (String) uploadResult.get("url");
+			Map uploadResult = cloudinary.uploader().upload(temp_file, params);
+			url = (String) uploadResult.get("url");
 
 			url = url.replace("/image/upload/", "/image/upload/q_auto/");
 
