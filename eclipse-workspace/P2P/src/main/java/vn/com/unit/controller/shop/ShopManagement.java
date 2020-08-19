@@ -176,10 +176,10 @@ public class ShopManagement {
 				productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(),
 						new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(),
 						account.getId());
+				file.delete();
 		    }
 		});
 		thread.start();
-
 		// --------
 
 		return "redirect:/shop/myproduct?mode=view";
