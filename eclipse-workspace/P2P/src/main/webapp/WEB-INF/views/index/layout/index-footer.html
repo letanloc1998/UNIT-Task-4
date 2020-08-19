@@ -34,7 +34,7 @@
                 // let data = new Object();
                 // data.product_id = product_id;
                 let data = `{"product_id" : ${product_id}}`;
-                console.log(data);
+                // console.log(data);
 
                 $.ajax({
                         url: `${home}/cart/add`,
@@ -55,7 +55,16 @@
                         //     window.location.href = window.location.href;
                         // },
                         error: function (request, status, error) {
-                            window.location.href = window.location.href;
+                            
+                            try {
+                                if (request.status == 405) {
+                                    window.location.href = `${home}/login`;
+                                }
+                                // console.log(request.status);
+                                // console.log(status);
+                                // console.log(error);
+                                // window.location.href = `${home}/login`;
+                            } catch (error) { }
                         }
                     });
 
