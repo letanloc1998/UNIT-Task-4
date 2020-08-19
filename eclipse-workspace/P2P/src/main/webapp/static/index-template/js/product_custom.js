@@ -84,7 +84,64 @@ $(document).ready(function()
 
 	*/
 
+	function initCustomDropdown()
+	{
+		if($('.custom_dropdown_placeholder').length && $('.custom_list').length)
+		{
+			var placeholder = $('.custom_dropdown_placeholder');
+			var list = $('.custom_list');
+		}
 
+		placeholder.on('click', function (ev)
+		{
+			if(list.hasClass('active'))
+			{
+				list.removeClass('active');
+			}
+			else
+			{
+				list.addClass('active');
+			}
+
+			$(document).one('click', function closeForm(e)
+			{
+				if($(e.target).hasClass('clc'))
+				{
+					$(document).one('click', closeForm);
+				}
+				else
+				{
+					list.removeClass('active');
+				}
+			});
+
+		});
+
+		$('.custom_list a').on('click', function (ev)
+		{
+			ev.preventDefault();
+			var index = $(this).parent().index();
+
+			placeholder.text( $(this).text() ).css('opacity', '1');
+
+			if(list.hasClass('active'))
+			{
+				list.removeClass('active');
+			}
+			else
+			{
+				list.addClass('active');
+			}
+		});
+
+
+		$('select').on('change', function (e)
+		{
+			placeholder.text(this.value);
+
+			$(this).animate({width: placeholder.width() + 'px' });
+		});
+	}
 
 	/* 
 
@@ -262,6 +319,36 @@ $(document).ready(function()
 
 	*/
 
+	function initQuantity()
+	{
+		// Handle product quantity input
+		if($('.product_quantity').length)
+		{
+			var input = $('#quantity_input');
+			var incButton = $('#quantity_inc_button');
+			var decButton = $('#quantity_dec_button');
+
+			var originalVal;
+			var endVal;
+
+			incButton.on('click', function()
+			{
+				originalVal = input.val();
+				endVal = parseFloat(originalVal) + 1;
+				input.val(endVal);
+			});
+
+			decButton.on('click', function()
+			{
+				originalVal = input.val();
+				if(originalVal > 0)
+				{
+					endVal = parseFloat(originalVal) - 1;
+					input.val(endVal);
+				}
+			});
+		}
+	}
 
 	/* 
 

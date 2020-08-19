@@ -19,6 +19,7 @@
         <script th:src="@{/static/index-template/plugins/slick-1.8.0/slick.js}"></script>
         <script th:src="@{/static/index-template/plugins/easing/easing.js}"></script>
         <script th:src="@{/static/index-template/js/custom.js}"></script>
+        <script th:src="@{/static/index-template/js/product_custom.js}"></script>
 
         
           <!--  Notifications Plugin    -->
@@ -77,7 +78,7 @@
                     },
 
                     success: function (data, status, xhr) {
-                    	md.showAddProductNoti('top','left',data.msg)
+                    	md.showAddProductNoti('bottom','right',data.msg)
                     //   window.location.href = window.location.href;
                      },
                     error: function (request, status, error) {

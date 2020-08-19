@@ -192,7 +192,7 @@ md = {
       message: mess,
 
     }, {
-      type: 'success',
+      type: 'info',
       timer: 500,
       placement: {
         from: from,
