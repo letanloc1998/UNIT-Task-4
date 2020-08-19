@@ -19,6 +19,7 @@
                                     <li class="active">Featured</li>
                                     <li>Audio & Video</li>
                                     <li>Laptops & Computers</li>
+                                    
                                 </ul>
                                 <div class="tabs_line">
                                     <span></span>
@@ -45,6 +46,7 @@
                                                     <div class="product_content">
                                                         <div class="product_price" th:text="${product.price}"></div>
                                                         <div class="product_name">
+                                                        
                                                             <div>
                                                                 <a th:href="@{|product/__${product.id}__|}"
                                                                     th:text="${product.name}"></a>
