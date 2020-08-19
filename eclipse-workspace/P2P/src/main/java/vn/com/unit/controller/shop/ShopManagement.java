@@ -1,5 +1,9 @@
 package vn.com.unit.controller.shop;
 
+import java.io.File;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +33,7 @@ import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
 import vn.com.unit.service.UploadImgService;
 
-
-
 @Controller
-
 
 public class ShopManagement {
 
@@ -53,15 +54,14 @@ public class ShopManagement {
 
 	@Autowired
 	BillItemService billItemService;
-	
+
 	@Autowired
 	BrandService brandService;
-	
+
 	@Autowired
 	CategoryService categoryService;
-	
-	
-	//create shop
+
+	// create shop
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/shop/create")
 	@ResponseBody
@@ -73,23 +73,26 @@ public class ShopManagement {
 		String address = new_shop.getAddress();
 		String detail = new_shop.getDetail();
 		int status = 0;
-		shopService.createShop(account.getId(),name, email, phone, address, detail,status);;
-		return ResponseEntity.status(HttpStatus.OK).body("{ \"msg\" : \"Your Shop Create Success! Please waitting for admin check!\" }");
+		shopService.createShop(account.getId(), name, email, phone, address, detail, status);
+		;
+		return ResponseEntity.status(HttpStatus.OK)
+				.body("{ \"msg\" : \"Your Shop Create Success! Please waitting for admin check!\" }");
 
 	}
-	//activate shop
+
+	// activate shop
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PutMapping("/shop/activate")
 	@ResponseBody
-	public ResponseEntity<String> activateShop( Model model) {
+	public ResponseEntity<String> activateShop(Model model) {
 		Account account = accountService.findCurrentAccount();
 		int status = 0;
-		shopService.setActivateShop(account.getId(),status);
-		return ResponseEntity.status(HttpStatus.OK).body("{ \"msg\" : \"Activate Request have been send! Please waitting for admin check!\" }");
+		shopService.setActivateShop(account.getId(), status);
+		return ResponseEntity.status(HttpStatus.OK)
+				.body("{ \"msg\" : \"Activate Request have been send! Please waitting for admin check!\" }");
 
 	}
-	
-	
+
 	// edit SHOP
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PutMapping("/shop/edit")
@@ -101,44 +104,93 @@ public class ShopManagement {
 		String name = shop.getName();
 		String address = shop.getAddress();
 		String detail = shop.getDetail();
-		shopService.saveShop(shop_id, name, email, phone, address, detail);;
+		shopService.saveShop(shop_id, name, email, phone, address, detail);
+		;
 		return ResponseEntity.ok(shop);
 
 	}
 
-	
-	//deleteShop
+	// deleteShop
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@DeleteMapping("/shop/delete")
 	public ResponseEntity<Void> deleteShop() {
 		Account account = accountService.findCurrentAccount();
 		Long status = (long) 2;
-		if (shopService.setDisableShop(account.getId(),status)) {
+		if (shopService.setDisableShop(account.getId(), status)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
-		}		
+		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
-	
-	
-	//add product
+
+	// add product
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PostMapping("/add-product")
-	public String addProduct(@ModelAttribute("new_product") Product new_product,  @RequestParam("file") MultipartFile multipartFile, Model model) {
+	public String addProduct(@ModelAttribute("new_product") Product new_product,
+			@RequestParam("file") MultipartFile multipartFile, Model model) {
+
+//		String url = UploadImgService.uploadCloudinary(multipartFile);
+//		
+//		new_product.setImg(url);
+//		
+//		Account account = accountService.findCurrentAccount();		
+//		productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(), new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(), account.getId());
+
+		// ---------
+
+//		File file = UploadImgService.getFileFromMultipartFile(multipartFile);
+//		String url = UploadImgService.uploadCloudinary(file);
+//
+//		new_product.setImg(url);
+//
+//		Account account = accountService.findCurrentAccount();
+//		productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(),
+//				new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(),
+//				account.getId());
+
+		// ---------
+
+//		final MultipartFile MULTIPART_FILE = multipartFile;
+//		
+//		ExecutorService executorService = Executors.newSingleThreadExecutor();
+//	    executorService.submit(() -> {
+//	    	String url = UploadImgService.uploadCloudinary(MULTIPART_FILE);
+//			
+//			new_product.setImg(url);
+//			
+//			Account account = accountService.findCurrentAccount();		
+//			productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(), new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(), account.getId());
+//	    });
+//		
+		// ---------
+
+		File file = UploadImgService.getFileFromMultipartFile(multipartFile);
+		Account account = accountService.findCurrentAccount();
 		
-		String url = UploadImgService.uploadCloudinary(multipartFile);
-		
-		new_product.setImg(url);
-		
-		Account account = accountService.findCurrentAccount();		
-		productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(), new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(), account.getId());
-		return "redirect:/shop/myproduct?mode=view"; 
+		Thread thread = new Thread(new Runnable() {
+		    @Override
+		    public void run() {
+				String url = UploadImgService.uploadCloudinary(file);
+
+				new_product.setImg(url);
+
+				productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(),
+						new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(),
+						account.getId());
+		    }
+		});
+		thread.start();
+
+		// --------
+
+		return "redirect:/shop/myproduct?mode=view";
 	}
-	
+
 	// edit Product
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PutMapping("/product/{product_id}")
 	@ResponseBody
-	public ResponseEntity<Product> editShop(@RequestBody Product product,@PathVariable("product_id") Long product_id ,Model model) {
+	public ResponseEntity<Product> editShop(@RequestBody Product product, @PathVariable("product_id") Long product_id,
+			Model model) {
 		String name = product.getName();
 		int category = product.getCategory();
 		int brand = product.getBrand();
@@ -149,13 +201,13 @@ public class ShopManagement {
 		return ResponseEntity.ok(product);
 
 	}
-	
-	//deleteProduct
+
+	// deleteProduct
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@DeleteMapping("/product/{product_id}")
 	public ResponseEntity<Void> deleteProduct(@PathVariable("product_id") Long product_id) {
 		int status = 1;
-		if (productService.setDisableProductByProductId(product_id,status)) {
+		if (productService.setDisableProductByProductId(product_id, status)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
