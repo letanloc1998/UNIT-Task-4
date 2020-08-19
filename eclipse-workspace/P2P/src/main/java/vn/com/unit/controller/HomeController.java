@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
+import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Product;
 import vn.com.unit.service.AccountService;
+import vn.com.unit.service.BrandService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
@@ -40,6 +42,9 @@ public class HomeController {
 
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private BrandService brandService;
 
 	@GetMapping("*")
 	public ModelAndView home(Model model, @Param("name") String name) {
@@ -87,6 +92,9 @@ public class HomeController {
 		List<Product> products = productService.findProductByName(name);
 		model.addAttribute("products", products);
 		model.addAttribute("name", name);
+		
+		List<Brand> brands = brandService.findAllBrand();
+		model.addAttribute("brands", brands);
 
 		return new ModelAndView("product-by-search");
 	}

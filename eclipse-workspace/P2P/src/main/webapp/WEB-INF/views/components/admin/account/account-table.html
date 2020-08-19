@@ -72,7 +72,7 @@
 											</tr>
 										</tbody>
 									</table>
-									<div style="display: flex; align-items: center;">
+									<div th:if="${pageable.totalPages > 0}" style="display: flex; align-items: center;">
 										<div class="btn-group">
 											<button type="button" style="background-color: #2196f3"
 												class="btn btn-sm btn-default" th:text="${pageable.limit}"></button>
@@ -91,7 +91,7 @@
 													th:href="@{/admin/account/list(limit=${50}, page=${1})}">50</a>
 											</div>
 										</div>
-										<nav th:if="${pageable.totalPages > 0}" class="pagination">
+										<nav  class="pagination">
 											<ul class="pagination" style="margin-bottom: 0px;">
 												<li
 													th:class="${pageable.preMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
