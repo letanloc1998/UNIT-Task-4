@@ -35,7 +35,7 @@
 												<td><span th:text="${log.log}"></span></td>
 												<td><span th:text="${log.type}"></span></td>
 												<td><span th:text="${log.author}"></span></td>
-												<td><span style="white-space: nowrap" th:text=" ${log.createAt} ? ${#dates.format(log.createAt, 'dd-MM-yyyy')} "></span></td>
+												<td><span style="white-space: nowrap" th:text=" ${log.createAt} ? ${#dates.format(log.createAt, 'hh:mm:ss dd-MM-yyyy')} "></span></td>
 										</tr> 
  							</tbody>
 									</table>
