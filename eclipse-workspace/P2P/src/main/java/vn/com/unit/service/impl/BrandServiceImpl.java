@@ -48,6 +48,12 @@ public class BrandServiceImpl implements BrandService {
 		
 		return brandRepository.findAllBrand();
 	}
+	
+	@Override
+	public List<Brand> findAllBrandByShopId(Long shop_id){
+		
+		return brandRepository.findAllBrandByShopId(shop_id);
+	}
 
 	@Override
 	public List<Brand> findBrandPageable(int limit, int offset) {

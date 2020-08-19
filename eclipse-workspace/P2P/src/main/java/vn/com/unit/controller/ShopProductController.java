@@ -44,8 +44,8 @@ public class ShopProductController {
 			Shop shop = shopService.findShopByAccountId(shop_id);
 			model.addAttribute("shop", shop);
 			//get brand and category
-			List<Brand> brands = brandService.findAllBrand();
-			List<Category> categories = categoryService.findAllCategory();
+			List<Brand> brands = brandService.findAllBrandByShopId(shop.getId());
+			List<Category> categories = categoryService.findAllCategoryByShopId(shop.getId());
 			model.addAttribute("brands", brands);
 			model.addAttribute("categories", categories);
 			//get product by category

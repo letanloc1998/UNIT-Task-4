@@ -13,6 +13,8 @@ public interface CategoryService {
 
 	public List<Category> findAllCategory();
 	
+	public List<Category> findAllCategoryByShopId(Long shop_id);
+	
 	public List<Category> findCategoryPageable(int limit,int offset);
 	
 	public int countAllCategory();
