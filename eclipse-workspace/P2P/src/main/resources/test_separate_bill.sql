@@ -1,18 +1,18 @@
-insert into p2po_bill (account, address) values (/*account_id*/, /*address*/);
+insert into p2p_bill (account, address) values (/*account_id*/, /*address*/);
 
 declare @bill_id int = (select scope_identity());
 
 select count(distinct product.shop)
-from p2po_cart cart
-left join p2po_product product
+from p2p_cart cart
+left join p2p_product product
 on product.id = cart.product
 
 --
 declare @i int = 
 	(
 	select count(distinct product.shop)
-	from p2po_cart cart
-	left join p2po_product product
+	from p2p_cart cart
+	left join p2p_product product
 	on product.id = cart.product
 	);
 
@@ -25,117 +25,117 @@ BEGIN
 END;
 
 --
-insert into p2po_bill (account, address) values (1, '1');
+insert into p2p_bill (account, address) values (1, '1');
 
 declare @bill_id int = (select scope_identity());
 
-create table p2po_bill_separate (
+create table p2p_bill_separate (
     id bigint,
-    constraint fk_bill_separate_id__bill_id foreign key (id) references p2po_bill(id),
+    constraint fk_bill_separate_id__bill_id foreign key (id) references p2p_bill(id),
 
 	shop bigint,
-	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2po_shop(id),
+	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2p_shop(id),
 );
 
 --
-drop table p2po_bill_separate;
+drop table p2p_bill_separate;
 
-insert into p2po_bill (account, address) values (1, '1');
+insert into p2p_bill (account, address) values (1, '1');
 
 declare @bill_id int = (select scope_identity());
 
-create table p2po_bill_separate (
+create table p2p_bill_separate (
     id bigint,
-    constraint fk_bill_separate_id__bill_id foreign key (id) references p2po_bill(id),
+    constraint fk_bill_separate_id__bill_id foreign key (id) references p2p_bill(id),
 
 	shop bigint,
-	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2po_shop(id),
+	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2p_shop(id),
 );
 
 --
-drop table p2po_bill_separate;
+drop table p2p_bill_separate;
 
-insert into p2po_bill (account, address) values (1, '1');
+insert into p2p_bill (account, address) values (1, '1');
 
 declare @bill_id int = (select scope_identity());
 
-create table p2po_bill_separate (
+create table p2p_bill_separate (
 	id bigint primary key identity(1,1),
 
     bill bigint,
-    constraint fk_bill_separate_bill__bill_id foreign key (bill) references p2po_bill(id),
+    constraint fk_bill_separate_bill__bill_id foreign key (bill) references p2p_bill(id),
 
 	shop bigint,
-	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2po_shop(id),
+	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2p_shop(id),
 );
 
-insert into p2po_bill_separate (bill, shop)
+insert into p2p_bill_separate (bill, shop)
 	select @bill_id as bill, temp.*
 	from 
 		(
 		select distinct product.shop
-		from p2po_cart cart
-		left join p2po_product product
+		from p2p_cart cart
+		left join p2p_product product
 		on product.id = cart.product
 		) temp
 
 --
-drop table p2po_bill_separate;
+drop table p2p_bill_separate;
 
-insert into p2po_bill (account, address) values (1, '1');
+insert into p2p_bill (account, address) values (1, '1');
 
 declare @bill_id int = (select scope_identity());
 
-create table p2po_bill_separate (
+create table p2p_bill_separate (
 	id bigint primary key identity(1,1),
 
     bill bigint,
-    constraint fk_bill_separate_bill__bill_id foreign key (bill) references p2po_bill(id),
+    constraint fk_bill_separate_bill__bill_id foreign key (bill) references p2p_bill(id),
 
 	shop bigint,
-	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2po_shop(id),
+	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2p_shop(id),
 );
 
-insert into p2po_bill_separate (bill, shop)
+insert into p2p_bill_separate (bill, shop)
 	select @bill_id as bill, temp.*
 	from 
 		(
 		select distinct product.shop
-		from p2po_cart cart
-		left join p2po_product product
+		from p2p_cart cart
+		left join p2p_product product
 		on product.id = cart.product
 		) temp
 --
 
-		drop table p2po_bill_separate;
+		drop table p2p_bill_separate;
 
-insert into p2po_bill (account, address) values (1, '1');
+insert into p2p_bill (account, address) values (1, '1');
 
 declare @bill_id int = (select scope_identity());
 
-create table p2po_bill_separate (
+create table p2p_bill_separate (
 	id bigint primary key identity(1,1),
 
     bill bigint,
-    constraint fk_bill_separate_bill__bill_id foreign key (bill) references p2po_bill(id),
+    constraint fk_bill_separate_bill__bill_id foreign key (bill) references p2p_bill(id),
 
 	shop bigint,
-	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2po_shop(id),
+	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2p_shop(id),
 );
 
-insert into p2po_bill_separate (bill, shop)
+insert into p2p_bill_separate (bill, shop)
 	select @bill_id as bill, temp.*
 	from 
 		(
 		select distinct product.shop
-		from p2po_cart cart
-		left join p2po_product product
+		from p2p_cart cart
+		left join p2p_product product
 		on product.id = cart.product
 		) temp
 
 
 ---
-create table p2po_bill (
+create table p2p_bill (
     id bigint primary key identity(1,1),
         
     account bigint not null,
@@ -149,17 +149,17 @@ create table p2po_bill (
 	*/
     payment int default 0,
 
-    constraint fk_bill_account__account_id foreign key (account) references p2po_account(id),
+    constraint fk_bill_account__account_id foreign key (account) references p2p_account(id),
 )
 
-create table p2po_bill_separate (
+create table p2p_bill_separate (
 	id bigint primary key identity(1,1),
 
     bill bigint,
-    constraint fk_bill_separate_bill__bill_id foreign key (bill) references p2po_bill(id),
+    constraint fk_bill_separate_bill__bill_id foreign key (bill) references p2p_bill(id),
 
 	shop bigint,
-	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2po_shop(id),
+	constraint fk_bill_separate_shop__shop_id foreign key (shop) references p2p_shop(id),
 
 	-- 0 : waiting
     -- 1 : approve
@@ -179,7 +179,7 @@ create table p2po_bill_separate (
 --
 
 -- @bill_id : param
-insert into p2po_bill (account, address) values (1, '1');
+insert into p2p_bill (account, address) values (1, '1');
 declare @bill_id int = (select scope_identity());
 
 -- @curent_accoun : param
@@ -191,10 +191,10 @@ declare @i int =
 	from
 		(
 		select product
-		from p2po_cart
-		where p2po_cart.account = @curent_account
+		from p2p_cart
+		where p2p_cart.account = @curent_account
 		) cart
-	left join p2po_product product
+	left join p2p_product product
 	on product.id = cart.product
 	);
 
@@ -204,8 +204,8 @@ WHILE @i > 0
 BEGIN
    
 	set @shop = (select distinct top 1 product.shop
-	from p2po_cart cart
-	left join p2po_product product
+	from p2p_cart cart
+	left join p2p_product product
 	on product.id = cart.product);
 
 	print @shop;
@@ -218,20 +218,20 @@ END;
 
 
 -- @bill_id : param
-insert into p2po_bill (account, address) values (1, '1');
+insert into p2p_bill (account, address) values (1, '1');
 declare @bill_id int = (select scope_identity());
 
 -- @curent_accoun : param
 declare @curent_account int = 1;
 
 -- create bill separate
-insert into p2po_bill_separate (bill, shop)
+insert into p2p_bill_separate (bill, shop)
 	select @bill_id as bill, temp.*
 	from 
 		(
 		select distinct product.shop
-		from p2po_cart cart
-		left join p2po_product product
+		from p2p_cart cart
+		left join p2p_product product
 		on product.id = cart.product
 		) temp;
 
@@ -241,10 +241,10 @@ declare @i int =
 	from
 		(
 		select product
-		from p2po_cart
-		where p2po_cart.account = @curent_account
+		from p2p_cart
+		where p2p_cart.account = @curent_account
 		) cart
-	left join p2po_product product
+	left join p2p_product product
 	on product.id = cart.product
 	);
 
@@ -258,10 +258,10 @@ BEGIN
 	from
 		(
 		select product
-		from p2po_cart
-		where p2po_cart.account = @curent_account
+		from p2p_cart
+		where p2p_cart.account = @curent_account
 		) cart
-	left join p2po_product product
+	left join p2p_product product
 	on product.id = cart.product);
 
 	print '@shop';
@@ -270,26 +270,26 @@ BEGIN
 	set @bill_separate =
 		(
 			select id
-			from p2po_bill_separate
+			from p2p_bill_separate
 			where bill = @bill_id and shop = @shop
 		);
 
 	print '@bill_separate';
 	print @bill_separate;
 
-	insert into p2po_bill_item (id, product, quantity)
+	insert into p2p_bill_item (id, product, quantity)
 		(
-		select @bill_separate as id, p2po_cart.product, p2po_cart.quantity
-		from p2po_cart
-		where p2po_cart.account = @curent_account and product in (select id from p2po_product where shop = @shop)
+		select @bill_separate as id, p2p_cart.product, p2p_cart.quantity
+		from p2p_cart
+		where p2p_cart.account = @curent_account and product in (select id from p2p_product where shop = @shop)
 		);
 
-	delete from p2po_cart
+	delete from p2p_cart
 	where account = @curent_account
 		and product
 			in
 			(
-				select product from p2po_bill_item where p2po_bill_item.id = @bill_separate
+				select product from p2p_bill_item where p2p_bill_item.id = @bill_separate
 			);
 
     SET @i = @i - 1;
@@ -300,20 +300,20 @@ END;
 
 
 -- @bill_id : param
-insert into p2po_bill (account, address) values (1, '1');
+insert into p2p_bill (account, address) values (1, '1');
 declare @bill_id int = (select scope_identity());
 
 -- @curent_accoun : param
 declare @curent_account int = 1;
 
 -- create bill separate
-insert into p2po_bill_separate (bill, shop)
+insert into p2p_bill_separate (bill, shop)
 	select @bill_id as bill, temp.*
 	from 
 		(
 		select distinct product.shop
-		from p2po_cart cart
-		left join p2po_product product
+		from p2p_cart cart
+		left join p2p_product product
 		on product.id = cart.product
 		) temp;
 
@@ -323,10 +323,10 @@ declare @i int =
 	from
 		(
 		select product
-		from p2po_cart
-		where p2po_cart.account = @curent_account
+		from p2p_cart
+		where p2p_cart.account = @curent_account
 		) cart
-	left join p2po_product product
+	left join p2p_product product
 	on product.id = cart.product
 	);
 
@@ -340,10 +340,10 @@ BEGIN
 	from
 		(
 		select product
-		from p2po_cart
-		where p2po_cart.account = @curent_account
+		from p2p_cart
+		where p2p_cart.account = @curent_account
 		) cart
-	left join p2po_product product
+	left join p2p_product product
 	on product.id = cart.product);
 
 	print '@shop';
@@ -352,26 +352,26 @@ BEGIN
 	set @bill_separate =
 		(
 			select id
-			from p2po_bill_separate
+			from p2p_bill_separate
 			where bill = @bill_id and shop = @shop
 		);
 
 	print '@bill_separate';
 	print @bill_separate;
 
-	insert into p2po_bill_item (id, product, quantity)
+	insert into p2p_bill_item (id, product, quantity)
 		(
-		select @bill_separate as id, p2po_cart.product, p2po_cart.quantity
-		from p2po_cart
-		where p2po_cart.account = @curent_account and product in (select id from p2po_product where shop = @shop)
+		select @bill_separate as id, p2p_cart.product, p2p_cart.quantity
+		from p2p_cart
+		where p2p_cart.account = @curent_account and product in (select id from p2p_product where shop = @shop)
 		);
 
-	delete from p2po_cart
+	delete from p2p_cart
 	where account = @curent_account
 		and product
 			in
 			(
-				select product from p2po_bill_item where p2po_bill_item.id = @bill_separate
+				select product from p2p_bill_item where p2p_bill_item.id = @bill_separate
 			);
 
     SET @i = @i - 1;

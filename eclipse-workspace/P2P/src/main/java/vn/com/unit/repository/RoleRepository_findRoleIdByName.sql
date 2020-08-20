@@ -1,3 +1,3 @@
 select id
-from dbo.p2po_role
+from dbo.p2p_role
 where name = /*role_name*/

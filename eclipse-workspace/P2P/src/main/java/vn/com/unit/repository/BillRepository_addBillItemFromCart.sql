@@ -4,7 +4,7 @@ declare @current_account int = /*account_id*/
 
 -- create bill separate
 -- bill_id + shop
-insert into p2po_bill_separate (bill, shop)
+insert into p2p_bill_separate (bill, shop)
 	select @bill_id as bill, temp.*
 	from 
 		(
@@ -14,15 +14,15 @@ insert into p2po_bill_separate (bill, shop)
 			(
 				-- select product from cart of current account
 				select product
-				from p2po_cart
-				where p2po_cart.account = @current_account
+				from p2p_cart
+				where p2p_cart.account = @current_account
 			) cart
-		left join p2po_product product
+		left join p2p_product product
 		on product.id = cart.product
 		) temp;
 
 -- number of shop in cart of current account
-declare @i int = (select count(*) from p2po_bill_separate where bill = @bill_id);
+declare @i int = (select count(*) from p2p_bill_separate where bill = @bill_id);
 
 declare @shop int;
 declare @bill_separate int;
@@ -34,10 +34,10 @@ BEGIN
 	from
 		(
 		select product
-		from p2po_cart
-		where p2po_cart.account = @current_account
+		from p2p_cart
+		where p2p_cart.account = @current_account
 		) cart
-	left join p2po_product product
+	left join p2p_product product
 	on product.id = cart.product);
 
 --	print '@shop';
@@ -46,26 +46,26 @@ BEGIN
 	set @bill_separate =
 		(
 			select id
-			from p2po_bill_separate
+			from p2p_bill_separate
 			where bill = @bill_id and shop = @shop
 		);
 
 --	print '@bill_separate';
 --	print @bill_separate;
 
-	insert into p2po_bill_item (id, product, quantity)
+	insert into p2p_bill_item (id, product, quantity)
 		(
-		select @bill_separate as id, p2po_cart.product, p2po_cart.quantity
-		from p2po_cart
-		where p2po_cart.account = @current_account and product in (select id from p2po_product where shop = @shop)
+		select @bill_separate as id, p2p_cart.product, p2p_cart.quantity
+		from p2p_cart
+		where p2p_cart.account = @current_account and product in (select id from p2p_product where shop = @shop)
 		);
 
-	delete from p2po_cart
+	delete from p2p_cart
 	where account = @current_account
 		and product
 			in
 			(
-				select product from p2po_bill_item where p2po_bill_item.id = @bill_separate
+				select product from p2p_bill_item where p2p_bill_item.id = @bill_separate
 			);
 
     SET @i = @i - 1;

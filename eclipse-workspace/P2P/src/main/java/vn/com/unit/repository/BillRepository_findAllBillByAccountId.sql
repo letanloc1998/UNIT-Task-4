@@ -1,3 +1,3 @@
 select *
-from p2po_bill
+from p2p_bill
 where account = /*account_id*/

@@ -1,3 +1,3 @@
 select *
-from p2po_product
+from p2p_product
 where brand = /*brand_id*/ AND disable = 'false'

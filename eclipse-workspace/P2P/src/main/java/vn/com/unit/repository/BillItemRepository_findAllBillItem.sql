@@ -1,2 +1,2 @@
 select *
-from p2po_bill_item
+from p2p_bill_item

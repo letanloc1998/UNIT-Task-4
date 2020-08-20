@@ -1,2 +1,2 @@
 select *
-from p2po_brand
+from p2p_brand

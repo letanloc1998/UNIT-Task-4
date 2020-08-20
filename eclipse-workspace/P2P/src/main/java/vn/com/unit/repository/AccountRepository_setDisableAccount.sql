@@ -1,3 +1,3 @@
-UPDATE p2po_account
+UPDATE p2p_account
 SET disable = /*disable*/ 
 WHERE id = /*account_id*/

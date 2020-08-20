@@ -36,10 +36,10 @@ public class CartController {
 //		from
 //			(
 //			select *
-//			from p2po_cart
+//			from p2p_cart
 //			where account = 3
 //			) cart
-//		left join p2po_product product
+//		left join p2p_product product
 //		on product.id = cart.product
 
 		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
@@ -65,7 +65,7 @@ public class CartController {
 	@ResponseBody
 	public ResponseEntity<String> add(Model model, @RequestBody Map<String, String> json) {
 		
-//		insert into p2po_cart (account, product, quantity) values (3, 1, 1);
+//		insert into p2p_cart (account, product, quantity) values (3, 1, 1);
 		
 		int quantity = 1;
 		

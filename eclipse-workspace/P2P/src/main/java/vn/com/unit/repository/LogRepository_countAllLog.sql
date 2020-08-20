@@ -1,2 +1,2 @@
 SELECT count(*)
-FROM p2po_log
+FROM p2p_log

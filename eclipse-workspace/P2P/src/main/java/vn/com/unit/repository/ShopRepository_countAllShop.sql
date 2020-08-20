@@ -1,2 +1,2 @@
 SELECT count(*)
-FROM p2po_shop 
+FROM p2p_shop 

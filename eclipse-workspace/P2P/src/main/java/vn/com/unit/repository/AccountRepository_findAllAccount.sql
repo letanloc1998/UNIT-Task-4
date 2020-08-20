@@ -1,2 +1,2 @@
 SELECT *
-FROM p2po_account
+FROM p2p_account

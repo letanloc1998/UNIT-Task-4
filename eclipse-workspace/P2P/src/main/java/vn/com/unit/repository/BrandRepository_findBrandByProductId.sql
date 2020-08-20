@@ -1,6 +1,6 @@
 select *
-from p2po_brand
+from p2p_brand
 where id
 in (select brand
-	from p2po_product
+	from p2p_product
 	where id = /*product_id*/)
