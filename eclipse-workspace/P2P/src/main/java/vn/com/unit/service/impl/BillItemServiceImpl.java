@@ -38,7 +38,7 @@ public class BillItemServiceImpl implements BillItemService {
 	
 	@Override
 	public List<BillItem> findAllBillItemByBillId(Long bill_id) {
-		
+
 		return billItemRepository.findAllBillItemByBillId(bill_id);
 	}
 	

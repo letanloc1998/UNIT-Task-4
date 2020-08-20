@@ -22,7 +22,7 @@ insert into p2po_bill_separate (bill, shop)
 		) temp;
 
 -- number of shop in cart of current account
-declare @i int = ()select count(*) from p2po_bill_separate where bill = @bill_id);
+declare @i int = (select count(*) from p2po_bill_separate where bill = @bill_id);
 
 declare @shop int;
 declare @bill_separate int;
