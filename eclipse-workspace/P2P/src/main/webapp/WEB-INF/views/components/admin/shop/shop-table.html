@@ -46,12 +46,12 @@
 													th:text=" ${shop.createAt} ? ${#dates.format(shop.createAt, 'dd-MM-yyyy')} "></span></td>
 												<td class="text-center"><span> <a type="button"
 														th:href="@{'/admin/shop/detail/' + ${shop.id}}"
-														class="btn btn-large btn-info"> <i class="fa fa-eye">
+														class="btn btn-large btn-info btn-just-icon"> <i class="fa fa-eye">
 														</i>
 													</a>
 												</span> 
 												 <span>
-														<button type="button" class="btn btn-danger" 
+														<button type="button" class="btn btn-danger btn-just-icon" 
 															th:onclick="|DeleteShop(${i.index})|">
 															<i class="fas fa-trash-alt"></i>
 														</button>

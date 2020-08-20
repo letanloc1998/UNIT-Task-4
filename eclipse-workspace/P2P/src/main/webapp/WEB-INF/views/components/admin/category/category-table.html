@@ -42,9 +42,9 @@
 														
 														<span><a type="button"
 													th:href="@{'/admin/category/edit/' + ${category.id}}"
-													class="btn btn-large btn-primary"><i
+													class="btn btn-large btn-primary btn-just-icon"><i
 														class="fas fa-edit"></i></a> </span>
-														<button type="button" class="btn  btn-danger"
+														<button type="button" class="btn  btn-danger btn-just-icon"
 															th:onclick="|DeleteCategory(${category.id})|">
 															<i class="fas fa-trash-alt"></i>
 														</button>
@@ -53,7 +53,7 @@
 										</tr> 
  							</tbody>
 									</table>
-									<div th:if="${pageable.totalPages > 0}" style="display: flex; align-items: center;">
+									<div th:if="${pageable != null and pageable.totalPages > 0}" style="display: flex; align-items: center;">
 										<div class="btn-group">
 											<button type="button" style="background-color: #2196f3"
 												class="btn btn-sm btn-default" th:text="${pageable.limit}"></button>
@@ -103,7 +103,7 @@
 			</div>
 			<script th:inline="javascript">
         const categories = [[${ categories }]]
-        console.log([[${ categories }]])
+        console.log([[${ pageable }]])
       </script>
 	</th:block>
 
