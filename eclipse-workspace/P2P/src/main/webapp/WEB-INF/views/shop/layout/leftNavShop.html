@@ -21,6 +21,7 @@
 				<a th:href="@{/}"
 					class="simple-text logo-normal"> P2PO </a>
 			</div>
+			<th:block th:if="${shop != null}">
 			<div class="sidebar-wrapper">
 				<ul class="nav">
 				
@@ -47,6 +48,7 @@
 
 				</ul>
 			</div>
+			</th:block>
 		</div>
 	</th:block>
 </body>
