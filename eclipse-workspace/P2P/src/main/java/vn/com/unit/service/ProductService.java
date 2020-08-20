@@ -27,7 +27,7 @@ public interface ProductService {
 	
 	public List<Product> findAllProduct();
 	
-	public List<Product> findProductByName(String name);
+	public List<Product> searchProductByName(String name);
 	
 	public int CountAllProductByShopId(Long shop_id);
 	

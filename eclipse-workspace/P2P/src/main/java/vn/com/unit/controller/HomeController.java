@@ -89,7 +89,7 @@ public class HomeController {
 		
 		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 		
-		List<Product> products = productService.findProductByName(name);
+		List<Product> products = productService.searchProductByName(name);
 		model.addAttribute("products", products);
 		model.addAttribute("name", name);
 		
