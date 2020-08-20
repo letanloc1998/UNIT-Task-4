@@ -1,5 +1,7 @@
 package vn.com.unit.entity;
 
+import java.util.Date;
+
 public class BillSeparate {
 
 	private Long id;
@@ -11,6 +13,8 @@ public class BillSeparate {
 	private Long status;
 
 	private Long refund;
+	
+	private Date createAt;
 
 	public Long getId() {
 		return id;
@@ -50,6 +54,14 @@ public class BillSeparate {
 
 	public void setRefund(Long refund) {
 		this.refund = refund;
+	}
+	
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
 	}
 	
 }
