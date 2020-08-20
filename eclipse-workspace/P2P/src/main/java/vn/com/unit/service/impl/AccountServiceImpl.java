@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -83,10 +84,10 @@ public class AccountServiceImpl implements AccountService {
 
 //tìm tất cả user kèm role
 	@Override
-	public List<Account> findAllAccount(int limit,int offset) {
+	public List<Account> findAllAccount(int limit,int offset, String keyword, Long role_id) {
 		List<Account> accounts = new ArrayList<Account>();
 		try {
-			accounts = accountRepository.findAllAccountActive(limit,offset);
+			accounts = accountRepository.findAllAccountActive(limit,offset,keyword,role_id);
 
 			for (Account account : accounts) {
 				List<Role> roles = roleService.findRoleByAccountId(account.getId());
