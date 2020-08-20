@@ -10,19 +10,18 @@
 
 
 	<th:block th:fragment="leftNavProfile">
-		<div class="sidebar" data-color="azure" data-background-color="white"
-			data-image="../assets/img/sidebar-1.jpg">
+		<div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">>
 			<!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
         Tip 2: you can also add an image using data-image tag
     -->
 			<div class="logo">
-				<a th:href="@{/}" class="simple-text logo-normal"> P2PO </a>
+				<a th:href="@{/}"
+					class="simple-text logo-normal"> P2Po </a>
 			</div>
 			<div class="sidebar-wrapper">
 				<ul class="nav">
-
 					<li
 						th:classappend="${#request.getRequestURI() == '/profile/home' ? 'nav-item active' : 'nav-item'}">
 						<a class="nav-link" th:href="@{/profile/home}"> <i
@@ -51,6 +50,7 @@
 							<p>Create Your Shop</p>
 					</a>
 					</li>
+
 
 				</ul>
 			</div>
