@@ -40,8 +40,8 @@ BEGIN
 	left join p2po_product product
 	on product.id = cart.product);
 
-	print '@shop';
-	print @shop;
+--	print '@shop';
+--	print @shop;
 
 	set @bill_separate =
 		(
@@ -50,8 +50,8 @@ BEGIN
 			where bill = @bill_id and shop = @shop
 		);
 
-	print '@bill_separate';
-	print @bill_separate;
+--	print '@bill_separate';
+--	print @bill_separate;
 
 	insert into p2po_bill_item (id, product, quantity)
 		(
