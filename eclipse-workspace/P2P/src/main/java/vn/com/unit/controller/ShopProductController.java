@@ -19,6 +19,7 @@ import vn.com.unit.service.BrandService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.ShopService;
+import vn.com.unit.utils.CommonUtils;
 
 @Controller
 public class ShopProductController {
@@ -48,10 +49,12 @@ public class ShopProductController {
 				return new ModelAndView("404");
 			}
 			//get brand and category
+			model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 			List<Brand> brands = brandService.findAllBrandByShopId(shop.getId());
-			List<Category> categories = categoryService.findAllCategoryByShopId(shop.getId());
-			model.addAttribute("brands", brands);
-			model.addAttribute("categories", categories);
+			List<Category> categories_shop = categoryService.findAllCategoryByShopId(shop.getId());
+			model.addAttribute("brands_shop", brands);
+			model.addAttribute("categories_shop", categories_shop);
+
 
 				int totalitems = productService.countAllProductByCategoryIdAndBrandId(category_id, brand_id,shop_id);
 				PageRequest pageable = new PageRequest(page, limit, totalitems);

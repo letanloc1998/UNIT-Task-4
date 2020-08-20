@@ -15,7 +15,7 @@
 						<div class="sidebar_section">
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories" style="cursor:pointer">
-								<li th:each="category : ${categories}" >
+								<li th:each="category : ${categories_shop}" >
 								<a
 								th:if="${(param.brand == null) and (param.category == null)}"
 								th:styleappend ="${(param.category != null) and (#strings.equals(param.category[0], #strings.toString(category.id)))} ? 'color: red' : 'color: black' "
@@ -48,7 +48,7 @@
 						<div class="sidebar_section">
 							<div class="sidebar_title">Brands</div>
 							<ul class="brands_list" style="cursor:pointer">
-								<li th:each="brand : ${brands}">
+								<li th:each="brand : ${brands_shop}">
 								<!-- if param is null -->
 								<a
 								th:if="${(param.brand == null) and (param.category == null)}"

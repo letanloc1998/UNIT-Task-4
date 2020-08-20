@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.BillItem;
+import vn.com.unit.entity.BillSeparate;
 import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
@@ -23,6 +24,7 @@ import vn.com.unit.entity.Shop;
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillItemService;
+import vn.com.unit.service.BillSeparateService;
 import vn.com.unit.service.BillService;
 import vn.com.unit.service.BrandService;
 import vn.com.unit.service.CategoryService;
@@ -57,6 +59,9 @@ public class ShopController {
 	
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	BillSeparateService billSeparateService;
 
 	// home view
 	@GetMapping("/shop/home")
@@ -150,6 +155,33 @@ public class ShopController {
 		return new ModelAndView("shop/myProduct/shop-edit-product");
 	}
 
+	@GetMapping("/shop/mybill")
+	public ModelAndView bill(
+			Model model,
+			/*
+			 * @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			 * 
+			 * @RequestParam(value = "limit", required = false, defaultValue = "10") int
+			 * limit,
+			 */
+			HttpServletRequest request
+			) {
+		
+		
+		Account account = accountService.findCurrentAccount();	
+		Shop shop = shopService.findShopByAccountId(account.getId());
+		model.addAttribute("shop", shop);	
+		/*
+		 * int totalitems = productService.CountAllProductByShopId((long)
+		 * account.getId()); int totalpages = (int) Math.ceil((double) totalitems /
+		 * (double) limit);
+		 */
+		
+		List<BillSeparate> bills = billSeparateService.findBillSeparatePaymentSuccessAndStatusWaitingByShopId(account.getId());
 
+		model.addAttribute("bills", bills);
+		
+		return new ModelAndView("shop/myBill/myBill");
+	}
 	
 }
