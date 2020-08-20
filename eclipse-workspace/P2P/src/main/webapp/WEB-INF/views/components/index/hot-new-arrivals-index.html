@@ -44,7 +44,7 @@
                                                             style="max-width: 115px; max-height: 115px;" th:onerror="this.onerror=null;this.src=[[@{/static/product/default.png}]];">
                                                     </div>
                                                     <div class="product_content">
-                                                        <div class="product_price" th:text="${product.price}"></div>
+                                                        <div class="product_price" >$[[${product.price}]]</div>
                                                         <div class="product_name">
 
                                                             <div>
