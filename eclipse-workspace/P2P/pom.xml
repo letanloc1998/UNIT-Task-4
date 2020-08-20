@@ -205,6 +205,7 @@
 			<version>1.26.0</version>
 		</dependency>
 
+		<!-- Receive File -->
 		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -218,6 +219,15 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.7</version>
 		</dependency>
+
+		<!-- Socket Server -->
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+		<dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.51.Final</version>
+		</dependency>
+
 
 	</dependencies>
 
