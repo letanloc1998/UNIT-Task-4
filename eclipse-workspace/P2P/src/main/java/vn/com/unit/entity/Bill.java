@@ -6,18 +6,16 @@ import java.util.List;
 public class Bill {
 
 	private Long id;
-	
-//	private Long momo_order_id;
-	
+		
 	private String account;
 	
 	private String address;
 		
 	private boolean payment;
 	
-	private boolean status;
-	
-	private boolean refund;
+//	private boolean status;
+//	
+//	private boolean refund;
 	
 	private Date createAt;
 	
@@ -32,14 +30,6 @@ public class Bill {
 		this.id = id;
 	}
 
-//	public Long getMomo_order_id() {
-//		return momo_order_id;
-//	}
-//
-//	public void setMomo_order_id(Long momo_order_id) {
-//		this.momo_order_id = momo_order_id;
-//	}
-	
 	public String getAccount() {
 		return account;
 	}
@@ -64,21 +54,21 @@ public class Bill {
 		this.payment = payment;
 	}
 
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
-	public boolean isRefund() {
-		return refund;
-	}
-
-	public void setRefund(boolean refund) {
-		this.refund = refund;
-	}
+//	public boolean isStatus() {
+//		return status;
+//	}
+//
+//	public void setStatus(boolean status) {
+//		this.status = status;
+//	}
+//
+//	public boolean isRefund() {
+//		return refund;
+//	}
+//
+//	public void setRefund(boolean refund) {
+//		this.refund = refund;
+//	}
 
 	public Date getCreateAt() {
 		return createAt;

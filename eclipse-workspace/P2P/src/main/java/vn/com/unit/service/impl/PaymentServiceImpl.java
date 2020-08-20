@@ -55,7 +55,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public void savePaymentError(Long bill_id) {
 		// TODO Auto-generated method stub
-		billService.saveBillPaymentStatus(bill_id, 2);
+		billService.saveBillPaymentStatus(bill_id, -1);
 	}
 
 	

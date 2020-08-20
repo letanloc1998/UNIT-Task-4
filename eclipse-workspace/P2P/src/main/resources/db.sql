@@ -2,6 +2,7 @@ use DMS_DEV;
 
 drop table p2p_log;
 drop table p2p_bill_item;
+drop table p2p_bill_separate;
 drop table p2p_bill;
 drop table p2p_cart;
 drop table p2p_product_tag;
@@ -35,13 +36,13 @@ create table p2p_account_role (
     role smallint,
 
     constraint pk_p2p_account_role primary key (account, role),
-    constraint fk_account_role_account__account_id foreign key (account) references p2p_account(id),
-    constraint fk_account_role_role__role_id foreign key (role) references  p2p_role(id)
+    constraint fk_p2p_account_role_account__account_id foreign key (account) references p2p_account(id),
+    constraint fk_p2p_account_role_role__role_id foreign key (role) references  p2p_role(id)
 )
 
 create table p2p_shop (
     id bigint primary key,
-    constraint fk_shop_id foreign key (id) references p2p_account(id),
+    constraint fk_p2p_shop_id foreign key (id) references p2p_account(id),
     name nvarchar(50) not null unique,
     address nvarchar(255),
     email nvarchar(50),
@@ -79,7 +80,7 @@ create table p2p_product (
     id bigint primary key identity(1,1),
 
     shop bigint not null,
-    constraint fk_product_shop__shop_id foreign key (shop) references p2p_shop(id),
+    constraint fk_p2p_product_shop__shop_id foreign key (shop) references p2p_shop(id),
 
     name nvarchar(255) not null,
     price int not null check (price > 0),
@@ -88,10 +89,10 @@ create table p2p_product (
     disable bit default 0,
 
     category int,
-    constraint fk_product_category__category_id foreign key (category) references p2p_category(id),
+    constraint fk_p2p_product_category__category_id foreign key (category) references p2p_category(id),
 
     brand int,
-    constraint fk_product_brand__brand_id foreign key (brand) references p2p_brand(id),
+    constraint fk_p2p_product_brand__brand_id foreign key (brand) references p2p_brand(id),
     
     quantity int not null check (quantity >= 0),
 
@@ -102,9 +103,9 @@ create table p2p_product_tag (
     product bigint,
     tag bigint,
 
-    constraint pk_product_tag primary key (product, tag),
-    constraint fk_product_tag_product__product_id foreign key (product) references p2p_product(id),
-    constraint fk_product_tag_tag__tag_id foreign key (tag) references p2p_tag(id)
+    constraint pk_p2p_product_tag primary key (product, tag),
+    constraint fk_p2p_product_tag_product__product_id foreign key (product) references p2p_product(id),
+    constraint fk_p2p_product_tag_tag__tag_id foreign key (tag) references p2p_tag(id)
 )
 
 create table p2p_cart (
@@ -116,49 +117,63 @@ create table p2p_cart (
 
     create_at datetime default getutcdate(),
 
-    constraint pk_p2p_cart primary key (account, product),
-    constraint fk_cart_account__account_id foreign key (account) references p2p_account(id),
-    constraint fk_cart_product__product_id foreign key (product) references p2p_product(id)
+    constraint pk_p2p_p2p_cart primary key (account, product),
+    constraint fk_p2p_cart_account__account_id foreign key (account) references p2p_account(id),
+    constraint fk_p2p_cart_product__product_id foreign key (product) references p2p_product(id)
 )
 
 create table p2p_bill (
     id bigint primary key identity(1,1),
-    
-    -- momo_order_id bigint,
-    
+        
     account bigint not null,
-    address nvarchar(255) not null,
-    create_at datetime default getutcdate(),
-
-    -- 0 : wating payment
-    -- 1 : payment success
-    -- 2 : payment error
-    payment tinyint default 0,
+    constraint fk_p2p_bill_account__account_id foreign key (account) references p2p_account(id),
     
-    -- 0 : waiting
+    address nvarchar(255) not null,
+    
+	/*
+    0	: wating payment
+    > 0	: money payment success
+    < 0 : money payment error
+	*/
+    payment int default 0,
+
+    create_at datetime default getutcdate()
+)
+
+create table p2p_bill_separate (
+	id bigint primary key identity(1,1),
+
+    bill bigint,
+    constraint fk_p2p_bill_separate_bill__bill_id foreign key (bill) references p2p_bill(id),
+
+	shop bigint,
+	constraint fk_p2p_bill_separate_shop__shop_id foreign key (shop) references p2p_shop(id),
+
+	-- 0 : waiting
     -- 1 : approve
     -- 2 : deny
     -- 3 : complete	(approve success, shipping success)
     -- 4 : cancel	(approve success, can't receive product/error) 
     status tinyint default 0,
     
-    -- 0 : not refund
-    -- 1 : refund success
-    refund tinyint default 0,
-    
-    constraint fk_bill_account__account_id foreign key (account) references p2p_account(id),
-)
+	/*
+    0	: not refund
+    > 0 : money refund success
+	< 0 : money refund error
+	*/
+    refund int default 0,
+);
 
 create table p2p_bill_item (
     id bigint,
-    constraint fk_bill_item_id__bill_id foreign key (id) references p2p_bill(id),
+    constraint fk_p2p_bill_item_id__bill_id foreign key (id) references p2p_bill_separate(id),
 
     product bigint not null,
-    constraint fk_bill_item_product__product_id foreign key (product) references p2p_product(id),
+    constraint fk_p2p_bill_item_product__product_id foreign key (product) references p2p_product(id),
 
     quantity int not null check (quantity > 0),
     
-    constraint pk_p2p_bill_item primary key (id, product)
+    constraint pk_p2p_p2p_bill_item primary key (id, product)
 )
 
 create table p2p_log (
