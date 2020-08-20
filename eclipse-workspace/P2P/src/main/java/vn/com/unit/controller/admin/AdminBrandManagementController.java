@@ -70,7 +70,7 @@ public class AdminBrandManagementController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"brand already exists\" }");
 		}
 
-		if (brand.getName() == null) {
+		if (brand.getName() == "") {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
 		}
 		Long brand_id = brandService.createCategory(brand);
