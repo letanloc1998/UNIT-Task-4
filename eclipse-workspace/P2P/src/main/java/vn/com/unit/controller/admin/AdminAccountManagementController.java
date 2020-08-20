@@ -46,6 +46,7 @@ public class AdminAccountManagementController {
 		List<Account> accounts = accountService.findAllAccount(pageable.getLimit(), pageable.getOffset(),keyword,role_id);
 		model.addAttribute("accounts", accounts);
 		model.addAttribute("pageable", pageable);
+		model.addAttribute("keyword", keyword);
 
 		return new ModelAndView("admin/account/account-table");
 	}

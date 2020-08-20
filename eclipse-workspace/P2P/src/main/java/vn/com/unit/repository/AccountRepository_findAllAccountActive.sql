@@ -22,10 +22,11 @@ FROM
 	AND
 	(
 		/*IF keyword != null && keyword != ''*/
-		OR replace(UPPER(acc.name),' ','') LIKE ( '%' || UPPER(TRIM(/*keyword*/)) || '%' )
-		OR replace(UPPER(acc.username),' ','') LIKE ( '%' || UPPER(TRIM(/*keyword*/)) || '%' )
-	    OR replace(UPPER(acc.email),' ','') LIKE ( '%' || UPPER(TRIM(/*keyword*/)) || '%' )
-	    OR replace(UPPER(acc.phone),' ','') LIKE ( '%' || UPPER(TRIM(/*keyword*/)) || '%' )
+		OR replace(UPPER(acc.id),' ','') LIKE ( '%' + UPPER(/*keyword*/) + '%' )
+		OR replace(UPPER(acc.name),' ','') LIKE ( '%' + UPPER(/*keyword*/) + '%' )
+		OR replace(UPPER(acc.username),' ','') LIKE ( '%' + UPPER(/*keyword*/) + '%' )
+	    OR replace(UPPER(acc.email),' ','') LIKE ( '%' + UPPER(/*keyword*/) + '%' )
+	    OR replace(UPPER(acc.phone),' ','') LIKE ( '%' + UPPER(/*keyword*/) + '%' )
 	    /*END*/
     )
     /*END*/
