@@ -35,13 +35,13 @@ create table p2po_account_role (
     role smallint,
 
     constraint pk_p2po_account_role primary key (account, role),
-    constraint fk_account_role_account__account_id foreign key (account) references p2po_account(id),
-    constraint fk_account_role_role__role_id foreign key (role) references  p2po_role(id)
+    constraint fk_p2po_account_role_account__account_id foreign key (account) references p2po_account(id),
+    constraint fk_p2po_account_role_role__role_id foreign key (role) references  p2po_role(id)
 )
 
 create table p2po_shop (
     id bigint primary key,
-    constraint fk_shop_id foreign key (id) references p2po_account(id),
+    constraint fk_p2po_shop_id foreign key (id) references p2po_account(id),
     name nvarchar(50) not null unique,
     address nvarchar(255),
     email nvarchar(50),
@@ -79,7 +79,7 @@ create table p2po_product (
     id bigint primary key identity(1,1),
 
     shop bigint not null,
-    constraint fk_product_shop__shop_id foreign key (shop) references p2po_shop(id),
+    constraint fk_p2po_product_shop__shop_id foreign key (shop) references p2po_shop(id),
 
     name nvarchar(255) not null,
     price int not null check (price > 0),
@@ -88,10 +88,10 @@ create table p2po_product (
     disable bit default 0,
 
     category int,
-    constraint fk_product_category__category_id foreign key (category) references p2po_category(id),
+    constraint fk_p2po_product_category__category_id foreign key (category) references p2po_category(id),
 
     brand int,
-    constraint fk_product_brand__brand_id foreign key (brand) references p2po_brand(id),
+    constraint fk_p2po_product_brand__brand_id foreign key (brand) references p2po_brand(id),
     
     quantity int not null check (quantity >= 0),
 
@@ -102,9 +102,9 @@ create table p2po_product_tag (
     product bigint,
     tag bigint,
 
-    constraint pk_product_tag primary key (product, tag),
-    constraint fk_product_tag_product__product_id foreign key (product) references p2po_product(id),
-    constraint fk_product_tag_tag__tag_id foreign key (tag) references p2po_tag(id)
+    constraint pk_p2po_product_tag primary key (product, tag),
+    constraint fk_p2po_product_tag_product__product_id foreign key (product) references p2po_product(id),
+    constraint fk_p2po_product_tag_tag__tag_id foreign key (tag) references p2po_tag(id)
 )
 
 create table p2po_cart (
@@ -116,9 +116,9 @@ create table p2po_cart (
 
     create_at datetime default getutcdate(),
 
-    constraint pk_p2po_cart primary key (account, product),
-    constraint fk_cart_account__account_id foreign key (account) references p2po_account(id),
-    constraint fk_cart_product__product_id foreign key (product) references p2po_product(id)
+    constraint pk_p2po_p2po_cart primary key (account, product),
+    constraint fk_p2po_cart_account__account_id foreign key (account) references p2po_account(id),
+    constraint fk_p2po_cart_product__product_id foreign key (product) references p2po_product(id)
 )
 
 create table p2po_bill (
@@ -146,19 +146,19 @@ create table p2po_bill (
     -- 1 : refund success
     refund tinyint default 0,
     
-    constraint fk_bill_account__account_id foreign key (account) references p2po_account(id),
+    constraint fk_p2po_bill_account__account_id foreign key (account) references p2po_account(id),
 )
 
 create table p2po_bill_item (
     id bigint,
-    constraint fk_bill_item_id__bill_id foreign key (id) references p2po_bill(id),
+    constraint fk_p2po_bill_item_id__bill_id foreign key (id) references p2po_bill(id),
 
     product bigint not null,
-    constraint fk_bill_item_product__product_id foreign key (product) references p2po_product(id),
+    constraint fk_p2po_bill_item_product__product_id foreign key (product) references p2po_product(id),
 
     quantity int not null check (quantity > 0),
     
-    constraint pk_p2po_bill_item primary key (id, product)
+    constraint pk_p2po_p2po_bill_item primary key (id, product)
 )
 
 create table p2po_log (
