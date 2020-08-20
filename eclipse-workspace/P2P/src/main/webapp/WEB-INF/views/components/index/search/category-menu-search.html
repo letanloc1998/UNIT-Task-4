@@ -54,7 +54,9 @@
 							<div class="col-lg-12">
 								<div class="shop_bar clearfix">
 									<div class="shop_product_count">
-										<span>186</span> products found
+									
+										<span th:text="${#lists.size(products)}"></span> products found
+										
 									</div>
 									
 								</div>
@@ -89,8 +91,11 @@
 											</div>
 										</div>
 										<div class="product_fav">
-											<i class="fas fa-heart"></i>
+											<i class="fas fa-heart"></i>	
 										</div>
+										<ul class="product_marks">
+                                            <li class="product_mark product_new">new</li>
+                                        </ul>
 									</div>
 								</div>
 
