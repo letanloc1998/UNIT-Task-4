@@ -20,4 +20,6 @@ public interface ShopService {
 	
 	public int countAllShop();
 	public List<Shop> findShopByStatus(int limit,int offset,int status);
+	
+	public List<Shop> searchAllShop();
 }

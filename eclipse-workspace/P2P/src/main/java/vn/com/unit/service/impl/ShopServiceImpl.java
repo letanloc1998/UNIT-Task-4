@@ -108,4 +108,11 @@ public class ShopServiceImpl implements ShopService {
 		}
 		return shops;
 	}
+	
+	@Override
+	public List<Shop> searchAllShop(){
+		
+		return shopRepository.searchAllShop();
+		
+	}
 }
