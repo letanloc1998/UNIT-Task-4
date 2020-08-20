@@ -42,9 +42,12 @@
 												<td><span th:text="${shop.phone}"></span></td>
 												<td><span
 													th:text=" ${shop.createAt} ? ${#dates.format(shop.createAt, 'dd-MM-yyyy')} "></span></td>
-												<td class="text-center"><span> <a type="button"
-														th:href="@{'/admin/shop/detail/' + ${shop.id}}"
-														class="btn btn-large btn-info btn-just-icon"> <i class="fa fa-eye">
+												<td class="text-center"><span> 
+													<a type="button"
+														th:href="@{'/shop/' + ${shop.id}}"
+														class="btn btn-large btn-info btn-just-icon" target="_blank"> 
+														
+														<i class="fa fa-eye">
 														</i>
 													</a>
 												</span> 

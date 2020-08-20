@@ -111,7 +111,8 @@ public class ShopController {
 		Account account = accountService.findCurrentAccount();	
 		int totalitems = productService.CountAllProductByShopId((long) account.getId());
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
-
+		Shop shop = shopService.findShopByAccountId(account.getId());
+		model.addAttribute("shop", shop);
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
 		
 		List<Product> products = productService.findAllProductByShopId(account.getId(),pageable.getLimit(), pageable.getOffset());
@@ -140,7 +141,9 @@ public class ShopController {
 		List<Category> categories = categoryService.findAllCategory();
 		model.addAttribute("product", product);
 		model.addAttribute("title", "Shop Management");
-		
+		Account account = accountService.findCurrentAccount();	
+		Shop shop = shopService.findShopByAccountId(account.getId());
+		model.addAttribute("shop", shop);
 
 		model.addAttribute("brands", brands);
 		model.addAttribute("categories", categories);
