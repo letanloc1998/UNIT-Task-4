@@ -35,7 +35,12 @@ declare @i int =
 	from
 		(
 		select product
-		from p2po_cart
+		from
+			(
+			select product
+			from p2po_cart
+			where p2po_cart.account = @curent_account
+			) cart
 		where p2po_cart.account = @curent_account
 		) cart
 	left join p2po_product product
