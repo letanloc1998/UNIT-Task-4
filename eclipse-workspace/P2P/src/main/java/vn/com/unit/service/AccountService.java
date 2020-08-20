@@ -2,6 +2,8 @@ package vn.com.unit.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import vn.com.unit.entity.Account;
 
 public interface AccountService {
@@ -12,7 +14,7 @@ public interface AccountService {
 	
 	public boolean checkPass(Account account, String oldPassword);
 	
-	public List<Account> findAllAccount(int limit,int offset);
+	public List<Account> findAllAccount(int limit,int offset,String keyword,Long role_id);
 	
 	public Account createNewAccount(Account account,String role_name);
 	

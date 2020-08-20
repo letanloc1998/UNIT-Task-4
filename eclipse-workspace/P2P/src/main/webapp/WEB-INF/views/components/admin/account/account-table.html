@@ -19,8 +19,30 @@
 								<a th:href="@{/admin/account/add}" type="button"
 									class="btn btn-danger"> add <i class="fas fa-plus-circle"></i>
 								</a>
+								
 							</div>
-							<div class="card-body">
+							
+							<div class="card-body">	
+								<div class="row">
+									<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+										<form class="navbar-form" th:action="@{/admin/account/list}">
+											<div class="input-group no-border">
+											  <input type="text" name="keyword" value="" class="form-control" placeholder="Search..." required>
+											  <button type="submit" class="btn btn-white btn-round btn-just-icon">
+												<i class="material-icons">search</i>
+												</button>
+												&nbsp;
+												<button type="submit" class="btn btn-default btn-round btn-just-icon">
+												<i class="fas fa-eraser"></i>
+												</button>
+												
+												<div class="ripple-container"></div>
+										
+											</div>
+										  </form>
+									</div>
+								</div>
+								<hr/>
 								<div class="table-responsive">
 									<table class="table">
 										<thead class=" text-primary">
@@ -34,7 +56,6 @@
 											<th class="text-center">Action</th>
 										</thead>
 										<tbody>
-
 											<tr th:if="${!accounts.empty or accounts != null}"
 												th:each="account, i : ${accounts}">
 												<td><span
@@ -58,13 +79,13 @@
 													</th:block></td>
 												<td><span
 													th:text=" ${account.createAt} ? ${#dates.format(account.createAt, 'dd-MM-yyyy')} "></span></td>
-												<td class="text-center"><span> <a type="button"
+												<td class="text-center"><span> <a type="button" 
 														th:href="@{'/admin/account/detail/' + ${account.id}}"
-														class="btn btn-large btn-info"> <i class="fa fa-eye">
+														class="btn btn-large btn-info btn-round btn-just-icon"> <i class="fa fa-eye">
 														</i>
 													</a>
 												</span> <span>
-														<button type="button" class="btn  btn-danger"
+														<button type="button" class="btn  btn-danger btn-round btn-just-icon"
 															th:onclick="|DeleteAccount(${i.index})|">
 															<i class="fas fa-trash-alt"></i>
 														</button>
