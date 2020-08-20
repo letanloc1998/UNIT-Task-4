@@ -1,3 +1,4 @@
 SELECT count(*)
-where disable = 0
 FROM p2p_category 
+
+where disable = 0
