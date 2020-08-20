@@ -49,7 +49,8 @@
                                                         <div style="margin-right: 7px; margin-left: 13px;">
                                                             <span
                                                                 style="font-size: 16px; font-weight: 300; line-height: 56px; color: #000; -webkit-transition: all 200ms ease; -moz-transition: all 200ms ease; -ms-transition: all 200ms ease; -o-transition: all 200ms ease; transition: all 200ms ease;">
-                                                                Hi, <span sec:authentication="name"></span>
+                                                                <!-- Hi, <span sec:authentication="name"></span> -->
+                                                                Hi, <span th:text="${#authentication.name}"></span>
                                                             </span>
                                                         </div>
                                                         <div class="user_icon">
