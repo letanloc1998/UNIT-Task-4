@@ -1,6 +1,6 @@
 use DMS_DEV;
 
-drop table p2p_log
+drop table p2p_log;
 drop table p2p_bill_item;
 drop table p2p_bill;
 drop table p2p_cart;
@@ -79,7 +79,7 @@ create table p2p_product (
     id bigint primary key identity(1,1),
 
     shop bigint not null,
-    constraint fk_produtc_shop__shop_id foreign key (shop) references p2p_shop(id),
+    constraint fk_product_shop__shop_id foreign key (shop) references p2p_shop(id),
 
     name nvarchar(255) not null,
     price int not null check (price > 0),
