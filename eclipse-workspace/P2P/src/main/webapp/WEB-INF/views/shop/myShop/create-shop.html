@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head>
+    <th:block th:include="admin/layout/head :: head"></th:block>
+    
+</head>
+
+<body>
+  <div class="wrapper ">
+   
+    <div class="main-panel">
+       <!-- content -->
+        <div th:replace="components/shop/myShop/create-shop :: create-shop"></div> 
+    </div>
+  </div>
+  
+    <th:block th:replace="layout/footer :: footer"></th:block>
+</body>
+</html>
