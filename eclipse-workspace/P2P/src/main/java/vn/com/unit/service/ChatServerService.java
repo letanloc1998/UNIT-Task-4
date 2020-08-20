@@ -18,11 +18,11 @@ public class ChatServerService {
 
 	@PostConstruct
 	public void initChatServerSocket() {
-		String host = "0.0.0.0";
-		int port = 8081;
-
-		server = new ChatServerSocket(new InetSocketAddress(host, port));
-		server.run();
+//		String host = "localhost";
+//		int port = 8081;
+//
+//		server = new ChatServerSocket(new InetSocketAddress(host, port));
+//		server.run();
 	}
 
 	@PreDestroy
