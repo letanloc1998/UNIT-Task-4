@@ -80,35 +80,50 @@ $(document).ready(function()
 	*/
 
 	function initQuantity()
-	{
-		// Handle product quantity input
-		if($('.product_quantity').length)
 		{
-			var input = $('#quantity_input');
-			var incButton = $('#quantity_inc_button');
-			var decButton = $('#quantity_dec_button');
-
-			var originalVal;
-			var endVal;
-
-			incButton.on('click', function()
+			// Handle product quantity input
+			if($('.product_quantity').length)
 			{
-				originalVal = input.val();
-				endVal = parseFloat(originalVal) + 1;
-				input.val(endVal);
-			});
+				var input = $('#quantity_input');
+				var incButton = $('#quantity_inc_button');
+				var decButton = $('#quantity_dec_button');
 
-			decButton.on('click', function()
-			{
-				originalVal = input.val();
-				if(originalVal > 0)
+				var originalVal;
+				var endVal;
+
+				incButton.on('click', function()
 				{
-					endVal = parseFloat(originalVal) - 1;
+					$('#status-quantity').text("")
+					originalVal = input.val();
+					endVal = parseFloat(originalVal) + 1;
+					if(endVal > maxVal){
+						endVal = parseFloat(endVal) - 1;
+						console.log(endVal)
+						$('#status-quantity').text("Not enough quantity!")
+						
+					}
+					console.log(endVal);
 					input.val(endVal);
-				}
-			});
+				});
+
+				decButton.on('click', function()
+				{
+					$('#status-quantity').text("")
+					originalVal = input.val();
+					if(originalVal > 0)
+					{
+						endVal = parseFloat(originalVal) - 1;
+						if(endVal == 0){
+							endVal = parseFloat(endVal) + 1;
+							$('#status-quantity').text("Quantity must be > 0")
+							
+						}
+						console.log(endVal)
+						input.val(endVal);
+					}
+				});
+			}
 		}
-	}
 
 
 
