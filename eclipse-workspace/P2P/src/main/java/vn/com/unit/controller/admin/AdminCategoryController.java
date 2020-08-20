@@ -67,7 +67,7 @@ public class AdminCategoryController {
 		if (categoryService.findCategoryByName(category.getName()) != null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Category already exists\" }");
 			}
-		if (category.getName() == null) {
+		if (category.getName() == "") {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
 		}
 		Long category_id = categoryService.createCategory(category);
