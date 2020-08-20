@@ -3,10 +3,12 @@ declare @bill_id int = /*bill_id*/
 declare @current_account int = /*account_id*/
 
 -- create bill separate
+-- bill_id + shop
 insert into p2po_bill_separate (bill, shop)
 	select @bill_id as bill, temp.*
 	from 
 		(
+		-- select distinct shop of product from cart of current account
 		select distinct product.shop
 		from
 			(
@@ -19,18 +21,8 @@ insert into p2po_bill_separate (bill, shop)
 		on product.id = cart.product
 		) temp;
 
-declare @i int = 
-	(
-	select count(distinct product.shop)
-	from
-		(
-			select product
-			from p2po_cart
-			where p2po_cart.account = @current_account
-		) cart
-	left join p2po_product product
-	on product.id = cart.product
-	);
+-- number of shop in cart of current account
+declare @i int = ()select count(*) from p2po_bill_separate where bill = @bill_id);
 
 declare @shop int;
 declare @bill_separate int;
