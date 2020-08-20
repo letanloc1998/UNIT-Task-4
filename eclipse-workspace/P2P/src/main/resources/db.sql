@@ -2,6 +2,7 @@ use DMS_DEV;
 
 drop table p2po_log;
 drop table p2po_bill_item;
+drop table p2po_bill_separate;
 drop table p2po_bill;
 drop table p2po_cart;
 drop table p2po_product_tag;
@@ -123,35 +124,48 @@ create table p2po_cart (
 
 create table p2po_bill (
     id bigint primary key identity(1,1),
-    
-    -- momo_order_id bigint,
-    
+        
     account bigint not null,
     address nvarchar(255) not null,
     create_at datetime default getutcdate(),
 
-    -- 0 : wating payment
-    -- 1 : payment success
-    -- 2 : payment error
-    payment tinyint default 0,
-    
-    -- 0 : waiting
+	/*
+    0	: wating payment
+    > 0	: money payment success
+    < 0 : money payment error
+	*/
+    payment int default 0,
+
+    constraint fk_p2po_bill_account__account_id foreign key (account) references p2po_account(id),
+)
+
+create table p2po_bill_separate (
+	id bigint primary key identity(1,1),
+
+    bill bigint,
+    constraint fk_p2po_bill_separate_bill__bill_id foreign key (bill) references p2po_bill(id),
+
+	shop bigint,
+	constraint fk_p2po_bill_separate_shop__shop_id foreign key (shop) references p2po_shop(id),
+
+	-- 0 : waiting
     -- 1 : approve
     -- 2 : deny
     -- 3 : complete	(approve success, shipping success)
     -- 4 : cancel	(approve success, can't receive product/error) 
     status tinyint default 0,
     
-    -- 0 : not refund
-    -- 1 : refund success
-    refund tinyint default 0,
-    
-    constraint fk_p2po_bill_account__account_id foreign key (account) references p2po_account(id),
-)
+	/*
+    0	: not refund
+    > 0 : money refund success
+	< 0 : money refund error
+	*/
+    refund int default 0,
+);
 
 create table p2po_bill_item (
     id bigint,
-    constraint fk_p2po_bill_item_id__bill_id foreign key (id) references p2po_bill(id),
+    constraint fk_p2po_bill_item_id__bill_id foreign key (id) references p2po_bill_separate(id),
 
     product bigint not null,
     constraint fk_p2po_bill_item_product__product_id foreign key (product) references p2po_product(id),
