@@ -126,9 +126,10 @@ create table p2po_bill (
     id bigint primary key identity(1,1),
         
     account bigint not null,
+    constraint fk_p2po_bill_account__account_id foreign key (account) references p2po_account(id),
+    
     address nvarchar(255) not null,
-    create_at datetime default getutcdate(),
-
+    
 	/*
     0	: wating payment
     > 0	: money payment success
@@ -136,7 +137,7 @@ create table p2po_bill (
 	*/
     payment int default 0,
 
-    constraint fk_p2po_bill_account__account_id foreign key (account) references p2po_account(id),
+    create_at datetime default getutcdate()
 )
 
 create table p2po_bill_separate (
