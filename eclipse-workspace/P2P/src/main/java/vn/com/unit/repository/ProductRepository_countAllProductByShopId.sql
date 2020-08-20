@@ -1,3 +1,3 @@
 select count(*)
-from p2p_product
+from p2po_product
 where shop = /*shop_id*/ AND disable = 'false'

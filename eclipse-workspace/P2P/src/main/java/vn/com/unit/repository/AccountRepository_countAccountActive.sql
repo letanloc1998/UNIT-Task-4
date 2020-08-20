@@ -1,3 +1,3 @@
 SELECT count(*)
-FROM p2p_account 
+FROM p2po_account 
 where disable = 0

@@ -1,3 +1,3 @@
 select *
-from p2p_category
+from p2po_category
 where id = /*id*/ AND disable = 0

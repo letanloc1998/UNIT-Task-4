@@ -1,3 +1,3 @@
 SELECT *
-FROM p2p_shop
+FROM p2po_shop
 WHERE id = /*account_id*/

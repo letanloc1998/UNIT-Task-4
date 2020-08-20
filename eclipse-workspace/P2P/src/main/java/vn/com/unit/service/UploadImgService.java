@@ -68,7 +68,7 @@ public class UploadImgService {
 			Cloudinary cloudinary = new Cloudinary(config);
 
 			Map<String, Object> params = new HashMap<String, Object>();
-			params.put("folder", "p2po");
+			params.put("folder", "p2poo");
 			params.put("public_id", time);
 			params.put("overwrite", "false");
 //			params.put("background_removal", "cloudinary_ai:fine_edges");
@@ -137,7 +137,7 @@ public class UploadImgService {
 			Cloudinary cloudinary = new Cloudinary(config);
 
 			Map<String, Object> params = new HashMap<String, Object>();
-			params.put("folder", "p2po");
+			params.put("folder", "p2poo");
 			params.put("public_id", time);
 			params.put("overwrite", "false");
 //			params.put("background_removal", "cloudinary_ai:fine_edges");

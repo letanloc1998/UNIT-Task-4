@@ -1,2 +1,2 @@
-insert into p2p_log (log, type, author)
+insert into p2po_log (log, type, author)
 values (/*log*/, /*type*/, /*author*/)

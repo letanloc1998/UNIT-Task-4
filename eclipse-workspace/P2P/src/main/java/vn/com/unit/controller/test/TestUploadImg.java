@@ -77,7 +77,7 @@ public class TestUploadImg {
 //				"notification_url", "https://mysite/notify_endpoint", "resource_type", "video");
 		
 		Map<String, Object> params = new HashMap<String, Object>();
-		params.put("folder", "p2po");
+		params.put("folder", "p2poo");
 //		params.put("public_id", multipart_file_name);
 		params.put("public_id", time);
 		params.put("overwrite", "false");

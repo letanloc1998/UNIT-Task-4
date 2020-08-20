@@ -5,10 +5,10 @@ from
 		from
 			(
 				select *
-				from p2p_bill_item
+				from p2po_bill_item
 				where id = /*bill_id*/
 			) bill_item
-		left join p2p_product product
+		left join p2po_product product
 		on product.id = bill_item.product
 	) bill
 group by bill.id;

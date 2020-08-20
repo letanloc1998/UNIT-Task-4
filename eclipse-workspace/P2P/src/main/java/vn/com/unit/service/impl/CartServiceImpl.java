@@ -46,7 +46,7 @@ public class CartServiceImpl implements CartService {
 		Long curent_account_id = accountService.findCurrentAccount().getId();
 
 //		select quantity
-//		from p2p_cart
+//		from p2po_cart
 //		where account = 1 and product = 2
 
 		Integer quantity_in_cart = cartRepository.findProductQuantityInCart(curent_account_id, product_id);

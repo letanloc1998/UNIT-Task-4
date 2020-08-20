@@ -1,3 +1,3 @@
 select *
-from p2p_account
+from p2po_account
 where id = /*id*/

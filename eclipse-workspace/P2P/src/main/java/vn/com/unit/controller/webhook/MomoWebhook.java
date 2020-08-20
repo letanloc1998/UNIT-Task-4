@@ -63,7 +63,7 @@ public class MomoWebhook {
 
 				paymentService.savePaymentSuccess(bill_id);
 				
-//				update p2p_bill
+//				update p2po_bill
 //				set payment = 1
 //				where id = /*bill_id*/
 				

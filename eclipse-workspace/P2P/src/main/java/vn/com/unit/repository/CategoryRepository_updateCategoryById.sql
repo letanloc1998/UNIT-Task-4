@@ -1,3 +1,3 @@
-UPDATE p2p_category
+UPDATE p2po_category
 SET name = /*name*/
 WHERE id = /*id*/
