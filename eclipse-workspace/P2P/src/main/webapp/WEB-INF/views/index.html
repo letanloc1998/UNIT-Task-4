@@ -11,7 +11,7 @@
 <body>
 
 
-	<div class="super_container">
+	<div class="super_container" data-infinite-scroll='{ "path": ".pagination__next", "append": ".post", "history": false }'>
 	
 		 <div th:replace="index/layout/header_index :: header_index"></div>
 		 
@@ -21,7 +21,9 @@
 		 
 		 <div th:replace="index/category/popular-category :: popular-category"></div> 
 		 
-		 <div th:replace="index/hot-new-arrivals :: hot-new-arrivals"></div>    
+		 <div th:replace="index/hot-new-arrivals :: hot-new-arrivals"></div> 
+		 
+		 <div th:replace="index/show-all-product :: show-all-product"></div>    
 		 
 		<div th:replace="index/layout/footer_index_template :: footer_index_template"></div>
 
