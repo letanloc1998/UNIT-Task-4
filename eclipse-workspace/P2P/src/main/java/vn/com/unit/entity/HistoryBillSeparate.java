@@ -5,7 +5,6 @@ import java.util.Date;
 public class HistoryBillSeparate {
 
 	private Long id;
-
 	private Long billId;
 	private Long shopId;
 	private String shop;
@@ -13,11 +12,8 @@ public class HistoryBillSeparate {
 	private String Email;
 	private String Phone;
 	private String ShippingAddres;
-	
 	private Long status;
-	
 	private Long refund;
-	
 	private Long TotalPrice;
 	private Long payment;
 	private Date createAt;

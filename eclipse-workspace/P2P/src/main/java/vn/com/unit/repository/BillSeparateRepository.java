@@ -16,5 +16,5 @@ public interface BillSeparateRepository extends MirageRepository<BillSeparate, L
 	@Modifying
 	public void saveBillSeparateStatus(@Param("bill_separate_id") Long bill_separate_id, @Param("status") int status);
 	
-	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(@Param("account_id") Long account_id);
+	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(@Param("account_id") Long account_id,@Param("status") Long status,@Param("payment") Long payment);
 }
