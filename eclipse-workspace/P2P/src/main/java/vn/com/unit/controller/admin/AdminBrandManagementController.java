@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Brand;
-import vn.com.unit.entity.Category;
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.BrandService;
 

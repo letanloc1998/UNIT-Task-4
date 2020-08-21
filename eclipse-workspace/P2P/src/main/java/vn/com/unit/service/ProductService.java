@@ -2,9 +2,6 @@ package vn.com.unit.service;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
-
-import vn.com.unit.entity.Shop;
 import vn.com.unit.entity.Product;
 
 public interface ProductService {

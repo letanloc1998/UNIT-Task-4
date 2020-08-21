@@ -246,6 +246,13 @@
 		<!-- <dependency> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
 			<version>3.8.1</version> </dependency> -->
 
+		<!-- https://mvnrepository.com/artifact/com.corundumstudio.socketio/netty-socketio -->
+		<dependency>
+			<groupId>com.corundumstudio.socketio</groupId>
+			<artifactId>netty-socketio</artifactId>
+			<version>1.7.18</version>
+		</dependency>
+
 
 	</dependencies>
 

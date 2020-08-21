@@ -16,7 +16,7 @@ public class CartItem {
 	
 	private Long quantity;
 	
-	private Long total;
+//	private Long total;
 	
 	private Date createAt;
 

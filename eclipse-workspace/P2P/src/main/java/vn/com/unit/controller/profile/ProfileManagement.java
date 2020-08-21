@@ -6,14 +6,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import vn.com.unit.entity.Account;
-import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
