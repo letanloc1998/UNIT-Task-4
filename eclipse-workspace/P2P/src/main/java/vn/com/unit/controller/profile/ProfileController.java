@@ -12,19 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.entity.Account;
+import vn.com.unit.entity.Bill;
+import vn.com.unit.entity.BillItem;
+import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillItemService;
 import vn.com.unit.service.BillService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
-import vn.com.unit.entity.Account;
-import vn.com.unit.entity.Role;
-import vn.com.unit.entity.AccountRole;
-import vn.com.unit.entity.Bill;
-import vn.com.unit.entity.BillItem;
-import vn.com.unit.entity.Shop;
-import vn.com.unit.entity.Product;
 
 
 

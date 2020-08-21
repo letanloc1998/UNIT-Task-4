@@ -7,7 +7,6 @@ import org.springframework.data.mirage.repository.query.Modifying;
 import org.springframework.data.repository.query.Param;
 
 import vn.com.unit.entity.Bill;
-import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 
 public interface BillRepository extends MirageRepository<Shop, Long> {

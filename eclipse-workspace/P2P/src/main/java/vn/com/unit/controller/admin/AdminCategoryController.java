@@ -20,10 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Category;
 import vn.com.unit.pageable.PageRequest;
-import vn.com.unit.service.AccountService;
 import vn.com.unit.service.CategoryService;
 
 @Controller
@@ -67,7 +65,7 @@ public class AdminCategoryController {
 		if (categoryService.findCategoryByName(category.getName()) != null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Category already exists\" }");
 			}
-		if (category.getName() == null) {
+		if (category.getName() == "") {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
 		}
 		Long category_id = categoryService.createCategory(category);
@@ -75,7 +73,6 @@ public class AdminCategoryController {
 			return ResponseEntity.ok("{ \"id\" : " + category_id + ", \"msg\" : \"Create category successfully\" }");
 		}
 		
-
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body("{ \"msg\" : \"You can't create an category right now. Try again later\" }");
 		

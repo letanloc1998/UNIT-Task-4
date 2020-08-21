@@ -29,6 +29,8 @@ public interface ShopRepository extends MirageRepository<Shop, Long> {
 	
 	public int countAllShop();
 	
+	public List<Shop> searchAllShop();
+	
 	public List<Shop> findShopByStatus(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset,@Param("status") Integer status);
 
 }

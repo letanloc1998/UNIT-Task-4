@@ -1,8 +1,5 @@
 package vn.com.unit.entity;
 
-import java.util.Date;
-import java.util.List;
-
 public class BillItem {
 
 	private Long id;

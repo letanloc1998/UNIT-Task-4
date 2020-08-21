@@ -1,8 +1,8 @@
 package vn.com.unit.service;
 
 import java.util.List;
+
 import vn.com.unit.entity.Shop;
-import vn.com.unit.entity.Product;
 
 public interface ShopService {
 	
@@ -20,4 +20,6 @@ public interface ShopService {
 	
 	public int countAllShop();
 	public List<Shop> findShopByStatus(int limit,int offset,int status);
+	
+	public List<Shop> searchAllShop();
 }

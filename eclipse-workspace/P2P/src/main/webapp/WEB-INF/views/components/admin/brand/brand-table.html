@@ -38,12 +38,14 @@
 												<td class="text-center"><span> 
 												</span> 
 												<span>
-														
-														<span><a type="button"
+													
+														<span><a type="button" rel="tooltip" title="Edit Brand"
 													th:href="@{'/admin/brand/edit/' + ${brand.id}}"
 													class="btn btn-large btn-primary btn-just-icon"><i
 														class="fas fa-edit"></i></a> </span>
-														<button type="button" class="btn  btn-danger btn-just-icon"
+														<button type="button" 
+														rel="tooltip" title="Delete Brand"
+														class="btn  btn-danger btn-just-icon"
 															th:onclick="|DeleteBrand(${brand.id})|">
 															<i class="fas fa-trash-alt"></i>
 														</button>

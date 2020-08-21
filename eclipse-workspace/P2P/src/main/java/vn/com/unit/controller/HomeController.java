@@ -21,11 +21,13 @@ import org.springframework.web.servlet.ModelAndView;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Product;
+import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BrandService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
+import vn.com.unit.service.ShopService;
 import vn.com.unit.utils.CommonUtils;
 
 @Controller
@@ -36,6 +38,9 @@ public class HomeController {
 
 	@Autowired
 	ProductService productService;
+	
+	@Autowired
+	ShopService shopService;
 
 	@Autowired
 	private RoleService roleService;
@@ -80,6 +85,9 @@ public class HomeController {
 
 		List<Product> product = productService.findAllProduct();
 		model.addAttribute("product", product);
+		
+		List<Shop> shops = shopService.searchAllShop();
+		model.addAttribute("shops", shops);
 
 		return new ModelAndView("index");
 	}

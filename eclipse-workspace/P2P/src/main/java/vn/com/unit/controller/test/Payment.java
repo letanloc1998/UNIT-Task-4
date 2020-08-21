@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +21,6 @@ import com.mservice.shared.sharedmodels.Environment;
 import com.mservice.shared.sharedmodels.Environment.EnvTarget;
 import com.mservice.shared.sharedmodels.Environment.ProcessType;
 import com.mservice.shared.utils.Encoder;
-import com.paypal.core.PayPalHttpClient;
-//import com.mservice.allinone.processor.allinone.PaymentResult;
 
 
 public class Payment {
@@ -139,8 +136,8 @@ public class Payment {
 
 	@RequestMapping("/paypal")
 	public ModelAndView payPalPayment(Model model) {
-		PayPalClient payPalClient = new PayPalClient();
-		PayPalHttpClient payPalHttpClient = payPalClient.client();
+//		PayPalClient payPalClient = new PayPalClient();
+//		PayPalHttpClient payPalHttpClient = payPalClient.client();
 //		payPalHttpClient.
 
 		return null;

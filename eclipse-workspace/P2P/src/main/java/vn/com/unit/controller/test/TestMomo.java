@@ -1,53 +1,22 @@
 package vn.com.unit.controller.test;
 
 
-import com.mservice.pay.models.POSPayResponse;
-import com.mservice.pay.models.TransactionQueryResponse;
-import com.mservice.pay.models.TransactionRefundResponse;
-import com.mservice.pay.processor.notallinone.POSPay;
-import com.mservice.pay.processor.notallinone.TransactionQuery;
-import com.mservice.pay.processor.notallinone.TransactionRefund;
-import com.mservice.shared.constants.Parameter;
-//import com.mservice.shared.constants.ProcessType;
-import com.mservice.shared.constants.RequestType;
-import com.mservice.shared.sharedmodels.Environment;
-import com.mservice.shared.sharedmodels.Environment.EnvTarget;
-import com.mservice.shared.sharedmodels.Environment.ProcessType;
-import com.mservice.shared.sharedmodels.PartnerInfo;
-
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 
 import com.mservice.allinone.models.CaptureMoMoRequest;
 
-import com.mservice.pay.processor.notallinone.PayConfirmation;
-
 //import com.mservice.allinone.processor.allinone.PayATM;
 
 //import com.mservice.allinone.PayGate;
 import com.mservice.allinone.models.CaptureMoMoResponse;
-import com.mservice.allinone.models.PayATMResponse;
-import com.mservice.allinone.models.PayGateRequest;
-import com.mservice.allinone.models.QueryStatusTransactionResponse;
-import com.mservice.allinone.models.RefundMoMoResponse;
-import com.mservice.allinone.processor.allinone.*;
+import com.mservice.allinone.processor.allinone.CaptureMoMo;
 import com.mservice.shared.exception.MoMoException;
 //import com.mservice.shared.sharedmodels.Environment;
-
-//import com.mservice.allinone.processor.allinone.PayATM;
-//import com.mservice.allinone.processor.allinone.CaptureMoMo;
-//import com.mservice.allinone.processor.allinone.RefundMoMo;
-//import com.mservice.allinone.processor.allinone.RefundATM;
-import com.mservice.allinone.models.PayGateRequest;
-
-import com.mservice.shared.utils.Encoder;
-
-import com.mservice.allinone.processor.allinone.CaptureMoMo;
-
-
-//https://github.com/momo-wallet/java/blob/master/src/main/java/com/mservice/pay/models/QRNotifyRequest.java
-import com.mservice.pay.models.QRNotifyRequest;
+import com.mservice.shared.sharedmodels.Environment;
+import com.mservice.shared.sharedmodels.Environment.EnvTarget;
+import com.mservice.shared.sharedmodels.Environment.ProcessType;
 
 public class TestMomo {
 

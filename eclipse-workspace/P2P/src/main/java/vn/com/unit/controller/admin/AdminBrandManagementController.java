@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Brand;
-import vn.com.unit.entity.Category;
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.BrandService;
 
@@ -70,7 +69,7 @@ public class AdminBrandManagementController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"brand already exists\" }");
 		}
 
-		if (brand.getName() == null) {
+		if (brand.getName() == "") {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
 		}
 		Long brand_id = brandService.createCategory(brand);

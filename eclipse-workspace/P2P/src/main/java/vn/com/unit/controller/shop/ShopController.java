@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
-import vn.com.unit.entity.BillItem;
 import vn.com.unit.entity.BillSeparate;
 import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Category;
