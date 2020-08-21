@@ -1,27 +1,31 @@
 package vn.com.unit.service;
 
-//import org.java_websocket.server.WebSocketServer;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.stereotype.Service;
+
+import com.corundumstudio.socketio.Configuration;
+import com.corundumstudio.socketio.SocketConfig;
+import com.corundumstudio.socketio.SocketIOServer;
+
+import vn.com.unit.socket.ChatServerSocket;
 
 @Service
 public class ChatServerService {
 
-	/*
-	WebSocketServer server;
+	private ChatServerSocket server;
 
 	@PostConstruct
 	public void initChatServerSocket() {
-		String host = "localhost";
-		int port = 8888;
 
-		server = new ChatServerSocket(new InetSocketAddress(host, port));
-		server.run();
+		server = new ChatServerSocket();
+		server.start();
 	}
 
 	@PreDestroy
-	public void stopChatServerSocket() throws IOException, InterruptedException {
+	public void stopChatServerSocket() {
 		server.stop();
 	}
-	*/
 
 }
