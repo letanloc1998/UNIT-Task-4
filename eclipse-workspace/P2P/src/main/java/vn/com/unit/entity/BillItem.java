@@ -9,6 +9,8 @@ public class BillItem {
 	
 	private int product;
 	
+	private Product product_name;
+	
 	private int quantity;
 	
 	public BillItem() {
@@ -28,6 +30,17 @@ public class BillItem {
 
 	public void setProduct(int product) {
 		this.product = product;
+	}
+
+	
+
+
+	public Product getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(Product product_name) {
+		this.product_name = product_name;
 	}
 
 	public int getQuantity() {

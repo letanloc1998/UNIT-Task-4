@@ -1,14 +1,17 @@
 package vn.com.unit.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Bill;
 import vn.com.unit.entity.BillItem;
 import vn.com.unit.entity.Product;
+import vn.com.unit.entity.Role;
 import vn.com.unit.repository.BillItemRepository;
 import vn.com.unit.repository.BillRepository;
 import vn.com.unit.repository.ProductRepository;
@@ -29,17 +32,30 @@ public class BillItemServiceImpl implements BillItemService {
 	ProductRepository productRepository;
 	
 	@Autowired
+	ProductService productService;
+	
+	@Autowired
 	BillRepository billRepository;
 	
 	@Autowired
 	BillItemRepository billItemRepository;
 	
 	
-	
 	@Override
-	public List<BillItem> findAllBillItemByBillId(Long bill_id) {
+	public List<BillItem> findAllBillItemByBillSeparateId(Long bill_separate_id) {
 
-		return billItemRepository.findAllBillItemByBillId(bill_id);
+		List<BillItem> billitems = new ArrayList<BillItem>();
+		try {
+			billitems = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
+			for (BillItem billitem : billitems) {
+				Long product_id = (long) billitem.getProduct();
+				Product product_name = productService.findProductByProductId(product_id);
+				billitem.setProduct_name(product_name);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return billitems;
 	}
 	
 	@Override

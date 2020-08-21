@@ -1,6 +1,7 @@
 package vn.com.unit.controller.shop;
 
 import java.io.File;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,6 +26,7 @@ import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillItemService;
+import vn.com.unit.service.BillSeparateService;
 import vn.com.unit.service.BillService;
 import vn.com.unit.service.BrandService;
 import vn.com.unit.service.CategoryService;
@@ -60,6 +62,9 @@ public class ShopManagement {
 
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	BillSeparateService billSeparateService;
 
 	// create shop
 	@PreAuthorize("hasRole('ROLE_USER')")
@@ -211,5 +216,18 @@ public class ShopManagement {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+	}
+	
+	//confirm bill
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
+	@PutMapping("/bill/confirm")
+	@ResponseBody
+	public ResponseEntity<String> add(Model model, @RequestBody Map<String, String> json) {
+		int status = 1;
+		
+		billSeparateService.saveBillSeparateStatus((Long.valueOf(json.get("bill_id"))), status);
+		
+		return ResponseEntity.ok(
+				"{\"msg\" : \"Confirm Bill succes! Please check again!\" }");
 	}
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -182,6 +183,23 @@ public class ShopController {
 		model.addAttribute("bills", bills);
 		
 		return new ModelAndView("shop/myBill/myBill");
+	}
+	
+	@GetMapping("/shop/mybill/{bill-separate-id}")
+	public ModelAndView billDeatil(Model model,@PathVariable("bill-separate-id") Long bill_separate_id
+			) {
+		
+		List<BillItem> billitems = billItemService.findAllBillItemByBillSeparateId(bill_separate_id);
+		model.addAttribute("billitems", billitems);
+		Account account = accountService.findCurrentAccount();	
+		Shop shop = shopService.findShopByAccountId(account.getId());
+		model.addAttribute("shop", shop);	
+		
+		List<BillSeparate> bills = billSeparateService.findBillSeparatePaymentSuccessAndStatusWaitingByShopId(account.getId());
+
+		model.addAttribute("bills", bills);
+		
+		return new ModelAndView("shop/myBill/bill-detail");
 	}
 	
 }

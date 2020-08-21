@@ -8,4 +8,6 @@ public interface BillSeparateService {
 
 	public List<BillSeparate> findBillSeparatePaymentSuccessAndStatusWaitingByShopId(Long shop_id);
 	
+	public void saveBillSeparateStatus(Long bill_separate_id, int status);
+	
 }
