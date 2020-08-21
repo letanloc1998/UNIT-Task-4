@@ -7,17 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import vn.com.unit.entity.Account;
-import vn.com.unit.entity.Bill;
 import vn.com.unit.entity.BillItem;
 import vn.com.unit.entity.Product;
-import vn.com.unit.entity.Role;
-import vn.com.unit.entity.BillItem;
 import vn.com.unit.repository.BillItemRepository;
 import vn.com.unit.repository.BillRepository;
 import vn.com.unit.repository.ProductRepository;
 import vn.com.unit.repository.ShopRepository;
 import vn.com.unit.service.BillItemService;
+import vn.com.unit.service.ProductService;
 
 @Service
 @Transactional
