@@ -1,15 +1,22 @@
 package vn.com.unit.socket;
 
+import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.SocketConfig;
+import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIOServer;
+import com.corundumstudio.socketio.listener.DataListener;
 
 public class ChatServerSocket {
 
-	private SocketIOServer server;
+	private static SocketIOServer server;
 
-	public ChatServerSocket() {
+	public static void initChatServerSocket() {
 
+		if (server != null) {
+			return;
+		}
+		
 		Configuration config = new Configuration();
 
 		/*
@@ -115,14 +122,23 @@ public class ChatServerSocket {
 		config.setSocketConfig(socketConfig);
 
 		server = new SocketIOServer(config);
+		
+		server.addEventListener("msg", byte[].class, new DataListener<byte[]>() {
+            @Override
+            public void onData(SocketIOClient client, byte[] data, AckRequest ackRequest) {
+                client.sendEvent("msg", data);
+            }
 
-	}
-	
-	public void start() {
+        });
+		
 		server.start();
 	}
-	
-	public void stop() {
+
+	public static void start() {
+		initChatServerSocket();
+	}
+
+	public static void stop() {
 		server.stop();
 	}
 
