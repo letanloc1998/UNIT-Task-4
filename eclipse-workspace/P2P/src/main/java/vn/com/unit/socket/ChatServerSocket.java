@@ -1,17 +1,23 @@
 package vn.com.unit.socket;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.HandshakeData;
+import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIONamespace;
 import com.corundumstudio.socketio.SocketIOServer;
 import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 
+
 public class ChatServerSocket {
 
 	private static SocketIOServer server;
-	
+
 	private static SocketIONamespace namespace;
 
 	public static void initChatServerSocket() {
@@ -19,7 +25,7 @@ public class ChatServerSocket {
 		if (server != null) {
 			return;
 		}
-		
+
 		Configuration config = new Configuration();
 
 		/*
@@ -124,45 +130,46 @@ public class ChatServerSocket {
 
 //		config.setSocketConfig(socketConfig);
 
-		
 		server = new SocketIOServer(config);
-		
-//		server.addEventListener("msg", byte[].class, new DataListener<byte[]>() {
-//            @Override
-//            public void onData(SocketIOClient client, byte[] data, AckRequest ackRequest) {
-//                client.sendEvent("msg", data);
-//            }
-//
-//        });
-		
-		namespace = server.addNamespace("/chat");
-		namespace.addConnectListener(onConnected());
-        namespace.addDisconnectListener(onDisconnected());
-        namespace.addEventListener("chat", ChatMessage.class, onChatReceived());
-		
+
+		server.addEventListener("msg", byte[].class, new DataListener<byte[]>() {
+            @Override
+            public void onData(SocketIOClient client, byte[] data, AckRequest ackRequest) {
+                client.sendEvent("msg", data);
+            }
+
+        });
+
+//		namespace = server.addNamespace("/chat");
+//		namespace.addConnectListener(onConnected());
+//		namespace.addDisconnectListener(onDisconnected());
+//		namespace.addEventListener("chat", ChatMessage.class, onChatReceived());
+
 		server.start();
 	}
-	
+
+	/*
 	private static DataListener<ChatMessage> onChatReceived() {
-        return (client, data, ackSender) -> {
+		return (client, data, ackSender) -> {
 //            log.debug("Client[{}] - Received chat message '{}'", client.getSessionId().toString(), data);
-            namespace.getBroadcastOperations().sendEvent("chat", data);
-        };
-    }
+			namespace.getBroadcastOperations().sendEvent("chat", data);
+		};
+	}
 
-    private static ConnectListener onConnected() {
-        return client -> {
-            HandshakeData handshakeData = client.getHandshakeData();
+	private static ConnectListener onConnected() {
+		return client -> {
+			HandshakeData handshakeData = client.getHandshakeData();
 //            log.debug("Client[{}] - Connected to chat module through '{}'", client.getSessionId().toString(), handshakeData.getUrl());
-        };
-    }
+		};
+	}
 
-    private static DisconnectListener onDisconnected() {
-        return client -> {
+	private static DisconnectListener onDisconnected() {
+		return client -> {
 //            log.debug("Client[{}] - Disconnected from chat module.", client.getSessionId().toString());
-        };
-    }
-
+		};
+	}
+	*/
+	
 	public static void start() {
 		initChatServerSocket();
 	}
