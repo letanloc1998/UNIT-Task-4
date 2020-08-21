@@ -40,17 +40,38 @@ public class BillItemServiceImpl implements BillItemService {
 	public List<BillItem> findAllBillItemByBillSeparateId(Long bill_separate_id) {
 
 		List<BillItem> billitems = new ArrayList<BillItem>();
+		int total = 0;
 		try {
 			billitems = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
 			for (BillItem billitem : billitems) {
 				Long product_id = (long) billitem.getProduct();
 				Product product_name = productService.findProductByProductId(product_id);
 				billitem.setProduct_name(product_name);
+				total = total + (product_name.getPrice() * billitem.getQuantity());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return billitems;
+	}
+	
+	@Override
+	public int totalPriceOfBillByBillSeparateId(Long bill_separate_id) {
+
+		List<BillItem> billitems = new ArrayList<BillItem>();
+		int total = 0;
+		try {
+			billitems = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
+			for (BillItem billitem : billitems) {
+				Long product_id = (long) billitem.getProduct();
+				Product product_name = productService.findProductByProductId(product_id);
+				billitem.setProduct_name(product_name);
+				total = total + (product_name.getPrice() * billitem.getQuantity());
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return total;
 	}
 	
 	@Override

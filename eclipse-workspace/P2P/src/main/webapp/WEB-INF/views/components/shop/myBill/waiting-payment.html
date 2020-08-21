@@ -22,8 +22,7 @@
 								<div class="table-responsive">
 									<table class="table">
 										<thead class=" text-primary">
-											<th>Id separate</th>
-											<th>Id total bill</th>
+											<th>Id Bill</th>
 											<th>Status</th>
 											<th>Refund</th>
 											<th class="text-center">Action</th>
@@ -33,7 +32,6 @@
 											<tr th:if="${!bills.empty or bills != null}"
 												th:each="bill, i : ${bills}">
 												<td><span th:text="${bill.id}"></span></td>
-												<td><span th:text="${bill.bill}"></span></td>
 												<td><span th:text="${bill.status}"></span></td>
 												<td><span th:text="${bill.refund}"></span></td>
 
