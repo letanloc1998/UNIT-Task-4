@@ -23,5 +23,11 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 		
 		return billSeparateRepository.findBillSeparatePaymentSuccessAndStatusWaitingByShopId(shop_id);
 	}
+	
+	@Override
+	public void saveBillSeparateStatus(Long bill_separate_id, int status) {
+		billSeparateRepository.saveBillSeparateStatus(bill_separate_id, status);
+		
+	};
 
 }
