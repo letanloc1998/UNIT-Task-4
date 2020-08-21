@@ -73,7 +73,6 @@ public class AdminCategoryController {
 			return ResponseEntity.ok("{ \"id\" : " + category_id + ", \"msg\" : \"Create category successfully\" }");
 		}
 		
-
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body("{ \"msg\" : \"You can't create an category right now. Try again later\" }");
 		
