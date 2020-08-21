@@ -1,15 +1,18 @@
 package vn.com.unit.socket;
 
-import com.corundumstudio.socketio.AckRequest;
 import com.corundumstudio.socketio.Configuration;
-import com.corundumstudio.socketio.SocketConfig;
-import com.corundumstudio.socketio.SocketIOClient;
+import com.corundumstudio.socketio.HandshakeData;
+import com.corundumstudio.socketio.SocketIONamespace;
 import com.corundumstudio.socketio.SocketIOServer;
+import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
+import com.corundumstudio.socketio.listener.DisconnectListener;
 
 public class ChatServerSocket {
 
 	private static SocketIOServer server;
+	
+	private static SocketIONamespace namespace;
 
 	public static void initChatServerSocket() {
 
@@ -27,7 +30,7 @@ public class ChatServerSocket {
 		/*
 		 * setPort The port the socket.io server will listen to
 		 */
-		config.setPort(8088);
+		config.setPort(8081);
 
 		/*
 		 * setJsonTypeFieldName defaults to "@class"
@@ -116,23 +119,49 @@ public class ChatServerSocket {
 		 * SocketConfig setReuseAddress
 		 */
 //		java.net.BindException: Address already in use
-		SocketConfig socketConfig = new SocketConfig();
-		socketConfig.setReuseAddress(true);
+//		SocketConfig socketConfig = new SocketConfig();
+//		socketConfig.setReuseAddress(true);
 
-		config.setSocketConfig(socketConfig);
+//		config.setSocketConfig(socketConfig);
 
+		
 		server = new SocketIOServer(config);
 		
-		server.addEventListener("msg", byte[].class, new DataListener<byte[]>() {
-            @Override
-            public void onData(SocketIOClient client, byte[] data, AckRequest ackRequest) {
-                client.sendEvent("msg", data);
-            }
-
-        });
+//		server.addEventListener("msg", byte[].class, new DataListener<byte[]>() {
+//            @Override
+//            public void onData(SocketIOClient client, byte[] data, AckRequest ackRequest) {
+//                client.sendEvent("msg", data);
+//            }
+//
+//        });
+		
+		namespace = server.addNamespace("/chat");
+		namespace.addConnectListener(onConnected());
+        namespace.addDisconnectListener(onDisconnected());
+        namespace.addEventListener("chat", ChatMessage.class, onChatReceived());
 		
 		server.start();
 	}
+	
+	private static DataListener<ChatMessage> onChatReceived() {
+        return (client, data, ackSender) -> {
+//            log.debug("Client[{}] - Received chat message '{}'", client.getSessionId().toString(), data);
+            namespace.getBroadcastOperations().sendEvent("chat", data);
+        };
+    }
+
+    private static ConnectListener onConnected() {
+        return client -> {
+            HandshakeData handshakeData = client.getHandshakeData();
+//            log.debug("Client[{}] - Connected to chat module through '{}'", client.getSessionId().toString(), handshakeData.getUrl());
+        };
+    }
+
+    private static DisconnectListener onDisconnected() {
+        return client -> {
+//            log.debug("Client[{}] - Disconnected from chat module.", client.getSessionId().toString());
+        };
+    }
 
 	public static void start() {
 		initChatServerSocket();
