@@ -155,49 +155,81 @@ public class ShopController {
 		return new ModelAndView("shop/myProduct/shop-edit-product");
 	}
 
-	@GetMapping("/shop/mybill")
-	public ModelAndView bill(
+	@GetMapping("/shop/mybills/{mode}")
+	public ModelAndView bills(
 			Model model,
-			/*
-			 * @RequestParam(value = "page", required = false, defaultValue = "1") int page,
-			 * 
-			 * @RequestParam(value = "limit", required = false, defaultValue = "10") int
-			 * limit,
-			 */
+			@PathVariable("mode") String mode,
 			HttpServletRequest request
 			) {
 		
 		
 		Account account = accountService.findCurrentAccount();	
 		Shop shop = shopService.findShopByAccountId(account.getId());
-		model.addAttribute("shop", shop);	
-		/*
-		 * int totalitems = productService.CountAllProductByShopId((long)
-		 * account.getId()); int totalpages = (int) Math.ceil((double) totalitems /
-		 * (double) limit);
-		 */
+		model.addAttribute("shop", shop);
+		if(mode.equals("waiting-confirm")) {
+			Long status = (long) 0;
+			Long payment = (long) 1;
+			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+
+			model.addAttribute("bills", bills);
+			
+			return new ModelAndView("shop/myBill/waiting-confirm");
+		}
 		
-		List<BillSeparate> bills = billSeparateService.findBillSeparatePaymentSuccessAndStatusWaitingByShopId(account.getId());
+		if(mode.equals("confirm")) {
+			Long status = (long) 1;
+			Long payment = (long) 1;
+			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+
+			model.addAttribute("bills", bills);
+			
+			return new ModelAndView("shop/myBill/bill-confirm-list");
+		}
+		
+		if(mode.equals("success")) {
+			Long status = (long) 3;
+			Long payment = (long) 1;
+			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+
+			model.addAttribute("bills", bills);
+			
+			return new ModelAndView("shop/myBill/bill-success-list");
+		}
+		
+		if(mode.equals("deny")) {
+			Long status = (long) 4;
+			Long payment = (long) 1;
+			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+
+			model.addAttribute("bills", bills);
+			
+			return new ModelAndView("shop/myBill/bill-deny-list");
+		}
+		if(mode.equals("error-payment")) {
+			Long status = (long) 0;
+			Long payment = (long) -1;
+			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+
+			model.addAttribute("bills", bills);
+			
+			return new ModelAndView("shop/myBill/error-payment");
+		}
+	
+		Long status = (long) 0;
+		Long payment = (long) 0;
+		List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
 
 		model.addAttribute("bills", bills);
 		
-		return new ModelAndView("shop/myBill/myBill");
+		return new ModelAndView("shop/myBill/waiting-payment");
 	}
 	
 	@GetMapping("/shop/mybill/{bill-separate-id}")
 	public ModelAndView billDeatil(Model model,@PathVariable("bill-separate-id") Long bill_separate_id
 			) {
-		
+		model.addAttribute("id_bill", bill_separate_id);
 		List<BillItem> billitems = billItemService.findAllBillItemByBillSeparateId(bill_separate_id);
 		model.addAttribute("billitems", billitems);
-		Account account = accountService.findCurrentAccount();	
-		Shop shop = shopService.findShopByAccountId(account.getId());
-		model.addAttribute("shop", shop);	
-		
-		List<BillSeparate> bills = billSeparateService.findBillSeparatePaymentSuccessAndStatusWaitingByShopId(account.getId());
-
-		model.addAttribute("bills", bills);
-		
 		return new ModelAndView("shop/myBill/bill-detail");
 	}
 	
