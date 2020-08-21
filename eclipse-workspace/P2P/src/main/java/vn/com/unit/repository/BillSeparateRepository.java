@@ -7,6 +7,7 @@ import org.springframework.data.mirage.repository.query.Modifying;
 import org.springframework.data.repository.query.Param;
 
 import vn.com.unit.entity.BillSeparate;
+import vn.com.unit.entity.HistoryBillSeparate;
 
 public interface BillSeparateRepository extends MirageRepository<BillSeparate, Long> {
 
@@ -14,5 +15,6 @@ public interface BillSeparateRepository extends MirageRepository<BillSeparate, L
 	
 	@Modifying
 	public void saveBillSeparateStatus(@Param("bill_separate_id") Long bill_separate_id, @Param("status") int status);
-
+	
+	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(@Param("account_id") Long account_id);
 }
