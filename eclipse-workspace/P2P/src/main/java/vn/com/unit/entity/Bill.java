@@ -10,7 +10,7 @@ public class Bill {
 	
 	private String address;
 		
-	private boolean payment;
+	private Long payment;
 	
 //	private boolean status;
 //	
@@ -45,11 +45,11 @@ public class Bill {
 		this.address = address;
 	}
 
-	public boolean isPayment() {
+	public Long isPayment() {
 		return payment;
 	}
 
-	public void setPayment(boolean payment) {
+	public void setPayment(Long payment) {
 		this.payment = payment;
 	}
 
