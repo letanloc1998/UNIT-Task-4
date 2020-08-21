@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mservice.allinone.models.RefundMoMoRequest;
 import com.mservice.allinone.processor.allinone.RefundMoMo;
-import com.mservice.shared.exception.MoMoException;
 import com.mservice.shared.sharedmodels.Environment;
 import com.mservice.shared.sharedmodels.Environment.EnvTarget;
 import com.mservice.shared.sharedmodels.Environment.ProcessType;
@@ -19,6 +18,7 @@ public class TestRefund {
 	ProcessType process = ProcessType.PAY_GATE;
 	Environment environment = Environment.selectEnv(target, process);
 	
+	@SuppressWarnings("unused")
 	@RequestMapping("/refund")
 	public void test() {
 		

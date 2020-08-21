@@ -1,21 +1,19 @@
 package vn.com.unit.controller.test;
 
-import com.mservice.allinone.models.*;
+import com.mservice.allinone.models.CaptureMoMoResponse;
+import com.mservice.allinone.models.QueryStatusTransactionResponse;
 import com.mservice.allinone.processor.allinone.CaptureMoMo;
-import com.mservice.allinone.processor.allinone.PayATM;
 //import com.mservice.allinone.processor.allinone.PaymentResult;
 import com.mservice.allinone.processor.allinone.QueryStatusTransaction;
 import com.mservice.shared.exception.MoMoException;
 import com.mservice.shared.sharedmodels.Environment;
 //import com.mservice.shared.utils.LogUtils;
 
-//https://github.com/momo-wallet/java/blob/master/src/main/java/com/mservice/pay/models/QRNotifyRequest.java
-import com.mservice.pay.models.QRNotifyRequest;
-
 public class TestMomo2 {
 
 //	https://github.com/momo-wallet/java/blob/master/src/main/java/com/mservice/allinone/AllInOne.java
 
+	@SuppressWarnings("unused")
 	public void pament() throws MoMoException {
 
 		try {

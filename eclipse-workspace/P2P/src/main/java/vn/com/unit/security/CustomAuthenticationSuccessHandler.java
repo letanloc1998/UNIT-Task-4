@@ -1,7 +1,6 @@
 package vn.com.unit.security;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 
 import javax.servlet.ServletException;

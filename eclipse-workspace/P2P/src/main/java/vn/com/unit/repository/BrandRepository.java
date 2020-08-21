@@ -6,7 +6,6 @@ import org.springframework.data.mirage.repository.MirageRepository;
 import org.springframework.data.repository.query.Param;
 
 import vn.com.unit.entity.Brand;
-import vn.com.unit.entity.Category;
 
 public interface BrandRepository extends MirageRepository<Brand, Long> {
 

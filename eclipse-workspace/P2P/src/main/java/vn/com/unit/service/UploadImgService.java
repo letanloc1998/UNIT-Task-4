@@ -49,6 +49,7 @@ public class UploadImgService {
 		return temp_file;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public static String uploadCloudinary(File file, Integer width, Integer height) {
 
 		// Limit width, height img
@@ -73,6 +74,7 @@ public class UploadImgService {
 			params.put("overwrite", "false");
 //			params.put("background_removal", "cloudinary_ai:fine_edges");
 //			params.put("background_removal", "cloudinary_ai");
+
 			params.put("transformation",
 					new Transformation().width(1024).height(1024).quality("auto").fetchFormat("auto").crop("limit"));
 
@@ -108,6 +110,7 @@ public class UploadImgService {
 		return "";
 	}
 	
+	@SuppressWarnings("rawtypes")
 	public static String uploadCloudinary(MultipartFile multipartFile, Integer width, Integer height) {
 
 		// Limit width, height img

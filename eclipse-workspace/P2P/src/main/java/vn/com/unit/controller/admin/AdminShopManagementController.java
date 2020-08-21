@@ -1,6 +1,5 @@
 package vn.com.unit.controller.admin;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -19,12 +18,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.entity.Role;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
-import vn.com.unit.entity.Role;
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
