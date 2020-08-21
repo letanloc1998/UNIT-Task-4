@@ -82,7 +82,8 @@ public class ProfileController {
 	
 	//editAccount view
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')")
-	@GetMapping("/profile/myaccount") public ModelAndView myAccount(Model model,@RequestParam(name = "mode") String mode) {
+	@GetMapping("/profile/myaccount")
+	public ModelAndView myAccount(Model model,@RequestParam(name = "mode") String mode) {
 		String type = "";
 		if(mode.equals("editPass")) {
 			 type = "profile/myAccount/editPass";
