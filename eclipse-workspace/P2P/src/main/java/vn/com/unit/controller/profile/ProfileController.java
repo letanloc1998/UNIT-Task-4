@@ -97,28 +97,5 @@ public class ProfileController {
 	
 	
 	
-	//bills view
-//	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')")
-//	@RequestMapping("/profile/mybill") public ModelAndView bill(Model model) {
-//		Account account = accountService.findCurrentAccount();	
-//		List<Bill> bills = billService.findAllBillByAccountId(account.getId());
-//		model.addAttribute("current_account", account);
-//		model.addAttribute("bills", bills);
-//		model.addAttribute("title", "Account Management");
-//		return new ModelAndView("profile/myBill/allBill"); }
 	
-	/*
-	 * //bills item view
-	 * 
-	 * @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')")
-	 * 
-	 * @RequestMapping("/profile/mybill/{bill_id}") public ModelAndView
-	 * billitem(Model model, @PathVariable("bill_id") Long bill_id) { Account
-	 * account = accountService.findCurrentAccount(); List<BillItem> billitems =
-	 * billItemService.findAllBillItemByBillId(bill_id);
-	 * model.addAttribute("current_account", account);
-	 * model.addAttribute("billitems", billitems);
-	 * model.addAttribute("bill_id",bill_id); model.addAttribute("title",
-	 * "Account Management"); return new ModelAndView("profile/myBill/billItem"); }
-	 */
 }

@@ -24,7 +24,8 @@ public class ProfileBillHistoryController {
 	
 	//bills view
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')")
-	@RequestMapping("/profile/mybill") public ModelAndView bill(Model model) {
+	@RequestMapping("/profile/mybill") 
+	public ModelAndView bill(Model model) {
 		Account account = accountService.findCurrentAccount();	
 		List<Bill> bills = billService.findAllBillByAccountId(account.getId());
 		model.addAttribute("current_account", account);
