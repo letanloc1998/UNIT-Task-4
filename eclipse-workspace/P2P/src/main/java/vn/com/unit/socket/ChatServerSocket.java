@@ -15,12 +15,12 @@ public class ChatServerSocket {
 		/*
 		 * setHostname If not set then bind address will be 0.0.0.0 or ::0
 		 */
-//		config.setHostname("localhost");
+		config.setHostname("localhost");
 
 		/*
 		 * setPort The port the socket.io server will listen to
 		 */
-		config.setPort(8888);
+		config.setPort(8088);
 
 		/*
 		 * setJsonTypeFieldName defaults to "@class"
