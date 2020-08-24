@@ -45,7 +45,7 @@ public class ChatServerSocket {
 //	@Autowired
 //	@Qualifier("sessionRegistry")
 	@Resource(name = "sessionRegistry")
-    private static SessionRegistryImpl sessionRegistry;
+    private SessionRegistryImpl sessionRegistry;
 
 //	@Resource(name = "sessionRegistry")
 //	private static SessionRegistryImpl sessionRegistry;
