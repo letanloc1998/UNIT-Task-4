@@ -15,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.corundumstudio.socketio.AckRequest;
@@ -32,8 +33,11 @@ import com.corundumstudio.socketio.listener.DisconnectListener;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.cookie.Cookie;
 import io.netty.handler.codec.http.cookie.ServerCookieDecoder;
+import vn.com.unit.service.ChatServerService;
 
-@Service
+//import org.springframework.security.core.session.SessionRegistryImpl;
+
+@Component
 public class ChatServerSocket {
 
 	private static SocketIOServer server;
@@ -44,12 +48,18 @@ public class ChatServerSocket {
 
 //	@Autowired
 //	@Qualifier("sessionRegistry")
-	@Resource(name = "sessionRegistry")
-    private SessionRegistryImpl sessionRegistry;
+//	@Resource(name = "sessionRegistry")
+//    private SessionRegistryImpl sessionRegistry;
 
 //	@Resource(name = "sessionRegistry")
 //	private static SessionRegistryImpl sessionRegistry;
+	
+//	@Autowired
+//	private static SessionRegistry sessionRegistry;
 
+//	@Autowired
+//    private static SessionRegistry sessionRegistry;
+	
 	public static void initChatServerSocket() {
 
 		if (server != null) {
@@ -180,12 +190,22 @@ public class ChatServerSocket {
 
 				// LAX : lỏng lẽo
 				// STRICT : chặt chẽ
-				java.util.List<Cookie> cookies = ServerCookieDecoder.STRICT.decodeAll(header);
+				List<Cookie> cookies = ServerCookieDecoder.STRICT.decodeAll(header);
 
 				for (Cookie cookie : cookies) {
 					String name = cookie.name();
 					if (name.equals("JSESSIONID")) {
-						String sessionId = cookie.value();
+						String j_session_id = cookie.value();
+						
+						String[] temp = j_session_id.split("\\.");
+						
+						String session_id = temp[0];
+						
+//						SessionRegistry sessionRegistry = new SessionRegistryImpl();
+//						SessionInformation sessionInformation = sessionRegistry.getSessionInformation(session_id);
+						
+						SessionInformation sessionInformation = ChatServerService.getSessionInformationFromSessionId(session_id);
+						
 //						org.springframework.security.core.session.SessionInformation;
 //						org.springframework.security.core.session.SessionRegistry;
 //						org.springframework.security.core.userdetails.User;
@@ -193,8 +213,8 @@ public class ChatServerSocket {
 //						sessionRegistry.
 
 //						SessionRegistry sessionRegistry = new SessionRegistryImpl();
-						List<Object> principals =  sessionRegistry.getAllPrincipals();
-						SessionInformation sessionInformation = sessionRegistry.getSessionInformation(sessionId);
+//						List<Object> principals =  sessionRegistry.getAllPrincipals();
+//						SessionInformation sessionInformation = sessionRegistry.getSessionInformation(sessionId);
 //
 //						Principal principal = (Principal) sessionInformation.getPrincipal();
 					}
