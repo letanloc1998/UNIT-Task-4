@@ -7,6 +7,8 @@ import vn.com.unit.entity.Bill;
 public interface BillService {
 	
 	public List<Bill> findAllBillByAccountId(Long account_id);
+	
+	public Bill findBillByBillId(Long bill_id);
 
 	public Long createBill(Long account_id, String address);
 

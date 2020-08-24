@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
+import vn.com.unit.entity.Bill;
 import vn.com.unit.entity.BillItem;
 import vn.com.unit.entity.BillSeparate;
+import vn.com.unit.entity.BillSeparateShop;
 import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
@@ -169,8 +171,16 @@ public class ShopController {
 		if(mode.equals("waiting-confirm")) {
 			Long status = (long) 0;
 			Long payment = (long) 1;
-			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-
+			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+			for (BillSeparateShop bill : bills) {
+				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
+				bill.setTotal_price(total);
+				Bill bill_detail = billService.findBillByBillId(bill.getBill());
+				Long id_account = 1L;
+				Account customer = accountService.findAccountById(id_account);
+				bill.setCustomer(customer);
+				bill.setBill_name(bill_detail);
+			}
 			model.addAttribute("bills", bills);
 			
 			return new ModelAndView("shop/myBill/waiting-confirm");
@@ -179,8 +189,16 @@ public class ShopController {
 		if(mode.equals("confirm")) {
 			Long status = (long) 1;
 			Long payment = (long) 1;
-			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-
+			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+			for (BillSeparateShop bill : bills) {
+				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
+				bill.setTotal_price(total);
+				Bill bill_detail = billService.findBillByBillId(bill.getBill());
+				Long id_account = Long.parseLong(bill_detail.getAccount());
+				Account customer = accountService.findAccountById(id_account);
+				bill.setCustomer(customer);
+				bill.setBill_name(bill_detail);
+			}
 			model.addAttribute("bills", bills);
 			
 			return new ModelAndView("shop/myBill/bill-confirm-list");
@@ -189,18 +207,34 @@ public class ShopController {
 		if(mode.equals("success")) {
 			Long status = (long) 3;
 			Long payment = (long) 1;
-			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-
+			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+			for (BillSeparateShop bill : bills) {
+				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
+				bill.setTotal_price(total);
+				Bill bill_detail = billService.findBillByBillId(bill.getBill());
+				Long id_account = Long.parseLong(bill_detail.getAccount());
+				Account customer = accountService.findAccountById(id_account);
+				bill.setCustomer(customer);
+				bill.setBill_name(bill_detail);
+			}
 			model.addAttribute("bills", bills);
 			
 			return new ModelAndView("shop/myBill/bill-success-list");
 		}
 		
 		if(mode.equals("deny")) {
-			Long status = (long) 4;
+			Long status = (long) 2;
 			Long payment = (long) 1;
-			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-
+			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+			for (BillSeparateShop bill : bills) {
+				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
+				bill.setTotal_price(total);
+				Bill bill_detail = billService.findBillByBillId(bill.getBill());
+				Long id_account = Long.parseLong(bill_detail.getAccount());
+				Account customer = accountService.findAccountById(id_account);
+				bill.setCustomer(customer);
+				bill.setBill_name(bill_detail);
+			}
 			model.addAttribute("bills", bills);
 			
 			return new ModelAndView("shop/myBill/bill-deny-list");
@@ -208,8 +242,16 @@ public class ShopController {
 		if(mode.equals("error-payment")) {
 			Long status = (long) 0;
 			Long payment = (long) -1;
-			List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-
+			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+			for (BillSeparateShop bill : bills) {
+				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
+				bill.setTotal_price(total);
+				Bill bill_detail = billService.findBillByBillId(bill.getBill());
+				Long id_account = Long.parseLong(bill_detail.getAccount());
+				Account customer = accountService.findAccountById(id_account);
+				bill.setCustomer(customer);
+				bill.setBill_name(bill_detail);
+			}
 			model.addAttribute("bills", bills);
 			
 			return new ModelAndView("shop/myBill/error-payment");
@@ -217,8 +259,16 @@ public class ShopController {
 	
 		Long status = (long) 0;
 		Long payment = (long) 0;
-		List<BillSeparate> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-
+		List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
+		for (BillSeparateShop bill : bills) {
+			int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
+			bill.setTotal_price(total);
+			Bill bill_detail = billService.findBillByBillId(bill.getBill());
+			Long id_account = Long.valueOf(bill_detail.getAccount());
+			Account customer = accountService.findAccountById(id_account);
+			bill.setCustomer(customer);
+			bill.setBill_name(bill_detail);
+		}
 		model.addAttribute("bills", bills);
 		
 		return new ModelAndView("shop/myBill/waiting-payment");
@@ -227,6 +277,9 @@ public class ShopController {
 	@GetMapping("/shop/mybill/{bill-separate-id}")
 	public ModelAndView billDeatil(Model model,@PathVariable("bill-separate-id") Long bill_separate_id
 			) {
+		Account account = accountService.findCurrentAccount();	
+		Shop shop = shopService.findShopByAccountId(account.getId());
+		model.addAttribute("shop", shop);
 		model.addAttribute("id_bill", bill_separate_id);
 		List<BillItem> billitems = billItemService.findAllBillItemByBillSeparateId(bill_separate_id);
 		int total = billItemService.totalPriceOfBillByBillSeparateId(bill_separate_id);

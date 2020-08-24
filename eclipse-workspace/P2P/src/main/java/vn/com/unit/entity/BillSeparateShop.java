@@ -20,8 +20,18 @@ public class BillSeparateShop {
 
 	private int total_price;
 	
+	private Account customer;
 	
 	
+	
+	public Account getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Account customer) {
+		this.customer = customer;
+	}
+
 	public int getTotal_price() {
 		return total_price;
 	}
