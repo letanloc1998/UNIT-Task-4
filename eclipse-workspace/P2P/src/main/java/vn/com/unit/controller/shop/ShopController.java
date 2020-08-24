@@ -229,7 +229,9 @@ public class ShopController {
 			) {
 		model.addAttribute("id_bill", bill_separate_id);
 		List<BillItem> billitems = billItemService.findAllBillItemByBillSeparateId(bill_separate_id);
+		int total = billItemService.totalPriceOfBillByBillSeparateId(bill_separate_id);
 		model.addAttribute("billitems", billitems);
+		model.addAttribute("total_price", total);
 		return new ModelAndView("shop/myBill/bill-detail");
 	}
 	
