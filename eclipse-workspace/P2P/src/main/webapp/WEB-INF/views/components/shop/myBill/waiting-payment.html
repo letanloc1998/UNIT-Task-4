@@ -22,9 +22,10 @@
 								<div class="table-responsive">
 									<table class="table">
 										<thead class=" text-primary">
-											<th>Id Bill</th>
-											<th>Status</th>
-											<th>Refund</th>
+												<th>Id Bill</th>
+											<th>Customer</th>
+											<th>Stress</th>
+											<th>Total</th>
 											<th class="text-center">Action</th>
 										</thead>
 										<tbody>
@@ -32,8 +33,9 @@
 											<tr th:if="${!bills.empty or bills != null}"
 												th:each="bill, i : ${bills}">
 												<td><span th:text="${bill.id}"></span></td>
-												<td><span th:text="${bill.status}"></span></td>
-												<td><span th:text="${bill.refund}"></span></td>
+												<td><span th:text="${bill.customer.username}"></span></td>
+												<td><span th:text="${bill.bill_name.address}"></span></td>
+												<td><span th:inline="text">$ [[${#numbers.formatDecimal(bill.total_price, 0, 'COMMA', 0, 'POINT')}]]</span></td>
 
 												<td class="text-center">
 												<span> 
@@ -43,15 +45,10 @@
 													</a>
 												</span>
 												<span> 
-												<button  type="button" th:onclick="|confirmBill(${bill.id})|"
+												<button  type="button" th:onclick="|confirmBill(${bill.bill})|"
 														class="btn btn-large btn-info btn-just-icon"> 
 														<i class="fas fa-check-circle"></i>
 													</button>
-												</span> <span>
-														<button type="button" class="btn  btn-danger btn-just-icon"
-															data-toggle="modal" data-target="#deleteConfirm">
-															<i class="fas fa-trash-alt"></i>
-														</button>
 												</span></td>
 										</tbody>
 									</table>
@@ -99,7 +96,6 @@
 					</div>
 				</div>
 			</div>
-			<th:block th:replace="components/shop/myBill/confirm-bill-modal :: confirm-bill-modal"></th:block>
 			
 			
 			<script th:inline="javascript">
@@ -122,7 +118,7 @@
                 		
                 	  if (result.value) {
       	                $.ajax({
-    	                    url: `/bill/confirm`,
+    	                    url: `/bill/payment`,
     	                    type: 'PUT',
 
     	                    dataType: "json",

@@ -22,32 +22,19 @@
 								<div class="table-responsive">
 									<table class="table">
 										<thead class=" text-primary">
-											<th>Id separate</th>
-											<th>Id total bill</th>
-											<th>Status</th>
-											<th>Refund</th>
-											<th class="text-center">Action</th>
+											<th>Id Bill</th>
+											<th>Customer</th>
+											<th>Stress</th>
+											<th>Total</th>
 										</thead>
 										<tbody>
 
 											<tr th:if="${!bills.empty or bills != null}"
 												th:each="bill, i : ${bills}">
 												<td><span th:text="${bill.id}"></span></td>
-												<td><span th:text="${bill.bill}"></span></td>
-												<td><span th:text="${bill.status}"></span></td>
-												<td><span th:text="${bill.refund}"></span></td>
-
-												<td class="text-center"><span> 
-												<button  type="button" th:onclick="|confirmBill(${bill.id})|"
-														class="btn btn-large btn-info btn-just-icon"> 
-														<i class="fas fa-check-circle"></i>
-													</button>
-												</span> <span>
-														<button type="button" class="btn  btn-danger btn-just-icon"
-															data-toggle="modal" data-target="#deleteConfirm">
-															<i class="fas fa-trash-alt"></i>
-														</button>
-												</span></td>
+												<td><span th:text="${bill.customer.username}"></span></td>
+												<td><span th:text="${bill.bill_name.address}"></span></td>
+												<td><span th:inline="text">$ [[${#numbers.formatDecimal(bill.total_price, 0, 'COMMA', 0, 'POINT')}]]</span></td>
 										</tbody>
 									</table>
 									<!-- 									<div style="display: flex;align-items: center;">
