@@ -1,9 +1,11 @@
 package vn.com.unit.security;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.Set;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,28 +16,26 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
 	@Override
-	public void onAuthenticationSuccess(HttpServletRequest request,
-			HttpServletResponse response, Authentication authentication)
-			throws IOException, ServletException {
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) throws IOException, ServletException {
+
+		String username = authentication.getPrincipal().toString();
+		response.addCookie(new Cookie("token", username));
+		
 		Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
-        if (roles.contains("ROLE_ADMIN")) {
-        	setDefaultTargetUrl("/admin/home");
-        	super.onAuthenticationSuccess(request, response, authentication);
-        }
-        if (roles.contains("ROLE_VENDOR")) {
-        	setDefaultTargetUrl("/shop/home");
-        	super.onAuthenticationSuccess(request, response, authentication);
-        }
-        if (roles.contains("ROLE_USER")) {
-        	setDefaultTargetUrl("/");
-        	super.onAuthenticationSuccess(request, response, authentication);
-        }
-		
-		
-		
-		
+		if (roles.contains("ROLE_ADMIN")) {
+			setDefaultTargetUrl("/admin/home");
+			super.onAuthenticationSuccess(request, response, authentication);
+		}
+		if (roles.contains("ROLE_VENDOR")) {
+			setDefaultTargetUrl("/shop/home");
+			super.onAuthenticationSuccess(request, response, authentication);
+		}
+		if (roles.contains("ROLE_USER")) {
+			setDefaultTargetUrl("/");
+			super.onAuthenticationSuccess(request, response, authentication);
+		}
+
 	}
-	
-	
-	
+
 }

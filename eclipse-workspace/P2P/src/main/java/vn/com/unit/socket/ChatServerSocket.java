@@ -175,6 +175,8 @@ public class ChatServerSocket {
 
 			@Override
 			public boolean isAuthorized(HandshakeData data) {
+				
+				/*
 				// TODO Auto-generated method stub
 //				return false;
 //				String s = data.getHttpHeaders().toString();
@@ -204,7 +206,7 @@ public class ChatServerSocket {
 //						SessionRegistry sessionRegistry = new SessionRegistryImpl();
 //						SessionInformation sessionInformation = sessionRegistry.getSessionInformation(session_id);
 						
-						SessionInformation sessionInformation = ChatServerService.getSessionInformationFromSessionId(session_id);
+//						SessionInformation sessionInformation = ChatServerService.getSessionInformationFromSessionId(session_id);
 						
 //						org.springframework.security.core.session.SessionInformation;
 //						org.springframework.security.core.session.SessionRegistry;
@@ -219,7 +221,8 @@ public class ChatServerSocket {
 //						Principal principal = (Principal) sessionInformation.getPrincipal();
 					}
 				}
-
+				*/
+				
 				String token = data.getSingleUrlParam("token");
 
 				return true;
