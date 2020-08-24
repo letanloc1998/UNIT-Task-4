@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+
+<head></head>
+
+<body>
+	<th:block th:fragment="waitting-confirm">
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+
+							<div class="card-header card-header-primary">
+                                <h4 class="card-title ">Waitting Confirm List</h4>
+                                <div th:replace="components\profile\bill\head-nav-bill-table :: head-nav-bill-table"></div>
+
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table">
+											<thead class=" text-primary">
+											<th>ID</th>
+											<th>Shop Name</th>
+											<th>Shop Phone</th>
+											<th>Shop Email</th>
+											<th>Shiping Address</th>
+											<th>Total Price</th>
+											<th>Create Day</th>
+											<th class="text-center">Action</th>
+										</thead>
+										<tbody>
+
+									<tr th:if="${!bills.empty or bills != null}"
+												th:each="bill, i : ${bills}">
+												<td><span th:text="${bill.id}"></span></td>
+												<td><span th:text="${bill.shopName}"></span></td>
+												<td><span th:text="${bill.shopPhone}"></span></td>
+												<td><span th:text="${bill.shopEmail}"></span></td>
+												<td><span th:text="${bill.shippingAdd}"></span></td>
+												<td><span th:text="${bill.totalPrice}"></span></td>
+												<td><span th:text=" ${bill.createAt} ? ${#dates.format(bill.createAt, 'dd-MM-yyyy HH:mm')} "></span></td>
+												<td class="text-center"><span> 
+												<a th:href="@{'/profile/mybills/' + ${bill.id}}" type="button"
+														class="btn btn-large btn-info btn-just-icon"> 
+														<i class="fa fa-eye"></i>
+													</a>
+												</span> 
+												</tr> 
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- 	<script th:inline="javascript">
+        const account = [[${ bills }]]
+        console.log([[${ pageable }]])
+      </script> -->
+	</th:block>
+
+</body>
+
+</html>
