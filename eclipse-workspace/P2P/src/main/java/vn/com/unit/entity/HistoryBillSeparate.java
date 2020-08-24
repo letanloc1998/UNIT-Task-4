@@ -7,14 +7,13 @@ public class HistoryBillSeparate {
 	private Long id;
 	private Long billId;
 	private Long shopId;
-	private String shop;
 	private String shopName;
-	private String Email;
-	private String Phone;
-	private String ShippingAddres;
+	private String shopEmail;
+	private String shopPhone;
+	private String shippingAdd;
 	private Long status;
 	private Long refund;
-	private Long TotalPrice;
+	private Long totalPrice;
 	private Long payment;
 	private Date createAt;
 
@@ -34,13 +33,6 @@ public class HistoryBillSeparate {
 		this.billId = bill;
 	}
 
-	public String getShop() {
-		return shop;
-	}
-
-	public void setShop(String shop) {
-		this.shop = shop;
-	}
 
 	public Long getStatus() {
 		return status;
@@ -67,11 +59,11 @@ public class HistoryBillSeparate {
 	}
 
 	public Long getTotalPrice() {
-		return TotalPrice;
+		return totalPrice;
 	}
 
 	public void setTotalPrice(Long totalPrice) {
-		TotalPrice = totalPrice;
+		totalPrice = totalPrice;
 	}
 
 	public Long getShopId() {
@@ -90,29 +82,9 @@ public class HistoryBillSeparate {
 		this.shopName = shopName;
 	}
 
-	public String getEmail() {
-		return Email;
-	}
+	
 
-	public void setEmail(String email) {
-		Email = email;
-	}
 
-	public String getPhone() {
-		return Phone;
-	}
-
-	public void setPhone(String phone) {
-		Phone = phone;
-	}
-
-	public String getShippingAddres() {
-		return ShippingAddres;
-	}
-
-	public void setShippingAddres(String shippingAddres) {
-		ShippingAddres = shippingAddres;
-	}
 
 	public Long getPayment() {
 		return payment;
@@ -120,6 +92,30 @@ public class HistoryBillSeparate {
 
 	public void setPayment(Long payment) {
 		this.payment = payment;
+	}
+
+	public String getShopEmail() {
+		return shopEmail;
+	}
+
+	public void setShopEmail(String shopEmail) {
+		this.shopEmail = shopEmail;
+	}
+
+	public String getShopPhone() {
+		return shopPhone;
+	}
+
+	public void setShopPhone(String shopPhone) {
+		this.shopPhone = shopPhone;
+	}
+
+	public String getShippingAdd() {
+		return shippingAdd;
+	}
+
+	public void setShippingAdd(String shippingAdd) {
+		this.shippingAdd = shippingAdd;
 	}
 	
 }
