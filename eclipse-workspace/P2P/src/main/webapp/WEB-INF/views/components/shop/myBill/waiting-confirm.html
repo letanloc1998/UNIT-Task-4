@@ -22,10 +22,10 @@
 								<div class="table-responsive">
 									<table class="table">
 										<thead class=" text-primary">
-											<th>Id separate</th>
-											<th>Id total bill</th>
-											<th>Status</th>
-											<th>Refund</th>
+											<th>Id Bill</th>
+											<th>Customer</th>
+											<th>Stress</th>
+											<th>Total</th>
 											<th class="text-center">Action</th>
 										</thead>
 										<tbody>
@@ -33,9 +33,9 @@
 											<tr th:if="${!bills.empty or bills != null}"
 												th:each="bill, i : ${bills}">
 												<td><span th:text="${bill.id}"></span></td>
-												<td><span th:text="${bill.bill}"></span></td>
-												<td><span th:text="${bill.status}"></span></td>
-												<td><span th:text="${bill.refund}"></span></td>
+												<td><span th:text="${bill.customer.username}"></span></td>
+												<td><span th:text="${bill.bill_name.address}"></span></td>
+												<td><span th:inline="text">$ [[${#numbers.formatDecimal(bill.total_price, 0, 'COMMA', 0, 'POINT')}]]</span></td>
 
 												<td class="text-center">
 												<span> 
@@ -50,8 +50,8 @@
 														<i class="fas fa-check-circle"></i>
 													</button>
 												</span> <span>
-														<button type="button" class="btn  btn-danger btn-just-icon"
-															data-toggle="modal" data-target="#deleteConfirm">
+														<button  type="button" th:onclick="|denyBill(${bill.id})|"
+														class="btn btn-large btn-danger btn-just-icon">
 															<i class="fas fa-trash-alt"></i>
 														</button>
 												</span></td>
@@ -101,7 +101,6 @@
 					</div>
 				</div>
 			</div>
-			<th:block th:replace="components/shop/myBill/confirm-bill-modal :: confirm-bill-modal"></th:block>
 			
 			
 			<script th:inline="javascript">
@@ -169,6 +168,70 @@
                 	
           
             }
+	        
+	        
+			function denyBill(bill_id) {
+	        	 var token = $("meta[name='_csrf']").attr("content");
+			        var header = $("meta[name='_csrf_header']").attr("content");
+			        data = `{"bill_id" : ${bill_id}}`;
+	                
+	                Swal.fire({
+	                	  title: 'Are you sure?',
+	                	  html: 'This bill will be deny! <br> You will not be able to revert this!',
+	                	  icon: 'warning',
+	                	  showCancelButton: true,
+	                	  confirmButtonColor: '#3085d6',
+	                	  cancelButtonColor: '#d33',
+	                	  confirmButtonText: 'Yes, deny it!'
+	                	}).then((result) => {
+	                		
+	                	  if (result.value) {
+	      	                $.ajax({
+	    	                    url: `/bill/deny`,
+	    	                    type: 'PUT',
+
+	    	                    dataType: "json",
+	    	                    contentType: "application/json",
+
+	    	                    // data: JSON.stringify(`{"product_id" : ${product_id}}`),
+	    	                    data: data,
+	    	                    // data: JSON.stringify(data),
+
+	    	                    beforeSend: function (xhr) {
+	    	                        xhr.setRequestHeader(header, token);
+	    	                    },
+
+	    	                    success: function (data, status, xhr) {
+	    	                    	//md.showAddProductNoti('bottom','right',data.msg)
+	    	                    //  
+	    							Swal.fire({
+	    	                    		  position: 'center',
+	    	                    		  icon: 'success',
+	    	                    		  title: 'Deny Bill Success',
+	    	                    		  showConfirmButton: false,
+	    	                    		  timer: 1000
+	    		                    		}).then(()=>{
+	    		                                window.location.href = window.location.href;
+	    		                    		}) 
+	    	                     },
+	    	                    error: function (request, status, error) {
+
+	    	                        try {
+	    	                            if (request.status == 405) {
+	    	                                window.location.href = `${home}/login`;
+	    	                            }
+	    	                            // console.log(request.status);
+	    	                            // console.log(status);
+	    	                            // console.log(error);
+	    	                            // window.location.href = `${home}/login`;
+	    	                        } catch (error) { }
+	    	                    }
+	    	                });
+	                	  }
+	                	})
+	                	
+	          
+	            }
 			</script>
 	</th:block>
 

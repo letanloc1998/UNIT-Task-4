@@ -15,7 +15,7 @@
 						<div class="card">
 
 							<div class="card-header card-header-primary">
-								<h4 class="card-title " style="font-weight:bold">ID BILL: <span th:text="${total_price}"></span></h4>
+								<h4 class="card-title " style="font-weight:bold">ID BILL</h4>
 								 <div><button class="btn btn-danger" onclick='javascript:window.history.back()' type="button"><i class="fas fa-backward"></i> &nbsp Back to list bill</button></div> 
 							</div>
 							<div class="card-body">
@@ -35,7 +35,12 @@
 												<td><span th:text="${billitem.product_name.name}"></span></td>
 												<td><span th:text="${billitem.product_name.price}"></span></td>
 												<td><span th:text="${billitem.quantity}"></span></td>
-
+											<tr>
+												<td></td>
+												<td></td>
+												<td></td>
+												<td style="color: red; font-weight:bold;font-size: 20px">Total Bill: <span th:inline="text">$ [[${#numbers.formatDecimal(total_price, 0, 'COMMA', 0, 'POINT')}]]</span></td>
+											</tr>
 										</tbody>
 									</table>
 									<!-- 									<div style="display: flex;align-items: center;">

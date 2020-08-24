@@ -1,14 +1,28 @@
 package vn.com.unit.socket;
 
+import java.security.Principal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.corundumstudio.socketio.AckRequest;
+import com.corundumstudio.socketio.AuthorizationListener;
 import com.corundumstudio.socketio.Configuration;
 import com.corundumstudio.socketio.HandshakeData;
+import com.corundumstudio.socketio.SocketConfig;
 import com.corundumstudio.socketio.SocketIOClient;
 import com.corundumstudio.socketio.SocketIONamespace;
 import com.corundumstudio.socketio.SocketIOServer;
@@ -16,6 +30,14 @@ import com.corundumstudio.socketio.listener.ConnectListener;
 import com.corundumstudio.socketio.listener.DataListener;
 import com.corundumstudio.socketio.listener.DisconnectListener;
 
+import io.netty.handler.codec.http.HttpHeaders;
+import io.netty.handler.codec.http.cookie.Cookie;
+import io.netty.handler.codec.http.cookie.ServerCookieDecoder;
+import vn.com.unit.service.ChatServerService;
+
+//import org.springframework.security.core.session.SessionRegistryImpl;
+
+@Component
 public class ChatServerSocket {
 
 	private static SocketIOServer server;
@@ -24,6 +46,20 @@ public class ChatServerSocket {
 
 	private static SocketIONamespace voice_namespace;
 
+//	@Autowired
+//	@Qualifier("sessionRegistry")
+//	@Resource(name = "sessionRegistry")
+//    private SessionRegistryImpl sessionRegistry;
+
+//	@Resource(name = "sessionRegistry")
+//	private static SessionRegistryImpl sessionRegistry;
+	
+//	@Autowired
+//	private static SessionRegistry sessionRegistry;
+
+//	@Autowired
+//    private static SessionRegistry sessionRegistry;
+	
 	public static void initChatServerSocket() {
 
 		if (server != null) {
@@ -35,12 +71,12 @@ public class ChatServerSocket {
 		/*
 		 * setHostname If not set then bind address will be 0.0.0.0 or ::0
 		 */
-		config.setHostname("localhost");
+//		config.setHostname("localhost");
 
 		/*
 		 * setPort The port the socket.io server will listen to
 		 */
-		config.setPort(9092);
+//		config.setPort(9092);
 
 		/*
 		 * setJsonTypeFieldName defaults to "@class"
@@ -134,6 +170,70 @@ public class ChatServerSocket {
 
 //		config.setSocketConfig(socketConfig);
 
+//		com.corundumstudio.socketio.AuthorizationListener
+		AuthorizationListener authorizationListener = new AuthorizationListener() {
+
+			@Override
+			public boolean isAuthorized(HandshakeData data) {
+				// TODO Auto-generated method stub
+//				return false;
+//				String s = data.getHttpHeaders().toString();
+//				String a = data.getHttpHeaders().get("asasaas").toString();
+//				for (Object o : data.getHttpHeaders()) {
+//					System.out.print(o.toString());
+//				}
+//				data.getHttpHeaders();
+
+				HttpHeaders headers = data.getHttpHeaders();
+
+				String header = headers.get("Cookie");
+
+				// LAX : lỏng lẽo
+				// STRICT : chặt chẽ
+				List<Cookie> cookies = ServerCookieDecoder.STRICT.decodeAll(header);
+
+				for (Cookie cookie : cookies) {
+					String name = cookie.name();
+					if (name.equals("JSESSIONID")) {
+						String j_session_id = cookie.value();
+						
+						String[] temp = j_session_id.split("\\.");
+						
+						String session_id = temp[0];
+						
+//						SessionRegistry sessionRegistry = new SessionRegistryImpl();
+//						SessionInformation sessionInformation = sessionRegistry.getSessionInformation(session_id);
+						
+						SessionInformation sessionInformation = ChatServerService.getSessionInformationFromSessionId(session_id);
+						
+//						org.springframework.security.core.session.SessionInformation;
+//						org.springframework.security.core.session.SessionRegistry;
+//						org.springframework.security.core.userdetails.User;
+
+//						sessionRegistry.
+
+//						SessionRegistry sessionRegistry = new SessionRegistryImpl();
+//						List<Object> principals =  sessionRegistry.getAllPrincipals();
+//						SessionInformation sessionInformation = sessionRegistry.getSessionInformation(sessionId);
+//
+//						Principal principal = (Principal) sessionInformation.getPrincipal();
+					}
+				}
+
+				String token = data.getSingleUrlParam("token");
+
+				return true;
+			}
+		};
+
+		config.setPort(9092);
+		config.setAuthorizationListener(authorizationListener);
+
+		SocketConfig socketConfig = new SocketConfig();
+		socketConfig.setReuseAddress(true);
+
+		config.setSocketConfig(socketConfig);
+
 		server = new SocketIOServer(config);
 
 		server.addEventListener("msg", byte[].class, new DataListener<byte[]>() {
@@ -148,8 +248,18 @@ public class ChatServerSocket {
 		chat_namespace.addConnectListener(onChatConnected());
 		chat_namespace.addEventListener("chat", ChatMessage.class, onChatReceived());
 		chat_namespace.addDisconnectListener(onChatDisconnected());
-		
-//		voice_namespace = server.addNamespace("/chat");
+
+//		server.addEventListener("msg", byte[].class, new DataListener<byte[]>() {
+//            @Override
+//            public void onData(SocketIOClient client, byte[] data, AckRequest ackRequest) {
+//                client.sendEvent("msg", data);
+//            }
+//        });
+
+		voice_namespace = server.addNamespace("/voice");
+		voice_namespace.addConnectListener(onVoiceConnected());
+		voice_namespace.addEventListener("voice", byte[].class, onVoiceReceived());
+		voice_namespace.addDisconnectListener(onVoiceDisconnected());
 
 		server.start();
 	}
@@ -160,7 +270,8 @@ public class ChatServerSocket {
 			String sessionId = client.getSessionId().toString();
 			String handshakeDataUrl = handshakeData.getUrl();
 
-			client.sendEvent("chat", "Server: { \"session_id\" : \"" +  sessionId + "\", \"handshakeDataUrl\" : \"" + handshakeDataUrl + "\" }");
+			client.sendEvent("chat", "Server: { \"session_id\" : \"" + sessionId + "\", \"handshakeDataUrl\" : \""
+					+ handshakeDataUrl + "\" }");
 			chat_namespace.getBroadcastOperations().sendEvent("chat",
 					"Server: (broadcast) " + sessionId + " connect successfully");
 
@@ -170,7 +281,7 @@ public class ChatServerSocket {
 
 //	ack : response for client after client send success (?)
 	private static DataListener<ChatMessage> onChatReceived() {
-				
+
 		return (client, data, ackSender) -> {
 //            log.debug("Client[{}] - Received chat message '{}'", client.getSessionId().toString(), data);
 			chat_namespace.getBroadcastOperations().sendEvent("chat", data);
@@ -178,6 +289,36 @@ public class ChatServerSocket {
 	}
 
 	private static DisconnectListener onChatDisconnected() {
+		return client -> {
+//            log.debug("Client[{}] - Disconnected from chat module.", client.getSessionId().toString());
+		};
+	}
+
+	private static ConnectListener onVoiceConnected() {
+		return client -> {
+			HandshakeData handshakeData = client.getHandshakeData();
+			String sessionId = client.getSessionId().toString();
+			String handshakeDataUrl = handshakeData.getUrl();
+
+			client.sendEvent("voice", "Server: { \"session_id\" : \"" + sessionId + "\", \"handshakeDataUrl\" : \""
+					+ handshakeDataUrl + "\" }");
+			voice_namespace.getBroadcastOperations().sendEvent("voice",
+					"Server: (broadcast) " + sessionId + " connect successfully");
+
+//            log.debug("Client[{}] - Connected to chat module through '{}'", client.getSessionId().toString(), handshakeData.getUrl());
+		};
+	}
+
+//	ack : response for client after client send success (?)
+	private static DataListener<byte[]> onVoiceReceived() {
+
+		return (client, data, ackSender) -> {
+//            log.debug("Client[{}] - Received chat message '{}'", client.getSessionId().toString(), data);
+			voice_namespace.getBroadcastOperations().sendEvent("voice", data);
+		};
+	}
+
+	private static DisconnectListener onVoiceDisconnected() {
 		return client -> {
 //            log.debug("Client[{}] - Disconnected from chat module.", client.getSessionId().toString());
 		};

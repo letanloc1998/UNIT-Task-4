@@ -5,7 +5,14 @@
 
 <head>
     <th:block th:include="admin/layout/head :: head"></th:block>
-    
+    <style>
+    .bmd-form-group label {
+    color:red;
+    }
+    .form-check, label {
+    color:red;
+    }
+    </style>
 </head>
 
 <body>
@@ -25,7 +32,95 @@
   </div>
   
     <th:block th:replace="admin/layout/footer :: footer"></th:block>
+	    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
 <script>
+
+
+$().ready(function() {
+	$("#add-product").validate({
+		onfocusout: false,
+		onkeyup: false,
+		onclick: false,
+		rules: {
+			"name": {
+				required: true
+			},
+			"price": {
+				required: true,
+				min: 1
+			},
+			"quantity": {
+				required: true,
+				min: 1
+			},
+			"details": {
+				required: true
+			},
+			"file": {
+				 required: true
+			},
+		},
+		messages: {
+			"name": {
+				required: "Product name can't be null!"
+			},
+			"price": {
+				required: "Product price can't be null!",
+				min: "Product price must be > 0"
+			},
+			"quantity": {
+				required: "Product quantity can't be null!",
+				min: "Product quantity must be > 0"
+			},
+			"details": {
+				required: "Product details can't be null!"
+			},
+			"file": {
+				required: "Product img can't be null!"
+			},
+		}
+	});
+})
+	
+
+/* $(document).ready(function(){
+	  $("#quantity").focusin(function(){
+		  $("#quantity-stt").text("");
+		  $('input[type="submit"]').attr('disabled','disabled');
+		  });
+	  $("#quantity").focusout(function(){	  
+	    var price = $("#quantity").val();
+	        if(price <= 0){
+	        	$("#quantity-stt").text("Quantity must be > 0");
+	        	$('input[type="submit"]').attr('disabled','disabled');
+	        }else{
+	        	$("#quantity-stt").text("");
+	        	$('input[type="submit"]').removeAttr('disabled');
+
+	        }
+	        
+	  });
+	});
+
+$(document).ready(function(){
+	  $("#price").focusin(function(){
+		  $("#price-stt").text("");
+		  $('input[type="submit"]').attr('disabled','disabled');
+		  });
+	  $("#price").focusout(function(){	  
+	    var price = $("#price").val();
+	        if(price <= 0){
+	        	$("#price-stt").text("Price must be > 0");
+	        	$('input[type="submit"]').attr('disabled','disabled');
+	        }else{
+	        	$("#price-stt").text("");
+	        	$('input[type="submit"]').removeAttr('disabled');
+
+	        }
+	        
+	  });
+	}); */
+
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');

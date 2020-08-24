@@ -12,6 +12,8 @@ import vn.com.unit.entity.Shop;
 public interface BillRepository extends MirageRepository<Shop, Long> {
 
 	public List<Bill> findAllBillByAccountId(@Param("account_id") Long account_id);
+	
+	public Bill findBillByBillId(@Param("bill_id") Long bill_id);
 
 	public Long createBill(@Param("account_id") Long account_id, @Param("address") String address);
 

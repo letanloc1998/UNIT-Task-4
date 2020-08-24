@@ -220,12 +220,39 @@ public class ShopManagement {
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PutMapping("/bill/confirm")
 	@ResponseBody
-	public ResponseEntity<String> add(Model model, @RequestBody Map<String, String> json) {
+	public ResponseEntity<String> confirm(Model model, @RequestBody Map<String, String> json) {
 		int status = 1;
 		
 		billSeparateService.saveBillSeparateStatus((Long.valueOf(json.get("bill_id"))), status);
 		
 		return ResponseEntity.ok(
 				"{\"msg\" : \"Confirm Bill succes! Please check again!\" }");
+	}
+	
+	//confirm payment bill
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
+	@PutMapping("/bill/payment")
+	@ResponseBody
+	public ResponseEntity<String> payment(Model model, @RequestBody Map<String, String> json) {
+		int status = 1;
+		
+		billService.saveBillPaymentStatus((Long.valueOf(json.get("bill_id"))), status);
+		
+		return ResponseEntity.ok(
+				"{\"msg\" : \"Confirm Bill Payment succes! Please check again!\" }");
+	}
+	
+	
+	//deny bill
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
+	@PutMapping("/bill/deny")
+	@ResponseBody
+	public ResponseEntity<String> deny(Model model, @RequestBody Map<String, String> json) {
+		int status = 2;
+		
+		billSeparateService.saveBillSeparateStatus((Long.valueOf(json.get("bill_id"))), status);
+		
+		return ResponseEntity.ok(
+				"{\"msg\" : \"Deny bill succes! Please check again!\" }");
 	}
 }

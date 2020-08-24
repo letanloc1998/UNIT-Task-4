@@ -32,6 +32,12 @@ public class BillServiceImpl implements BillService {
 		
 		return billRepository.findAllBillByAccountId(account_id);
 	}
+	
+	@Override
+	public Bill findBillByBillId(Long bill_id) {
+		Bill bill = billRepository.findBillByBillId(bill_id);
+		return bill;
+	}
 
 	@Override
 	public Long createBill(Long account_id, String address) {
