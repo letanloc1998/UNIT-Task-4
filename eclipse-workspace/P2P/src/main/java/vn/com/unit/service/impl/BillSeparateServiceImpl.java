@@ -26,6 +26,15 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 	}
 	
 	@Override
+	public List<BillSeparate> findBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id) {
+		// TODO Auto-generated method stub
+		
+		return billSeparateRepository.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop_id);
+	}
+	
+	
+	
+	@Override
 	public void saveBillSeparateStatus(Long bill_separate_id, int status) {
 		billSeparateRepository.saveBillSeparateStatus(bill_separate_id, status);
 		

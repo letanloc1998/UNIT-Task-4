@@ -19,14 +19,23 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<a 
-					th:classappend="${#request.getRequestURI().startsWith('/shop/mybill') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/myBill}">Waiting</a>
+					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/waiting-payment') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					th:href="@{/shop/mybills/waiting-payment}">Waiting Payment</a>				
 					<a 
-					th:classappend="${#request.getRequestURI().startsWith('/shop/mybill/confirm-list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/confirm-list}">Confirm List</a>
+					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/waiting-confirm') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					th:href="@{/shop/mybills/waiting-confirm}">Waiting Confirm</a>
 					<a 
-					th:classappend="${#request.getRequestURI().startsWith('/shop/mybill/cancel-list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/cancel-list}">Cancel List</a> 
+					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/confirm') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					th:href="@{/shop/mybills/confirm}">Confirm List</a>
+					<a 
+					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/success') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					th:href="@{/shop/mybills/success}">Success List</a>
+					<a 
+					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/deny') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					th:href="@{/shop/mybills/deny}">Deny List</a> 
+					<a 
+					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/error-payment') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					th:href="@{/shop/mybills/error-payment}">Error Payment</a> 					
 				</div>
 			</div>
 		</nav>

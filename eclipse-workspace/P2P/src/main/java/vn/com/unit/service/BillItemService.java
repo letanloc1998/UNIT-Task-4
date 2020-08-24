@@ -8,6 +8,8 @@ public interface BillItemService {
 	
 	public List<BillItem> findAllBillItemByBillSeparateId(Long bill_separate_id);
 	
+	public int totalPriceOfBillByBillSeparateId(Long bill_separate_id);
+	
 	public List<BillItem> findAllBillItem();
 
 }
