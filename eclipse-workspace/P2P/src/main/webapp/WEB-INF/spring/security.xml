@@ -17,15 +17,17 @@
 
 	<beans:bean name="customAccessDeniedHandler"
 		class="vn.com.unit.security.CustomAccessDeniedHandler" />
-		
+
 	<beans:bean id="customAuthenticationSuccessHandler"
 		class="vn.com.unit.security.CustomAuthenticationSuccessHandler" />
 
-	<http auto-config="true" use-expressions="true" pattern="/webhook/momo">
+	<http auto-config="true" use-expressions="true"
+		pattern="/webhook/momo">
 		<csrf disabled="true" />
 	</http>
 
-	<http auto-config="true" use-expressions="true">
+	<http auto-config="true" use-expressions="true"
+		disable-url-rewriting="true">
 
 		<access-denied-handler
 			ref="customAccessDeniedHandler" />
@@ -33,16 +35,17 @@
 		<intercept-url pattern="/login" access="permitAll" />
 		<intercept-url pattern="/register" access="permitAll" />
 		<intercept-url pattern="/" access="permitAll" />
-		<intercept-url pattern="/webhook/momo" access="permitAll" />
+		<intercept-url pattern="/webhook/momo"
+			access="permitAll" />
 
 		<intercept-url pattern="/**"
 			access="hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')" />
 
 		<form-login login-page="/login"
-			login-processing-url="/login" 			
-			
+			login-processing-url="/login"
+
 			authentication-success-handler-ref="customAuthenticationSuccessHandler"
-			
+
 			authentication-failure-url="/login?error=true"
 
 			authentication-failure-handler-ref="customAuthenticationFailureHandler"
@@ -59,10 +62,22 @@
 			session-fixation-protection="newSession">
 			<concurrency-control
 				error-if-maximum-exceeded="false"
-				expired-url="/login?error=max_session" max-sessions="1" />
+				expired-url="/login?error=max_session" max-sessions="1"
+				session-registry-alias="sessionRegistry"
+				session-registry-ref="sessionRegistry" />
 		</session-management>
 
 	</http>
+
+	<beans:bean id="sessionRegistry"
+		class="org.springframework.security.core.session.SessionRegistryImpl" />
+
+	<!-- <session-management> <concurrency-control expired-url="/sessionExpired.html"/> 
+		</session-management> -->
+
+	<!-- <session-management invalid-session-url="/invalidSession.html"> </session-management> -->
+
+	<!-- <session-config> <tracking-mode>COOKIE</tracking-mode> </session-config> -->
 
 	<global-method-security
 		pre-post-annotations="enabled" />

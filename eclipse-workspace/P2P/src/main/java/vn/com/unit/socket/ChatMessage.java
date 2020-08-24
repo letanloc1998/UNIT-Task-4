@@ -1,10 +1,5 @@
 package vn.com.unit.socket;
 
-import java.util.Map;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class ChatMessage {
 
 	private String message;
