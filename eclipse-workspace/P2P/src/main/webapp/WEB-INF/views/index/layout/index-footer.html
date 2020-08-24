@@ -97,10 +97,10 @@
         </script >
         
         <script th:inline="javascript">
-	        document.querySelector("super_container").style.height = "1000px";
+	        document.querySelector(".super_container").style.height = "1000px";
 	
 	        window.addEventListener("scroll", function() {
-	            var body = document.querySelector("super_container");
+	            var body = document.querySelector(".super_container");
 	            var height = body.style.height;
 	            height = height.slice(0, -2);
 	            height = Number(height);
@@ -108,13 +108,12 @@
 	                if(height - window.scrollY < 700) {
 	                    height += height / 2;
 	                }
-	                body.style.height = height + "px";
+	                body.style.height = height + "px";	                
 	            };
-	        }());
+	        }() );
+	       
         </script>
-        
-       
-		
+        		
     </th:block>
 
 </body>

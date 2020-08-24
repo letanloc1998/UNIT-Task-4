@@ -57,20 +57,25 @@
 		<logout logout-success-url="/login" logout-url="/logout"
 			delete-cookies="JSESSIONID" invalidate-session="true" />
 
+		<!-- session-registry-alias="sessionRegistry" -->
+		<!-- session-registry-ref="sessionRegistry" -->
 		<session-management
 			invalid-session-url="/login?error=timeout"
 			session-fixation-protection="newSession">
 			<concurrency-control
 				error-if-maximum-exceeded="false"
-				expired-url="/login?error=max_session" max-sessions="1"
-				session-registry-alias="sessionRegistry"
-				session-registry-ref="sessionRegistry" />
+				expired-url="/login?error=max_session" max-sessions="1" />
 		</session-management>
 
 	</http>
 
-	<beans:bean id="sessionRegistry"
-		class="org.springframework.security.core.session.SessionRegistryImpl" />
+	<!-- <beans:bean id="sessionRegistry"
+		class="org.springframework.security.core.session.SessionRegistryImpl">
+		<beans:constructor-arg ref="sessionRepository" />
+	</beans:bean> -->
+
+	<!-- <beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" 
+		/> -->
 
 	<!-- <session-management> <concurrency-control expired-url="/sessionExpired.html"/> 
 		</session-management> -->
