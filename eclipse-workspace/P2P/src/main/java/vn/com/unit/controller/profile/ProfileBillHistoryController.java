@@ -18,25 +18,81 @@ import vn.com.unit.service.BillService;
 @Controller
 public class ProfileBillHistoryController {
 	@Autowired
-	private AccountService accountService; 
-	
+	private AccountService accountService;
+
 	@Autowired
 	private BillService billService;
-	
+
 	@Autowired
 	private BillSeparateService billSeparateService;
-	//bills view
+
+	// bills view
 	@PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_VENDOR', 'ROLE_ADMIN')")
-	@GetMapping("/profile/mybill/access-bills") 
-	public ModelAndView wattingBillList(Model model) {
-		Account account = accountService.findCurrentAccount();	
-		Long status = (long) 0;
-		Long Payment = (long)0;
-		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(),status ,Payment);
+	@GetMapping("/profile/mybills/confirm")
+	public ModelAndView confirmListBill(Model model) {
+		Account account = accountService.findCurrentAccount();
+		Long status = (long) 1;
+		Long Payment = (long) 1;
+		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,
+				Payment);
 		model.addAttribute("current_account", account);
 		model.addAttribute("bills", bills);
 		model.addAttribute("title", "Account Management");
-		return new ModelAndView("profile/myBill/access-bills"); 
-		}
+		return new ModelAndView("profile/myBill/confirm-bills");
+	}
+
+
+
+	@GetMapping("/profile/mybills/waiting-confirm")
+	public ModelAndView wattingBillList(Model model) {
+		Account account = accountService.findCurrentAccount();
+		Long status = (long) 0;
+		Long Payment = (long) 1;
+		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,
+				Payment);
+		model.addAttribute("current_account", account);
+		model.addAttribute("bills", bills);
+		model.addAttribute("title", "Account Man agement");
+		return new ModelAndView("profile/myBill/waitting-confirm");
+	}
 	
+	@GetMapping("/profile/mybills/waiting-payment")
+	public ModelAndView wattingPaymentList(Model model) {
+		Account account = accountService.findCurrentAccount();
+		Long status = (long) 0;
+		Long Payment = (long) 0;
+		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,
+				Payment);
+		model.addAttribute("current_account", account);
+		model.addAttribute("bills", bills);
+		model.addAttribute("title", "Account Management");
+		return new ModelAndView("profile/myBill/waitting-payment");
+	}
+
+	@GetMapping("/profile/mybills/deny")
+	public ModelAndView denyList(Model model) {
+		Account account = accountService.findCurrentAccount();
+		Long status = (long) 2;
+		Long Payment = (long) 1;
+		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status, Payment);
+		model.addAttribute("current_account", account);
+		model.addAttribute("bills", bills);
+		model.addAttribute("title", "Account Management");
+		return new ModelAndView("profile/myBill/deny-bill-table");
+	}
+
+
+	@GetMapping("profile/mybills/error-payment")
+	public ModelAndView errorList(Model model) {
+		Account account = accountService.findCurrentAccount();
+		Long status = null;
+		Long Payment = (long) -1;
+		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status, Payment);
+		model.addAttribute("current_account", account);
+		model.addAttribute("bills", bills);
+		model.addAttribute("title", "Account Management");
+		return new ModelAndView("profile/myBill/error-payment");
+	}
 }
+
+

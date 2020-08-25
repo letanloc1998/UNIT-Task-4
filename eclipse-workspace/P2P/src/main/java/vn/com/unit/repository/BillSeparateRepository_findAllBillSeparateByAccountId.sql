@@ -13,7 +13,7 @@ SELECT
 	bill.account as account_id,
 	(SELECT sum(item.quantity*product.price)
   		FROM [DMS_DEV].[dbo].[p2p_bill_item] item left join p2p_product product on item.product=product.id
-  		where item.id=1) as total_price
+  		where item.id=bill_s.id) as total_price
 			  FROM p2p_bill_separate bill_s 
 			  left join p2p_shop shop on bill_s.shop= shop.id
 			  left join p2p_bill bill on bill.id=bill_s.bill

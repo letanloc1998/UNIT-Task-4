@@ -27,6 +27,50 @@
   
         <th:block th:replace="admin/layout/footer :: footer"></th:block>
     <script>
+    
+    
+    
+    $(document).ready(function(){
+  	  $("#email").focusin(function(){
+  		  $("#email-stt").text("");
+      		$("#update-btn").attr('disabled','disabled');
+  		  });
+  	  $("#email").focusout(function(){	  
+          if($("#email").val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+        	  $("#email-stt").text("Please type an email address");
+	        	$("#update-btn").attr('disabled','disabled');
+          }else{
+  	        	$("#quantity-stt").text("");
+
+  	        }
+  	        
+  	  });
+  	});
+    $(document).ready(function(){
+    	  $("#phone").focusin(function(){
+    		  $("#phone-stt").text("");
+	        	$("#update-btn").attr('disabled','disabled');
+    		  });
+    	  $("#phone").focusout(function(){	  
+            if($("#phone").val().length != 10) {
+          	  $("#phone-stt").text("Phone are 10 number");
+	        	$("#update-btn").attr('disabled','disabled');
+            }else{
+    	        	$("#phone-stt").text("");
+    	        	$("#update-btn").removeAttr('disabled');
+
+    	        }
+    	        
+    	  });
+    	});
+    
+    
+   
+    
+    
+    
+    
+    
     $(document).ready(function() {
       $().ready(function() {
         $sidebar = $('.sidebar');
