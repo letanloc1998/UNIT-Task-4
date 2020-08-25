@@ -8,4 +8,4 @@ left join p2p_bill_item bill_item
 on bill_item.id = bill_separate.id
 left join p2p_product product
 on bill_item.product = product.id
-where bill.create_at >= DATEADD(HOUR, -24, GETDATE()) and bill_separate.shop = @shop;
+where bill.create_at >= DATEADD(HOUR, -24, GETDATE()) and bill.payment > 0 and bill_separate.shop = @shop;
