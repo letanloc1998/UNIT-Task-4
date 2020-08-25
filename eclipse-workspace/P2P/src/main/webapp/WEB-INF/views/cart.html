@@ -7,7 +7,8 @@
     <th:block th:include="layout/head :: head"></th:block>
     <!-- <th:block th:include="index/layout/index-head :: index-head"></th:block>  -->
     <meta name="description" content="P2PO">
-
+    <meta th:name="_csrf" th:content="${_csrf.token}" />
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}" />
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="styles/bootstrap4/bootstrap.min.css">-->
 
@@ -33,113 +34,6 @@
 
                         <div class="main_nav_content d-flex flex-row">
 
-                            <!-- Categories Menu -->
-
-                            <div class="cat_menu_container">
-                                <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-                                    <div class="cat_burger"><span></span><span></span><span></span></div>
-                                    <div class="cat_menu_text">categories</div>
-                                </div>
-
-                                <ul class="cat_menu">
-                                    <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a>
-                                    </li>
-                                    <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                                    <li class="hassubs">
-                                        <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li class="hassubs">
-                                                <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a>
-                                    </li>
-                                    <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a>
-                                    </li>
-                                    <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
-                                </ul>
-                            </div>
-
-                            <!-- Main Nav Menu -->
-
-                            <div class="main_nav_menu ml-auto">
-                                <ul class="standard_dropdown main_nav_dropdown">
-                                    <li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
-                                    <li class="hassubs">
-                                        <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="hassubs">
-                                        <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="hassubs">
-                                        <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a>
-                                            </li>
-                                            <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="blog_single.html">Blog Post<i
-                                                        class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="regular.html">Regular Post<i
-                                                        class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-                                </ul>
-                            </div>
 
                             <!-- Menu Trigger -->
 
@@ -256,7 +150,6 @@
             </div>
         </div>
 
-        </header>
 
         <!-- Cart -->
 
@@ -264,7 +157,9 @@
             <div class="container">
                 <div class="row">
                     <div class="col text-center">
+                    <img alt="" th:src="@{/static/img/empty-cart.png}">
                         <h1 class="text-center">Nothing in cart</h1>
+                        
                         <div class="button banner_button">
                             <a th:href="@{/}">Shop Now</a>
                         </div>
@@ -291,18 +186,24 @@
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Total</th>
+                                            <th scope="col">dd</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr th:each="cart_item, i : ${list_cart_item}" th:onclick="window.location=[[@{/product/__${cart_item.product}__}]];">
+                                          <tr th:each="cart_item, i : ${list_cart_item}" th:onclick="window.location=[[@{/product/__${cart_item.product}__}]];" >
                                             <th scope="row" th:text="${i.count}">1</th>
                                             <td><img th:src="@{__${cart_item.img}__}"
                                                 th:onerror="this.onerror=null;this.src=[[@{/static/img/default.png}]];"
                                                 alt="" style="width: 100px; height:100px;"></td>
                                             <td th:text="${cart_item.name}">Product Name</td>
                                             <td th:text="${cart_item.quantity}">999999999</td>
-                                            <td>$<th:block th:text="${cart_item.price}">999999999</th:block></td>
-                                            <td>$<th:block th:text="${cart_item.total}">999999999</th:block></td>
+                                            <td><span th:inline="text">$ [[${#numbers.formatDecimal(cart_item.price, 0, 'COMMA', 0, 'POINT')}]]</span></td>
+                                            <td><span th:inline="text">$ [[${#numbers.formatDecimal(cart_item.total, 0, 'COMMA', 0, 'POINT')}]]</span></td>
+                                            <td><button type="button" th:onclick="|deleteProduct(${cart_item.product})|"
+														class="btn btn-large btn-danger btn-just-icon">
+															<i class="fas fa-trash-alt"></i>
+														</button>
+												</td>
                                           </tr>
                                         </tbody>
                                       </table>
@@ -344,7 +245,7 @@
                             <div class="order_total">
                                 <div class="order_total_content text-md-right">
                                     <div class="order_total_title">Order Total:</div>
-                                    <div class="order_total_amount">$<th:block th:text="${total}"></th:block></div>
+                                    <div class="order_total_amount"><span th:inline="text">$ [[${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT')}]]</span></div>
                                 </div>
                             </div>
 
@@ -368,29 +269,7 @@
 
         <div class="newsletter">
             <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div
-                            class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
-                            <div class="newsletter_title_container">
-                                <div class="newsletter_icon"><img th:src="@{/static/template/ontech/images/send.png}"
-                                        alt=""></div>
-                                <div class="newsletter_title">Sign up for Newsletter</div>
-                                <div class="newsletter_text">
-                                    <p>...and receive %20 coupon for first shopping.</p>
-                                </div>
-                            </div>
-                            <div class="newsletter_content clearfix">
-                                <form action="#" class="newsletter_form">
-                                    <input type="email" class="newsletter_input" required="required"
-                                        placeholder="Enter your email address">
-                                    <button class="newsletter_button">Subscribe</button>
-                                </form>
-                                <div class="newsletter_unsubscribe_link"><a href="#">unsubscribe</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
@@ -520,6 +399,70 @@
     <script th:src="@{/static/template/ontech/plugins/greensock/ScrollToPlugin.min.js}"></script>
     <script th:src="@{/static/template/ontech/plugins/easing/easing.js}"></script>
     <script th:src="@{/static/template/ontech/js/cart_custom.js}"></script>
+    <script th:src="@{/static/admin/js/plugins/sweetalert2@9.js}"></script>
+    <script th:inline="javascript">
+    
+    
+	function deleteProduct(product_id) {
+		//stop function out side
+		   if (!e) var e = window.event;
+		    e.cancelBubble = true;
+		    if (e.stopPropagation) e.stopPropagation();
+   	 		//////////////////////////////////////////
+		    var token = $("meta[name='_csrf']").attr("content");
+	        var header = $("meta[name='_csrf_header']").attr("content");
+	        data = `{"product_id" : ${product_id}}`;
+           
+           Swal.fire({
+           	  title: 'Are you sure?',
+           	  html: 'This product will be delete!',
+           	  icon: 'warning',
+           	  showCancelButton: true,
+           	  confirmButtonColor: '#3085d6',
+           	  cancelButtonColor: '#d33',
+           	  confirmButtonText: 'Yes, delete it!'
+           	}).then((result) => {
+           		
+           	  if (result.value) {
+ 	                $.ajax({
+	                    url: `/cart/deletee`,
+	                    type: 'DELETE',
+
+	                    dataType: "json",
+	                    contentType: "application/json",
+
+	                    // data: JSON.stringify(`{"product_id" : ${product_id}}`),
+	                    data: data,
+	                    // data: JSON.stringify(data),
+
+	                    beforeSend: function (xhr) {
+	                        xhr.setRequestHeader(header, token);
+	                    },
+
+	                    success: function (data, status, xhr) {
+	                    	//md.showAddProductNoti('bottom','right',data.msg)
+	                    //  
+							Swal.fire({
+	                    		  position: 'center',
+	                    		  icon: 'success',
+	                    		  title: 'Delete Success',
+	                    		  showConfirmButton: false,
+	                    		  timer: 1000
+		                    		}).then(()=>{
+		                                window.location.href = window.location.href;
+		                    		}) 
+	                     },
+	                    error: function (request, status, error) {
+
+	                    	window.location.href = window.location.href;
+	                    }
+	                });
+           	  }
+           	})
+           	
+     
+       }
+    </script>
 
 </body>
 

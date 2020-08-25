@@ -14,5 +14,7 @@ public interface CartService {
 
 	public void addCartItemCurrentAccount(Long product_id, int i);
 	
+	public void deleteCartItemCurrentAccount(Long product_id, Long account_id);
+	
 //	public void deleteCartItemCurrentAccountByProductId(Long product_id);
 }

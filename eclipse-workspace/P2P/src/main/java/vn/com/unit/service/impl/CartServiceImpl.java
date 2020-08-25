@@ -42,6 +42,12 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
+	public void deleteCartItemCurrentAccount(Long product_id, Long account_id) {
+
+		cartRepository.deleteCartItemCurrentAccount(account_id, product_id);
+	}
+	
+	@Override
 	public void addCartItemCurrentAccount(Long product_id, int quantity) {
 		Long curent_account_id = accountService.findCurrentAccount().getId();
 
