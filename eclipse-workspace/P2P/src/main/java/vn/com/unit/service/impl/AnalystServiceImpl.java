@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import vn.com.unit.entity.Revenue;
 import vn.com.unit.repository.RevenueRepository;
 import vn.com.unit.service.AnalystService;
 
@@ -21,8 +20,8 @@ public class AnalystServiceImpl implements AnalystService {
 	}
 
 	@Override
-	public Long caculateBillErrorLastDayByShopId(Long shop_id) {
-		return revenueRepository.caculateBillErrorLastDayByShopId(shop_id);
+	public Long caculateBillPaymentErrorLastDayByShopId(Long shop_id) {
+		return revenueRepository.caculateBillPaymentErrorLastDayByShopId(shop_id);
 	}
 
 }

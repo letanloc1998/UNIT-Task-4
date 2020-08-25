@@ -9,6 +9,6 @@ public interface RevenueRepository extends MirageRepository<Revenue, Long> {
 
 	public Long caculateShopRevenueLastDayByShopId(@Param("shop_id") Long shop_id);
 
-	public Long caculateBillErrorLastDayByShopId(Long shop_id);
+	public Long caculateBillPaymentErrorLastDayByShopId(Long shop_id);
 
 }

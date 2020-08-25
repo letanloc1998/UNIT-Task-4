@@ -82,7 +82,7 @@ public class ShopController {
 			revenue = 0L;
 		}
 		
-		Long bill_error = analystService.caculateBillErrorLastDayByShopId(shop_id);
+		Long bill_error = analystService.caculateBillPaymentErrorLastDayByShopId(shop_id);
 		
 		if (bill_error == null) {
 			bill_error = 0L;
