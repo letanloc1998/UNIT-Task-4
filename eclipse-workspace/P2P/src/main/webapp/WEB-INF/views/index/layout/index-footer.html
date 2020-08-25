@@ -38,6 +38,9 @@
             }
 
             function addCart(product_id) {
+            	if(!e) var e = window.event;
+    		    e.cancelBubble = true;
+    		    if (e.stopPropagation) e.stopPropagation();
 
                 let token = $("meta[name='_csrf']").attr("content");
                 let header = $("meta[name='_csrf_header']").attr("content");
