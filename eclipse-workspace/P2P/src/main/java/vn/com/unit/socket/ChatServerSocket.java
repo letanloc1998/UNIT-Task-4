@@ -33,11 +33,14 @@ import com.corundumstudio.socketio.listener.DisconnectListener;
 import io.netty.handler.codec.http.HttpHeaders;
 import io.netty.handler.codec.http.cookie.Cookie;
 import io.netty.handler.codec.http.cookie.ServerCookieDecoder;
+import vn.com.unit.entity.Account;
+import vn.com.unit.service.AccountService;
 import vn.com.unit.service.ChatServerService;
+import vn.com.unit.utils.CommonUtils;
 
 //import org.springframework.security.core.session.SessionRegistryImpl;
 
-@Component
+//@Component
 public class ChatServerSocket {
 
 	private static SocketIOServer server;
@@ -53,12 +56,15 @@ public class ChatServerSocket {
 
 //	@Resource(name = "sessionRegistry")
 //	private static SessionRegistryImpl sessionRegistry;
-	
+
 //	@Autowired
 //	private static SessionRegistry sessionRegistry;
 
 //	@Autowired
 //    private static SessionRegistry sessionRegistry;
+
+//	@Autowired
+//	private static AccountService accountService;
 	
 	public static void initChatServerSocket() {
 
@@ -175,6 +181,8 @@ public class ChatServerSocket {
 
 			@Override
 			public boolean isAuthorized(HandshakeData data) {
+				
+
 				// TODO Auto-generated method stub
 //				return false;
 //				String s = data.getHttpHeaders().toString();
@@ -194,6 +202,14 @@ public class ChatServerSocket {
 
 				for (Cookie cookie : cookies) {
 					String name = cookie.name();
+					if (name.equals("token")) {
+						String token = cookie.value();
+						String username = CommonUtils.getUsernameFromJWT(token);
+						AccountService accountService = CommonUtils.ACCOUNT_SERVICE;
+//						Account current_user = CommonUtils.ACCOUNT_SERVICE.findByUsername(username);
+					}
+					
+					/*
 					if (name.equals("JSESSIONID")) {
 						String j_session_id = cookie.value();
 						
@@ -204,7 +220,7 @@ public class ChatServerSocket {
 //						SessionRegistry sessionRegistry = new SessionRegistryImpl();
 //						SessionInformation sessionInformation = sessionRegistry.getSessionInformation(session_id);
 						
-						SessionInformation sessionInformation = ChatServerService.getSessionInformationFromSessionId(session_id);
+//						SessionInformation sessionInformation = ChatServerService.getSessionInformationFromSessionId(session_id);
 						
 //						org.springframework.security.core.session.SessionInformation;
 //						org.springframework.security.core.session.SessionRegistry;
@@ -218,8 +234,10 @@ public class ChatServerSocket {
 //
 //						Principal principal = (Principal) sessionInformation.getPrincipal();
 					}
+					*/
 				}
 
+				
 				String token = data.getSingleUrlParam("token");
 
 				return true;
@@ -237,17 +255,15 @@ public class ChatServerSocket {
 		server = new SocketIOServer(config);
 
 		server.addEventListener("msg", byte[].class, new DataListener<byte[]>() {
-			@Override
-			public void onData(SocketIOClient client, byte[] data, AckRequest ackRequest) {
-				client.sendEvent("msg", data);
-			}
 
-		});
+	@Override
+	public void onData(SocketIOClient client, byte[] data, AckRequest ackRequest) {
+		client.sendEvent("msg", data);
+	}
 
-		chat_namespace = server.addNamespace("/chat");
-		chat_namespace.addConnectListener(onChatConnected());
-		chat_namespace.addEventListener("chat", ChatMessage.class, onChatReceived());
-		chat_namespace.addDisconnectListener(onChatDisconnected());
+	});
+
+	chat_namespace=server.addNamespace("/chat");chat_namespace.addConnectListener(onChatConnected());chat_namespace.addEventListener("chat",ChatMessage.class,onChatReceived());chat_namespace.addDisconnectListener(onChatDisconnected());
 
 //		server.addEventListener("msg", byte[].class, new DataListener<byte[]>() {
 //            @Override
@@ -256,13 +272,9 @@ public class ChatServerSocket {
 //            }
 //        });
 
-		voice_namespace = server.addNamespace("/voice");
-		voice_namespace.addConnectListener(onVoiceConnected());
-		voice_namespace.addEventListener("voice", byte[].class, onVoiceReceived());
-		voice_namespace.addDisconnectListener(onVoiceDisconnected());
+	voice_namespace=server.addNamespace("/voice");voice_namespace.addConnectListener(onVoiceConnected());voice_namespace.addEventListener("voice",byte[].class,onVoiceReceived());voice_namespace.addDisconnectListener(onVoiceDisconnected());
 
-		server.start();
-	}
+	server.start();}
 
 	private static ConnectListener onChatConnected() {
 		return client -> {

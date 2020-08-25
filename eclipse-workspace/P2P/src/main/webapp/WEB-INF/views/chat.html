@@ -27,18 +27,9 @@
 
         // var socket = io.connect('http://localhost:9092/chat', {
         //     query: "token=xyz",
-        //     transportOptions: {
-        //         polling: {
-        //             extraHeaders: {
-        //                 'Cookie': '_ga=GA1.2.17432343994.1475611967; _gat=1; __cfduid=dc232334gwdsd23434542342342342475611928'
-        //             }
-        //         }
-        //     }
         // });
 
-        var socket = io.connect('http://localhost:9092/chat', {
-            query: "token=xyz",
-        });
+        var socket = io.connect('http://localhost:9092/chat');
 
         socket.on('chat', chatHandler());
         socket.on('disconnect', disconnectHandler());
