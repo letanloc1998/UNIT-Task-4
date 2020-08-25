@@ -1,7 +1,5 @@
 declare @shop int = /*shop_id*/;
 
-declare @shop int = 4;
-
 select count(*)
 from p2p_bill_separate bill_separate
 left join p2p_bill bill

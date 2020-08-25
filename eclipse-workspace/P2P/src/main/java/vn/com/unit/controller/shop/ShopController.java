@@ -82,13 +82,15 @@ public class ShopController {
 			revenue = 0L;
 		}
 		
+		model.addAttribute("revenue", revenue);
+		
 		Long bill_error = analystService.caculateBillPaymentErrorLastDayByShopId(shop_id);
 		
 		if (bill_error == null) {
 			bill_error = 0L;
 		}
 		
-		model.addAttribute("revenue", revenue);
+		model.addAttribute("bill_error", bill_error);
 		
 		if(shop == null) {
 			return new ModelAndView("shop/myShop/create-shop");
