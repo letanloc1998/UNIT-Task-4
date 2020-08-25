@@ -33,7 +33,7 @@
                                             <!-- Slider Item -->
                                             
                                          
-                                            <div class="arrivals_slider_item" th:each="product : ${product}">
+                                            <div class="arrivals_slider_item" th:each="product : ${product}" th:onclick="window.location=[[@{/product/__${product.id}__}]];">
                                            
                                                 <div class="border_active"></div>
                                                 <div
@@ -98,7 +98,7 @@
                                         <div class="arrivals_slider slider">
 
                                             <!-- Slider Item -->
-                                            <div class="arrivals_slider_item" th:each="shop : ${shops}">
+                                            <div class="arrivals_slider_item" th:each="shop : ${shops}" th:onclick="window.location=[[@{/shop/__${shop.id}__}]];">
                                                 <div class="border_active"></div>
                                                 <div
                                                     class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
