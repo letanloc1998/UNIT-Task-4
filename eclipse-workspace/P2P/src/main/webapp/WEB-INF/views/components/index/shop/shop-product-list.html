@@ -40,7 +40,7 @@
 			<div class="row">
 				<th:block th:if="${ shop != null}"
 					th:each="product : ${products}">
-					<div class="col-lg-3">
+					<div class="col-lg-3" th:onclick="window.location=[[@{/product/__${product.id}__}]];">
 						<div
 							class="product_item is_new d-flex flex-column align-items-center justify-content-center text-center">
 							<div class="product_border"></div>
@@ -51,7 +51,7 @@
 								<img th:src="@{__${product.img}__}" alt=""
 									style="max-width: 115px; max-height: 115px;">
 							</div>
-							<div class="product_content">
+							<div class="product_content" >
 								<div class="product_price">
 									<th:block th:inline="text">$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}]]</th:block>
 								</div>
