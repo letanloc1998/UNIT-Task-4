@@ -206,7 +206,7 @@ public class ChatServerSocket {
 						String token = cookie.value();
 						String username = CommonUtils.getUsernameFromJWT(token);
 						AccountService accountService = CommonUtils.ACCOUNT_SERVICE;
-						Account current_user = CommonUtils.ACCOUNT_SERVICE.findByUsername(username);
+//						Account current_user = CommonUtils.ACCOUNT_SERVICE.findByUsername(username);
 					}
 					
 					/*

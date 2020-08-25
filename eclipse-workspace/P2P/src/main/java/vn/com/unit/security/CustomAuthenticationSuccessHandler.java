@@ -33,14 +33,14 @@ public class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationS
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 
-		String username = authentication.getPrincipal().toString();
-		Date now = new Date();
-		Date exp = new Date(now.getTime() + CommonUtils.JWT_EXPIRATION);
-
-		String jws = Jwts.builder().setSubject(username).setIssuedAt(now).setExpiration(exp)
-				.signWith(SignatureAlgorithm.HS256, CommonUtils.JWT_SECRET).compact();
-
-		response.addCookie(new Cookie("token", jws));
+//		String username = authentication.getPrincipal().toString();
+//		Date now = new Date();
+//		Date exp = new Date(now.getTime() + CommonUtils.JWT_EXPIRATION);
+//
+//		String jws = Jwts.builder().setSubject(username).setIssuedAt(now).setExpiration(exp)
+//				.signWith(SignatureAlgorithm.HS256, CommonUtils.JWT_SECRET).compact();
+//
+//		response.addCookie(new Cookie("token", jws));
 
 		Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 		if (roles.contains("ROLE_ADMIN")) {
