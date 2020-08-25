@@ -84,14 +84,26 @@ public class ProfileBillHistoryController {
 
 	@GetMapping("profile/mybills/error-payment")
 	public ModelAndView errorList(Model model) {
-		Account account = accountService.findCurrentAccount();
-		Long status = null;
-		Long Payment = (long) -1;
-		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status, Payment);
-		model.addAttribute("current_account", account);
-		model.addAttribute("bills", bills);
-		model.addAttribute("title", "Account Management");
-		return new ModelAndView("profile/myBill/error-payment");
+			Account account = accountService.findCurrentAccount();
+			Long status = null;
+			Long Payment = (long) -1;
+			List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status, Payment);
+			model.addAttribute("current_account", account);
+			model.addAttribute("bills", bills);
+			model.addAttribute("title", "Account Management");
+			return new ModelAndView("profile/myBill/error-payment");
+	}
+	
+	@GetMapping("profile/mybills/{bill_id}")
+		ModelAndView BillDetail (Model model) {
+			Account account = accountService.findCurrentAccount();
+			Long status = null;
+			Long Payment = (long) -1;
+			List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status, Payment);
+			model.addAttribute("current_account", account);
+			model.addAttribute("bills", bills);
+			model.addAttribute("title", "Account Management");
+			return new ModelAndView("profile/myBill/billItem");
 	}
 }
 
