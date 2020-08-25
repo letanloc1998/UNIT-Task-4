@@ -14471,6 +14471,20 @@ h2.title {
   padding: 0 15px;
 }
 
+.nav-tabs .nav-item-custom .nav-link-custom {
+  position: relative;
+  color: #fff;
+  border: 0;
+  margin: 0;
+  border-radius: 3px;
+  line-height: 24px;
+  text-transform: capitalize;
+  font-size: 12px;
+  padding: 10px 15px;
+  background-color: transparent;
+  transition: 0.3s background-color 0s;
+} 
+
 .nav-tabs .nav-item .nav-link {
   position: relative;
   color: #fff;
