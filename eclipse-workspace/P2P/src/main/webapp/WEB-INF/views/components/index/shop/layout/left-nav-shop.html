@@ -13,6 +13,9 @@
 					<!-- Shop Sidebar -->
 					<div class="shop_sidebar">
 						<div class="sidebar_section">
+							<div class="sidebar_title">
+								<a th:href="@{'/shop/' + ${shop.id}}" >All</a>
+							</div>
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories" style="cursor:pointer">
 								<li th:each="category : ${categories_shop}" >
