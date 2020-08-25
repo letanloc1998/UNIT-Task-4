@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.CartItem;
+import vn.com.unit.service.AccountService;
 import vn.com.unit.service.CartService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.utils.CommonUtils;
@@ -26,6 +28,9 @@ public class CartController {
 
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	AccountService accountService;
 
 	@GetMapping("/cart")
 	public ModelAndView cart(Model model) {
@@ -75,6 +80,18 @@ public class CartController {
 		
 		return ResponseEntity.ok(
 				"{\"msg\" : \"Add product succes! Please check again!\" }");
+	}
+	
+	
+	@DeleteMapping("/cart/deletee")
+	@ResponseBody
+	public ResponseEntity<String> delete(Model model, @RequestBody Map<String, String> json) {
+		
+		Long curent_account_id = accountService.findCurrentAccount().getId();
+		cartService.deleteCartItemCurrentAccount(Long.valueOf(json.get("product_id")), curent_account_id);
+		
+		return ResponseEntity.ok(
+				"{\"msg\" : \"Delete product succes! Please check again!\" }");
 	}
 
 }
