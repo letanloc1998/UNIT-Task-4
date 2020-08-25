@@ -19,15 +19,17 @@
                 <div class="container">
                     <div class="row">
                         <div class="col d-flex flex-row">
-	                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img th:src="@{static/template/ontech/images/phone.png}" alt=""></div>+84 068 068 0068</div>
-							<div class="top_bar_contact_item"><div class="top_bar_icon"><img th:src="@{static/template/ontech/images/mail.png}" alt=""></div><a href="mailto:p2po@gmail.com">p2po@gmail.com</a></div>
+	                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img th:src="@{/static/template/ontech/images/phone.png}" alt=""></div>+84 068 068 0068</div>
+							<div class="top_bar_contact_item"><div class="top_bar_icon"><img th:src="@{/static/template/ontech/images/mail.png}" alt=""></div><a href="mailto:p2po@gmail.com">p2po@gmail.com</a></div>
                             <div class="top_bar_content ml-auto">
                                 <div class="top_bar_user">
 
                                     <th:block sec:authorize="!isAuthenticated()">
 
                                         <div class="user_icon">
-                                            <img th:src="@{/static/index-template/images/user.svg}" alt="">
+                                            <img th:src="@{/static/index-template/images/user.svg}" 
+                                            
+                                            alt="">
                                         </div>
                                         <div>
                                             <a href="/login">Login</a>
