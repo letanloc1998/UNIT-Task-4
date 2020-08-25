@@ -42,7 +42,7 @@
 												<td><span th:text="${bill.shopPhone}"></span></td>
 												<td><span th:text="${bill.shopEmail}"></span></td>
 												<td><span th:text="${bill.shippingAdd}"></span></td>
-												<td><span th:text="${bill.totalPrice}"></span></td>
+												<td><span th:inline="text">$ [[${#numbers.formatDecimal(bill.totalPrice, 0, 'COMMA', 0, 'POINT')}]]</span></td>
 												<td><span th:text=" ${bill.createAt} ? ${#dates.format(bill.createAt, 'dd-MM-yyyy HH:mm')} "></span></td>
 												<td class="text-center"><span> 
 												<a th:href="@{'/profile/mybills/' + ${bill.id}}" type="button"
