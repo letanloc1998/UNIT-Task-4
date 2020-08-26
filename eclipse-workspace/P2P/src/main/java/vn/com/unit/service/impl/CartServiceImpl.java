@@ -28,6 +28,14 @@ public class CartServiceImpl implements CartService {
 
 		return this.findAllCartItemByAccountId(curent_account_id);
 	}
+	
+	@Override
+	public int countAllCartItemByCurrentAccount(Long account_id) {
+
+		int total = cartRepository.countAllCartItemByAccountId(account_id); 
+
+		return total;
+	}
 
 	@Override
 	public List<CartItem> findAllCartItemByAccountId(Long account_id) {

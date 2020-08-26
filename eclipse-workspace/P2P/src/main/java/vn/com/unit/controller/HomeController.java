@@ -20,10 +20,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Brand;
+import vn.com.unit.entity.CartItem;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BrandService;
+import vn.com.unit.service.CartService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
@@ -50,6 +52,10 @@ public class HomeController {
 	
 	@Autowired
 	private BrandService brandService;
+	
+	@Autowired
+	private CartService cartService;
+
 
 	@GetMapping("*")
 	public ModelAndView home(Model model, @Param("name") String name) {
@@ -57,7 +63,8 @@ public class HomeController {
 		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 
 		// Add Role if reload
-
+		int total_cart_item= 0;
+		model.addAttribute("total_cart_item", total_cart_item);
 		try {
 			Account account = accountService.findCurrentAccount();
 
@@ -72,6 +79,12 @@ public class HomeController {
 						auth.getCredentials(), authorities);
 
 				SecurityContextHolder.getContext().setAuthentication(newAuth);
+				
+				total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
+				model.addAttribute("total_cart_item", total_cart_item);
+				
+				List<CartItem> cartitems = cartService.findAllCartItemByCurrentAccount();
+				model.addAttribute("cartitems", cartitems);
 			}
 
 		} catch (Exception e) {
@@ -82,13 +95,15 @@ public class HomeController {
 
 //		List<Category> categories = categoryService.findAllCategory();
 //		model.addAttribute("categories", categories);
+		
+
 
 		List<Product> product = productService.findAllProduct();
 		model.addAttribute("product", product);
 		
 		List<Shop> shops = shopService.searchAllShop();
 		model.addAttribute("shops", shops);
-
+		
 		return new ModelAndView("index");
 	}
 
