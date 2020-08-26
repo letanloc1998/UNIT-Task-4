@@ -168,9 +168,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<Product> findAllProduct(){
+	public List<Product> findAllActiveProductOfShopActiveOfVendorActive(){
 		
-		return productRepository.findAllProduct();
+		return productRepository.findAllActiveProductOfShopActiveOfVendorActive();
 	}
 	
 	@Override
@@ -184,7 +184,7 @@ public class ProductServiceImpl implements ProductService {
 		}catch(Exception e) {
 			
 		}
-		return productRepository.findAllProduct();
+		return productRepository.findAllActiveProductOfShopActiveOfVendorActive();
 	}
 
 

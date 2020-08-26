@@ -22,7 +22,7 @@ public interface ProductService {
 	
 	public void saveProduct(Long product_id, String name, int price, String detail, int category, int brand, int quantity);
 	
-	public List<Product> findAllProduct();
+	public List<Product> findAllActiveProductOfShopActiveOfVendorActive();
 	
 	public List<Product> searchProductByName(String name);
 	

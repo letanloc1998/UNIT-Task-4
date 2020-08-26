@@ -100,7 +100,7 @@ public class HomeController {
 		
 
 
-		List<Product> product = productService.findAllProduct();
+		List<Product> product = productService.findAllActiveProductOfShopActiveOfVendorActive();
 		model.addAttribute("product", product);
 		
 		List<Shop> shops = shopService.searchAllShop();

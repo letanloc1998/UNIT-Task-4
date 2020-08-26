@@ -51,7 +51,7 @@ public interface ProductRepository extends MirageRepository<Shop, Long> {
 			@Param("detail") String detail
 );
 	
-	public List<Product> findAllProduct();
+	public List<Product> findAllActiveProductOfShopActiveOfVendorActive();
 	
 	public List<Product> findProductByName(@Param("name") String name);
 	
