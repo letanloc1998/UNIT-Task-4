@@ -15,7 +15,8 @@ SELECT
   join p2p_product product on item.product=product.id
   join p2p_category cate on cate.id = product.category
   join p2p_brand brand on brand.id=product.brand
-    join p2p_bill bill on bill.id=item.id
+  join p2p_bill_separate bill_s on bill_s.id=item.id
+  join p2p_bill bill on bill.id=bill_s.bill
 
 	where item.id=/*bill_separate_id*/ and  bill.account = /*account*/
 	

@@ -26,7 +26,7 @@
 									<table class="table">
 										<thead class=" text-primary">
 											<th>ID</th>
-											<th>Owner name</th>
+											<th>Username</th>
 											<th>Shop name</th>
 											<th>Email</th>
 											<th>Phone</th>
@@ -38,7 +38,7 @@
 												th:each="shop, i : ${shops}">
 												<td><span
 													th:text="${i.count+(pageable.limit*(pageable.page -1))}"></span></td>
-												<td><span th:text="${shop.ownerName}"></span></td>
+												<td><span th:text="${shop.username}"></span></td>
 												<td><span th:text="${shop.name}"></span></td>
 												<td><span th:text="${shop.email}"></span></td>
 												<td><span th:text="${shop.phone}"></span></td>
@@ -110,8 +110,6 @@
 			</div>
 		</div>
 		<script th:inline="javascript">
-        const shop = [[${ shops }]]
-        console.log([[${ shops }]])
       </script>
 	</th:block>
 
