@@ -15,123 +15,104 @@
 						<div class="card">
 
 							<div class="card-header card-header-primary">
-								<h4 class="card-title ">All Bill Item of Bill <span style="font-weight: bold" th:text="${bill_id}"></span></h4>
-								<a th:href="@{/profile/mybill/watting-confirm}" class="btn btn-warning">Back</a>
+								<h4 class="card-title ">All Bill Item of Bill </h4>
+								<a th:href="@{/profile/mybills/waiting-confirm}" class="btn btn-warning">Back</a>
 							</div>
 							<div class="card-body">
-								<div class="container-fluid my-5 d-flex justify-content-center">
-    <div class="card card-1">
-        <div class="card-header bg-white">
-            <div class="media flex-sm-row flex-column-reverse justify-content-between ">
-                <div class="col my-auto">
-                    <h4 class="mb-0">Thanks for your Order,<span class="change-color">Anjali</span> !</h4>
-                </div>
-                <div class="col-auto text-center my-auto pl-0 pt-sm-4"> 
-                    <p class="mb-4 pt-0 Glasses">Shopname</p>
-                </div>
-            </div>
-        </div>
-        <div class="card-body">
-            <div class="row justify-content-between mb-3">
-                <div class="col-auto">
-                    <h6 class="color-1 mb-0 change-color">Receipt</h6>
-                </div>
-                <div class="col-auto "> <small>Receipt Voucher : MHD</small> </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <div class="card card-2">
-                        <div class="card-body">
-                            <div class="media">
-                                <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="https://i.imgur.com/RJOW4BL.jpg" width="135" height="135" /> </div>
-                                <div class="media-body my-auto text-right">
-                                    <div class="row my-auto flex-column flex-md-row">
-                                        <div class="col my-auto">
-                                            <h6 class="mb-0"> Jack Jacs</h6>
-                                        </div>
-                                        <div class="col-auto my-auto"> <small>Golden Rim </small></div>
-                                        <div class="col my-auto"> <small>Qty : 1</small></div>
-                                        <div class="col my-auto">
-                                            <h6 class="mb-0">&#8377;3,600.00</h6>
+								<div class="container-fluid d-flex justify-content-center">
+                                <div class="card card-1">
+                                    <div class="card-header bg-white">
+                                        <div class="media flex-sm-row flex-column-reverse justify-content-between ">
+                                            <div class="col my-auto">
+                                                <h4 class="mb-0">Thanks for your Order,<span class="change-color">Anjali</span> !</h4>
+                                            </div>
+                                            
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <hr class="my-3 ">
-                   
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="card card-2">
-                        <div class="card-body">
-                            <div class="media">
-                                <div class="sq align-self-center "> <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="https://i.imgur.com/fUWWpRS.jpg" width="135" height="135" /> </div>
-                                <div class="media-body my-auto text-right">
-                                    <div class="row my-auto flex-column flex-md-row">
-                                        <div class="col-auto my-auto ">
-                                            <h6 class="mb-0"> Michel Mark</h6>
+                                    <div class="card-body">
+                                        <div class="row justify-content-between mb-3">
+                                            <div class="col-auto">
+                                                <h6 class="color-1 mb-0 change-color">Receipt</h6>
+                                            </div>
+                                            <div class="col-auto "> Order :  <span th:text="${bill_id}"></span> </div>
                                         </div>
-                                        <div class="col my-auto "> <small>Black Rim </small></div>
-                                        <div class="col my-auto "> <small>Qty : 1</small></div>
-                                        <div class="col my-auto ">
-                                            <h6 class="mb-0">&#8377;1,235.00</h6>
+                                        <div th:if="${!billItems.empty or billItems != null}" th:each="item, i : ${billItems}" class="row">
+                                            <div class="col">
+                                                <div class="card card-2">
+                                                    <div class="card-body">
+                                                        <div class="media">
+                                                            <div class="sq align-self-center "> 
+                                                                <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" 
+                                                                th:src="${item.img}" width="135" height="135" /> </div>
+                                                            <div class="media-body my-auto text-right">
+                                                                <div class="row my-auto flex-column flex-md-row">
+                                                                    <div class="col my-auto">
+                                                                        <h6 class="mb-0" th:text="${item.productName}"></h6>
+                                                                    </div>
+                                                                    <div class="col-auto my-auto"> <small th:text="${item.brandName}">brandname </small></div>
+                                                                    <div class="col my-auto"> 
+                                                                        <small>Qty : <span th:text="${item.quantity}"></span></small>
+                                                                    </div>
+                                                                    <div class="col my-auto"> 
+                                                                        <small>Price : <span th:inline="text">$ [[${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')}]]</span></small>
+                                                                    </div>
+                                                                    <div class="col my-auto">
+                                                                        <h6 class="mb-0"><span th:inline="text">$ [[${#numbers.formatDecimal(item.itemBillPrice, 0, 'COMMA', 0, 'POINT')}]]</span></h6>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="my-3 ">
+                                            
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                       
+                                        <div class="row mt-4">
+                                            <div class="col">
+                                                <div class="row justify-content-between">
+                                                    <div class="col-auto">
+                                                        <p class="mb-1 text-dark"><b>Order Details</b></p>
+                                                    </div>
+                                                    <div class="flex-sm-col text-right col">
+                                                        <p class="mb-1"><b>Total</b></p>
+                                                    </div>
+                                                    <div class="flex-sm-col col-auto">
+                                                        <p class="mb-1">&#8377;4,835</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-between">
+                                                    <div class="flex-sm-col text-right col">
+                                                        <p class="mb-1"> <b>Discount</b></p>
+                                                    </div>
+                                                    <div class="flex-sm-col col-auto">
+                                                        <p class="mb-1">&#8377;150</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-between">
+                                                    <div class="flex-sm-col text-right col">
+                                                        <p class="mb-1"><b>GST 18%</b></p>
+                                                    </div>
+                                                    <div class="flex-sm-col col-auto">
+                                                        <p class="mb-1">843</p>
+                                                    </div>
+                                                </div>
+                                                <div class="row justify-content-between">
+                                                    <div class="flex-sm-col text-right col">
+                                                        <p class="mb-1"><b>Delivery Charges</b></p>
+                                                    </div>
+                                                    <div class="flex-sm-col col-auto">
+                                                        <p class="mb-1">Free</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            
                                     </div>
+                                    
                                 </div>
-                            </div>
-                            <hr class="my-3 ">
-                        
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-4">
-                <div class="col">
-                    <div class="row justify-content-between">
-                        <div class="col-auto">
-                            <p class="mb-1 text-dark"><b>Order Details</b></p>
-                        </div>
-                        <div class="flex-sm-col text-right col">
-                            <p class="mb-1"><b>Total</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1">&#8377;4,835</p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="flex-sm-col text-right col">
-                            <p class="mb-1"> <b>Discount</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1">&#8377;150</p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="flex-sm-col text-right col">
-                            <p class="mb-1"><b>GST 18%</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1">843</p>
-                        </div>
-                    </div>
-                    <div class="row justify-content-between">
-                        <div class="flex-sm-col text-right col">
-                            <p class="mb-1"><b>Delivery Charges</b></p>
-                        </div>
-                        <div class="flex-sm-col col-auto">
-                            <p class="mb-1">Free</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-   
-        </div>
-        
-    </div>
-</div>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -139,7 +120,7 @@
 			</div>
 			<script th:inline="javascript">
         const account = [[${ accounts }]]
-        console.log([[${ pageable }]])
+        console.log([[${ billItems }]])
       </script>
 	</th:block>
 

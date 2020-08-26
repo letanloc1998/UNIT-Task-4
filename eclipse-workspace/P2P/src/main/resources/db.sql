@@ -128,7 +128,7 @@ create table p2p_bill (
     account bigint not null,
     constraint fk_p2p_bill_account__account_id foreign key (account) references p2p_account(id),
     
-    address nvarchar(255) not null,
+    address nvarchar(4000) not null,
     
 	/*
     0	: wating payment
@@ -177,7 +177,7 @@ create table p2p_bill_item (
 )
 
 create table p2p_log (
-	log nvarchar(2000),
+	log nvarchar(3000),
 	type nvarchar(50),
 	author nvarchar(500),
 	create_at datetime default getutcdate(),

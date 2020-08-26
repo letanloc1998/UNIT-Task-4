@@ -7,10 +7,12 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.HistoryBillSeparate;
+import vn.com.unit.entity.billItemSeparate;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillSeparateService;
 import vn.com.unit.service.BillService;
@@ -95,13 +97,11 @@ public class ProfileBillHistoryController {
 	}
 	
 	@GetMapping("profile/mybills/{bill_id}")
-		ModelAndView BillDetail (Model model) {
+		ModelAndView BillDetail (Model model,@PathVariable ("bill_id") Long bill_id ) {
 			Account account = accountService.findCurrentAccount();
-			Long status = null;
-			Long Payment = (long) -1;
-			List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status, Payment);
+			List<billItemSeparate> billItems = billSeparateService.findBillItemByBillSeparateId(bill_id,account.getId());
 			model.addAttribute("current_account", account);
-			model.addAttribute("bills", bills);
+ 			model.addAttribute("billItems",billItems);
 			model.addAttribute("title", "Account Management");
 			return new ModelAndView("profile/myBill/billItem");
 	}
