@@ -55,6 +55,7 @@ public class CartServiceImpl implements CartService {
 //		from p2p_cart
 //		where account = 1 and product = 2
 
+		// Nead optimize here
 		Integer quantity_in_cart = cartRepository.findProductQuantityInCart(curent_account_id, product_id);
 
 		if (quantity_in_cart == null) {

@@ -14,6 +14,7 @@ import com.mservice.shared.sharedmodels.Environment;
 import com.mservice.shared.sharedmodels.Environment.EnvTarget;
 import com.mservice.shared.sharedmodels.Environment.ProcessType;
 
+import vn.com.unit.service.LogService;
 import vn.com.unit.service.PaymentService;
 import vn.com.unit.utils.CommonUtils;
 
@@ -22,6 +23,9 @@ public class MomoPayment {
 
 	@Autowired
 	PaymentService paymentService;
+
+	@Autowired
+	LogService logService;
 
 	private EnvTarget target = EnvTarget.DEV;
 
@@ -34,7 +38,7 @@ public class MomoPayment {
 		try {
 
 			String convert_address = CommonUtils.convertEncode(address);
-					
+
 			Long bill_id = paymentService.createBill(convert_address);
 
 			String total = paymentService.calculateBillTotal(bill_id).toString();
@@ -48,9 +52,16 @@ public class MomoPayment {
 			String orderInfo = "Total : " + total + " Address: " + convert_address;
 
 			String returnUrl = "http://localhost:8080/callback";
-			String notifyUrl = "https://b179f1e49cea.ngrok.io/webhook/momo";
+			String notifyUrl = "https://2d5b673c6c4f.ngrok.io/webhook/momo";
 
 			String extraData = "";
+
+			String log = "/payment/momo start payment | " + "orderId=" + orderId + "&requestId=" + requestId
+					+ "&amount=" + amount + "&orderInfo=" + orderInfo + "&returnUrl=" + returnUrl + "&notifyUrl="
+					+ notifyUrl + "&extraData=" + extraData;
+			String type = "momo payment";
+			String author = this.getClass().getName();
+			logService.saveLog(log, type, author);
 
 			CaptureMoMoRequest captureMoMoRequest = captureMoMo.createPaymentCreationRequest(orderId, requestId, amount,
 					orderInfo, returnUrl, notifyUrl, extraData);
