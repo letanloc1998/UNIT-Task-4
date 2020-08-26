@@ -84,7 +84,7 @@ public class ShopManagement {
 	}
 
 	// activate shop
-	@PreAuthorize("hasRole('ROLE_USER')")
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PutMapping("/shop/activate")
 	@ResponseBody
 	public ResponseEntity<String> activateShop(Model model) {
