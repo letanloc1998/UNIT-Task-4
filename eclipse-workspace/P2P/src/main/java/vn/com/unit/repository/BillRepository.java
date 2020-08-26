@@ -24,5 +24,7 @@ public interface BillRepository extends MirageRepository<Shop, Long> {
 
 	@Modifying
 	public void saveBillPaymentStatus(@Param("bill_id") Long bill_id, @Param("payment_status") int payment_status);
+
+	public Bill findBillByBillIdAndAccountId(@Param("bill_id") Long bill_id, @Param("account_id") Long account_id);
 	
 }
