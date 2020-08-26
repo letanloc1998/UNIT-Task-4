@@ -20,4 +20,6 @@ public interface BillSeparateService {
 	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(Long account_id,Long status, Long payment);
 	
 	public List<billItemSeparate> findBillItemByBillSeparateId(Long bill_separate_id,Long account);
+	
+	public HistoryBillSeparate findBillSeparateById(Long id);
 }

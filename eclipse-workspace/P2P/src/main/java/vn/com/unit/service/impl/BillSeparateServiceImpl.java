@@ -62,6 +62,17 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public HistoryBillSeparate findBillSeparateById(Long id) {
+		// TODO Auto-generated method stub
+		try {
+			return billSeparateRepository.findBillSeparateItemById(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	};
 
 }

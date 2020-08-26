@@ -12,11 +12,9 @@ public class BillItem {
 	
 	public BillItem() {
 	}
-
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -28,10 +26,6 @@ public class BillItem {
 	public void setProduct(int product) {
 		this.product = product;
 	}
-
-	
-
-
 	public Product getProduct_name() {
 		return product_name;
 	}
