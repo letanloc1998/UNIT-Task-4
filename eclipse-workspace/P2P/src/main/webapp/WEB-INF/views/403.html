@@ -255,7 +255,7 @@
     </style>
 </head>
 
-<body>
+<body th:onclick="window.location=[[@{/}]]">
     <div class="maincontainer">
         <div class="bat">
             <img class="wing leftwing" src="/static/img/403/bat-wing.png">
@@ -274,9 +274,12 @@
         </div>
         <img class="foregroundimg" src="/static/img/403/HauntedHouseForeground.png" alt="haunted house">
 
+        <h1 class="errorcode" style="top: -370px; z-index: 99;">ERROR 403</h1>
+        <div class="errortext" style="top: -430px; z-index: 99;">
+            This area is forbidden. <span th:onclick="window.location=[[@{/}]]">Turn back</span> now!
+        </div>
     </div>
-    <h1 class="errorcode">ERROR 403</h1>
-    <div class="errortext">This area is forbidden. Turn back now!</div>
+
 </body>
 
 </html>
