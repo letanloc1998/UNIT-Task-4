@@ -86,6 +86,11 @@ public class HomeController {
 				model.addAttribute("total_cart_item", total_cart_item);
 				
 				total = cartService.calculateCartTotalByCurrentAccount();
+				
+				if (total == null) {
+					total = 0L;
+				}
+				
 				model.addAttribute("total_price", total);
 			}
 
