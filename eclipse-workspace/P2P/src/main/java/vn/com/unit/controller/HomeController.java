@@ -66,7 +66,7 @@ public class HomeController {
 		int total_cart_item= 0;
 		Long total = 0L;
 		model.addAttribute("total_cart_item", total_cart_item);
-		model.addAttribute("total_price", total);
+		model.addAttribute("total_price", Math.toIntExact(total));
 		try {
 			Account account = accountService.findCurrentAccount();
 
@@ -86,12 +86,7 @@ public class HomeController {
 				model.addAttribute("total_cart_item", total_cart_item);
 				
 				total = cartService.calculateCartTotalByCurrentAccount();
-				
-				if (total == null) {
-					total = 0L;
-				}
-				
-				model.addAttribute("total_price", total);
+				model.addAttribute("total_price", Math.toIntExact(total));
 			}
 
 		} catch (Exception e) {
