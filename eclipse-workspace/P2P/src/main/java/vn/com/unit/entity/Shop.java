@@ -19,7 +19,7 @@ public class Shop {
 	
 	private int status;
 	
-	private String ownerName;
+	private String username;
 	
 	private Date createAt;
 
@@ -99,13 +99,17 @@ public class Shop {
 		this.products = products;
 	}
 
-	public String getOwnerName() {
-		return ownerName;
+
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setOwnerName(String ownerName) {
-		this.ownerName = ownerName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
+
 
 	private List<Product> products;
 	
