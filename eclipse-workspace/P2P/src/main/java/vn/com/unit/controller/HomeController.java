@@ -100,8 +100,11 @@ public class HomeController {
 		
 
 
-		List<Product> product = productService.findAllProduct();
+		List<Product> product = productService.findAllActiveProductOfShopActiveOfVendorActive();
 		model.addAttribute("product", product);
+		
+		Product top_product = productService.findOneTopProductPaymentSuccess();
+		model.addAttribute("top_product", top_product);
 		
 		List<Shop> shops = shopService.searchAllShop();
 		model.addAttribute("shops", shops);
