@@ -51,7 +51,7 @@ public class MomoPayment {
 			String amount = total;
 			String orderInfo = "Total : " + total + " Address: " + convert_address;
 
-			String returnUrl = "http://localhost:8080/callback";
+			String returnUrl = "http://localhost:8080/profile/mybills/" + bill_id.toString();
 			String notifyUrl = "https://2d5b673c6c4f.ngrok.io/webhook/momo";
 
 			String extraData = "";
