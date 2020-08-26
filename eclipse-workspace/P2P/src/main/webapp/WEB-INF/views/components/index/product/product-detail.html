@@ -28,6 +28,7 @@
 						<div class="image_selected">
 							<span class="zoom" id="product_img"> <img
 								style="height: 400px; width: 400px" th:src="${product.img}"
+								th:onerror="this.onerror=null;this.src=[[@{/static/img/default.png}]];"
 								alt="">
 							</span>
 						</div>
@@ -75,8 +76,7 @@
 									<span style="color: red;"
 										id="status-quantity"></span> <br> <span
 										style="font-size: 20px; color: red; font-weight: bold">Price:</span>
-									<div class="product_price" th:text="${product.price}"></div>
-									<span class="product_price">$</span>
+									<div class="product_price" th:inline="text">$ [[${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')}]]</div>
 									<span id="status-quantity"></span>
 									<div class="button_container">
 										<button type="button" th:onclick="|addCart(__${product.id}__)|" class="button cart_button">Add
