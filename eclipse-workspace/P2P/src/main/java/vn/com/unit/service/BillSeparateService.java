@@ -13,7 +13,9 @@ public interface BillSeparateService {
 
 	public List<BillSeparate> findBillSeparatePaymentSuccessAndStatusWaitingByShopId(Long shop_id);
 	
-	public List<BillSeparateShop> findBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id);
+	public List<BillSeparateShop> findBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id,int limit,int offset);
+	
+	public int countBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id);
 	
 	public void saveBillSeparateStatus(Long bill_separate_id, int status);
 	
