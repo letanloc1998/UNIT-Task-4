@@ -31,7 +31,7 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 	
 	public Account findAccountById(@Param("id") Long id);
 	
-	public int countAccountActive();
+	public int countAccountActive(@Param("keyword") String keyword,@Param("role_id") Long role_id);
 	
 	@Modifying
 	public void setDisableAccount(@Param("account_id") Long account_id,@Param("disable") Long disable );

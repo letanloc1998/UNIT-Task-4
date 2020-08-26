@@ -28,7 +28,6 @@
 											<th>Quantity</th>
 										</thead>
 										<tbody>
-
 											<tr th:if="${!billitems.empty or billitems != null}"
 												th:each="billitem, i : ${billitems}">
 												<td><span th:text="${billitem.product}"></span></td>

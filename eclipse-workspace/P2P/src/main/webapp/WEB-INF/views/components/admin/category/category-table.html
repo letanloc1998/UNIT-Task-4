@@ -40,12 +40,13 @@
 												</span> 
 												<span>
 														
-														<span><a type="button"
+														<span><a type="button" rel="tooltip" title="Edit category"
 													th:href="@{'/admin/category/edit/' + ${category.id}}"
 													class="btn btn-large btn-primary btn-just-icon"><i
 														class="fas fa-edit"></i></a> </span>
 														<button type="button" class="btn  btn-danger btn-just-icon"
-															th:onclick="|DeleteCategory(${category.id})|">
+														rel="tooltip" title="Delete category"	
+														th:onclick="|DeleteCategory(${category.id})|">
 															<i class="fas fa-trash-alt"></i>
 														</button>
 												</span>

@@ -1,4 +1,3 @@
-/****** Script for SelectTopNRows command from SSMS  ******/
 SELECT 
 	item.id 					as id,
 	item.quantity 				as quantity,

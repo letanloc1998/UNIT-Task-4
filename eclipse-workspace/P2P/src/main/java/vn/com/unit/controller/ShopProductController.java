@@ -53,9 +53,10 @@ public class ShopProductController {
 			Shop shop = shopService.findShopByAccountId(shop_id);
 			model.addAttribute("shop", shop);
 			
-			if(shop == null) {
+			if(shop == null || shop.getStatus() == 2 || shop.getStatus() == 3) {
 				return new ModelAndView("404");
 			}
+			
 			//get brand and category
 			model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 			List<Brand> brands = brandService.findAllBrandByShopId(shop.getId());

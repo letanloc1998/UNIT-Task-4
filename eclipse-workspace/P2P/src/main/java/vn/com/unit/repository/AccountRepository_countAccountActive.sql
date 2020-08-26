@@ -1,7 +1,7 @@
-SELECT DISTINCT count(*) FROM
+SELECT count(*) FROM
 (
 SELECT
-    acc.*
+     DISTINCT acc.*
 
 FROM
 	(	
@@ -32,4 +32,4 @@ FROM
     /*END*/
 	
 ) Accont_t
-order by id
+
