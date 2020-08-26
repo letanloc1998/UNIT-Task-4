@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
+import vn.com.unit.entity.BillSeparate;
 import vn.com.unit.entity.HistoryBillSeparate;
 import vn.com.unit.entity.billItemSeparate;
 import vn.com.unit.service.AccountService;
@@ -43,8 +44,6 @@ public class ProfileBillHistoryController {
 		return new ModelAndView("profile/myBill/confirm-bills");
 	}
 
-
-
 	@GetMapping("/profile/mybills/waiting-confirm")
 	public ModelAndView wattingBillList(Model model) {
 		Account account = accountService.findCurrentAccount();
@@ -57,7 +56,7 @@ public class ProfileBillHistoryController {
 		model.addAttribute("title", "Account Man agement");
 		return new ModelAndView("profile/myBill/waitting-confirm");
 	}
-	
+
 	@GetMapping("/profile/mybills/waiting-payment")
 	public ModelAndView wattingPaymentList(Model model) {
 		Account account = accountService.findCurrentAccount();
@@ -76,35 +75,39 @@ public class ProfileBillHistoryController {
 		Account account = accountService.findCurrentAccount();
 		Long status = (long) 2;
 		Long Payment = (long) 1;
-		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status, Payment);
+		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,
+				Payment);
 		model.addAttribute("current_account", account);
 		model.addAttribute("bills", bills);
 		model.addAttribute("title", "Account Management");
 		return new ModelAndView("profile/myBill/deny-bill-table");
 	}
 
-
 	@GetMapping("profile/mybills/error-payment")
 	public ModelAndView errorList(Model model) {
-			Account account = accountService.findCurrentAccount();
-			Long status = null;
-			Long Payment = (long) -1;
-			List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status, Payment);
-			model.addAttribute("current_account", account);
-			model.addAttribute("bills", bills);
-			model.addAttribute("title", "Account Management");
-			return new ModelAndView("profile/myBill/error-payment");
+		Account account = accountService.findCurrentAccount();
+		Long status = null;
+		Long Payment = (long) -1;
+		List<HistoryBillSeparate> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,
+				Payment);
+		model.addAttribute("current_account", account);
+		model.addAttribute("bills", bills);
+		model.addAttribute("title", "Account Management");
+		return new ModelAndView("profile/myBill/error-payment");
 	}
-	
+
 	@GetMapping("profile/mybills/{bill_id}")
-		ModelAndView BillDetail (Model model,@PathVariable ("bill_id") Long bill_id ) {
-			Account account = accountService.findCurrentAccount();
-			List<billItemSeparate> billItems = billSeparateService.findBillItemByBillSeparateId(bill_id,account.getId());
-			model.addAttribute("current_account", account);
- 			model.addAttribute("billItems",billItems);
-			model.addAttribute("title", "Account Management");
-			return new ModelAndView("profile/myBill/billItem");
+	ModelAndView BillDetail(Model model, @PathVariable("bill_id") Long bill_id) {
+		Account account = accountService.findCurrentAccount();
+		List<billItemSeparate> billItems = billSeparateService.findBillItemByBillSeparateId(bill_id, account.getId());
+		if(billItems.isEmpty()) {
+			return new ModelAndView("404");
+		}
+		HistoryBillSeparate bill = billSeparateService.findBillSeparateById(bill_id);
+		model.addAttribute("current_account", account);
+		model.addAttribute("billItems", billItems);
+		model.addAttribute("bill", bill);
+		model.addAttribute("title", "Account Management");
+		return new ModelAndView("profile/myBill/billItem");
 	}
 }
-
-

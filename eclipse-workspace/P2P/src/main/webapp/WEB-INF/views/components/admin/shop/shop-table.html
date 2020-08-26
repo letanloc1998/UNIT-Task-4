@@ -44,14 +44,15 @@
 												<td><span th:text="${shop.phone}"></span></td>
 												<td><span
 													th:text=" ${shop.createAt} ? ${#dates.format(shop.createAt, 'dd-MM-yyyy')} "></span></td>
-												<td class="text-center"><span> <a type="button"
+												<td class="text-center"><span> <a type="button" rel="tooltip" title="View shop"
 														th:href="@{'/shop/' + ${shop.id}}"
 														class="btn btn-large btn-info btn-just-icon" target="_blank"> <i class="fa fa-eye">
 														</i>
 													</a>
 												</span> 
 												 <span>
-														<button type="button" class="btn btn-danger btn-just-icon" 
+														<button type="button" class="btn btn-danger btn-just-icon"
+														rel="tooltip" title="Deactive shop"
 															th:onclick="|DeleteShop(${i.index})|">
 															<i class="fas fa-trash-alt"></i>
 														</button>

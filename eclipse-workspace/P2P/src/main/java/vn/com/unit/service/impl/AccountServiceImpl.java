@@ -176,9 +176,9 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public int countAccountActive() {
+	public int countAccountActive(String keyword,Long role_id) {
 		try {
-			return accountRepository.countAccountActive();
+			return accountRepository.countAccountActive(keyword,role_id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

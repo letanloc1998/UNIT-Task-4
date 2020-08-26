@@ -7,11 +7,9 @@ public class BillSeparate {
 	private Long id;
 
 	private Long bill;
-
 	private Long shop;
-
 	private Long status;
-
+	private Long account;
 	private Long refund;
 	
 	private Date createAt;
@@ -62,6 +60,14 @@ public class BillSeparate {
 
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+
+	public Long getAccount() {
+		return account;
+	}
+
+	public void setAccount(Long account) {
+		this.account = account;
 	}
 	
 }

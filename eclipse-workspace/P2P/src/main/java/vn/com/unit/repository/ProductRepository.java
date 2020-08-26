@@ -51,7 +51,7 @@ public interface ProductRepository extends MirageRepository<Shop, Long> {
 			@Param("detail") String detail
 );
 	
-	public List<Product> findAllProduct();
+	public List<Product> findAllActiveProductOfShopActiveOfVendorActive();
 	
 	public List<Product> findProductByName(@Param("name") String name);
 	
@@ -63,4 +63,25 @@ public interface ProductRepository extends MirageRepository<Shop, Long> {
 			@Param("shop_id") Long shop_id
 			);
 
+	/*
+	select top 1 *
+	from p2p_product
+	where id in
+		(
+		select top 10 bill_item.product
+		from p2p_bill bill
+		left join p2p_bill_separate bill_separate
+		on bill_separate.bill = bill.id
+		left join p2p_bill_item bill_item
+		on bill_item.id = bill_separate.id
+		left join p2p_product product
+		on product.id = bill_item.product
+		where bill.payment > 0
+		group by bill_item.product
+		order by count(bill_item.product) desc
+		)
+	order by newid();
+	*/
+	public Product findOneTopProductPaymentSuccess();
+	
 }

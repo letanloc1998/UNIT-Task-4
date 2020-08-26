@@ -38,7 +38,7 @@ public class AdminAccountManagementController {
 			@RequestParam(value = "role_id", required = false) Long role_id,
 			HttpServletRequest request) {
 
-		int totalitems = accountService.countAccountActive();
+		int totalitems = accountService.countAccountActive(keyword,role_id);
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);

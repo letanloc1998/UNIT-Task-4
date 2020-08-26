@@ -26,7 +26,7 @@ public interface AccountService {
 		
 	public Account findAccountById(Long id);
 	
-	public int countAccountActive();
+	public int countAccountActive(String keyword,Long role_id);
 	
 	public boolean setDisableAccount(Long account_id, Long disable);
 

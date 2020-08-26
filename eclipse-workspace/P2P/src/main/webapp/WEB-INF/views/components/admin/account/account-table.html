@@ -37,9 +37,8 @@
 													onclick="clearFilter()">
 													<i class="fas fa-eraser"></i>
 												</button>
-
-												<div class="ripple-container"></div>
-
+												<div class="ripple-container">	
+												</div>
 											</div>
 										</form>
 									</div>
@@ -83,13 +82,15 @@
 													</th:block>
 												</td>
 												<td><span th:text=" ${account.createAt} ? ${#dates.format(account.createAt, 'dd-MM-yyyy')} "></span></td>
-												<td class="text-center"><span> <a type="button" 
+												<td class="text-center"><span> <a type="button" rel="tooltip" title="View account"
 														th:href="@{'/admin/account/detail/' + ${account.id}}"
 														class="btn btn-large btn-info  btn-just-icon"> <i class="fa fa-eye">
 														</i>
 													</a>
 												</span> <span>
-														<button type="button" class="btn  btn-danger  btn-just-icon"
+														<button 
+														rel="tooltip" title="Delete account"
+														type="button" class="btn  btn-danger  btn-just-icon"
 															th:onclick="|DeleteAccount(${i.index})|">
 															<i class="fas fa-trash-alt"></i>
 														</button>
@@ -123,9 +124,7 @@
 													<a class="page-link" th:with="result=${ pageable.page - 1}"
 													th:href="@{/admin/account/list(limit=${pageable.limit}, page=${result}, keyword=${keyword})}">Previous</a>
 												</li>
-
-<input type="hidden" name="" id="input" class="form-control" value="">
-
+												<input type="hidden" name="" id="input" class="form-control" value="">
 												<li th:each="item : ${pageable.items}"
 													th:class="${item.current == true} ? 'page-item active' : 'page-item'">
 													<!--  --> <a
