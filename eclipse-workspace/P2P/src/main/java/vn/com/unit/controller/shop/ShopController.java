@@ -25,6 +25,7 @@ import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.AccountService;
+import vn.com.unit.service.AnalystService;
 import vn.com.unit.service.BillItemService;
 import vn.com.unit.service.BillSeparateService;
 import vn.com.unit.service.BillService;
@@ -64,12 +65,32 @@ public class ShopController {
 	
 	@Autowired
 	BillSeparateService billSeparateService;
+	
+	@Autowired
+	AnalystService analystService;
 
 	// home view
 	@GetMapping("/shop/home")
 	public ModelAndView shopHome(Model model) {
 		Account account = accountService.findCurrentAccount();
-		Shop shop = shopService.findShopByAccountId(account.getId());
+		Long shop_id = account.getId();
+		Shop shop = shopService.findShopByAccountId(shop_id);
+		
+		Long revenue = analystService.caculateShopRevenueLastDayByShopId(shop_id);
+		
+		if (revenue == null) {
+			revenue = 0L;
+		}
+		
+		model.addAttribute("revenue", revenue);
+		
+		Long bill_error = analystService.caculateBillPaymentErrorLastDayByShopId(shop_id);
+		
+		if (bill_error == null) {
+			bill_error = 0L;
+		}
+		
+		model.addAttribute("bill_error", bill_error);
 		
 		if(shop == null) {
 			return new ModelAndView("shop/myShop/create-shop");
