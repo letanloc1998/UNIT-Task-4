@@ -100,9 +100,9 @@ public class ProfileBillHistoryController {
 	ModelAndView BillDetail(Model model, @PathVariable("bill_id") Long bill_id) {
 		Account account = accountService.findCurrentAccount();
 		List<billItemSeparate> billItems = billSeparateService.findBillItemByBillSeparateId(bill_id, account.getId());
-//		if(billItems.isEmpty()) {
-//			return new ModelAndView("404");
-//		}
+		if(billItems.isEmpty()) {
+			return new ModelAndView("404");
+		}
 		HistoryBillSeparate bill = billSeparateService.findBillSeparateById(bill_id);
 		model.addAttribute("current_account", account);
 		model.addAttribute("billItems", billItems);
