@@ -87,11 +87,11 @@
                             <tr th:each="item, i : ${bill_item}">
                                 <td class="center">[[${i.count}]]</td>
                                 <!-- [[${item.product}]] -->
-                                <td class="left strong">[[${item?.product_name != null} ? item.product_name : '']]</td>
+                                <td class="left strong">[[${item?.name != null} ? ${item.name} : '']]</td>
                                 <td class="left"></td>
-                                <td class="right">$[[${item?.price != null} ? item.price : '']]</td>
-                                <td class="center">[[${item.quantity}]]</td>
-                                <td class="right">$</td>
+                                <td class="right">$[[${item?.price != null} ? ${item.price} : '']]</td>
+                                <td class="center">[[${item?.quantity != null} ? ${item.quantity} : '']]</td>
+                                <td class="right">$[[${item?.total != null} ? ${item.total} : '']]</td>
                             </tr>
                         </tbody>
                     </table>
