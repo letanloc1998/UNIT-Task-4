@@ -28,6 +28,7 @@
 						<div class="image_selected">
 							<span class="zoom" id="product_img"> <img
 								style="height: 400px; width: 400px" th:src="${product.img}"
+								th:onerror="this.onerror=null;this.src=[[@{/static/img/default.png}]];"
 								alt="">
 							</span>
 						</div>
