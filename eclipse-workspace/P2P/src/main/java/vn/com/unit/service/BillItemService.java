@@ -12,4 +12,6 @@ public interface BillItemService {
 	
 	public List<BillItem> findAllBillItem();
 
+	public List<BillItem> findAllBillItemByBillId(Long id);
+
 }
