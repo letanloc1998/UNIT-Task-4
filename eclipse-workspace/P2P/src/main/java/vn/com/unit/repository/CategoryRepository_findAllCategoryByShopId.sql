@@ -7,3 +7,5 @@ in
 	from p2p_product
 	where shop = /*shop_id*/
 	)
+and disable = 'false'
+	
