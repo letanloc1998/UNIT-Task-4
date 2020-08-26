@@ -138,13 +138,31 @@ public class HomeController {
 
 	@GetMapping("/register")
 	public ModelAndView register(Model model) {
-
+		
 		return new ModelAndView("register");
 	}
 
 	@GetMapping("/login")
-	public ModelAndView login(Model model) {
+	public ModelAndView login(Model model, @RequestParam(value="error",required=false) String error) {
+		if(error == null) {
+			model.addAttribute("error", "");
+		}else {
+			if(error.equals("Wrong username or password")) {
+				model.addAttribute("error", "Wrong username or password!");
+			}
+			if(error.equals("timeout")) {
+				model.addAttribute("error", "Time Out!");
+			}
+			if(error.equals("Your account has been deactivated")) {
+				model.addAttribute("error", "Your account has been deactivated!");
+			}
+			if(error.equals("max_session")) {
+				model.addAttribute("error", "Your account has been logged in another device!");
+			}
+		}
 
+
+		
 		model.addAttribute("title", "Login");
 		return new ModelAndView("login");
 	}
