@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import vn.com.unit.entity.BillSeparate;
 import vn.com.unit.entity.BillSeparateShop;
 import vn.com.unit.entity.HistoryBillSeparate;
+import vn.com.unit.entity.billItemSeparate;
 
 public interface BillSeparateService {
 
@@ -17,4 +18,6 @@ public interface BillSeparateService {
 	public void saveBillSeparateStatus(Long bill_separate_id, int status);
 	
 	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(Long account_id,Long status, Long payment);
+	
+	public List<billItemSeparate> findBillItemByBillSeparateId(Long bill_separate_id,Long account);
 }

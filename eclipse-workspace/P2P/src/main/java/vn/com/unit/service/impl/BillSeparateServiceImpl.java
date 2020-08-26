@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import vn.com.unit.entity.BillSeparate;
 import vn.com.unit.entity.BillSeparateShop;
 import vn.com.unit.entity.HistoryBillSeparate;
+import vn.com.unit.entity.billItemSeparate;
 import vn.com.unit.repository.BillSeparateRepository;
 import vn.com.unit.service.BillSeparateService;
 
@@ -46,6 +47,17 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 		// TODO Auto-generated method stub
 		try {
 			return billSeparateRepository.findAllBillSeparateByAccountId(account_id, status, payment);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
+
+	@Override
+	public List<billItemSeparate> findBillItemByBillSeparateId(Long bill_separate_id,Long account) {
+		// TODO Auto-generated method stub
+		try {
+			return billSeparateRepository.findBillItemByBillSeparateId(bill_separate_id,account);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
