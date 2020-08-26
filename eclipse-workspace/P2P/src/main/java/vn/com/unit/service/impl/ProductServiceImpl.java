@@ -212,4 +212,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 
+	@Override
+	public Product findOneTopProductPaymentSuccess() {
+		// TODO Auto-generated method stub
+		return productRepository.findOneTopProductPaymentSuccess();
+	}
+
+
 }

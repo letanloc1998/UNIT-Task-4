@@ -187,20 +187,23 @@
                                             </div>
                                             <div class="arrivals_single_content">
                                                 <div class="arrivals_single_category">
-                                                    <a href="#">Smartphones</a>
+                                                    <a href="#">Top 10 Buy Product</a>
                                                 </div>
+
                                                 <div class="arrivals_single_name_container clearfix">
                                                     <div class="arrivals_single_name">
-                                                        <a href="#">LUNA Smartphone</a>
+                                                        <a th:href="@{|product/__${top_product.id}__|}" th:text="${top_product.name}"></a>
                                                     </div>
-                                                    <div class="arrivals_single_price text-right">$379</div>
+                                                    <div class="arrivals_single_price text-right">$[[${top_product.price}]]</div>
                                                 </div>
                                                 <div class="rating_r rating_r_4 arrivals_single_rating">
                                                     <i></i><i></i><i></i><i></i><i></i>
                                                 </div>
-                                                <form action="#">
-                                                    <button class="arrivals_single_button">Add to Cart</button>
-                                                </form>
+                                                <!-- <form action="#">
+                                                    <button class="arrivals_single_button">Add to Cart</button> -->
+                                                    <button th:onclick="|addCart(__${top_product.id}__)|"
+                                                                class="arrivals_single_button">Add to Cart</button>
+                                                <!-- </form> -->
                                             </div>
                                             <div class="arrivals_single_fav product_fav active">
                                                 <i class="fas fa-heart"></i>

@@ -29,4 +29,6 @@ public interface ProductService {
 	public int CountAllProductByShopId(Long shop_id);
 	
 	public int countAllProductByCategoryIdAndBrandId(Long category_id, Long brand_id,Long shop_id);
+	
+	public Product findOneTopProductPaymentSuccess();
 }
