@@ -30,7 +30,7 @@
             <div class="card-header">
                 Invoice
                 <strong>[[${bill?.createAt}]]</strong>
-                <span class="float-right"> <strong>Status:</strong> [[${bill?.payment == 0} ? 'Pending' : '']]</span>
+                <span class="float-right"> <strong>Status:</strong> [[${bill?.payment == 0} ? 'Pending' : '']][[${bill?.payment > 0} ? 'Success' : '']][[${bill?.payment < 0} ? 'Error' : '' ]]</span>
 
             </div>
             <div class="card-body">
@@ -78,47 +78,20 @@
                                 <th>Item</th>
                                 <th>Description</th>
 
-                                <th class="right">Unit Cost</th>
+                                <th class="right">Price</th>
                                 <th class="center">Qty</th>
                                 <th class="right">Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="center">1</td>
-                                <td class="left strong">Origin License</td>
-                                <td class="left">Extended License</td>
-
-                                <td class="right">$999,00</td>
-                                <td class="center">1</td>
-                                <td class="right">$999,00</td>
-                            </tr>
-                            <tr>
-                                <td class="center">2</td>
-                                <td class="left">Custom Services</td>
-                                <td class="left">Instalation and Customization (cost per hour)</td>
-
-                                <td class="right">$150,00</td>
-                                <td class="center">20</td>
-                                <td class="right">$3.000,00</td>
-                            </tr>
-                            <tr>
-                                <td class="center">3</td>
-                                <td class="left">Hosting</td>
-                                <td class="left">1 year subcription</td>
-
-                                <td class="right">$499,00</td>
-                                <td class="center">1</td>
-                                <td class="right">$499,00</td>
-                            </tr>
-                            <tr>
-                                <td class="center">4</td>
-                                <td class="left">Platinum Support</td>
-                                <td class="left">1 year subcription 24/7</td>
-
-                                <td class="right">$3.999,00</td>
-                                <td class="center">1</td>
-                                <td class="right">$3.999,00</td>
+                            <tr th:each="item, i : ${bill_item}">
+                                <td class="center">[[${i.count}]]</td>
+                                <!-- [[${item.product}]] -->
+                                <td class="left strong">[[${item?.product_name != null} ? item.product_name : '']]</td>
+                                <td class="left"></td>
+                                <td class="right">$[[${item?.price != null} ? item.price : '']]</td>
+                                <td class="center">[[${item.quantity}]]</td>
+                                <td class="right">$</td>
                             </tr>
                         </tbody>
                     </table>
