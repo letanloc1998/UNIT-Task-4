@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.entity.Account;
 import vn.com.unit.entity.CartItem;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.CartService;
@@ -45,15 +46,23 @@ public class CartController {
 //		left join p2p_product product
 //		on product.id = cart.product
 
+		int total_cart_item= 0;
+		Long total = 0L;
+		Account account = accountService.findCurrentAccount();
+		total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
+		model.addAttribute("total_cart_item", total_cart_item);
+
+		
 		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 
 		List<CartItem> list_cart_item = cartService.findAllCartItemByCurrentAccount();
 
 		model.addAttribute("list_cart_item", list_cart_item);
 
-		Long total = cartService.calculateCartTotalByCurrentAccount();
+		total = cartService.calculateCartTotalByCurrentAccount();
 
 		model.addAttribute("total", total);
+		model.addAttribute("total_price", total);
 
 		model.addAttribute("title", "Cart");
 		return new ModelAndView("/cart");
@@ -77,9 +86,11 @@ public class CartController {
 		}
 		
 		cartService.addCartItemCurrentAccount(Long.valueOf(json.get("product_id")), quantity);
-		
+		Account account = accountService.findCurrentAccount();
+		int total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
+		Long total = cartService.calculateCartTotalByCurrentAccount();
 		return ResponseEntity.ok(
-				"{\"msg\" : \"Add product succes! Please check again!\" }");
+				"{\"msg\" : \"Add product succes! Please check again!\", \"total_item\" : \""+total_cart_item+"\", \"total\" : \""+total+"\"  }");
 	}
 	
 	

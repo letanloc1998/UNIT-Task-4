@@ -18,4 +18,6 @@ public interface BillService {
 
 	public void saveBillPaymentStatus(Long bill_id, int i);
 
+	public Bill findBillOfCurrentAccountByBillId(Long id);
+
 }

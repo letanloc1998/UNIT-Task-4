@@ -28,10 +28,18 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 	}
 	
 	@Override
-	public List<BillSeparateShop> findBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id) {
+	public List<BillSeparateShop> findBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id,int limit,int offset) {
 		// TODO Auto-generated method stub
 		
-		return billSeparateRepository.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop_id);
+		return billSeparateRepository.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop_id,limit, offset);
+	}
+	
+	@Override
+	public int countBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id) {
+		// TODO Auto-generated method stub
+		int total = billSeparateRepository.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop_id) ;
+		
+		return total;
 	}
 	
 	

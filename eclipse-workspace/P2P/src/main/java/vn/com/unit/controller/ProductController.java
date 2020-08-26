@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
+import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BrandService;
+import vn.com.unit.service.CartService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.ShopService;
@@ -31,6 +34,11 @@ public class ProductController {
 	@Autowired
 	ShopService shopService;
 	
+	@Autowired
+	private CartService cartService;
+	
+	@Autowired
+	private AccountService accountService;
 	
 	@GetMapping("/product/{product_id}")
     public ModelAndView home(Model model, @PathVariable ("product_id") Long product_id) {
@@ -49,6 +57,15 @@ public class ProductController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("shop", shop);
 		model.addAttribute("title", product.getName());
+		
+		int total_cart_item= 0;
+		Long total = 0L;
+		Account account = accountService.findCurrentAccount();
+		total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
+		model.addAttribute("total_cart_item", total_cart_item);
+		
+		total = cartService.calculateCartTotalByCurrentAccount();
+		model.addAttribute("total_price", total);
         return new ModelAndView("product-detail");
     }
 	

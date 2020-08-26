@@ -175,14 +175,18 @@
                                         <div class="cart_icon">
                                             <img th:src="@{/static/index-template/images/cart.png}" alt="">
                                             <div class="cart_count">
-                                                <span>10</span>
+                                                
+                                                <span id="count" th:text="${total_cart_item}">0</span>
                                             </div>
                                         </div>
                                         <div class="cart_content">
                                             <div class="cart_text">
                                                 <a th:href="@{/cart}">Cart</a>
+                                              
                                             </div>
-                                            <div class="cart_price">$85</div>
+                                            <div class="cart_price">
+                                            $<span id="total" th:text="${total_price}">0</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

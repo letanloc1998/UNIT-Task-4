@@ -6,9 +6,13 @@ public class BillItem {
 	
 	private int product;
 	
-	private Product product_name;
+	private String name;
+	
+	private Long price;
 	
 	private int quantity;
+	
+	private Product product_name;
 	
 	public BillItem() {
 	}
@@ -26,12 +30,21 @@ public class BillItem {
 	public void setProduct(int product) {
 		this.product = product;
 	}
-	public Product getProduct_name() {
-		return product_name;
+
+	public String getName() {
+		return name;
 	}
 
-	public void setProduct_name(Product product_name) {
-		this.product_name = product_name;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Long getPrice() {
+		return price;
+	}
+
+	public void setPrice(Long price) {
+		this.price = price;
 	}
 
 	public int getQuantity() {
@@ -42,9 +55,16 @@ public class BillItem {
 		this.quantity = quantity;
 	}
 	
-	
+	public Long getTotal() {
+		return price * quantity;
+	}
 
+	public Product getProduct_name() {
+		return product_name;
+	}
 
+	public void setProduct_name(Product product_name) {
+		this.product_name = product_name;
+	}
 	
-		
 }

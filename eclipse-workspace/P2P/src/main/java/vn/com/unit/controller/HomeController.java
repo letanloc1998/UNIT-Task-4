@@ -20,10 +20,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Brand;
+import vn.com.unit.entity.CartItem;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BrandService;
+import vn.com.unit.service.CartService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
@@ -50,6 +52,10 @@ public class HomeController {
 	
 	@Autowired
 	private BrandService brandService;
+	
+	@Autowired
+	private CartService cartService;
+
 
 	@GetMapping("*")
 	public ModelAndView home(Model model, @Param("name") String name) {
@@ -57,7 +63,10 @@ public class HomeController {
 		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 
 		// Add Role if reload
-
+		int total_cart_item= 0;
+		Long total = 0L;
+		model.addAttribute("total_cart_item", total_cart_item);
+		model.addAttribute("total_price", Math.toIntExact(total));
 		try {
 			Account account = accountService.findCurrentAccount();
 
@@ -72,6 +81,12 @@ public class HomeController {
 						auth.getCredentials(), authorities);
 
 				SecurityContextHolder.getContext().setAuthentication(newAuth);
+				
+				total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
+				model.addAttribute("total_cart_item", total_cart_item);
+				
+				total = cartService.calculateCartTotalByCurrentAccount();
+				model.addAttribute("total_price", Math.toIntExact(total));
 			}
 
 		} catch (Exception e) {
@@ -82,13 +97,15 @@ public class HomeController {
 
 //		List<Category> categories = categoryService.findAllCategory();
 //		model.addAttribute("categories", categories);
+		
+
 
 		List<Product> product = productService.findAllProduct();
 		model.addAttribute("product", product);
 		
 		List<Shop> shops = shopService.searchAllShop();
 		model.addAttribute("shops", shops);
-
+		
 		return new ModelAndView("index");
 	}
 
@@ -107,18 +124,45 @@ public class HomeController {
 		List<Brand> brands = brandService.findAllBrand();
 		model.addAttribute("brands", brands);
 
+		
+		int total_cart_item= 0;
+		Long total = 0L;
+		Account account = accountService.findCurrentAccount();
+		total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
+		model.addAttribute("total_cart_item", total_cart_item);
+		
+		total = cartService.calculateCartTotalByCurrentAccount();
+		model.addAttribute("total_price", total);
 		return new ModelAndView("product-by-search");
 	}
 
 	@GetMapping("/register")
 	public ModelAndView register(Model model) {
-
+		
 		return new ModelAndView("register");
 	}
 
 	@GetMapping("/login")
-	public ModelAndView login(Model model) {
+	public ModelAndView login(Model model, @RequestParam(value="error",required=false) String error) {
+		if(error == null) {
+			model.addAttribute("error", "");
+		}else {
+			if(error.equals("Wrong username or password")) {
+				model.addAttribute("error", "Wrong username or password!");
+			}
+			if(error.equals("timeout")) {
+				model.addAttribute("error", "Time Out!");
+			}
+			if(error.equals("Your account has been deactivated")) {
+				model.addAttribute("error", "Your account has been deactivated!");
+			}
+			if(error.equals("max_session")) {
+				model.addAttribute("error", "Your account has been logged in another device!");
+			}
+		}
 
+
+		
 		model.addAttribute("title", "Login");
 		return new ModelAndView("login");
 	}

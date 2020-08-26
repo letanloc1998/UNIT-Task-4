@@ -8,6 +8,8 @@ public interface CartService {
 
 	public List<CartItem> findAllCartItemByCurrentAccount();
 	
+	public int countAllCartItemByCurrentAccount(Long account_id);
+	
 	public List<CartItem> findAllCartItemByAccountId(Long account_id);
 
 	public Long calculateCartTotalByCurrentAccount();

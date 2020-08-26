@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Bill;
 import vn.com.unit.repository.BillRepository;
 import vn.com.unit.repository.ProductRepository;
 import vn.com.unit.repository.ShopRepository;
+import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillService;
 
 @Service
@@ -25,6 +27,8 @@ public class BillServiceImpl implements BillService {
 	@Autowired
 	BillRepository billRepository;
 	
+	@Autowired
+	AccountService accountService;
 	
 	
 	@Override
@@ -61,6 +65,15 @@ public class BillServiceImpl implements BillService {
 	public void saveBillPaymentStatus(Long bill_id, int payment_status) {
 		billRepository.saveBillPaymentStatus(bill_id, payment_status);
 		
+	}
+
+	@Override
+	public Bill findBillOfCurrentAccountByBillId(Long bill_id) {
+		
+		Account current_account = accountService.findCurrentAccount();
+		Long current_account_id = current_account.getId();
+		
+		return billRepository.findBillByBillIdAndAccountId(bill_id, current_account_id);
 	}
 	
 	
