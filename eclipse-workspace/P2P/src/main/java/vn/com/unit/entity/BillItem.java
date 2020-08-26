@@ -12,6 +12,8 @@ public class BillItem {
 	
 	private int quantity;
 	
+	private Product product_name;
+	
 	public BillItem() {
 	}
 
@@ -58,5 +60,13 @@ public class BillItem {
 	public Long getTotal() {
 		return price * quantity;
 	}
-		
+
+	public Product getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(Product product_name) {
+		this.product_name = product_name;
+	}
+	
 }
