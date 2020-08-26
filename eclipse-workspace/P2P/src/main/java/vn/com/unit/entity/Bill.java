@@ -12,15 +12,8 @@ public class Bill {
 		
 	private Long payment;
 	
-//	private boolean status;
-//	
-//	private boolean refund;
-	
 	private Date createAt;
-	
-	public Bill() {
-	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -45,29 +38,13 @@ public class Bill {
 		this.address = address;
 	}
 
-	public Long isPayment() {
+	public Long getPayment() {
 		return payment;
 	}
 
 	public void setPayment(Long payment) {
 		this.payment = payment;
 	}
-
-//	public boolean isStatus() {
-//		return status;
-//	}
-//
-//	public void setStatus(boolean status) {
-//		this.status = status;
-//	}
-//
-//	public boolean isRefund() {
-//		return refund;
-//	}
-//
-//	public void setRefund(boolean refund) {
-//		this.refund = refund;
-//	}
 
 	public Date getCreateAt() {
 		return createAt;

@@ -9,6 +9,23 @@
 
 <body>
 
+    [[${bill?.id}]]
+    <br>
+    [[${bill?.account}]]
+    <br>
+    [[${bill?.address}]]
+    <br>
+    [[${bill?.payment}]]
+    <br>
+    [[${bill?.payment > 0} ? 'success' : '']]
+    <br>
+    [[${bill?.payment == 0} ? 'waiting payment' : '']]
+    <br>
+    [[${bill?.payment < 0} ? 'payment error' : '']]
+    <br>
+    [[${bill?.createAt}]]
+    <br>
+
 </body>
 
 </html>
