@@ -64,7 +64,9 @@ public class HomeController {
 
 		// Add Role if reload
 		int total_cart_item= 0;
+		Long total = 0L;
 		model.addAttribute("total_cart_item", total_cart_item);
+		model.addAttribute("total_price", total);
 		try {
 			Account account = accountService.findCurrentAccount();
 
@@ -83,8 +85,8 @@ public class HomeController {
 				total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
 				model.addAttribute("total_cart_item", total_cart_item);
 				
-				List<CartItem> cartitems = cartService.findAllCartItemByCurrentAccount();
-				model.addAttribute("cartitems", cartitems);
+				total = cartService.calculateCartTotalByCurrentAccount();
+				model.addAttribute("total_price", total);
 			}
 
 		} catch (Exception e) {
@@ -122,6 +124,15 @@ public class HomeController {
 		List<Brand> brands = brandService.findAllBrand();
 		model.addAttribute("brands", brands);
 
+		
+		int total_cart_item= 0;
+		Long total = 0L;
+		Account account = accountService.findCurrentAccount();
+		total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
+		model.addAttribute("total_cart_item", total_cart_item);
+		
+		total = cartService.calculateCartTotalByCurrentAccount();
+		model.addAttribute("total_price", total);
 		return new ModelAndView("product-by-search");
 	}
 

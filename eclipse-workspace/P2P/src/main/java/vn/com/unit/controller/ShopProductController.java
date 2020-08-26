@@ -10,12 +10,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.pageable.PageRequest;
+import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BrandService;
+import vn.com.unit.service.CartService;
 import vn.com.unit.service.CategoryService;
 import vn.com.unit.service.ProductService;
 import vn.com.unit.service.ShopService;
@@ -32,6 +35,11 @@ public class ShopProductController {
 	BrandService brandService;
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	private CartService cartService;
+	
+	@Autowired
+	private AccountService accountService;
 	
 	@GetMapping("/shop/{shop_id}")
     public ModelAndView home(Model model, 
@@ -62,6 +70,15 @@ public class ShopProductController {
 				List<Product> products = productService.findAllProductByCategoryIdAndBrandId(category_id, brand_id, shop_id, pageable.getLimit(),pageable.getOffset());
 				
 				int total = productService.countAllProductByCategoryIdAndBrandId(category_id, brand_id, shop_id);
+				
+				int total_cart_item= 0;
+				Long total_price = 0L;
+				Account account = accountService.findCurrentAccount();
+				total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
+				model.addAttribute("total_cart_item", total_cart_item);
+				
+				total_price = cartService.calculateCartTotalByCurrentAccount();
+				model.addAttribute("total_price", total_price);
 				model.addAttribute("total", total);
 				model.addAttribute("products", products);
 				model.addAttribute("pageable", pageable);

@@ -49,14 +49,7 @@
     		    e.cancelBubble = true;
     		    if (e.stopPropagation) e.stopPropagation();
 				
-    		    if(list_cart_item != null){
-    		    	for(i = 0; i < list_cart_item.length; i++){
-    		    		if(list_cart_item[i].product != product_id){
-    		    			count_cart_item = count_cart_item + 1;
-    		    			$('#count').text("ssss")
-    		    		}
-    		    	}
-    		    }
+    		    console.log(product_id)
     		    
                 let token = $("meta[name='_csrf']").attr("content");
                 let header = $("meta[name='_csrf_header']").attr("content");
@@ -94,6 +87,8 @@
 
                     success: function (data, status, xhr) {
                     	md.showAddProductNoti('bottom','right',data.msg)
+                    	$('#count').text(data.total_item)
+                    	$('#total').text(data.total)
                     //   window.location.href = window.location.href;
                      },
                     error: function (request, status, error) {
