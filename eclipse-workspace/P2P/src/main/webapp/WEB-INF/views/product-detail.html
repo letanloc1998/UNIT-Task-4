@@ -7,7 +7,7 @@
     <th:block th:include="layout/head :: head"></th:block>
     <th:block th:include="index/layout/index-head :: index-head"></th:block>
     <link rel="stylesheet" th:href="@{/static/index-template/styles/product_style.css}">
-    <link rel="stylesheet" th:href="@{/static/index-template/styles/zoom.css}">
+
 
 </head>
 
@@ -32,13 +32,7 @@
     <th:block th:replace="layout/footer :: footer"></th:block>
     <th:block th:replace="index/layout/index-footer :: index-footer"></th:block>
             
-    <script th:src="@{/static/index-template/js/jquery.zoom.js}"></script>
  
-    <script>
-	$(document).ready(function(){	
-		  $('#product_img').zoom();
-		});
-    </script>
 
 </body>
 </html>

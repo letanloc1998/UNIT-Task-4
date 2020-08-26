@@ -1,7 +1,11 @@
-select *
-from p2p_product
+select p2p_product.*, p2p_category.disable
+from p2p_product inner join p2p_category on p2p_product.category = p2p_category.id
 WHERE
-disable = 'false' AND shop=/*shop_id*/
+p2p_product.disable = 'false' 
+
+AND p2p_category.disable = 'false' 
+
+AND shop=/*shop_id*/
 
 /*IF category_id != null*/
     AND category = /*category_id*/
