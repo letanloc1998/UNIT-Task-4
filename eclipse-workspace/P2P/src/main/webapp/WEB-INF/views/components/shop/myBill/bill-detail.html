@@ -18,70 +18,60 @@
 								<h4 class="card-title " style="font-weight:bold">ID BILL</h4>
 								 <div><button class="btn btn-danger" onclick='javascript:window.history.back()' type="button"><i class="fas fa-backward"></i> &nbsp Back to list bill</button></div> 
 							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table">
-										<thead class=" text-primary">
-											<th>Id Product</th>
-											<th>Name Product</th>
-											<th>Price Product</th>											
-											<th>Quantity</th>
-										</thead>
-										<tbody>
-											<tr th:if="${!billitems.empty or billitems != null}"
-												th:each="billitem, i : ${billitems}">
-												<td><span th:text="${billitem.product}"></span></td>
-												<td><span th:text="${billitem.product_name.name}"></span></td>
-												<td><span th:text="${billitem.product_name.price}"></span></td>
-												<td><span th:text="${billitem.quantity}"></span></td>
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td style="color: red; font-weight:bold;font-size: 20px">Total Bill: <span th:inline="text">$ [[${#numbers.formatDecimal(total_price, 0, 'COMMA', 0, 'POINT')}]]</span></td>
-											</tr>
-										</tbody>
-									</table>
-									<!-- 									<div style="display: flex;align-items: center;">
-										<div class="btn-group">
-										<button type="button" style="background-color:#2196f3" class="btn btn-sm btn-default" th:text="${pageable.limit}"></button>
-										<button type="button" style="background-color:#2196f3"
-											class="btn btn-default dropdown-toggle dropdown-toggle-split"
-											data-toggle="dropdown" aria-haspopup="true"
-											aria-expanded="false">
-											<span class="sr-only">Toggle Dropdown</span>
-										</button>
-										<div class="dropdown-menu">
-											<a class="dropdown-item" th:href="@{/admin/account/list(limit=${10}, page=${1})}">10</a> 
-											<a class="dropdown-item" th:href="@{/admin/account/list(limit=${25}, page=${1})}">25</a> 
-											<a class="dropdown-item" th:href="@{/admin/account/list(limit=${50}, page=${1})}">50</a>
-										</div>
-									</div>
-									<nav th:if="${pageable.totalPages > 0}" class="pagination">
-										<ul class="pagination" style="margin-bottom: 0px;">
-											<li
-												th:class="${pageable.preMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
-												<a class="page-link" th:with="result=${ pageable.page - 1}"
-												th:href="@{/admin/account/list(limit=${pageable.limit}, page=${result})}">Previous</a>
-											</li>
-
-											<li th:each="item : ${pageable.items}"
-												th:class="${item.current == true} ? 'page-item active' : 'page-item'">
-												 <a
-												th:href="@{/admin/account/list(limit=${pageable.limit}, page=${item.number})}"
-												class="page-link" th:text="${item.number}"> </a>
-											</li>
-											<li
-												th:class="${pageable.nextMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
-												<a class="page-link" th:with="result=${ pageable.page + 1}"
-												th:href="@{/admin/account/list(limit=${pageable.limit}, page=${result})}">Next</a>
-											</li>
-										</ul>
-									</nav>
-									</div> -->
-
-								</div>
+							
+							
+							
+							
+														<div class="card-body">
+								<div class="container-fluid d-flex justify-content-center">
+                                <div class="card card-1">
+                                    <div class="card-body">
+                                        <div class="row justify-content-between mb-3">
+                                            <div class="col-auto "> Order :  <span th:text="${id_bill}"></span> </div>
+                                        </div>
+                                        <div th:if="${!billitems.empty or billitems != null}" th:each="billitem, i : ${billitems}" class="row">
+                                            <div class="col">
+                                                <div class="card card-2">
+                                                    <div class="card-body">
+                                                        <div style="cursor: pointer;" class="media" th:onclick="window.location=[[@{/product/__${billitem.product}__}]];">
+                                                            <div class="sq align-self-center "> 
+                                                                <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" 
+                                                                th:src="${billitem.product_name.img}" width="135" height="135" /> </div>
+                                                            <div class="media-body my-auto text-right">
+                                                                <div class="row my-auto flex-column flex-md-row">
+                                                                    <div class="col my-auto">
+                                                                        <h6 class="mb-0" th:text="${billitem.product_name.name}"></h6>
+                                                                    </div>
+                                                                    <div class="col my-auto"> 
+                                                                        <small>Quantity : <span th:text="${billitem.quantity}"></span></small>
+                                                                    </div>
+                                                                    <div class="col my-auto"> 
+                                                                        <small>Price : <span th:inline="text">$ [[${#numbers.formatDecimal(billitem.product_name.price, 0, 'COMMA', 0, 'POINT')}]]</span></small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <hr class="my-3 ">
+                                            
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                       
+                                                                         <div class="row">
+                                           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <span class="mb-1"><b>Total: </b></span>
+                                            <span th:inline="text" th:text="'$'+ ${#numbers.formatDecimal(total_price, 0, 'COMMA', 0, 'POINT')}"></span>
+                                           </div>
+                                       </div>
+                                    
+                                    </div>
+                                    
+                                </div>
+                                </div>
 							</div>
+							
+
 						</div>
 					</div>
 				</div>
