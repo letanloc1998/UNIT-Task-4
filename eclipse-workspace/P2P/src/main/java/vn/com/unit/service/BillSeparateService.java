@@ -19,9 +19,11 @@ public interface BillSeparateService {
 	
 	public void saveBillSeparateStatus(Long bill_separate_id, int status);
 	
-	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(Long account_id,Long status, Long payment);
+	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(Long account_id,Long status, Long payment,int limit,int offset);
 	
 	public List<billItemSeparate> findBillItemByBillSeparateId(Long bill_separate_id,Long account);
 	
 	public HistoryBillSeparate findBillSeparateById(Long id);
+	
+	public int countBillSeparateByAccountId(Long account_id,Long status, Long payment);
 }

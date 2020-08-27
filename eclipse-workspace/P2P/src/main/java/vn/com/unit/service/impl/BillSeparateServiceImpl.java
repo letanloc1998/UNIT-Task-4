@@ -51,10 +51,10 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 	}
 
 	@Override
-	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(Long account_id, Long status, Long payment) {
+	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(Long account_id, Long status, Long payment,int limit,int offset) {
 		// TODO Auto-generated method stub
 		try {
-			return billSeparateRepository.findAllBillSeparateByAccountId(account_id, status, payment);
+			return billSeparateRepository.findAllBillSeparateByAccountId(account_id, status, payment,limit,offset);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -81,6 +81,17 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 			// TODO: handle exception
 		}
 		return null;
+	}
+
+	@Override
+	public int countBillSeparateByAccountId(Long account_id, Long status, Long payment) {
+		// TODO Auto-generated method stub
+		try {
+			return billSeparateRepository.countAllBillSeparateByAccountId(account_id, status, payment);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
 	};
 
 }

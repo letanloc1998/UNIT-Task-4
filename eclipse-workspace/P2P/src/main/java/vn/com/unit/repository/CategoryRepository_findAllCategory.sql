@@ -1,3 +1,3 @@
 select *
 from p2p_category
-where disable = 'false'
+where disable = 0
