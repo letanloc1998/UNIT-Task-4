@@ -54,11 +54,11 @@
 										</div>
 									</div>
 
-									<button onclick="editPass()" class="btn btn-primary pull-right">Update
+									<button id="updatepass" onclick="editPass()" class="btn btn-primary pull-right">Update
 										Password</button>
 									<div class="clearfix"></div>
 								</div>
-							<form style="padding-left: 100px; padding-right: 100px; margin-bottom: 20px" th:action="@{/vendor/myaccount}"
+							<form style="padding-left: 100px; padding-right: 100px; margin-bottom: 20px" th:action="@{/profile/myaccount}"
 								th:object="${mymodelobject}" method="GET">
 								<input type="hidden" value="edit" name="mode" id="mode" />
 								<button type="submit" class="btn btn-primary pull-right">Update
@@ -80,14 +80,17 @@
 		$(document).ready(function(){
 			  $("#re-pass").focusin(function(){
 				  $("#status").text("");
+				  $("#updatepass").removeAttr('disabled');
 				  });
 			  $("#re-pass").focusout(function(){	  
 			    var rePass = $("#re-pass").val();
 			    var newPass = $("#new-pass").val();
 			        if(rePass != newPass){
 			        	$("#status").text("Your Password Incorrect!");
+			        	$("#updatepass").attr('disabled','disabled');
 			        }else{
 			        	$("#status").text("");
+			        	$("#updatepass").removeAttr('disabled');
 
 			        }
 			        
