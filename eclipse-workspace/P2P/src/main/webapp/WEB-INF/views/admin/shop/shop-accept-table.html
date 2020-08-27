@@ -33,16 +33,23 @@
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
                 $.ajax({
-                    url: `/admin/shop/accept/${shop[i].id}`,
+                    url: `/admin/shop/accept/${shops[i].id}`,
                     type: 'PUT',
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader(header, token);
                     },
 
                     success: function (data, status, xhr) {
-                        // alert(status);
-                        // To reload the page discarding the POST data(perform a GET request)
-                        window.location.href = window.location.href;
+                     	Swal.fire({
+                  		  position: 'center',
+                  		  icon: 'success',
+                  		  title: 'Active Success',
+                  		  showConfirmButton: false,
+                  		  timer: 800
+                  		}).then(()=>{
+                              window.location.href = window.location.href;
+
+                  		})
                     },
                     error: function (request, status, error) {
                         alert(status);
