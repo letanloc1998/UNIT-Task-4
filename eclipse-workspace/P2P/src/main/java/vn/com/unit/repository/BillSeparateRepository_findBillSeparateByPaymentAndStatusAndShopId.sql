@@ -17,5 +17,5 @@ where bill_separate.shop = @shop
   and bill.payment = 0
     and bill_separate.status = 0
 /*END*/  
-order by bill_separate.id
+order by bill_separate.id desc
 OFFSET  /*offset*/ ROWS FETCH NEXT  /*sizeOfPage*/ ROWS ONLY
