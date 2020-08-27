@@ -32,7 +32,7 @@
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
                 $.ajax({
-                    url: `/admin/shop/accept/${shop[i].id}`,
+                    url: `/admin/shop/accept/${shops[i].id}`,
                     type: 'PUT',
                     beforeSend: function (xhr) {
                         xhr.setRequestHeader(header, token);
