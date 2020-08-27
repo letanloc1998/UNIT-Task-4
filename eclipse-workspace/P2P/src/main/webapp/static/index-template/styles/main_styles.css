@@ -2213,7 +2213,7 @@ select option
 {
 	position: absolute;
 	left: 0;
-	top: -7px;
+	top: 7px;
 	font-size: 24px;
 	font-weight: 500;
 	margin-bottom: -29px;
