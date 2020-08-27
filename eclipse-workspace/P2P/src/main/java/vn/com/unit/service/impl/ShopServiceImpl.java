@@ -110,4 +110,15 @@ public class ShopServiceImpl implements ShopService {
 		return shopRepository.searchAllShop();
 		
 	}
+
+	@Override
+	public int countShopByStatus(int status) {
+		// TODO Auto-generated method stub
+		try {
+			return shopRepository.countShopByStatus(status);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
 }

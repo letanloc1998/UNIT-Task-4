@@ -76,11 +76,11 @@
 											</button>
 											<div class="dropdown-menu">
 												<a class="dropdown-item"
-													th:href="@{/admin/shop/accept-list(limit=${10}, page=${1})}">10</a>
+													th:href="@{/admin/shop/deactive-list(limit=${10}, page=${1})}">10</a>
 												<a class="dropdown-item"
-													th:href="@{/admin/shop/accept-list(limit=${25}, page=${1})}">25</a>
+													th:href="@{/admin/shop/deactive-list(limit=${25}, page=${1})}">25</a>
 												<a class="dropdown-item"
-													th:href="@{/admin/shop/accept-list(limit=${50}, page=${1})}">50</a>
+													th:href="@{/admin/shop/deactive-list(limit=${50}, page=${1})}">50</a>
 											</div>
 										</div>
 										<nav th:if="${pageable.totalPages > 0}" class="pagination">
@@ -88,19 +88,19 @@
 												<li
 													th:class="${pageable.preMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
 													<a class="page-link" th:with="result=${ pageable.page - 1}"
-													th:href="@{/admin/shop/accept-list(limit=${pageable.limit}, page=${result})}">Previous</a>
+													th:href="@{/admin/shop/deactive-list(limit=${pageable.limit}, page=${result})}">Previous</a>
 												</li>
 
 												<li th:each="item : ${pageable.items}"
 													th:class="${item.current == true} ? 'page-item active' : 'page-item'">
 													<a
-													th:href="@{/admin/shop/accept-list(limit=${pageable.limit}, page=${item.number})}"
+													th:href="@{/admin/shop/deactive-list(limit=${pageable.limit}, page=${item.number})}"
 													class="page-link" th:text="${item.number}"> </a>
 												</li>
 												<li
 													th:class="${pageable.nextMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
 													<a class="page-link" th:with="result=${ pageable.page + 1}"
-													th:href="@{/admin/shop/accept-list(limit=${pageable.limit}, page=${result})}">Next</a>
+													th:href="@{/admin/shop/deactive-list(limit=${pageable.limit}, page=${result})}">Next</a>
 												</li>
 											</ul>
 										</nav>

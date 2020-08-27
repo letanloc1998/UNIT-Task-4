@@ -42,7 +42,7 @@ public class AdminShopManagementController {
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
 
-		int totalitems = shopService.countAllShop();
+		int totalitems = shopService.countShopByStatus(1);
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
@@ -59,7 +59,7 @@ public class AdminShopManagementController {
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
-		int totalitems = shopService.countAllShop();
+		int totalitems = shopService.countShopByStatus(0);
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
 		List<Shop> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 0);
@@ -74,7 +74,9 @@ public class AdminShopManagementController {
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
-		int totalitems = shopService.countAllShop();
+		int totalitems3 = shopService.countShopByStatus(3);
+		int totalitems2 = shopService.countShopByStatus(2);
+		int totalitems=totalitems2+totalitems3;
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
 		List<Shop> deactiveByAdmin = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 3);
