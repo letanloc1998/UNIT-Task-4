@@ -83,7 +83,7 @@
 												</td>
 												<td><span th:text=" ${account.createAt} ? ${#dates.format(account.createAt, 'dd-MM-yyyy')} "></span></td>
 												<td class="text-center"><span> <a type="button" rel="tooltip" title="View account"
-														th:href="@{'/admin/account/detail/' + ${account.id}}"
+														th:href="@{'/admin/account/' + ${account.id}}"
 														class="btn btn-large btn-info  btn-just-icon"> <i class="fa fa-eye">
 														</i>
 													</a>

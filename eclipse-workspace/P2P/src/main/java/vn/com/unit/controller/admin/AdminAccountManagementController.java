@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
+import vn.com.unit.entity.Shop;
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.AccountService;
+import vn.com.unit.service.ShopService;
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -29,7 +31,9 @@ public class AdminAccountManagementController {
 
 	@Autowired
 	private AccountService accountService;
-
+	@Autowired
+	private ShopService shopService;
+	
 	@GetMapping("/admin/account/list")
 	public ModelAndView accountList(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -50,10 +54,24 @@ public class AdminAccountManagementController {
 
 		return new ModelAndView("admin/account/account-table");
 	}
+	
+	@GetMapping("/admin/account/{account_id}")
+	public ModelAndView accountList(Model model,
+			 @PathVariable("account_id") Long account_id,
+			HttpServletRequest request) {
+		
+		Account account = accountService.findAccountById(account_id);
+		Shop shop = shopService.findShopByAccountId(account_id);
+		model.addAttribute("account",account);
+		model.addAttribute("shop",shop);
+
+		return new ModelAndView("admin/account/account-view");
+	}
+	
 	@GetMapping("/admin/account/add")
 	public ModelAndView accountAdd(Model model,
 			HttpServletRequest request) {
-
+		
 		return new ModelAndView("admin/account/add-account");
 	}
 	
