@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.mservice.allinone.models.CaptureMoMoRequest;
 import com.mservice.allinone.models.CaptureMoMoResponse;
@@ -51,7 +52,8 @@ public class MomoPayment {
 			String amount = total;
 			String orderInfo = "Total : " + total + " Address: " + convert_address;
 
-			String returnUrl = "http://localhost:8080/bill/" + bill_id.toString();
+			String BASE_URL = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+			String returnUrl =  BASE_URL + "/bill/" + bill_id.toString();
 			String notifyUrl = "https://2d5b673c6c4f.ngrok.io/webhook/momo";
 
 			String extraData = "";

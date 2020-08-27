@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -34,7 +35,7 @@ public class CommonUtils {
 
 	private static final SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	public static final String JWT_SECRET = Encoders.BASE64.encode(key.getEncoded());
-	
+
 	public static final Long JWT_EXPIRATION = 600000L; // milliseconds
 
 	public static int ROW_OF_PAGE = 3;
