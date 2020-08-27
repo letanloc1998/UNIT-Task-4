@@ -56,14 +56,16 @@
 
 									<button id="updatepass" onclick="editPass()" class="btn btn-primary pull-right">Update
 										Password</button>
+									<a th:href="@{/profile/myaccount?mode=edit}" class="btn btn-primary pull-right">Update
+										Profile</a>	
 									<div class="clearfix"></div>
 								</div>
-							<form style="padding-left: 100px; padding-right: 100px; margin-bottom: 20px" th:action="@{/profile/myaccount}"
+							<!-- <form style="padding-left: 100px; padding-right: 100px; margin-bottom: 20px" th:action="@{/profile/myaccount}"
 								th:object="${mymodelobject}" method="GET">
 								<input type="hidden" value="edit" name="mode" id="mode" />
 								<button type="submit" class="btn btn-primary pull-right">Update
 									Profile</button>
-							</form>
+							</form> -->
 						</div>
 					</div>
 					<div class="col-md-4">

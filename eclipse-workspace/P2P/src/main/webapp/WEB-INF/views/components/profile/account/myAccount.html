@@ -65,11 +65,13 @@
 								</div>
 								<button id="update-btn" th:onclick="editAccount()"
 									class="btn btn-primary pull-right">Update Profile</button>
-								<form th:action="@{/profile/myaccount}" th:object="${mymodelobject}" method="GET">
+									<a th:href="@{/profile/myaccount?mode=editPass}" class="btn btn-primary pull-right">Update
+										Password</a>	
+								<!-- <form th:action="@{/profile/myaccount}" th:object="${mymodelobject}" method="GET">
 								<input type="hidden" value="editPass" name="mode" id="mode" />
 								<button type="submit"
 									class="btn btn-primary pull-right">Update Password</button>
-								</form>
+								</form> -->
 							</div>
 						</div>
 					</div>
