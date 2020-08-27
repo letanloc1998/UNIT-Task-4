@@ -13,7 +13,13 @@ public interface ProductRepository extends MirageRepository<Shop, Long> {
 
 	public List<Product> findAllProductByShopId(@Param("shop_id") Long shop_id,@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 	
-	public List<Product> findAllProductByCategoryId(@Param("category_id") Long category_id);
+	public List<Product> findAllProductByCategoryId(@Param("category_id") Long category_id,
+			@Param("sizeOfPage") Integer sizeOfPage,
+			@Param("offset") Integer offset
+			);
+	
+	public List<Product> findAllProductByCategoryIdNotPagination(@Param("category_id") Long category_id
+			);
 	
 	public List<Product> findAllProductByBrandId(@Param("brand_id") Long brand_id);
 
@@ -61,6 +67,10 @@ public interface ProductRepository extends MirageRepository<Shop, Long> {
 			@Param("category_id") Long category_id,
 			@Param("brand_id") Long brand_id,
 			@Param("shop_id") Long shop_id
+			);
+	
+	public int countAllProductByCategoryId(
+			@Param("category_id") Long category_id
 			);
 
 	/*

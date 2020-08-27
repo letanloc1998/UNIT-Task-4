@@ -49,7 +49,7 @@ public class ProductController {
 		Shop shop = shopService.findShopByAccountId(product.getShop());
 		model.addAttribute("product", product);
 		Long id = (long) product.getCategory();
-		List<Product> products = productService.findAllProductByCategoryId(id);
+		List<Product> products = productService.findAllProductByCategoryIdNotPagination(id);
 		model.addAttribute("products", products);
 		List<Brand> brands = brandService.findAllBrand();
 		List<Category> categories = categoryService.findAllCategory();

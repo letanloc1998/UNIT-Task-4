@@ -6,14 +6,14 @@
 
 </head>
 <body>
-	<th:block th:fragment="category-menu-search">
+	<th:block th:fragment="product-by-category">
 		<div class="home">
 			<div class="home_background parallax-window" data-parallax="scroll"
 				data-image-src="/static/template/ontech/images/shop_background.jpg"></div>
 			<div class="home_overlay"></div>
 			<div
 				class="home_content d-flex flex-column align-items-center justify-content-center">
-				<h2 class="home_title">Smartphones & Tablets</h2>
+				<h2 class="home_title" th:text="${cate.name}"></h2>
 			</div>
 		</div>
 
@@ -27,23 +27,13 @@
 							<div class="sidebar_section">
 								<div class="sidebar_title">Categories</div>               	
 								<ul class="sidebar_categories">
-									<li><a href="#">All Category</a></li>
 									<th:block th:each="category : ${categories}">
-									<li><a href="#" th:text="${category.name}"></a></li>
+									<li><a th:href="@{/category(id=${category.id})}" th:text="${category.name}"></a></li>
 									
 								</ul>
 							</div>
 							
 							
-							<div class="sidebar_section">
-								<div class="sidebar_subtitle brands_subtitle">Brands</div>
-								<ul class="brands_list">
-									<li><a href="#">All Brand</a></li>
-									<th:block th:each="brand : ${brands}">
-									<li><a href="#" th:text="${brand.name}"></a></li>
-									
-								</ul>
-							</div>
 						</div>
 
 					</div>
@@ -102,7 +92,36 @@
 
 							</th:block>
 						</div>
+			<div style="display: flex; align-items: center;">
+			<script th:inline="javascript">
+			 const a = [[${pageable}]]
+			 console.log(a)
+			</script>
+				<nav th:if="${pageable.totalPages > 0}" class="pagination">
+				
+					<ul class="pagination" style="margin-bottom: 0px;">
+						<li
+							th:class="${pageable.preMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
+							<a class="page-link" th:with="result=${ pageable.page - 1}"
+							th:href="@{/category(limit=${pageable.limit}, page=${result},id=${param.id})}"><i
+								class="fas fa-arrow-left"></i></a>
+						</li>
 
+						<li th:each="item : ${pageable.items}"
+							th:class="${item.current == true} ? 'page-item active' : 'page-item'">
+							<!--  --> <a
+							th:href="@{/category(limit=${pageable.limit}, page=${item.number},id=${param.id})}"
+							class="page-link" th:text="${item.number}"> </a>
+						</li>
+						<li
+							th:class="${pageable.nextMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
+							<a class="page-link" th:with="result=${ pageable.page + 1}"
+							th:href="@{/category(limit=${pageable.limit}, page=${result}, id=${param.id})}"><i
+								class="fas fa-arrow-right"></i></a>
+						</li>
+					</ul>
+				</nav>
+			</div>
 					</div>
 
 				</div>

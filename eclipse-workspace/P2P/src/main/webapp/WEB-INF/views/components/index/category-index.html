@@ -46,14 +46,14 @@
 							<div class="owl-carousel owl-theme popular_categories_slider">
 								<th:block th:each="category : ${categories}">
 								<!-- Popular Categories Item -->
-								<div class="owl-item">
+								<div style="cursor:pointer" class="owl-item" th:onclick="window.location=[[@{/category(id=${category.id})}]];">
 									<div
 										class="popular_category d-flex flex-column align-items-center justify-content-center">
 										<div class="popular_category_image">
 											<img th:src="@{static/template/ontech/images/popular_5.png}"
 												alt="">
 										</div>
-										<div class="popular_category_text" th:text="${category.name}"></div>
+										<a th:href="@{/category(id=${category.id})}" class="popular_category_text" th:text="${category.name}"></a>
 									</div>
 								</div>
 

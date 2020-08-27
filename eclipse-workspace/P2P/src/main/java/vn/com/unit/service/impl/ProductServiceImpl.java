@@ -63,11 +63,31 @@ public class ProductServiceImpl implements ProductService {
 	
 	
 	@Override
-	public List<Product> findAllProductByCategoryId(Long category_id) {
+	public List<Product> findAllProductByCategoryId(Long category_id,int limit,int offset) {
 
 		List<Product> products = new ArrayList<Product>();
 		try {
-			products = productRepository.findAllProductByCategoryId(category_id);
+			products = productRepository.findAllProductByCategoryId(category_id,limit,offset);
+
+			for (Product product : products) {
+				Brand brand = brandService.findBrandByProductId(product.getId());
+				product.setBrand_name(brand);
+				Category category = categoryService.findCategoryByProductId(product.getId());
+				product.setCategory_name(category);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return products;
+	}
+	
+	@Override
+	public List<Product> findAllProductByCategoryIdNotPagination(Long category_id) {
+
+		List<Product> products = new ArrayList<Product>();
+		try {
+			products = productRepository.findAllProductByCategoryIdNotPagination(category_id);
 
 			for (Product product : products) {
 				Brand brand = brandService.findBrandByProductId(product.getId());
@@ -205,6 +225,17 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		try {
 			return productRepository.countAllProductByCategoryIdAndBrandId(category_id, brand_id,shop_id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return 0;
+	}
+	
+	@Override
+	public int countAllProductByCategoryId(Long category_id) {
+		// TODO Auto-generated method stub
+		try {
+			return productRepository.countAllProductByCategoryId(category_id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

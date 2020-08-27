@@ -8,7 +8,9 @@ public interface ProductService {
 	
 	public List<Product> findAllProductByShopId(Long shop_id,int limit,int offset);
 	
-	public List<Product> findAllProductByCategoryId(Long category_id);
+	public List<Product> findAllProductByCategoryId(Long category_id,int limit,int offset);
+	
+	public List<Product> findAllProductByCategoryIdNotPagination(Long category_id);
 	
 	public List<Product> findAllProductByBrandId(Long brand_id);
 	
@@ -29,6 +31,8 @@ public interface ProductService {
 	public int CountAllProductByShopId(Long shop_id);
 	
 	public int countAllProductByCategoryIdAndBrandId(Long category_id, Long brand_id,Long shop_id);
+	
+	public int countAllProductByCategoryId(Long category_id);
 	
 	public Product findOneTopProductPaymentSuccess();
 }

@@ -21,8 +21,10 @@ import org.springframework.web.servlet.ModelAndView;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.CartItem;
+import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
+import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BrandService;
 import vn.com.unit.service.CartService;
@@ -137,6 +139,38 @@ public class HomeController {
 		total = cartService.calculateCartTotalByCurrentAccount();
 		model.addAttribute("total_price", total);
 		return new ModelAndView("product-by-search");
+	}
+	
+	@GetMapping("/category")
+	public ModelAndView category(Model model, 
+			@RequestParam("id") Long id,
+    		@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "limit", required = false, defaultValue = "12") int limit
+			) {
+		
+		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
+		
+		int totalitems = productService.countAllProductByCategoryId(id);
+		
+		Category cate = categoryService.findCategoryById(id);
+		model.addAttribute("cate", cate);
+		
+		PageRequest pageable = new PageRequest(page, limit, totalitems);
+		model.addAttribute("pageable", pageable);
+		
+		List<Product> products = productService.findAllProductByCategoryId(id, pageable.getLimit(),pageable.getOffset());
+		model.addAttribute("products", products);
+		
+		
+		int total_cart_item= 0;
+		Long total = 0L;
+		Account account = accountService.findCurrentAccount();
+		total_cart_item = cartService.countAllCartItemByCurrentAccount(account.getId());
+		model.addAttribute("total_cart_item", total_cart_item);
+		
+		total = cartService.calculateCartTotalByCurrentAccount();
+		model.addAttribute("total_price", total);
+		return new ModelAndView("product-by-category");
 	}
 
 	@GetMapping("/register")
