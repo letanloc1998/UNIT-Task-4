@@ -36,17 +36,17 @@
                                                         <div style="cursor: pointer;" class="media" th:onclick="window.location=[[@{/product/__${billitem.product}__}]];">
                                                             <div class="sq align-self-center "> 
                                                                 <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" 
-                                                                th:src="${billitem.product_name.img}" width="135" height="135" /> </div>
+                                                                th:src="${billitem.img}" width="135" height="135" /> </div>
                                                             <div class="media-body my-auto text-right">
                                                                 <div class="row my-auto flex-column flex-md-row">
                                                                     <div class="col my-auto">
-                                                                        <h6 class="mb-0" th:text="${billitem.product_name.name}"></h6>
+                                                                        <h6 class="mb-0" th:text="${billitem.productName}"></h6>
                                                                     </div>
                                                                     <div class="col my-auto"> 
                                                                         <small>Quantity : <span th:text="${billitem.quantity}"></span></small>
                                                                     </div>
                                                                     <div class="col my-auto"> 
-                                                                        <small>Price : <span th:inline="text">$ [[${#numbers.formatDecimal(billitem.product_name.price, 0, 'COMMA', 0, 'POINT')}]]</span></small>
+                                                                        <small>Price : <span th:inline="text">$ [[${#numbers.formatDecimal(billitem.price, 0, 'COMMA', 0, 'POINT')}]]</span></small>
                                                                     </div>
                                                                 </div>
                                                             </div>

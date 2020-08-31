@@ -40,20 +40,20 @@ public class BillItemServiceImpl implements BillItemService {
 	@Override
 	public List<BillItemDto> findAllBillItemByBillSeparateId(Long bill_separate_id) {
 
-		List<BillItem> bill_item_list = new ArrayList<BillItem>();
+		//List<BillItem> bill_item_list = new ArrayList<BillItem>();
 		List<BillItemDto> bill_item_dto_list = new ArrayList<BillItemDto>();
 //		int total = 0;
 		try {
-			bill_item_list = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
-			for (BillItem bill_item : bill_item_list) {
+			bill_item_dto_list = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
+			/*for (BillItem bill_item : bill_item_dto_list) {
 				Long product_id = (long) bill_item.getProduct();
 				Product product = productService.findProductByProductId(product_id);
 				
 				BillItemDto bill_item_dto = new BillItemDto(bill_item);
 				
-				bill_item_dto.setProductName(product.getName());
+				bill_item_dto.setProductName(product.getName());*/
 //				total = total + (product.getPrice() * bill_item.getQuantity());
-			}
+			//}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -63,11 +63,11 @@ public class BillItemServiceImpl implements BillItemService {
 	@Override
 	public int totalPriceOfBillByBillSeparateId(Long bill_separate_id) {
 
-		List<BillItem> bill_item_list = new ArrayList<BillItem>();
+		List<BillItemDto> bill_item_dto_list = new ArrayList<BillItemDto>();
 		int total = 0;
 		try {
-			bill_item_list = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
-			for (BillItem bill_item : bill_item_list) {
+			bill_item_dto_list = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
+			for (BillItem bill_item : bill_item_dto_list) {
 				Long product_id = (long) bill_item.getProduct();
 				Product product = productService.findProductByProductId(product_id);
 //				bill_item.setProduct_name(product_name);
