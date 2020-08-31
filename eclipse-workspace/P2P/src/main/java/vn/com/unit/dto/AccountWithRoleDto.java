@@ -5,9 +5,9 @@ import java.util.List;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Role;
 
-public class AccountRoleDto extends Account {
+public class AccountWithRoleDto extends Account {
 
-	public AccountRoleDto(Account account) {
+	public AccountWithRoleDto(Account account) {
 		super(account);
 	}
 
