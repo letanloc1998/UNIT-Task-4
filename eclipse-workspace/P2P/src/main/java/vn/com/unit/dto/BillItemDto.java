@@ -14,6 +14,9 @@ public class BillItemDto extends BillItem {
 
 	private Long price;
 
+	public BillItemDto() {
+	}
+
 	public BillItemDto(BillItem billItem) {
 		super(billItem);
 	}
