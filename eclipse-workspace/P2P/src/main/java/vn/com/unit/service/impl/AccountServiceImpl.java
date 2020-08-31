@@ -9,7 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import vn.com.unit.dto.AccountRoleDto;
+import vn.com.unit.dto.AccountWithRoleDto;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Role;
 import vn.com.unit.repository.AccountRepository;
@@ -80,16 +80,16 @@ public class AccountServiceImpl implements AccountService {
 
 	// tìm tất cả user kèm role
 	@Override
-	public List<AccountRoleDto> findAllAccount(int limit, int offset, String keyword, Long role_id) {
+	public List<AccountWithRoleDto> findAllAccount(int limit, int offset, String keyword, Long role_id) {
 		List<Account> accounts = new ArrayList<Account>();
-		List<AccountRoleDto> account_role_dto_list = new ArrayList<AccountRoleDto>();
+		List<AccountWithRoleDto> account_role_dto_list = new ArrayList<AccountWithRoleDto>();
 		try {
 			accounts = accountRepository.findAllAccountActive(limit, offset, keyword, role_id);
 
 			for (Account account : accounts) {
 				List<Role> roles = roleService.findRoleByAccountId(account.getId());
 
-				AccountRoleDto account_role_dto = (AccountRoleDto) account;
+				AccountWithRoleDto account_role_dto = new AccountWithRoleDto(account);
 
 				account_role_dto.setRoles(roles);
 				account_role_dto_list.add(account_role_dto);
@@ -111,12 +111,23 @@ public class AccountServiceImpl implements AccountService {
 			}
 
 			String password = CommonUtils.encodePassword(account.getPassword());
-			Long account_new_id = accountRepository.createNewAccount(username, password);
-			if (account_new_id != null) {
+			
+//			Long account_new_id = accountRepository.createNewAccount(username, password);
+			
+			Account account_temp = new Account();
+			account_temp.setUsername(username);
+			account_temp.setPassword(password);
+			
+			Account account_new = accountRepository.save(account_temp);
+			
+			if (account_new != null) {
 
-				accountService.setRoleByAccountId(account_new_id, roleService.findRoleIdByName(role_name));
+				accountService.setRoleByAccountId(account_new.getId(), roleService.findRoleIdByName(role_name));
 
-				return accountService.findByUsername(account.getUsername());
+//				AccountRole account_role_new = new AccountRole();
+				
+				
+				return account_new;
 			}
 
 		} catch (Exception e) {
@@ -138,10 +149,10 @@ public class AccountServiceImpl implements AccountService {
 
 	// getCurrentAccount
 	@Override
-	public AccountRoleDto findCurrentAccount() {
+	public AccountWithRoleDto findCurrentAccount() {
 		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		Account account = findByUsername(currentUsername);
-		AccountRoleDto account_role_dto = new AccountRoleDto(account);
+		AccountWithRoleDto account_role_dto = new AccountWithRoleDto(account);
 		List<Role> roles = roleService.findRoleByAccount(account);
 		account_role_dto.setRoles(roles);
 		return account_role_dto;

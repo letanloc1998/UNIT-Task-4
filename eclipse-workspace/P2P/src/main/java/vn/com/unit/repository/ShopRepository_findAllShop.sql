@@ -1,4 +1,6 @@
-SELECT S.*,A.name owner_name
-FROM  p2p_shop S left Join p2p_account A on A.id=S.id
-order by S.id
-OFFSET  /*offset*/ ROWS FETCH NEXT  /*sizeOfPage*/ ROWS ONLY
+SELECT shop.*, account.name username
+FROM  p2p_shop shop
+left Join p2p_account account
+on account.id = shop.id
+order by shop.id
+OFFSET /*offset*/ ROWS FETCH NEXT /*sizeOfPage*/ ROWS ONLY

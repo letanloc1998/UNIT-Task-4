@@ -1,5 +1,5 @@
-SELECT S.*,A.username
-FROM  p2p_shop S left Join p2p_account A on A.id=S.id
+SELECT shop.*, account.username
+FROM  p2p_shop shop left Join p2p_account account on account.id = shop.id
 where status=/*status*/
-order by S.id
+order by shop.id
 OFFSET  /*offset*/ ROWS FETCH NEXT  /*sizeOfPage*/ ROWS ONLY
