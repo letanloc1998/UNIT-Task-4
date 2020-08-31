@@ -11,7 +11,7 @@ import vn.com.unit.entity.Product;
 
 public interface ProductRepository extends MirageRepository<Product, Long> {
 
-	public List<Product> findAllProductByShopId(@Param("shop_id") Long shop_id,@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
+	public List<ProductDto> findAllProductByShopId(@Param("shop_id") Long shop_id,@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 	
 	public List<Product> findAllProductByCategoryId(@Param("category_id") Long category_id,
 			@Param("sizeOfPage") Integer sizeOfPage,

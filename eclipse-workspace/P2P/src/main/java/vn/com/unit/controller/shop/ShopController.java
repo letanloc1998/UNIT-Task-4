@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.dto.BillItemDto;
+import vn.com.unit.dto.BillSeparateShopViewDto;
+import vn.com.unit.dto.ProductDto;
 import vn.com.unit.entity.Account;
-import vn.com.unit.entity.Bill;
-import vn.com.unit.entity.BillItem;
-import vn.com.unit.entity.BillSeparate;
-import vn.com.unit.entity.BillSeparateShop;
 import vn.com.unit.entity.Brand;
 import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
@@ -143,7 +142,7 @@ public class ShopController {
 		model.addAttribute("shop", shop);
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
 		
-		List<Product> products = productService.findAllProductByShopId(account.getId(),pageable.getLimit(), pageable.getOffset());
+		List<ProductDto> products = productService.findAllProductByShopId(account.getId(),pageable.getLimit(), pageable.getOffset());
 		
 		
 		List<Brand> brands = brandService.findAllBrand();
@@ -197,15 +196,10 @@ public class ShopController {
 			
 			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
 			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShop bill : bills) {
+			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
+			for (BillSeparateShopViewDto bill : bills) {
 				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotal_price(total);
-				Bill bill_detail = billService.findBillByBillId(bill.getBill());
-				Long id_account = 1L;
-				Account customer = accountService.findAccountById(id_account);
-				bill.setCustomer(customer);
-				bill.setBill_name(bill_detail);
+				bill.setTotalPrice(total);
 			}
 			model.addAttribute("pageable", pageable);
 			model.addAttribute("bills", bills);
@@ -219,15 +213,10 @@ public class ShopController {
 			Long payment = (long) 1;
 			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
 			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShop bill : bills) {
+			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
+			for (BillSeparateShopViewDto bill : bills) {
 				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotal_price(total);
-				Bill bill_detail = billService.findBillByBillId(bill.getBill());
-				Long id_account = Long.parseLong(bill_detail.getAccount());
-				Account customer = accountService.findAccountById(id_account);
-				bill.setCustomer(customer);
-				bill.setBill_name(bill_detail);
+				bill.setTotalPrice(total);
 			}
 			model.addAttribute("bills", bills);
 			model.addAttribute("pageable", pageable);
@@ -241,15 +230,10 @@ public class ShopController {
 			Long payment = (long) 1;
 			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
 			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShop bill : bills) {
+			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
+			for (BillSeparateShopViewDto bill : bills) {
 				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotal_price(total);
-				Bill bill_detail = billService.findBillByBillId(bill.getBill());
-				Long id_account = Long.parseLong(bill_detail.getAccount());
-				Account customer = accountService.findAccountById(id_account);
-				bill.setCustomer(customer);
-				bill.setBill_name(bill_detail);
+				bill.setTotalPrice(total);
 			}
 			model.addAttribute("bills", bills);
 			model.addAttribute("pageable", pageable);
@@ -263,15 +247,10 @@ public class ShopController {
 			Long payment = (long) 1;
 			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
 			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShop bill : bills) {
+			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
+			for (BillSeparateShopViewDto bill : bills) {
 				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotal_price(total);
-				Bill bill_detail = billService.findBillByBillId(bill.getBill());
-				Long id_account = Long.parseLong(bill_detail.getAccount());
-				Account customer = accountService.findAccountById(id_account);
-				bill.setCustomer(customer);
-				bill.setBill_name(bill_detail);
+				bill.setTotalPrice(total);
 			}
 			model.addAttribute("bills", bills);
 			model.addAttribute("pageable", pageable);
@@ -283,15 +262,10 @@ public class ShopController {
 			Long payment = (long) -1;
 			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
 			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShop bill : bills) {
+			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
+			for (BillSeparateShopViewDto bill : bills) {
 				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotal_price(total);
-				Bill bill_detail = billService.findBillByBillId(bill.getBill());
-				Long id_account = Long.parseLong(bill_detail.getAccount());
-				Account customer = accountService.findAccountById(id_account);
-				bill.setCustomer(customer);
-				bill.setBill_name(bill_detail);
+				bill.setTotalPrice(total);
 			}
 			model.addAttribute("bills", bills);
 			model.addAttribute("pageable", pageable);
@@ -303,15 +277,10 @@ public class ShopController {
 		Long payment = (long) 0;
 		int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
 		PageRequest pageable = new PageRequest(page, limit, totalitems);
-		List<BillSeparateShop> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-		for (BillSeparateShop bill : bills) {
+		List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
+		for (BillSeparateShopViewDto bill : bills) {
 			int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-			bill.setTotal_price(total);
-			Bill bill_detail = billService.findBillByBillId(bill.getBill());
-			Long id_account = Long.valueOf(bill_detail.getAccount());
-			Account customer = accountService.findAccountById(id_account);
-			bill.setCustomer(customer);
-			bill.setBill_name(bill_detail);
+			bill.setTotalPrice(total);
 		}
 		model.addAttribute("bills", bills);
 		model.addAttribute("pageable", pageable);
@@ -326,7 +295,7 @@ public class ShopController {
 		Shop shop = shopService.findShopByAccountId(account.getId());
 		model.addAttribute("shop", shop);
 		model.addAttribute("id_bill", bill_separate_id);
-		List<BillItem> billitems = billItemService.findAllBillItemByBillSeparateId(bill_separate_id);
+		List<BillItemDto> billitems = billItemService.findAllBillItemByBillSeparateId(bill_separate_id);
 		int total = billItemService.totalPriceOfBillByBillSeparateId(bill_separate_id);
 		model.addAttribute("billitems", billitems);
 		model.addAttribute("total_price", total);

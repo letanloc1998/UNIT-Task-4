@@ -1,9 +1,11 @@
 declare @shop int = /*shop_id*/;
 
-select bill_separate.*, bill.payment, bill.create_at
-from p2p_bill_separate bill_separate
-left join p2p_bill bill
-on bill.id = bill_separate.bill
+select p2p_bill_separate.*, p2p_bill.address, p2p_bill.create_at, p2p_account.username
+from p2p_bill_separate 
+left join p2p_bill 
+on p2p_bill.id = p2p_bill_separate.bill
+left join p2p_account
+on p2p_bill.account = p2p_account.id
 where bill_separate.shop = @shop
 /*IF payment > 0 */
   and bill.payment > 0
