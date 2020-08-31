@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.unit.dto.BillItemDto;
+import vn.com.unit.dto.BillSeparateProfileView;
 import vn.com.unit.entity.BillSeparate;
 //import vn.com.unit.entity.BillSeparateShop;
 //import vn.com.unit.entity.HistoryBillSeparate;
@@ -50,16 +52,16 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 		
 	}
 
-//	@Override
-//	public List<HistoryBillSeparate> findAllBillSeparateByAccountId(Long account_id, Long status, Long payment,int limit,int offset) {
-//		// TODO Auto-generated method stub
-//		try {
-//			return billSeparateRepository.findAllBillSeparateByAccountId(account_id, status, payment,limit,offset);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//		return null;
-//	}
+	@Override
+	public List<BillSeparateProfileView> findAllBillSeparateByAccountId(Long account_id, Long status, Long payment,int limit,int offset) {
+		// TODO Auto-generated method stub
+		try {
+			return billSeparateRepository.findAllBillSeparateByAccountId(account_id, status, payment,limit,offset);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 
 //	@Override
 //	public List<billItemSeparate> findBillItemByBillSeparateId(Long bill_separate_id,Long account) {
@@ -72,16 +74,16 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 //		return null;
 //	}
 
-//	@Override
-//	public HistoryBillSeparate findBillSeparateById(Long id) {
-//		// TODO Auto-generated method stub
-//		try {
-//			return billSeparateRepository.findBillSeparateItemById(id);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//		return null;
-//	}
+	@Override
+	public BillItemDto findBillSeparateById(Long id) {
+		// TODO Auto-generated method stub
+		try {
+			return billSeparateRepository.findBillSeparateItemById(id);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 
 	@Override
 	public int countBillSeparateByAccountId(Long account_id, Long status, Long payment) {

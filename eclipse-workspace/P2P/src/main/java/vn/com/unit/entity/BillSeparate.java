@@ -27,6 +27,14 @@ public class BillSeparate {
 	@Column(name = "refund")
 	private Long refund;
 
+	public BillSeparate(BillSeparate billSeparate) {
+		this.id = billSeparate.getId();
+		this.bill = billSeparate.getBill();
+		this.shop = billSeparate.getShop();
+		this.status = billSeparate.getStatus();
+		this.refund = billSeparate.getRefund();
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Category;
-import vn.com.unit.entity.categoryEntity;
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.CategoryService;
 
@@ -101,23 +100,23 @@ public class AdminCategoryController {
 	}
 	
 	
-	@PostMapping("/admin/category/addnew")
-	@ResponseBody
-	public ResponseEntity<String> createNewCategory(@RequestBody categoryEntity category, Model model) {
-		if (categoryService.findCategoryByName(category.getName()) != null) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Category already exists\" }");
-			}
-		if (category.getName() == "") {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
-		}
-		categoryEntity result = categoryService.createNewCategory(category);
-		if (result.getId() != null) {
-			return ResponseEntity.ok("{ \"id\" : " + result.getId() + ", \"msg\" : \"Create category successfully\" }");
-		}
-		
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-				.body("{ \"msg\" : \"You can't create an category right now. Try again later\" }");
-		
-	}
+//	@PostMapping("/admin/category/addnew")
+//	@ResponseBody
+//	public ResponseEntity<String> createNewCategory(@RequestBody categoryEntity category, Model model) {
+//		if (categoryService.findCategoryByName(category.getName()) != null) {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Category already exists\" }");
+//			}
+//		if (category.getName() == "") {
+//			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
+//		}
+//		categoryEntity result = categoryService.createNewCategory(category);
+//		if (result.getId() != null) {
+//			return ResponseEntity.ok("{ \"id\" : " + result.getId() + ", \"msg\" : \"Create category successfully\" }");
+//		}
+//		
+//		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+//				.body("{ \"msg\" : \"You can't create an category right now. Try again later\" }");
+//		
+//	}
 	
 }
