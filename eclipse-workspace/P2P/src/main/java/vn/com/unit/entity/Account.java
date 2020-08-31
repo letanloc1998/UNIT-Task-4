@@ -12,6 +12,7 @@ import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
 
 @Table(name = "p2p_account")
 public class Account {
+	
 	@Id
 	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
 	@Column(name = "id")
