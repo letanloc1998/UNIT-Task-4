@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.unit.dto.BillItemDto;
 import vn.com.unit.entity.BillItem;
 import vn.com.unit.entity.Product;
 import vn.com.unit.repository.BillItemRepository;
@@ -37,36 +38,40 @@ public class BillItemServiceImpl implements BillItemService {
 	
 	
 	@Override
-	public List<BillItem> findAllBillItemByBillSeparateId(Long bill_separate_id) {
+	public List<BillItemDto> findAllBillItemByBillSeparateId(Long bill_separate_id) {
 
-		List<BillItem> billitems = new ArrayList<BillItem>();
-		int total = 0;
+		List<BillItem> bill_item_list = new ArrayList<BillItem>();
+		List<BillItemDto> bill_item_dto_list = new ArrayList<BillItemDto>();
+//		int total = 0;
 		try {
-			billitems = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
-			for (BillItem billitem : billitems) {
-				Long product_id = (long) billitem.getProduct();
-				Product product_name = productService.findProductByProductId(product_id);
-				billitem.setProduct_name(product_name);
-				total = total + (product_name.getPrice() * billitem.getQuantity());
+			bill_item_list = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
+			for (BillItem bill_item : bill_item_list) {
+				Long product_id = (long) bill_item.getProduct();
+				Product product = productService.findProductByProductId(product_id);
+				
+				BillItemDto bill_item_dto = new BillItemDto(bill_item);
+				
+				bill_item_dto.setName(product.getName());
+//				total = total + (product.getPrice() * bill_item.getQuantity());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return billitems;
+		return bill_item_dto_list;
 	}
 	
 	@Override
 	public int totalPriceOfBillByBillSeparateId(Long bill_separate_id) {
 
-		List<BillItem> billitems = new ArrayList<BillItem>();
+		List<BillItem> bill_item_list = new ArrayList<BillItem>();
 		int total = 0;
 		try {
-			billitems = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
-			for (BillItem billitem : billitems) {
-				Long product_id = (long) billitem.getProduct();
-				Product product_name = productService.findProductByProductId(product_id);
-				billitem.setProduct_name(product_name);
-				total = total + (product_name.getPrice() * billitem.getQuantity());
+			bill_item_list = billItemRepository.findAllBillItemByBillSeparateId(bill_separate_id);
+			for (BillItem bill_item : bill_item_list) {
+				Long product_id = (long) bill_item.getProduct();
+				Product product = productService.findProductByProductId(product_id);
+//				bill_item.setProduct_name(product_name);
+				total = total + (product.getPrice() * bill_item.getQuantity());
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

@@ -21,6 +21,12 @@ public class BillItem {
 	@Column(name = "quantity")
 	private int quantity;
 
+	public BillItem(BillItem billItem) {
+		this.id = billItem.getId();
+		this.product = billItem.getProduct();
+		this.quantity = billItem.getQuantity();
+	}
+
 	public Long getId() {
 		return id;
 	}
