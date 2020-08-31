@@ -197,4 +197,15 @@ public class AccountServiceImpl implements AccountService {
 		return false;
 	}
 
+	@Override
+	public void saveAccountV2(Account account) {
+		// TODO Auto-generated method stub
+		try {
+			accountRepository.save(account);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
 }

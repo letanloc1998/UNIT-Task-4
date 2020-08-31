@@ -2,28 +2,49 @@ package vn.com.unit.entity;
 
 import java.util.Date;
 
-public class Product {
+import org.springframework.data.annotation.Id;
 
+import jp.sf.amateras.mirage.annotation.Column;
+import jp.sf.amateras.mirage.annotation.PrimaryKey;
+import jp.sf.amateras.mirage.annotation.Table;
+import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+
+@Table(name = "p2p_product")
+public class Product {
+	
+	@Id
+	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
+	@Column(name = "id")
 	private Long id;
 
+	@Column(name = "shop")
 	private Long shop;
 	
+	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "price")
 	private int price;
 	
+	@Column(name = "detail")
 	private String detail;
 	
+	@Column(name = "img")
 	private String img;
 	
+	@Column(name = "category")
 	private int category;
 	
+	@Column(name = "disable")
 	private boolean disable;
 	
+	@Column(name = "create_at")
 	private Date createAt;
 	
+	@Column(name = "brand")
 	private int brand;
 	
+	@Column(name = "quantity")
 	private int quantity;
 	
 	private Brand brand_name;

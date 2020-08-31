@@ -23,7 +23,8 @@ public interface AccountService {
 	public void setAccountPassword(Long account_id, String password);
 	
 	public void saveAccount(Long account_id, String name, String email, String phone);	
-		
+	public void saveAccountV2(Account account);	
+
 	public Account findAccountById(Long id);
 	
 	public int countAccountActive(String keyword,Long role_id);
