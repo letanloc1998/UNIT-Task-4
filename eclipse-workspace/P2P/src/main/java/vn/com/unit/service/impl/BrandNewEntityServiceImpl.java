@@ -51,19 +51,12 @@ public class BrandNewEntityServiceImpl implements BrandNewEntityService {
 	}
 	
 	@Override
-	public void edit(BrandNewEntity brandNewEntity) {
+	public void edit(BrandNewEntity brand) {
 		
-		Long brandId = 8L;
-		
-		BrandNewEntity brand = new BrandNewEntity();
-		brand = this.findBrandNewEntityByBrandId(brandId);
-		
+	
 		BrandNewEntity newBrand = new BrandNewEntity();
-		brandNewEntityRepository.save(brand);
-		
-		newBrand.setName("Khanh");
-		newBrand.setId(8L);
-		
+		newBrand.setId(brand.getId());
+		newBrand.setName(brand.getName());
 		brandNewEntityRepository.save(newBrand);
 		
 		
