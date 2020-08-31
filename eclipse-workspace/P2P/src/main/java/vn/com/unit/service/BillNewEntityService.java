@@ -17,4 +17,7 @@ public class BillNewEntityService {
 	public BillNewEntity save(BillNewEntity billNewEntity) {
 		return billNewEntityRepository.save(billNewEntity);
 	}
+	
+//	public BillNewEntity update(BillNewEntity billNewEntity) {
+//	}
 }

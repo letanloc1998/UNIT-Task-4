@@ -16,19 +16,25 @@ public class TestBillNewEntity {
 
 	@Autowired
 	BillNewEntityService billNewEntityService;
-	
+
 	@GetMapping("/test/bill")
 	public ModelAndView bill(Model model) {
-		
+
 		BillNewEntity billNewEntity = new BillNewEntity();
 		billNewEntity.setAccount(1L);
 		billNewEntity.setAddress("An Giang");
 		billNewEntity.setPayment(2000L);
 //		billNewEntity.setCreateAt((new Date()));
-		
+
 		BillNewEntity b = billNewEntityService.save(billNewEntity);
-		
+
+		b.setAccount(2L);
+		b.setAddress("An Giang Change");
+		b.setPayment(3000L);
+
+		BillNewEntity c = billNewEntityService.save(b);
+
 		return new ModelAndView("home");
 	}
-	
+
 }

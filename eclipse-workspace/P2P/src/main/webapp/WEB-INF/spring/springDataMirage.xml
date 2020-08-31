@@ -21,7 +21,7 @@
 	</bean>
 
 	<bean id="dialect"
-		class="jp.sf.amateras.mirage.dialect.SQLServerDialect" />
+		class="vn.com.unit.config.CustomSQLServerDialect" />
 
 	<!-- <bean id="railsLikeNameConverter"
          class="jp.sf.amateras.mirage.naming.RailsLikeNameConverter" /> -->
