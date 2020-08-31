@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.dto.CartDto;
 import vn.com.unit.entity.Account;
-import vn.com.unit.entity.CartItem;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.CartService;
 import vn.com.unit.service.CategoryService;
@@ -55,7 +55,7 @@ public class CartController {
 		
 		model.addAllAttributes(CommonUtils.getMapHeaderAtribute(model, categoryService));
 
-		List<CartItem> list_cart_item = cartService.findAllCartItemByCurrentAccount();
+		List<CartDto> list_cart_item = cartService.findAllCartItemByCurrentAccount();
 
 		model.addAttribute("list_cart_item", list_cart_item);
 

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import vn.com.unit.entity.CartItem;
+import vn.com.unit.dto.CartDto;
 import vn.com.unit.repository.CartRepository;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.CartService;
@@ -22,7 +22,7 @@ public class CartServiceImpl implements CartService {
 	CartRepository cartRepository;
 
 	@Override
-	public List<CartItem> findAllCartItemByCurrentAccount() {
+	public List<CartDto> findAllCartItemByCurrentAccount() {
 
 		Long curent_account_id = accountService.findCurrentAccount().getId();
 
@@ -38,7 +38,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public List<CartItem> findAllCartItemByAccountId(Long account_id) {
+	public List<CartDto> findAllCartItemByAccountId(Long account_id) {
 
 		return cartRepository.findAllCartItemByAccountId(account_id);
 	}

@@ -2,7 +2,7 @@ package vn.com.unit.dto;
 
 import vn.com.unit.entity.Cart;
 
-public class CartDTO extends Cart {
+public class CartDto extends Cart {
 
 	private String img;
 

@@ -22,10 +22,10 @@ public class TestBillNewEntity {
 	@GetMapping("/test/bill")
 	public ModelAndView bill(Model model) {
 		
-		Account a = new Account();
-		AccountRoleDto b = new AccountRoleDto();
+//		Account a = new Account();
+//		AccountRoleDto b = new AccountRoleDto();
 		
-		Account c = (Account) b;
+//		Account c = (Account) b;
 
 //		BillNewEntity billNewEntity = new BillNewEntity();
 //		billNewEntity.setAccount(1L);

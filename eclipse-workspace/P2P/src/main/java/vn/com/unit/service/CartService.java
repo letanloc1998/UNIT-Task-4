@@ -2,15 +2,15 @@ package vn.com.unit.service;
 
 import java.util.List;
 
-import vn.com.unit.entity.CartItem;
+import vn.com.unit.dto.CartDto;
 
 public interface CartService {
 
-	public List<CartItem> findAllCartItemByCurrentAccount();
+	public List<CartDto> findAllCartItemByCurrentAccount();
 	
 	public int countAllCartItemByCurrentAccount(Long account_id);
 	
-	public List<CartItem> findAllCartItemByAccountId(Long account_id);
+	public List<CartDto> findAllCartItemByAccountId(Long account_id);
 
 	public Long calculateCartTotalByCurrentAccount();
 
