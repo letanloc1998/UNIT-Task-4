@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.unit.dto.BillSeparateShopViewDto;
 import vn.com.unit.entity.BillSeparate;
 //import vn.com.unit.entity.BillSeparateShop;
 //import vn.com.unit.entity.HistoryBillSeparate;
@@ -27,12 +28,12 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 		return billSeparateRepository.findBillSeparatePaymentSuccessAndStatusWaitingByShopId(shop_id);
 	}
 	
-//	@Override
-//	public List<BillSeparateShop> findBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id,int limit,int offset) {
-//		// TODO Auto-generated method stub
-//		
-//		return billSeparateRepository.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop_id,limit, offset);
-//	}
+	@Override
+	public List<BillSeparateShopViewDto> findBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id,int limit,int offset) {
+		// TODO Auto-generated method stub
+		
+		return billSeparateRepository.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop_id,limit, offset);
+	}
 	
 	@Override
 	public int countBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id) {
