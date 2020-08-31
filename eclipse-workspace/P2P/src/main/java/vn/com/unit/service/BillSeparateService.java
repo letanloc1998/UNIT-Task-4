@@ -22,9 +22,9 @@ public interface BillSeparateService {
 	
 	public List<BillSeparateHistoryDTO> findAllBillSeparateByAccountId(Long account_id,Long status, Long payment,int limit,int offset);
 	
-	public List<BillSeparateHistoryDTO> findBillItemByBillSeparateId(Long bill_separate_id,Long account);
+	public List<BillItemDto> findBillItemByBillSeparateId(Long bill_separate_id,Long account);
 	
-	public BillItemDto findBillSeparateById(Long id);
+	public BillSeparateHistoryDTO findBillSeparateById(Long id);
 	
 	public int countBillSeparateByAccountId(Long account_id,Long status, Long payment);
 }
