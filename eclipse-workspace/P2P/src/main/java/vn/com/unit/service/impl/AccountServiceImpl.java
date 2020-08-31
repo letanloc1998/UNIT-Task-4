@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import vn.com.unit.dto.AccountWithRoleDto;
 import vn.com.unit.entity.Account;
-import vn.com.unit.entity.AccountRole;
 import vn.com.unit.entity.Role;
 import vn.com.unit.repository.AccountRepository;
 import vn.com.unit.repository.RoleRepository;
@@ -150,10 +149,10 @@ public class AccountServiceImpl implements AccountService {
 
 	// getCurrentAccount
 	@Override
-	public AccountRoleDto findCurrentAccount() {
+	public AccountWithRoleDto findCurrentAccount() {
 		String currentUsername = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		Account account = findByUsername(currentUsername);
-		AccountRoleDto account_role_dto = new AccountRoleDto(account);
+		AccountWithRoleDto account_role_dto = new AccountWithRoleDto(account);
 		List<Role> roles = roleService.findRoleByAccount(account);
 		account_role_dto.setRoles(roles);
 		return account_role_dto;
