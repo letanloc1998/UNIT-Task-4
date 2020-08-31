@@ -20,6 +20,9 @@ public class Cart {
 	@Column(name = "create_at")
 	private Date createAt;
 
+	public Cart() {
+	}
+
 	public Long getAccount() {
 		return account;
 	}

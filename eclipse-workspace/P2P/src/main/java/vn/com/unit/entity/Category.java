@@ -23,6 +23,9 @@ public class Category {
 	
 	@Column(name = "disable")
 	private Boolean disable;
+	
+	public Category() {
+	}
 
 	public Long getId() {
 		return id;

@@ -46,10 +46,10 @@
 								th:text="${shop.name}" th:href="@{'/shop/' + ${shop.id}}"></a>
 								<br>
 							<span>Category:&nbsp</span><a style="font-size: 18px; color: gray"
-								th:text="${product.category_name.name}"></a>
+								th:text="${product.categoryName}"></a>
 								<br>
 							<span>Brand:&nbsp</span><a style="font-size: 18px; color: gray"
-								th:text="${product.brand_name.name}"></a>
+								th:text="${product.brandName}"></a>
 							<br>
 							<h3>Detail:</h3>
                             <div style="text-align: left" th:text="${product.detail}"></div>

@@ -26,6 +26,9 @@ public class BillSeparate {
 
 	@Column(name = "refund")
 	private Long refund;
+	
+	public BillSeparate() {
+	}
 
 	public BillSeparate(BillSeparate billSeparate) {
 		this.id = billSeparate.getId();
