@@ -47,6 +47,23 @@ public class Product {
 	@Column(name = "create_at")
 	private Date createAt;
 	
+	public Product() {
+	}
+	
+	public Product(Product product) {
+		this.id = product.getId();
+		this.shop = product.getShop();
+		this.name = product.getName();
+		this.price = product.getPrice();
+		this.detail = product.getDetail();
+		this.img = product.getImg();
+		this.disable = product.isDisable();
+		this.category = product.getCategory();
+		this.brand = product.getBrand();
+		this.quantity = product.getQuantity();
+		this.createAt = product.getCreateAt();
+	}
+
 	public Long getId() {
 		return id;
 	}

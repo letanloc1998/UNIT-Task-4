@@ -6,6 +6,7 @@ import org.springframework.data.mirage.repository.MirageRepository;
 import org.springframework.data.mirage.repository.query.Modifying;
 import org.springframework.data.repository.query.Param;
 
+import vn.com.unit.dto.ProductDto;
 import vn.com.unit.entity.Product;
 
 public interface ProductRepository extends MirageRepository<Product, Long> {
@@ -29,7 +30,7 @@ public interface ProductRepository extends MirageRepository<Product, Long> {
 			@Param("sizeOfPage") Integer sizeOfPage,
 			@Param("offset") Integer offset);
 	
-	public Product findProductByProductId(@Param("product_id") Long product_id); 
+	public ProductDto findProductByProductId(@Param("product_id") Long product_id); 
 	
 	@Modifying
 	public Long createNewProduct(@Param("name") String name,

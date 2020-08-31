@@ -2,11 +2,12 @@ package vn.com.unit.service;
 
 import java.util.List;
 
+import vn.com.unit.dto.ProductDto;
 import vn.com.unit.entity.Product;
 
 public interface ProductService {
 	
-	public List<Product> findAllProductByShopId(Long shop_id,int limit,int offset);
+	public List<ProductDto> findAllProductByShopId(Long shop_id,int limit,int offset);
 	
 	public List<Product> findAllProductByCategoryId(Long category_id,int limit,int offset);
 	
