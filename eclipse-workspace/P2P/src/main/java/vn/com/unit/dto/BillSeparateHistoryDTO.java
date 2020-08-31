@@ -4,11 +4,11 @@ import java.util.Date;
 
 import vn.com.unit.entity.BillSeparate;
 
-public class BillSeparateProfileView extends BillSeparate {
+public class BillSeparateHistoryDTO extends BillSeparate {
 
 
 
-	public BillSeparateProfileView(BillSeparate billSeparate) {
+	public BillSeparateHistoryDTO(BillSeparate billSeparate) {
 		super(billSeparate);
 		// TODO Auto-generated constructor stub
 	}

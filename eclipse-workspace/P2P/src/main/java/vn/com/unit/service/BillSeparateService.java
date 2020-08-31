@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.repository.query.Param;
 
 import vn.com.unit.dto.BillItemDto;
-import vn.com.unit.dto.BillSeparateProfileView;
+import vn.com.unit.dto.BillSeparateHistoryDTO;
 import vn.com.unit.dto.BillSeparateShopViewDto;
 import vn.com.unit.entity.BillSeparate;
 //import vn.com.unit.entity.BillSeparateShop;
@@ -22,9 +22,9 @@ public interface BillSeparateService {
 	
 	public void saveBillSeparateStatus(Long bill_separate_id, int status);
 	
-	public List<BillSeparateProfileView> findAllBillSeparateByAccountId(Long account_id,Long status, Long payment,int limit,int offset);
+	public List<BillSeparateHistoryDTO> findAllBillSeparateByAccountId(Long account_id,Long status, Long payment,int limit,int offset);
 	
-//	public List<billItemSeparate> findBillItemByBillSeparateId(Long bill_separate_id,Long account);
+	public List<BillSeparateHistoryDTO> findBillItemByBillSeparateId(Long bill_separate_id,Long account);
 	
 	public BillItemDto findBillSeparateById(Long id);
 	

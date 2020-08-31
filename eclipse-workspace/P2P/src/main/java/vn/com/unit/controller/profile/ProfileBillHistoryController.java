@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.dto.BillItemDto;
-import vn.com.unit.dto.BillSeparateProfileView;
+import vn.com.unit.dto.BillSeparateHistoryDTO;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.BillSeparate;
 
@@ -46,7 +46,7 @@ public class ProfileBillHistoryController {
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-		List<BillSeparateProfileView> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
+		List<BillSeparateHistoryDTO> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
 		model.addAttribute("current_account", account);
 		model.addAttribute("bills", bills);
 		model.addAttribute("pageable", pageable);
@@ -66,7 +66,7 @@ public class ProfileBillHistoryController {
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-		List<BillSeparateProfileView> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
+		List<BillSeparateHistoryDTO> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
 		model.addAttribute("current_account", account);
 		model.addAttribute("bills", bills);
 		model.addAttribute("pageable", pageable);
@@ -86,7 +86,7 @@ public class ProfileBillHistoryController {
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-		List<BillSeparateProfileView> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
+		List<BillSeparateHistoryDTO> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
 		model.addAttribute("current_account", account);
 		model.addAttribute("bills", bills);
 		model.addAttribute("title", "Account Management");
@@ -106,7 +106,7 @@ public class ProfileBillHistoryController {
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-		List<BillSeparateProfileView> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
+		List<BillSeparateHistoryDTO> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
 		model.addAttribute("current_account", account);
 		model.addAttribute("pageable", pageable);
 
@@ -126,7 +126,7 @@ public class ProfileBillHistoryController {
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-		List<BillSeparateProfileView> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
+		List<BillSeparateHistoryDTO> bills = billSeparateService.findAllBillSeparateByAccountId(account.getId(), status,Payment,pageable.getLimit(), pageable.getOffset());
 		model.addAttribute("current_account", account);
 		model.addAttribute("bills", bills);
 		model.addAttribute("pageable", pageable);
@@ -138,7 +138,7 @@ public class ProfileBillHistoryController {
 	@GetMapping("profile/mybills/{bill_id}")
 	ModelAndView BillDetail(Model model, @PathVariable("bill_id") Long bill_id) {
 		Account account = accountService.findCurrentAccount();
-		List<BillSeparateProfileView> billItems = billSeparateService.findBillItemByBillSeparateId(bill_id, account.getId());
+		List<BillSeparateHistoryDTO> billItems = billSeparateService.findBillItemByBillSeparateId(bill_id, account.getId());
 		if(billItems.isEmpty()) {
 			return new ModelAndView("404");
 		}

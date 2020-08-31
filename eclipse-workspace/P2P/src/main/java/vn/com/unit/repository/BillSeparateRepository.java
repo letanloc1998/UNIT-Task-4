@@ -7,7 +7,7 @@ import org.springframework.data.mirage.repository.query.Modifying;
 import org.springframework.data.repository.query.Param;
 
 import vn.com.unit.dto.BillItemDto;
-import vn.com.unit.dto.BillSeparateProfileView;
+import vn.com.unit.dto.BillSeparateHistoryDTO;
 import vn.com.unit.dto.BillSeparateShopViewDto;
 import vn.com.unit.entity.BillSeparate;
 //import vn.com.unit.entity.BillSeparateShop;
@@ -28,14 +28,14 @@ public interface BillSeparateRepository extends MirageRepository<BillSeparate, L
 	@Modifying
 	public void saveBillSeparateStatus(@Param("bill_separate_id") Long bill_separate_id, @Param("status") int status);
 	
-	public List<BillSeparateProfileView> findAllBillSeparateByAccountId(
+	public List<BillSeparateHistoryDTO> findAllBillSeparateByAccountId(
 			@Param("account_id") Long account_id,
 			@Param("status") Long status,
 			@Param("payment") Long payment,
 			@Param("sizeOfPage") Integer sizeOfPage,
 			@Param("offset") Integer offset);
 	
-//	public List<billItemSeparate> findBillItemByBillSeparateId(@Param("bill_separate_id") Long bill_separate_id,@Param("account") Long account);
+	public List<BillSeparateHistoryDTO> findBillItemByBillSeparateId(@Param("bill_separate_id") Long bill_separate_id,@Param("account") Long account);
 	
 	public BillItemDto findBillSeparateItemById(@Param("id") Long id);
 	public int countAllBillSeparateByAccountId(

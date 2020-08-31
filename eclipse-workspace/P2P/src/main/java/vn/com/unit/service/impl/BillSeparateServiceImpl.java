@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import vn.com.unit.dto.BillItemDto;
-import vn.com.unit.dto.BillSeparateProfileView;
+import vn.com.unit.dto.BillSeparateHistoryDTO;
 import vn.com.unit.dto.BillSeparateShopViewDto;
 import vn.com.unit.entity.BillSeparate;
 //import vn.com.unit.entity.BillSeparateShop;
@@ -54,7 +54,7 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 	}
 
 	@Override
-	public List<BillSeparateProfileView> findAllBillSeparateByAccountId(Long account_id, Long status, Long payment,int limit,int offset) {
+	public List<BillSeparateHistoryDTO> findAllBillSeparateByAccountId(Long account_id, Long status, Long payment,int limit,int offset) {
 		// TODO Auto-generated method stub
 		try {
 			return billSeparateRepository.findAllBillSeparateByAccountId(account_id, status, payment,limit,offset);
@@ -64,16 +64,16 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 		return null;
 	}
 
-//	@Override
-//	public List<billItemSeparate> findBillItemByBillSeparateId(Long bill_separate_id,Long account) {
-//		// TODO Auto-generated method stub
-//		try {
-//			return billSeparateRepository.findBillItemByBillSeparateId(bill_separate_id,account);
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//		return null;
-//	}
+	@Override
+	public List<BillSeparateHistoryDTO> findBillItemByBillSeparateId(Long bill_separate_id,Long account) {
+		// TODO Auto-generated method stub
+		try {
+			return billSeparateRepository.findBillItemByBillSeparateId(bill_separate_id,account);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+	}
 
 	@Override
 	public BillItemDto findBillSeparateById(Long id) {
