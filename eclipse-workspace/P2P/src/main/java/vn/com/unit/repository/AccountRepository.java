@@ -38,4 +38,6 @@ public interface AccountRepository extends MirageRepository<Account, Long> {
 	
 	public List<Account> searchAccountByRole(@Param("keyword") String keyword,@Param("role_id") Long role_id, @Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 	
+	@Modifying
+	public void saveAccountV2(Account account);
 }
