@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.dto.AccountRoleDto;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.pageable.PageRequest;
@@ -47,7 +48,7 @@ public class AdminAccountManagementController {
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
 
-		List<Account> accounts = accountService.findAllAccount(pageable.getLimit(), pageable.getOffset(),keyword,role_id);
+		List<AccountRoleDto> accounts = accountService.findAllAccount(pageable.getLimit(), pageable.getOffset(),keyword,role_id);
 		model.addAttribute("accounts", accounts);
 		model.addAttribute("pageable", pageable);
 		model.addAttribute("keyword", keyword);
