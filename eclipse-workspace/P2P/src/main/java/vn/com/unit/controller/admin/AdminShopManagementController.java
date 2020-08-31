@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.dto.ShopDto;
 import vn.com.unit.entity.Role;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.pageable.PageRequest;
@@ -47,7 +48,7 @@ public class AdminShopManagementController {
 
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
 
-		List<Shop> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 1);
+		List<ShopDto> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 1);
 		model.addAttribute("shops", shops);
 		model.addAttribute("pageable", pageable);
 

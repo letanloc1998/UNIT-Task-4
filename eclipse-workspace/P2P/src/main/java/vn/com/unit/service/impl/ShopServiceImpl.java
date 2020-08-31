@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.unit.dto.ShopDto;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.repository.ShopRepository;
 import vn.com.unit.service.ShopService;
@@ -70,8 +71,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<Shop> findAllShop(int limit, int offset) {
-		List<Shop> shops = new ArrayList<Shop>();
+	public List<ShopDto> findAllShop(int limit, int offset) {
+		List<ShopDto> shops = new ArrayList<ShopDto>();
 		try {
 			shops = shopRepository.findAllShop(limit, offset);
 
@@ -93,8 +94,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<Shop> findShopByStatus(int limit, int offset, int status) {
-		List<Shop> shops = new ArrayList<Shop>();
+	public List<ShopDto> findShopByStatus(int limit, int offset, int status) {
+		List<ShopDto> shops = new ArrayList<ShopDto>();
 		try {
 			shops = shopRepository.findShopByStatus(limit, offset, status);
 

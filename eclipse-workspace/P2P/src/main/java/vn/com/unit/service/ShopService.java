@@ -2,6 +2,7 @@ package vn.com.unit.service;
 
 import java.util.List;
 
+import vn.com.unit.dto.ShopDto;
 import vn.com.unit.entity.Shop;
 
 public interface ShopService {
@@ -16,10 +17,10 @@ public interface ShopService {
 	
 	public boolean setDisableShop(Long account_id, Long status);
 	
-	public List<Shop> findAllShop(int limit,int offset);
+	public List<ShopDto> findAllShop(int limit,int offset);
 	
 	public int countAllShop();
-	public List<Shop> findShopByStatus(int limit,int offset,int status);
+	public List<ShopDto> findShopByStatus(int limit,int offset,int status);
 	
 	public List<Shop> searchAllShop();
 	
