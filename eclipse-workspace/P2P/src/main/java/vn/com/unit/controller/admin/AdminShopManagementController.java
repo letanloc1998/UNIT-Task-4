@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.dto.ShopDto;
 import vn.com.unit.entity.Role;
-import vn.com.unit.entity.Shop;
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.RoleService;
@@ -63,7 +62,7 @@ public class AdminShopManagementController {
 		int totalitems = shopService.countShopByStatus(0);
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-		List<Shop> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 0);
+		List<ShopDto> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 0);
 		model.addAttribute("shops", shops);
 		model.addAttribute("pageable", pageable);
 
@@ -80,8 +79,8 @@ public class AdminShopManagementController {
 		int totalitems=totalitems2+totalitems3;
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-		List<Shop> deactiveByAdmin = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 3);
-		List<Shop> deactiveByVendor = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 2);
+		List<ShopDto> deactiveByAdmin = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 3);
+		List<ShopDto> deactiveByVendor = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 2);
 		deactiveByAdmin.addAll(deactiveByVendor);
 		model.addAttribute("shops", deactiveByAdmin);
 		model.addAttribute("pageable", pageable);
