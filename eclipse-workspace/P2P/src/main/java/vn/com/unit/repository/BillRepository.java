@@ -27,4 +27,5 @@ public interface BillRepository extends MirageRepository<Shop, Long> {
 
 	public Bill findBillByBillIdAndAccountId(@Param("bill_id") Long bill_id, @Param("account_id") Long account_id);
 	
+	public Bill test(@Param("bill_id") Long bill_id);
 }

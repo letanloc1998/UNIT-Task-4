@@ -30,8 +30,7 @@
 	<script th:inline="javascript">
 	const brand = [[${ brand }]];
 	console.log([[${ brand }]])
-	</script>
-	<script>
+
 	 function editBrand() {
 		brand.name = $("#BrandName").val();
         var token = $("meta[name='_csrf']").attr("content");

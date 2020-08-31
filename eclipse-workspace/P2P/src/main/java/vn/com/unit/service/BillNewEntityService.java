@@ -14,10 +14,17 @@ public class BillNewEntityService {
 	@Autowired
 	BillNewEntityRepository billNewEntityRepository;
 	
+	// Create or Update
 	public BillNewEntity save(BillNewEntity billNewEntity) {
 		return billNewEntityRepository.save(billNewEntity);
 	}
 	
-//	public BillNewEntity update(BillNewEntity billNewEntity) {
-//	}
+	public void delete(BillNewEntity billNewEntity) {
+		billNewEntityRepository.delete(billNewEntity);
+	}
+
+	public void delete(Long bill_id) {
+		billNewEntityRepository.delete(bill_id);
+	}
+	
 }
