@@ -1,18 +1,26 @@
 package vn.com.unit.entity;
 
+import org.springframework.data.annotation.Id;
+
+import jp.sf.amateras.mirage.annotation.Column;
+import jp.sf.amateras.mirage.annotation.PrimaryKey;
+import jp.sf.amateras.mirage.annotation.Table;
+import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+
+@Table(name = "p2p_bill_item")
 public class BillItem {
 
+	@Id
+	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
+	@Column(name = "id")
 	private Long id;
 	
+	@Column(name="product")
 	private int product;
 	
-	private String name;
-	
-	private Long price;
-	
+	@Column(name="quantity")
 	private int quantity;
 	
-	private Product product_name;
 	
 	public BillItem() {
 	}
@@ -31,21 +39,7 @@ public class BillItem {
 		this.product = product;
 	}
 
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Long getPrice() {
-		return price;
-	}
-
-	public void setPrice(Long price) {
-		this.price = price;
-	}
 
 	public int getQuantity() {
 		return quantity;
@@ -54,17 +48,6 @@ public class BillItem {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	public Long getTotal() {
-		return price * quantity;
-	}
 
-	public Product getProduct_name() {
-		return product_name;
-	}
-
-	public void setProduct_name(Product product_name) {
-		this.product_name = product_name;
-	}
 	
 }

@@ -21,9 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Brand;
-import vn.com.unit.entity.BrandNewEntity;
 import vn.com.unit.pageable.PageRequest;
-import vn.com.unit.service.BrandNewEntityService;
 import vn.com.unit.service.BrandService;
 
 @Controller
@@ -33,8 +31,7 @@ public class AdminBrandManagementController {
 	@Autowired
 	private BrandService brandService;
 	
-	@Autowired
-	private BrandNewEntityService brandNewEntityService;
+
 	
 
 	@GetMapping("/admin/brand/list")
@@ -68,61 +65,59 @@ public class AdminBrandManagementController {
 		return new ModelAndView("admin/brand/brand-edit");
 	}
 
+	/*
+	 * @PostMapping("/admin/brand/add")
+	 * 
+	 * @ResponseBody public ResponseEntity<String> createCategory(@RequestBody Brand
+	 * brand, Model model) { if (brandService.findBrandByName(brand.getName()) !=
+	 * null) { return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+	 * body("{ \"msg\" : \"brand already exists\" }"); }
+	 * 
+	 * if (brand.getName() == "") { return
+	 * ResponseEntity.status(HttpStatus.BAD_REQUEST).
+	 * body("{ \"msg\" : \"Name cannot be empty\" }"); } Long brand_id =
+	 * brandService.createCategory(brand); if (brand_id != null) { return
+	 * ResponseEntity.ok("{ \"id\" : " + brand_id +
+	 * ", \"msg\" : \"Create brand successfully\" }"); } return
+	 * ResponseEntity.status(HttpStatus.BAD_REQUEST)
+	 * .body("{ \"msg\" : \"You can't create an brand right now. Try again later\" }"
+	 * );
+	 * 
+	 * }
+	 */
+	
+	
 	@PostMapping("/admin/brand/add")
 	@ResponseBody
-	public ResponseEntity<String> createCategory(@RequestBody Brand brand, Model model) {
-		if (brandService.findBrandByName(brand.getName()) != null) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"brand already exists\" }");
-		}
-
-		if (brand.getName() == "") {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
-		}
-		Long brand_id = brandService.createCategory(brand);
-		if (brand_id != null) {
-			return ResponseEntity.ok("{ \"id\" : " + brand_id + ", \"msg\" : \"Create brand successfully\" }");
-		}
-		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-				.body("{ \"msg\" : \"You can't create an brand right now. Try again later\" }");
-
-	}
-	
-	
-	@PostMapping("/admin/brand/add2")
-	@ResponseBody
 	public ResponseEntity<String> createCategory2(@RequestBody Brand brand, Model model) {
-		BrandNewEntity brandNewEntity = new BrandNewEntity();
-		brandNewEntity.setName(brand.getName());
-		brandNewEntity.setId(brand.getId());
-//		billNewEntity.setCreateAt((new Date()));
-		
-		BrandNewEntity b = brandNewEntityService.add(brandNewEntity);
-		
+
+		brandService.createBrand(brand);
 		return ResponseEntity.status(HttpStatus.OK)
 				.body("{ \"msg\" : \"You can't create an brand right now. Try again later\" }");
 
 	}
 
+	/*
+	 * @PutMapping("/admin/brand/edit")
+	 * 
+	 * @ResponseBody public ResponseEntity<String> editCategory(@RequestBody Brand
+	 * brand, Model model) {
+	 * 
+	 * if (brandService.findBrandByName(brand.getName()) != null) { return
+	 * ResponseEntity.status(HttpStatus.BAD_REQUEST).
+	 * body("{ \"msg\" : \"Brand already exists\" }"); }
+	 * 
+	 * if (brand.getName() == null) { return
+	 * ResponseEntity.status(HttpStatus.BAD_REQUEST).
+	 * body("{ \"msg\" : \"Name cannot be empty\" }"); }
+	 * brandService.updateBrandById(brand);
+	 * 
+	 * return ResponseEntity.ok("{  \"msg\" : \"Update brand successfully\" }"); }
+	 */
+	
 	@PutMapping("/admin/brand/edit")
 	@ResponseBody
-	public ResponseEntity<String> editCategory(@RequestBody Brand brand, Model model) {
-
-		if (brandService.findBrandByName(brand.getName()) != null) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Brand already exists\" }");
-		}
-
-		if (brand.getName() == null) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
-		}
-		brandService.updateBrandById(brand);
-
-		return ResponseEntity.ok("{  \"msg\" : \"Update brand successfully\" }");
-	}
-	
-	
-	@PutMapping("/admin/brand/edit2")
-	@ResponseBody
-	public ResponseEntity<String> editCategory2(@RequestBody BrandNewEntity brand, Model model) {
+	public ResponseEntity<String> editCategory2(@RequestBody Brand brand, Model model) {
 
 		if (brandService.findBrandByName(brand.getName()) != null) {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Brand already exists\" }");
@@ -132,7 +127,7 @@ public class AdminBrandManagementController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
 		}
 		
-		brandNewEntityService.edit(brand);
+		brandService.editBrand(brand);
 		return ResponseEntity.ok("{  \"msg\" : \"Update brand successfully\" }");
 	}
 

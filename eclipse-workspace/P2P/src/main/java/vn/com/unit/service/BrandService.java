@@ -16,14 +16,18 @@ public interface BrandService {
 	
 	public int countAllBrand();
 	
-	public Long createCategory(Brand brand);
+	//public Long createCategory(Brand brand);
 	
 	public Brand findBrandByName(String name);
 	
 	public Brand findBrandById(Long id);
 	
-	public void updateBrandById(Brand brand);
+	//public void updateBrandById(Brand brand);
 	
 	public void deleteBrandById(Long id,Long disable);
+	
+	public void createBrand(Brand brand);
+	
+	public void editBrand(Brand brand);
 
 }
