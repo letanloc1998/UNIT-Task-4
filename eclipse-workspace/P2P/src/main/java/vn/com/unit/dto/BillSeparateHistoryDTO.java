@@ -2,17 +2,13 @@ package vn.com.unit.dto;
 
 import java.util.Date;
 
-import vn.com.unit.entity.BillSeparate;
 
-public class BillSeparateHistoryDTO extends BillSeparate {
-
-
-
-	public BillSeparateHistoryDTO(BillSeparate billSeparate) {
-		super(billSeparate);
-		// TODO Auto-generated constructor stub
-	}
-
+public class BillSeparateHistoryDTO{
+	private Long id;
+	private Long bill;
+	private Long shop;
+	private Long refund;
+	private Long status;
 	private String shopName;
 	private String shopEmail;
 	private String shopPhone;
@@ -22,7 +18,38 @@ public class BillSeparateHistoryDTO extends BillSeparate {
 	private Date createAt;
 
 	
-	
+	public Long getBill() {
+		return bill;
+	}
+
+	public void setBill(Long bill) {
+		this.bill = bill;
+	}
+
+	public Long getShop() {
+		return shop;
+	}
+
+	public void setShop(Long shop) {
+		this.shop = shop;
+	}
+
+	public Long getRefund() {
+		return refund;
+	}
+
+	public void setRefund(Long refund) {
+		this.refund = refund;
+	}
+
+	public Long getStatus() {
+		return status;
+	}
+
+	public void setStatus(Long status) {
+		this.status = status;
+	}
+
 	public Date getCreateAt() {
 		return createAt;
 	}
@@ -78,6 +105,14 @@ public class BillSeparateHistoryDTO extends BillSeparate {
 
 	public void setShippingAdd(String shippingAdd) {
 		this.shippingAdd = shippingAdd;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 }
