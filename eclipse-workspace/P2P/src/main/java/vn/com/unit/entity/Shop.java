@@ -1,26 +1,41 @@
 package vn.com.unit.entity;
-
 import java.util.Date;
 import java.util.List;
 
-public class Shop {
+import org.springframework.data.annotation.Id;
 
+import jp.sf.amateras.mirage.annotation.Column;
+import jp.sf.amateras.mirage.annotation.PrimaryKey;
+import jp.sf.amateras.mirage.annotation.Table;
+import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+
+@Table(name = "p2p_shop")
+public class Shop {
+	@Id
+	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
+	@Column(name = "id")
 	private Long id;
 	
+	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "address")
 	private String address;
 	
+	@Column(name = "email")
 	private String email;
 	
+	@Column(name = "phone")
 	private String phone;
 	
+	@Column(name = "detail")
 	private String detail;
 	
+	@Column(name = "status")
 	private int status;
 	
-	private String username;
 	
+	@Column(name = "create_at")
 	private Date createAt;
 
 	public Shop() {
@@ -100,14 +115,14 @@ public class Shop {
 	}
 
 
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
+//
+//	public String getUsername() {
+//		return username;
+//	}
+//
+//	public void setUsername(String username) {
+//		this.username = username;
+//	}
 
 
 

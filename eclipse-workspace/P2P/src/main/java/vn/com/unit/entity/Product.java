@@ -47,8 +47,10 @@ public class Product {
 	@Column(name = "quantity")
 	private int quantity;
 	
+	@Column(name="brand")
 	private Brand brand_name;
 	
+	@Column(name = "category")
 	private Category category_name;
 	
 	public Product() {

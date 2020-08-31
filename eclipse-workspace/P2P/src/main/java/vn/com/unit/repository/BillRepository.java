@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import vn.com.unit.entity.Bill;
 import vn.com.unit.entity.Shop;
 
-public interface BillRepository extends MirageRepository<Shop, Long> {
+public interface BillRepository extends MirageRepository<Bill, Long> {
 
 	public List<Bill> findAllBillByAccountId(@Param("account_id") Long account_id);
 	

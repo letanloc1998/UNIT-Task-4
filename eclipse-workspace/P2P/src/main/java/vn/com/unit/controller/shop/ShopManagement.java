@@ -176,9 +176,7 @@ public class ShopManagement {
 
 				new_product.setImg(url);
 
-				productService.createNewProduct(new_product.getName(), new_product.getPrice(), new_product.getQuantity(),
-						new_product.getCategory(), new_product.getBrand(), new_product.getDetail(), new_product.getImg(),
-						account.getId());
+				productService.createNewProduct(new_product);
 				file.delete();
 		    }
 		});
