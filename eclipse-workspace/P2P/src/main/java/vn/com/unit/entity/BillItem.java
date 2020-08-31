@@ -14,19 +14,17 @@ public class BillItem {
 	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
 	@Column(name = "id")
 	private Long id;
-	
-	@Column(name="product")
+
+	@Column(name = "product")
 	private int product;
-	
-	@Column(name="quantity")
+
+	@Column(name = "quantity")
 	private int quantity;
-	
-	
-	public BillItem() {
-	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -39,8 +37,6 @@ public class BillItem {
 		this.product = product;
 	}
 
-
-
 	public int getQuantity() {
 		return quantity;
 	}
@@ -49,5 +45,4 @@ public class BillItem {
 		this.quantity = quantity;
 	}
 
-	
 }

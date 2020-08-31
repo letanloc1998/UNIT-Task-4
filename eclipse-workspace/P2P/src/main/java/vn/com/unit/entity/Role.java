@@ -1,4 +1,5 @@
 package vn.com.unit.entity;
+
 import org.springframework.data.annotation.Id;
 
 import jp.sf.amateras.mirage.annotation.Column;
@@ -8,12 +9,13 @@ import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
 
 @Table(name = "p2p_name")
 public class Role {
+	
 	@Id
 	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
 	@Column(name = "id")
 	private Long id;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String name;
 
 	public Role() {
@@ -34,7 +36,5 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	
 
 }

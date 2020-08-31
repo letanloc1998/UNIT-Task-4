@@ -10,13 +10,12 @@ import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
 @Table(name = "p2p_brand")
 public class Brand {
 
-	
 	@Id
 	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
 	@Column(name = "id")
 	private Long id;
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	private String name;
 
 	public Long getId() {
@@ -34,6 +33,5 @@ public class Brand {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

@@ -32,47 +32,21 @@ public class Product {
 	@Column(name = "img")
 	private String img;
 	
-	@Column(name = "category")
-	private int category;
-	
 	@Column(name = "disable")
 	private boolean disable;
 	
-	@Column(name = "create_at")
-	private Date createAt;
+	@Column(name = "category")
+	private int category;
 	
 	@Column(name = "brand")
 	private int brand;
 	
 	@Column(name = "quantity")
 	private int quantity;
-	
-	@Column(name="brand")
-	private Brand brand_name;
-	
-	@Column(name = "category")
-	private Category category_name;
-	
-	public Product() {
-		
-	}
-	
-	public Brand getBrand_name() {
-		return brand_name;
-	}
 
-	public void setBrand_name(Brand brand_name) {
-		this.brand_name = brand_name;
-	}
-
-	public Category getCategory_name() {
-		return category_name;
-	}
-
-	public void setCategory_name(Category category_name) {
-		this.category_name = category_name;
-	}
-
+	@Column(name = "create_at")
+	private Date createAt;
+	
 	public Long getId() {
 		return id;
 	}
@@ -160,9 +134,5 @@ public class Product {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-	
-
-
 	
 }
