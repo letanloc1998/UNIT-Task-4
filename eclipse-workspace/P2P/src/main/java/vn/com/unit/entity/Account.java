@@ -38,6 +38,10 @@ public class Account {
 	@Column(name = "create_at")
 	private Date createAt;
 
+	public Account() {
+		super();
+	}
+
 	public Account(Account account) {
 		this.id = account.getId();
 		this.name = account.getName();
