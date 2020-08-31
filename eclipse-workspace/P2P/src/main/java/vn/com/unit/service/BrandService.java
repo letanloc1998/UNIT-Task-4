@@ -22,7 +22,7 @@ public interface BrandService {
 	
 	public Brand findBrandById(Long id);
 	
-	public void updateBrandById(Brand brand);
+	//public void updateBrandById(Brand brand);
 	
 	public void deleteBrandById(Long id,Long disable);
 	

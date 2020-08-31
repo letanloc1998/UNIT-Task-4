@@ -19,13 +19,13 @@ public interface BrandRepository extends MirageRepository<Brand, Long> {
 	
 	public int countAllBrand();
 	
-	public long createNewBrand(@Param("name") String name);
+	//public long createNewBrand(@Param("name") String name);
 		
 	public Brand findBrandByName(@Param("name") String Name);
 	
 	public Brand findBrandById(@Param("id") long id);
 	
-	public void updateBrandById(@Param("name") String name,@Param("id") Long id);
+	//public void updateBrandById(@Param("name") String name,@Param("id") Long id);
 	
 	public void deleteBrandById(@Param("id") Long id, @Param("disable") Long disable);
 	

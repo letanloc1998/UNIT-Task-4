@@ -118,16 +118,14 @@ public class BrandServiceImpl implements BrandService {
 		return null;
 	}
 
-	@Override
-	public void updateBrandById(Brand brand) {
-		// TODO Auto-generated method stub
-		try {
-			brandRepository.updateBrandById(brand.getName(),brand.getId());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
-	}
+	/*
+	 * @Override public void updateBrandById(Brand brand) { // TODO Auto-generated
+	 * method stub try {
+	 * brandRepository.updateBrandById(brand.getName(),brand.getId()); } catch
+	 * (Exception e) { // TODO: handle exception }
+	 * 
+	 * }
+	 */
 
 	@Override
 	public void deleteBrandById(Long id, Long disable) {
