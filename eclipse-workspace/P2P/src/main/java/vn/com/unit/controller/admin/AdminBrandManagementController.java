@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Brand;
+import vn.com.unit.entity.BrandNewEntity;
 import vn.com.unit.pageable.PageRequest;
+import vn.com.unit.service.BrandNewEntityService;
 import vn.com.unit.service.BrandService;
 
 @Controller
@@ -30,6 +32,10 @@ public class AdminBrandManagementController {
 
 	@Autowired
 	private BrandService brandService;
+	
+	@Autowired
+	private BrandNewEntityService brandNewEntityService;
+	
 
 	@GetMapping("/admin/brand/list")
 	public ModelAndView BrandList(Model model,
@@ -80,6 +86,22 @@ public class AdminBrandManagementController {
 				.body("{ \"msg\" : \"You can't create an brand right now. Try again later\" }");
 
 	}
+	
+	
+	@PostMapping("/admin/brand/add2")
+	@ResponseBody
+	public ResponseEntity<String> createCategory2(@RequestBody Brand brand, Model model) {
+		BrandNewEntity brandNewEntity = new BrandNewEntity();
+		brandNewEntity.setName(brand.getName());
+		brandNewEntity.setId(brand.getId());
+//		billNewEntity.setCreateAt((new Date()));
+		
+		BrandNewEntity b = brandNewEntityService.add(brandNewEntity);
+		
+		return ResponseEntity.status(HttpStatus.OK)
+				.body("{ \"msg\" : \"You can't create an brand right now. Try again later\" }");
+
+	}
 
 	@PutMapping("/admin/brand/edit")
 	@ResponseBody
@@ -94,6 +116,23 @@ public class AdminBrandManagementController {
 		}
 		brandService.updateBrandById(brand);
 
+		return ResponseEntity.ok("{  \"msg\" : \"Update brand successfully\" }");
+	}
+	
+	
+	@PutMapping("/admin/brand/edit2")
+	@ResponseBody
+	public ResponseEntity<String> editCategory2(@RequestBody BrandNewEntity brand, Model model) {
+
+		if (brandService.findBrandByName(brand.getName()) != null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Brand already exists\" }");
+		}
+
+		if (brand.getName() == null) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
+		}
+		
+		brandNewEntityService.edit(brand);
 		return ResponseEntity.ok("{  \"msg\" : \"Update brand successfully\" }");
 	}
 
