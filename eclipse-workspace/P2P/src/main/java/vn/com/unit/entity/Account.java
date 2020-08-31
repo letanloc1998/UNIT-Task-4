@@ -3,29 +3,42 @@ package vn.com.unit.entity;
 import java.util.Date;
 import java.util.List;
 
-public class Account {
+import org.springframework.data.annotation.Id;
 
+import jp.sf.amateras.mirage.annotation.Column;
+import jp.sf.amateras.mirage.annotation.PrimaryKey;
+import jp.sf.amateras.mirage.annotation.Table;
+import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+
+@Table(name = "p2p_account")
+public class Account {
+	@Id
+	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
+	@Column(name = "id")
 	private Long id;
 	
+	@Column(name = "name")
 	private String name;
-
+	
+	@Column(name="username")
 	private String username;
-
+	
+	@Column(name="password")
 	private String password;
 	
+	@Column(name="email")
 	private String email;	
-
+	
+	@Column(name="phone")
 	private String phone;
 	
+	@Column(name="disable")
 	private Boolean disable;
 	
+	@Column(name="create_at")
 	private Date createAt;
-
-	private List<Role> roles;
 	
-	public Account() {
-		super();
-	}
+	private List<Role> roles;
 
 	public Long getId() {
 		return id;
@@ -98,5 +111,4 @@ public class Account {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	
 }
