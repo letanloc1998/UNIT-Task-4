@@ -4,10 +4,15 @@ import java.util.Date;
 
 import org.springframework.data.annotation.Id;
 
-import jp.sf.amateras.mirage.annotation.Column;
-import jp.sf.amateras.mirage.annotation.PrimaryKey;
-import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
-import jp.sf.amateras.mirage.annotation.Table;
+// import jp.sf.amateras.mirage.annotation.Column;
+// import jp.sf.amateras.mirage.annotation.PrimaryKey;
+// import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+// import jp.sf.amateras.mirage.annotation.Table;
+
+import com.miragesql.miragesql.annotation.Column;
+import com.miragesql.miragesql.annotation.PrimaryKey;
+import com.miragesql.miragesql.annotation.PrimaryKey.GenerationType;
+import com.miragesql.miragesql.annotation.Table;
 
 
 @Table(name = "p2p_bill")

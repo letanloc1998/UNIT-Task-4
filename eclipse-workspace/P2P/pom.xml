@@ -12,16 +12,19 @@
 
 
 	<repositories>
-		<repository>
-			<id>local-maven-repo</id>
-			<name>local-maven-repo</name>
-			<url>file://${pom.basedir}/local-maven-repo</url>
-		</repository>
+		<!-- <repository> <id>local-maven-repo</id> <name>local-maven-repo</name> 
+			<url>file://${pom.basedir}/local-maven-repo</url> </repository> -->
 
 		<!-- Momo -->
 		<repository>
 			<id>ossrh</id>
 			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+
+		<repository>
+			<id>bintray-dai0304-maven</id>
+			<name>bintray-dai0304-maven</name>
+			<url>https://dl.bintray.com/dai0304/maven</url>
 		</repository>
 	</repositories>
 
@@ -52,11 +55,8 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>jp.sf.amateras</groupId>
-			<artifactId>mirage</artifactId>
-			<version>1.2.5</version>
-		</dependency>
+		<!-- <dependency> <groupId>jp.sf.amateras</groupId> <artifactId>mirage</artifactId> 
+			<version>1.2.5</version> </dependency> -->
 
 
 		<dependency>
@@ -83,16 +83,14 @@
 			<version>${spring.version}</version>
 		</dependency>
 
+		<!-- <dependency> <groupId>org.springframework.data</groupId> <artifactId>spring-data-mirage</artifactId> 
+			<version>0.3.2.RELEASE</version> <exclusions> <exclusion> <groupId>jp.sf.amateras</groupId> 
+			<artifactId>mirage</artifactId> </exclusion> </exclusions> </dependency> -->
+
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-mirage</artifactId>
-			<version>0.3.2.RELEASE</version>
-			<exclusions>
-				<exclusion>
-					<groupId>jp.sf.amateras</groupId>
-					<artifactId>mirage</artifactId>
-				</exclusion>
-			</exclusions>
+			<version>0.10.2.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -294,6 +292,20 @@
 			11 or later does not require it for those algorithms: <dependency> <groupId>org.bouncycastle</groupId> 
 			<artifactId>bcprov-jdk15on</artifactId> <version>1.60</version> <scope>runtime</scope> 
 			</dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/com.miragesql/miragesql -->
+		<dependency>
+			<groupId>com.miragesql</groupId>
+			<artifactId>miragesql</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.miragesql/miragesql-integration -->
+		<dependency>
+			<groupId>com.miragesql</groupId>
+			<artifactId>miragesql-integration</artifactId>
+			<version>2.1.0</version>
+		</dependency>
 
 
 	</dependencies>
