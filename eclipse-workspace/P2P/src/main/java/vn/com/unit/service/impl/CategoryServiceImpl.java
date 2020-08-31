@@ -77,7 +77,12 @@ public class CategoryServiceImpl implements CategoryService {
 	public Long createCategory(Category category) {
 		// TODO Auto-generated method stub
 		try {
-			return categoryRepository.createCategory(category.getName());
+			
+			Category newCategory = new Category();
+			newCategory.setName(category.getName());
+			newCategory.setDisable(false);
+			categoryRepository.save(newCategory);
+			return newCategory.getId();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
