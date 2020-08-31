@@ -34,7 +34,7 @@
 												<select class="form-control" id="category" name="category">
 													<th:block th:each="category : ${categories}">
 															<option
-															th:attrappend="selected=${product.category_name.id == category.id}?'selected' "
+															th:attrappend="selected=${product.categoryId == category.id}?'selected' "
 															 th:value="${category.id}" th:text="${category.name}"></option>
 													</th:block>
 												</select>
