@@ -1,6 +1,6 @@
 declare @shop int = /*shop_id*/;
 
-select bill_separate.*, bill.address, bill.create_at, account.username
+select bill_separate.*, bill.address, bill.create_at, account.username as account, bill.payment
 from p2p_bill_separate bill_separate
 left join p2p_bill bill
 on bill.id = bill_separate.bill
