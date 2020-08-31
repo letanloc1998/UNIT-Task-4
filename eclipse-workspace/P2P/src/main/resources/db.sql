@@ -177,6 +177,7 @@ create table p2p_bill_item (
 )
 
 create table p2p_log (
+	id bigint primary key identity(1,1),
 	log nvarchar(3000),
 	type nvarchar(50),
 	author nvarchar(500),
