@@ -65,7 +65,7 @@ public class CartController {
 		model.addAttribute("total_price", total);
 
 		model.addAttribute("title", "Cart");
-		return new ModelAndView("/cart");
+		return new ModelAndView("cart");
 	}
 
 //	18:22:16,779 WARN  [org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver] (default task-10) Resolved exception caused by handler execution: org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.util.LinkedHashMap` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('{"product_id" : 2}'); nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot construct instance of `java.util.LinkedHashMap` (although at least one Creator exists): no String-argument constructor/factory method to deserialize from String value ('{"product_id" : 2}')
