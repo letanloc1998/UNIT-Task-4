@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import vn.com.unit.dto.BillItemDto;
 import vn.com.unit.dto.BillSeparateProfileView;
+import vn.com.unit.dto.BillSeparateShopViewDto;
 import vn.com.unit.entity.BillSeparate;
 //import vn.com.unit.entity.BillSeparateShop;
 //import vn.com.unit.entity.HistoryBillSeparate;
@@ -17,10 +18,10 @@ public interface BillSeparateRepository extends MirageRepository<BillSeparate, L
 
 	public List<BillSeparate> findBillSeparatePaymentSuccessAndStatusWaitingByShopId(@Param("shop_id") Long shop_id);
 	
-//	public List<BillSeparateShop> findBillSeparateByPaymentAndStatusAndShopId(@Param("payment") Long payment,
-//			@Param("status") Long status,@Param("shop_id") Long shop_id,
-//			@Param("sizeOfPage") Integer sizeOfPage,
-//			@Param("offset") Integer offset);
+	public List<BillSeparateShopViewDto> findBillSeparateByPaymentAndStatusAndShopId(@Param("payment") Long payment,
+			@Param("status") Long status,@Param("shop_id") Long shop_id,
+			@Param("sizeOfPage") Integer sizeOfPage,
+			@Param("offset") Integer offset);
 	
 	public int countBillSeparateByPaymentAndStatusAndShopId(@Param("payment") Long payment,@Param("status") Long status,@Param("shop_id") Long shop_id);
 	

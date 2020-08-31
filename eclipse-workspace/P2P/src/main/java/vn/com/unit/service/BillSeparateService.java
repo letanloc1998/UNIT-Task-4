@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 
 import vn.com.unit.dto.BillItemDto;
 import vn.com.unit.dto.BillSeparateProfileView;
+import vn.com.unit.dto.BillSeparateShopViewDto;
 import vn.com.unit.entity.BillSeparate;
 //import vn.com.unit.entity.BillSeparateShop;
 //import vn.com.unit.entity.HistoryBillSeparate;
@@ -15,7 +16,7 @@ public interface BillSeparateService {
 
 	public List<BillSeparate> findBillSeparatePaymentSuccessAndStatusWaitingByShopId(Long shop_id);
 	
-//	public List<BillSeparateShop> findBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id,int limit,int offset);
+	public List<BillSeparateShopViewDto> findBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id,int limit,int offset);
 	
 	public int countBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id);
 	

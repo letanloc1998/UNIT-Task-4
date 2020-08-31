@@ -44,23 +44,13 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductDto> findAllProductByShopId(Long shop_id, int limit, int offset) {
 
-		List<Product> product_list = new ArrayList<Product>();
+//		List<Product> product_list = new ArrayList<Product>();
 		List<ProductDto> product_dto_list = new ArrayList<ProductDto>();
 
 		try {
-			product_list = productRepository.findAllProductByShopId(shop_id, limit, offset);
+			product_dto_list = productRepository.findAllProductByShopId(shop_id, limit, offset);
 
-			for (Product product : product_list) {
 
-				ProductDto product_dto = new ProductDto(product);
-
-				Brand brand = brandService.findBrandByProductId(product.getId());
-				product_dto.setBrandName(brand.getName());
-				Category category = categoryService.findCategoryByProductId(product.getId());
-				product_dto.setCategoryName(category.getName());
-
-				product_dto_list.add(product_dto);
-			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

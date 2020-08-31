@@ -51,7 +51,7 @@ public class BillItemServiceImpl implements BillItemService {
 				
 				BillItemDto bill_item_dto = new BillItemDto(bill_item);
 				
-				bill_item_dto.setName(product.getName());
+				bill_item_dto.setProductName(product.getName());
 //				total = total + (product.getPrice() * bill_item.getQuantity());
 			}
 		} catch (Exception e) {
