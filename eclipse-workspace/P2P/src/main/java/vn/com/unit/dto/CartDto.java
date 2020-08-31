@@ -38,4 +38,8 @@ public class CartDto extends Cart {
 		return this.getPrice() * this.getQuantity();
 	}
 	
+	public Cart getCart() {
+		return (Cart) this;
+	}
+	
 }

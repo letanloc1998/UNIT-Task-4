@@ -32,4 +32,8 @@ public class ProductDto extends Product {
 		this.categoryName = categoryName;
 	}
 
+	public Product getProduct() {
+		return (Product) this;
+	}
+	
 }
