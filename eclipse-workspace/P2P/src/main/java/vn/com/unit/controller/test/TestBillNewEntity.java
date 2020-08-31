@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.dto.AccountRoleDto;
 import vn.com.unit.entity.Account;
-import vn.com.unit.entity.BillNewEntity;
+//import vn.com.unit.entity.BillNewEntity;
 import vn.com.unit.service.BillNewEntityService;
 
 @Controller
@@ -27,19 +27,19 @@ public class TestBillNewEntity {
 		
 		Account c = (Account) b;
 
-		BillNewEntity billNewEntity = new BillNewEntity();
-		billNewEntity.setAccount(1L);
-		billNewEntity.setAddress("An Giang");
-		billNewEntity.setPayment(2000L);
+//		BillNewEntity billNewEntity = new BillNewEntity();
+//		billNewEntity.setAccount(1L);
+//		billNewEntity.setAddress("An Giang");
+//		billNewEntity.setPayment(2000L);
 //		billNewEntity.setCreateAt((new Date()));
 
-		BillNewEntity b = billNewEntityService.save(billNewEntity);
+//		BillNewEntity b = billNewEntityService.save(billNewEntity);
 
-		b.setAccount(2L);
-		b.setAddress("An Giang Change");
-		b.setPayment(3000L);
-
-		BillNewEntity c = billNewEntityService.save(b);
+//		b.setAccount(2L);
+//		b.setAddress("An Giang Change");
+//		b.setPayment(3000L);
+//
+//		BillNewEntity c = billNewEntityService.save(b);
 
 		return new ModelAndView("home");
 	}

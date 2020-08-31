@@ -38,6 +38,17 @@ public class Account {
 	@Column(name = "create_at")
 	private Date createAt;
 
+	public Account(Account account) {
+		this.id = account.getId();
+		this.name = account.getName();
+		this.username = account.getUsername();
+		this.password = account.getPassword();
+		this.email = account.getEmail();
+		this.phone = account.getPhone();
+		this.disable = account.getDisable();
+		this.createAt = account.getCreateAt();
+	}
+
 	public Long getId() {
 		return id;
 	}

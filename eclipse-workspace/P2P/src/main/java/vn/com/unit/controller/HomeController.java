@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Brand;
-import vn.com.unit.entity.CartItem;
 import vn.com.unit.entity.Category;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;

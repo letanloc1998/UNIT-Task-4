@@ -9,6 +9,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.unit.dto.AccountRoleDto;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Role;
 import vn.com.unit.repository.AccountRepository;
@@ -82,19 +83,24 @@ public class AccountServiceImpl implements AccountService {
 
 //tìm tất cả user kèm role
 	@Override
-	public List<Account> findAllAccount(int limit,int offset, String keyword, Long role_id) {
+	public List<AccountRoleDto> findAllAccount(int limit,int offset, String keyword, Long role_id) {
 		List<Account> accounts = new ArrayList<Account>();
+		List<AccountRoleDto> account_role_dto_list = new ArrayList<AccountRoleDto>();
 		try {
 			accounts = accountRepository.findAllAccountActive(limit,offset,keyword,role_id);
 
 			for (Account account : accounts) {
 				List<Role> roles = roleService.findRoleByAccountId(account.getId());
-				account.setRoles(roles);
+				
+				AccountRoleDto account_role_dto = (AccountRoleDto) account;
+				
+				account_role_dto.setRoles(roles);
+				account_role_dto_list.add(account_role_dto);
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return accounts;
+		return account_role_dto_list;
 	}
 	
 	// create new account
