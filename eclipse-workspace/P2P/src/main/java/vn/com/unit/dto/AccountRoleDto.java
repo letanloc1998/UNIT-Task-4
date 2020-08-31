@@ -16,9 +16,9 @@ public class AccountRoleDto extends Account {
 	public void setRole(List<Role> role) {
 		this.role = role;
 	}
-	
+
 	public Account getAccount() {
 		return (Account) this;
 	}
-	
+
 }
