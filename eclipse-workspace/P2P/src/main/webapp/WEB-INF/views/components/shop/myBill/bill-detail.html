@@ -40,14 +40,24 @@
                                                             <div class="media-body my-auto text-right">
                                                                 <div class="row my-auto flex-column flex-md-row">
                                                                     <div class="col my-auto">
-                                                                        <h6 class="mb-0" th:text="${billitem.productName}"></h6>
+                                                                        <h4 class="mb-0" th:text="${billitem.productName}"></h4>
+                                                                    </div>
+                                                                    <div class="col my-auto">
+                                                                        <h6 class="mb-0" th:text="${billitem.brandName}"></h6>
+                                                                    </div>
+                                                                    <div class="col my-auto">
+                                                                        <h6 class="mb-0" th:text="${billitem.categoryName}"></h6>
                                                                     </div>
                                                                     <div class="col my-auto"> 
-                                                                        <small>Quantity : <span th:text="${billitem.quantity}"></span></small>
+                                                                        <h6>Quantity : <span th:text="${billitem.quantity}"></span></h6>
                                                                     </div>
                                                                     <div class="col my-auto"> 
-                                                                        <small>Price : <span th:inline="text">$ [[${#numbers.formatDecimal(billitem.price, 0, 'COMMA', 0, 'POINT')}]]</span></small>
+                                                                        <h6>Price : <span th:inline="text">$ [[${#numbers.formatDecimal(billitem.price, 0, 'COMMA', 0, 'POINT')}]]</span></h6>
                                                                     </div>
+                                                                    <div class="col my-auto"> 
+                                                                        <h6><span th:inline="text">$ [[${#numbers.formatDecimal(billitem.total, 0, 'COMMA', 0, 'POINT')}]]</span></h6>
+                                                                    </div>
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>

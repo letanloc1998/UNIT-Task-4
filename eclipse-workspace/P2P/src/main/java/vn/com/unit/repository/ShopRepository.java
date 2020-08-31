@@ -6,6 +6,7 @@ import org.springframework.data.mirage.repository.MirageRepository;
 import org.springframework.data.mirage.repository.query.Modifying;
 import org.springframework.data.repository.query.Param;
 
+import vn.com.unit.dto.ShopDto;
 import vn.com.unit.entity.Shop;
 
 public interface ShopRepository extends MirageRepository<Shop, Long> {
@@ -19,7 +20,7 @@ public interface ShopRepository extends MirageRepository<Shop, Long> {
 	@Modifying
 	public void createShop(@Param("account_id") Long account_id ,@Param("name") String name , @Param("email") String email, @Param("phone") String phone,@Param("address") String address,@Param("detail") String detail,@Param("status") int status);
 	
-	public List<Shop> findAllShop(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
+	public List<ShopDto> findAllShop(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset);
 
 	@Modifying
 	public void setDisableShop(@Param("shop_id") Long shop_id,@Param("status") Long status );
@@ -31,6 +32,6 @@ public interface ShopRepository extends MirageRepository<Shop, Long> {
 	public int countShopByStatus(@Param("status") int status);
 	public List<Shop> searchAllShop();
 	
-	public List<Shop> findShopByStatus(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset,@Param("status") Integer status);
+	public List<ShopDto> findShopByStatus(@Param("sizeOfPage") Integer sizeOfPage,@Param("offset") Integer offset,@Param("status") Integer status);
 
 }
