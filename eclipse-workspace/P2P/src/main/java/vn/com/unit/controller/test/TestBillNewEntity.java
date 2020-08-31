@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.dto.AccountRoleDto;
+import vn.com.unit.entity.Account;
 import vn.com.unit.entity.BillNewEntity;
 import vn.com.unit.service.BillNewEntityService;
 
@@ -19,6 +21,11 @@ public class TestBillNewEntity {
 
 	@GetMapping("/test/bill")
 	public ModelAndView bill(Model model) {
+		
+		Account a = new Account();
+		AccountRoleDto b = new AccountRoleDto();
+		
+		Account c = (Account) b;
 
 		BillNewEntity billNewEntity = new BillNewEntity();
 		billNewEntity.setAccount(1L);
