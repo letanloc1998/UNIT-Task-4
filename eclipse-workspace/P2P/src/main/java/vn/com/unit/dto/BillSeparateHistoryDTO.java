@@ -63,7 +63,7 @@ public class BillSeparateHistoryDTO{
 	}
 
 	public void setTotalPrice(Long totalPrice) {
-		totalPrice = totalPrice;
+		this.totalPrice = totalPrice;
 	}
 
 	public String getShopName() {
