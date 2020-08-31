@@ -38,6 +38,9 @@ public class Shop {
 	@Column(name = "create_at")
 	private Date createAt;
 
+	public Shop() {
+	}
+
 	public Long getId() {
 		return id;
 	}

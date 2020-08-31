@@ -28,6 +28,9 @@ public class Bill {
 	
 	@Column(name = "create_at")
 	private Date createAt;
+	
+	public Bill() {
+	}
 
 	public Long getId() {
 		return id;

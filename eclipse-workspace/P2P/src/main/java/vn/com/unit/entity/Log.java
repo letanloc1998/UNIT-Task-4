@@ -27,6 +27,9 @@ public class Log {
 	@Column(name = "create_at")
 	private Date createAt;
 
+	public Log() {
+	}
+
 	public Long getId() {
 		return id;
 	}
