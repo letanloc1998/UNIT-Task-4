@@ -34,4 +34,12 @@ public class CartDto extends Cart {
 		this.price = price;
 	}
 	
+	public Long getTotal() {
+		return this.getPrice() * this.getQuantity();
+	}
+	
+	public Cart getCart() {
+		return (Cart) this;
+	}
+	
 }

@@ -39,8 +39,8 @@
 												th:each="product, i : ${products}">
 												<td><span th:text="${i.count+(pageable.limit*(pageable.page -1))}"></span></td>
 												<td><span th:text="${product.name}"></span></td>
-												<td><span th:text="${product.category_name.name}"></span></td>
-												<td><span th:text="${product.brand_name.name}"></span></td>												
+												<td><span th:text="${product.categoryName}"></span></td>
+												<td><span th:text="${product.brandName}"></span></td>												
 												<td><span th:text="${product.price}"></span></td>
 												<td><span th:text="${product.quantity}"></span></td>
 												<td> <img class="img-product" alt="" style="border: 1px solid" 

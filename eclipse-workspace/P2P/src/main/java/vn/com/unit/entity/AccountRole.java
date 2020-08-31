@@ -11,6 +11,9 @@ public class AccountRole {
 
 	@Column(name = "role")
 	private Long role;
+	
+	public AccountRole() {
+	}
 
 	public Long getAccount() {
 		return account;

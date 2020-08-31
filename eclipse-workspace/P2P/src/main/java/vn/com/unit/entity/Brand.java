@@ -17,6 +17,10 @@ public class Brand {
 
 	@Column(name = "name")
 	private String name;
+	
+	public Brand() {
+		super();
+	}
 
 	public Long getId() {
 		return id;

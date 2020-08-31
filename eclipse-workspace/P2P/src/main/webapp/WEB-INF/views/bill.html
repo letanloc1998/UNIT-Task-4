@@ -87,7 +87,7 @@
                             <tr th:each="item, i : ${bill_item}">
                                 <td class="center">[[${i.count}]]</td>
                                 <!-- [[${item.product}]] -->
-                                <td class="left strong" th:onclick="window.location=[[@{/product/__${item?.product}__}]];"><a th:href="@{/product/__${item?.product}__}">[[${item?.name != null} ? ${item.name} : '']]</a></td>
+                                <td class="left strong" th:onclick="window.location=[[@{/product/__${item?.product}__}]];"><a th:href="@{/product/__${item?.product}__}">[[${item?.productName != null} ? ${item.productName} : '']]</a></td>
                                 <td class="left"></td>
                                 <td class="right">$[[${item?.price != null} ? ${item.price} : '']]</td>
                                 <td class="center">[[${item?.quantity != null} ? ${item.quantity} : '']]</td>

@@ -4,18 +4,27 @@ import java.util.Date;
 
 public class BillSeparateShopViewDto {
 
-	
 	private Long id;
-	
+
 	private Long status;
-	
+
+	private Long payment;
+
 	private Date createAt;
-	
+
 	private String address;
-	
+
 	private int totalPrice;
-	
+
 	private String account;
+
+	public Long getPayment() {
+		return payment;
+	}
+
+	public void setPayment(Long payment) {
+		this.payment = payment;
+	}
 
 	public Long getId() {
 		return id;
@@ -64,7 +73,5 @@ public class BillSeparateShopViewDto {
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	
-	
-	
+
 }

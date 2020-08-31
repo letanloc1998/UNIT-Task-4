@@ -66,8 +66,6 @@ public class BillSeparateHistoryDTO{
 		totalPrice = totalPrice;
 	}
 
-	
-
 	public String getShopName() {
 		return shopName;
 	}

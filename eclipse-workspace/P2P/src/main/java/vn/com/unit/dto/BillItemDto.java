@@ -14,6 +14,9 @@ public class BillItemDto extends BillItem {
 
 	private Long price;
 
+	public BillItemDto() {
+	}
+
 	public BillItemDto(BillItem billItem) {
 		super(billItem);
 	}
@@ -63,4 +66,9 @@ public class BillItemDto extends BillItem {
 	public Long getTotal() {
 		return this.getPrice() * this.getQuantity();
 	}
+	
+	public BillItem getBillItem( ) {
+		return (BillItem) this;
+	}
+	
 }

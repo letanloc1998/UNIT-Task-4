@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.mirage.repository.MirageRepository;
 import org.springframework.data.repository.query.Param;
 
+import vn.com.unit.dto.BillItemDto;
 import vn.com.unit.entity.BillItem;
 import vn.com.unit.entity.Shop;
 
@@ -14,6 +15,6 @@ public interface BillItemRepository extends MirageRepository<Shop, Long> {
 	
 	public List<BillItem> findAllBillItem();
 
-	public List<BillItem> findAllBillItemByBillId(@Param("bill_id") Long bill_id);
+	public List<BillItemDto> findAllBillItemByBillId(@Param("bill_id") Long bill_id);
 
 }

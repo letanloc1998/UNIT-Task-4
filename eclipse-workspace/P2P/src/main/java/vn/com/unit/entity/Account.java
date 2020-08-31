@@ -39,7 +39,6 @@ public class Account {
 	private Date createAt;
 
 	public Account() {
-		super();
 	}
 
 	public Account(Account account) {

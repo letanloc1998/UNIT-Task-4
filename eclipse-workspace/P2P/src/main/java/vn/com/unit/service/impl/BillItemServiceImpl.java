@@ -86,7 +86,7 @@ public class BillItemServiceImpl implements BillItemService {
 	}
 
 	@Override
-	public List<BillItem> findAllBillItemByBillId(Long id) {
+	public List<BillItemDto> findAllBillItemByBillId(Long id) {
 		return billItemRepository.findAllBillItemByBillId(id);
 	}
 	

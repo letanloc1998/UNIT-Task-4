@@ -27,7 +27,7 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private RoleService roleService;
-	
+
 	@Autowired
 	AccountService accountService;
 
@@ -62,8 +62,8 @@ public class AccountServiceImpl implements AccountService {
 
 		return false;
 	}
-	
-	//check password
+
+	// check password
 	@Override
 	public boolean checkPass(Account account, String oldPassword) {
 		try {
@@ -77,23 +77,20 @@ public class AccountServiceImpl implements AccountService {
 
 		return false;
 	}
-	
-	
-	
 
-//tìm tất cả user kèm role
+	// tìm tất cả user kèm role
 	@Override
-	public List<AccountRoleDto> findAllAccount(int limit,int offset, String keyword, Long role_id) {
+	public List<AccountRoleDto> findAllAccount(int limit, int offset, String keyword, Long role_id) {
 		List<Account> accounts = new ArrayList<Account>();
 		List<AccountRoleDto> account_role_dto_list = new ArrayList<AccountRoleDto>();
 		try {
-			accounts = accountRepository.findAllAccountActive(limit,offset,keyword,role_id);
+			accounts = accountRepository.findAllAccountActive(limit, offset, keyword, role_id);
 
 			for (Account account : accounts) {
 				List<Role> roles = roleService.findRoleByAccountId(account.getId());
-				
+
 				AccountRoleDto account_role_dto = (AccountRoleDto) account;
-				
+
 				account_role_dto.setRoles(roles);
 				account_role_dto_list.add(account_role_dto);
 			}
@@ -102,21 +99,26 @@ public class AccountServiceImpl implements AccountService {
 		}
 		return account_role_dto_list;
 	}
-	
+
 	// create new account
 	@Override
-	public Account createNewAccount(Account account,String role_name) {
+	public Account createNewAccount(Account account, String role_name) {
 		try {
 			String username = account.getUsername();
+
+			if (username.equals("anonymousUser")) {
+				return null;
+			}
+
 			String password = CommonUtils.encodePassword(account.getPassword());
 			Long account_new_id = accountRepository.createNewAccount(username, password);
 			if (account_new_id != null) {
 
-				accountService.setRoleByAccountId(account_new_id, roleService.findRoleIdByName(role_name) );
+				accountService.setRoleByAccountId(account_new_id, roleService.findRoleIdByName(role_name));
 
 				return accountService.findByUsername(account.getUsername());
 			}
-			
+
 		} catch (Exception e) {
 
 		}
@@ -131,7 +133,7 @@ public class AccountServiceImpl implements AccountService {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 	}
 
 	// getCurrentAccount
@@ -157,18 +159,16 @@ public class AccountServiceImpl implements AccountService {
 		}
 
 	}
-	
-	
-	//setInfor
+
+	// setInfor
 	@Override
-	public void saveAccount(Long account_id, String name,String email, String phone) {
+	public void saveAccount(Long account_id, String name, String email, String phone) {
 		try {
 			accountRepository.saveAccount(account_id, name, email, phone);
-		}catch (Exception e) {
-			
+		} catch (Exception e) {
+
 		}
 
-		
 	}
 
 	// getId
@@ -183,9 +183,9 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	@Override
-	public int countAccountActive(String keyword,Long role_id) {
+	public int countAccountActive(String keyword, Long role_id) {
 		try {
-			return accountRepository.countAccountActive(keyword,role_id);
+			return accountRepository.countAccountActive(keyword, role_id);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -198,8 +198,8 @@ public class AccountServiceImpl implements AccountService {
 		try {
 			accountRepository.setDisableAccount(account_id, disable);
 			return true;
-		} catch(Exception e) {
-			
+		} catch (Exception e) {
+
 		}
 		return false;
 	}

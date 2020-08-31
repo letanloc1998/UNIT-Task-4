@@ -33,9 +33,9 @@
 											<tr th:if="${!bills.empty or bills != null}"
 												th:each="bill, i : ${bills}">
 												<td><span th:text="${bill.id}"></span></td>
-												<td><span th:text="${bill.customer.username}"></span></td>
-												<td><span th:text="${bill.bill_name.address}"></span></td>
-												<td><span th:inline="text">$ [[${#numbers.formatDecimal(bill.total_price, 0, 'COMMA', 0, 'POINT')}]]</span></td>
+												<td><span th:text="${bill.account}"></span></td>
+												<td><span th:text="${bill.address}"></span></td>
+												<td><span th:inline="text">$ [[${#numbers.formatDecimal(bill.totalPrice, 0, 'COMMA', 0, 'POINT')}]]</span></td>
 
 												<td class="text-center">
 												<span> 
