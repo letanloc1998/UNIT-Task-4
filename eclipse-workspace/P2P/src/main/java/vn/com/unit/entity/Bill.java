@@ -2,16 +2,31 @@ package vn.com.unit.entity;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
+import jp.sf.amateras.mirage.annotation.Column;
+import jp.sf.amateras.mirage.annotation.PrimaryKey;
+import jp.sf.amateras.mirage.annotation.Table;
+import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+
+@Table(name = "p2p_bill")
 public class Bill {
 
+	@Id
+	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
+	@Column(name = "id")
 	private Long id;
-		
+	
+	@Column(name = "account")
 	private String account;
 	
+	@Column(name = "address")
 	private String address;
-		
+	
+	@Column(name = "payment")
 	private Long payment;
 	
+	@Column(name = "create_at")
 	private Date createAt;
 
 	public Long getId() {
