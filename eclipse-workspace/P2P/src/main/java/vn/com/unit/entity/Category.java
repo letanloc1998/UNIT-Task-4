@@ -1,14 +1,28 @@
 package vn.com.unit.entity;
 
+import org.springframework.data.annotation.Id;
+
+import jp.sf.amateras.mirage.annotation.Column;
+import jp.sf.amateras.mirage.annotation.PrimaryKey;
+import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+import jp.sf.amateras.mirage.annotation.Table;
+
+@Table(name = "category")
 public class Category {
 
+	@Id
+	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
+	@Column(name = "id")
 	private Long id;
 	
+	@Column(name = "name")
 	private String name;
 	
-	public Category() {
-		
-	}
+	@Column(name = "img")
+	private String img;
+	
+	@Column(name = "disable")
+	private Boolean disable;
 
 	public Long getId() {
 		return id;
@@ -24,6 +38,22 @@ public class Category {
 
 	public void setName(String name) {
 		this.name = name;
-	};
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public Boolean getDisable() {
+		return disable;
+	}
+
+	public void setDisable(Boolean disable) {
+		this.disable = disable;
+	}
 	
 }
