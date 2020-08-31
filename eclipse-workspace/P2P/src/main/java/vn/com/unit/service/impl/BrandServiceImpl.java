@@ -36,6 +36,26 @@ public class BrandServiceImpl implements BrandService {
 		
 	};
 	
+	
+	@Override
+	public void createBrand(Brand brand) {
+		Brand newBrand = new Brand();
+		newBrand.setId(brand.getId());
+		newBrand.setName(brand.getName());
+		brandRepository.save(newBrand);
+		
+	};
+
+	
+	@Override
+	public void editBrand(Brand brand) {
+		Brand newBrand = new Brand();
+		newBrand.setId(brand.getId());
+		newBrand.setName(brand.getName());
+		brandRepository.save(newBrand);
+	};
+	
+	
 	@Override
 	public List<Brand> findAllBrand(){
 		
@@ -70,16 +90,11 @@ public class BrandServiceImpl implements BrandService {
 		return  0;
 	}
 
-	@Override
-	public Long createCategory(Brand brand) {
-		// TODO Auto-generated method stub
-		try {
-			return brandRepository.createNewBrand(brand.getName());
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		return null;
-	}
+	/*
+	 * @Override public Long createCategory(Brand brand) { // TODO Auto-generated
+	 * method stub try { return brandRepository.createNewBrand(brand.getName()); }
+	 * catch (Exception e) { // TODO: handle exception } return null; }
+	 */
 
 	@Override
 	public Brand findBrandByName(String name) {
