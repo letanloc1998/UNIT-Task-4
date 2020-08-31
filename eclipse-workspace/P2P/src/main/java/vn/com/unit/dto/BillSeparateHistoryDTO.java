@@ -6,11 +6,8 @@ import vn.com.unit.entity.BillSeparate;
 
 public class BillSeparateHistoryDTO extends BillSeparate {
 
-
-
 	public BillSeparateHistoryDTO(BillSeparate billSeparate) {
 		super(billSeparate);
-		// TODO Auto-generated constructor stub
 	}
 
 	private String shopName;
@@ -20,8 +17,6 @@ public class BillSeparateHistoryDTO extends BillSeparate {
 	private Long totalPrice;
 	private Long payment;
 	private Date createAt;
-
-	
 	
 	public Date getCreateAt() {
 		return createAt;
@@ -38,8 +33,6 @@ public class BillSeparateHistoryDTO extends BillSeparate {
 	public void setTotalPrice(Long totalPrice) {
 		totalPrice = totalPrice;
 	}
-
-	
 
 	public String getShopName() {
 		return shopName;

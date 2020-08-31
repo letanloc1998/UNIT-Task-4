@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import vn.com.unit.dto.BillItemDto;
 import vn.com.unit.entity.Bill;
-import vn.com.unit.entity.BillItem;
 import vn.com.unit.service.BillItemService;
 import vn.com.unit.service.BillService;
 
@@ -38,7 +38,7 @@ public class BillController {
 		
 		model.addAttribute("total", total);
 		
-		List<BillItem> bill_item = billItemService.findAllBillItemByBillId(id);
+		List<BillItemDto> bill_item = billItemService.findAllBillItemByBillId(id);
 		
 		model.addAttribute("bill_item", bill_item);
 		
