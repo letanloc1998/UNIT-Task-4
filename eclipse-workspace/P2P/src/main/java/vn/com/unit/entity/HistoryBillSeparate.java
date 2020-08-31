@@ -81,11 +81,6 @@ public class HistoryBillSeparate {
 	public void setShopName(String shopName) {
 		this.shopName = shopName;
 	}
-
-	
-
-
-
 	public Long getPayment() {
 		return payment;
 	}

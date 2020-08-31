@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import vn.com.unit.entity.Category;
+import vn.com.unit.entity.categoryEntity;
 import vn.com.unit.repository.BrandRepository;
 import vn.com.unit.repository.CategoryRepository;
 import vn.com.unit.repository.ProductRepository;
 import vn.com.unit.repository.ShopRepository;
+import vn.com.unit.repository.categoryEntityRepository;
 import vn.com.unit.service.CategoryService;
 
 @Service
@@ -28,6 +30,9 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	private categoryEntityRepository categoryEntityRepository;
 	
 	@Override
 	public Category findCategoryByProductId(Long product_id) {
@@ -120,6 +125,11 @@ public class CategoryServiceImpl implements CategoryService {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+
+	@Override
+	public categoryEntity createNewCategory(categoryEntity category) {
+		return categoryEntityRepository.save(category);
 	}
 
 

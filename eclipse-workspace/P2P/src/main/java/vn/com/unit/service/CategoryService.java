@@ -3,6 +3,7 @@ package vn.com.unit.service;
 import java.util.List;
 
 import vn.com.unit.entity.Category;
+import vn.com.unit.entity.categoryEntity;
 
 public interface CategoryService {
 	
@@ -17,6 +18,8 @@ public interface CategoryService {
 	public int countAllCategory();
 		
 	public Long createCategory(Category category);
+	public categoryEntity createNewCategory(categoryEntity category);
+
 	
 	public Category findCategoryByName(String Name);
 	
