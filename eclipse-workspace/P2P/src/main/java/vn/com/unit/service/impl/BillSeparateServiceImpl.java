@@ -65,7 +65,7 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 	}
 
 	@Override
-	public List<BillSeparateHistoryDTO> findBillItemByBillSeparateId(Long bill_separate_id,Long account) {
+	public List<BillItemDto> findBillItemByBillSeparateId(Long bill_separate_id,Long account) {
 		// TODO Auto-generated method stub
 		try {
 			return billSeparateRepository.findBillItemByBillSeparateId(bill_separate_id,account);
@@ -76,7 +76,7 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 	}
 
 	@Override
-	public BillItemDto findBillSeparateById(Long id) {
+	public BillSeparateHistoryDTO findBillSeparateById(Long id) {
 		// TODO Auto-generated method stub
 		try {
 			return billSeparateRepository.findBillSeparateItemById(id);

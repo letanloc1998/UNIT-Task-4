@@ -138,11 +138,11 @@ public class ProfileBillHistoryController {
 	@GetMapping("profile/mybills/{bill_id}")
 	ModelAndView BillDetail(Model model, @PathVariable("bill_id") Long bill_id) {
 		Account account = accountService.findCurrentAccount();
-		List<BillSeparateHistoryDTO> billItems = billSeparateService.findBillItemByBillSeparateId(bill_id, account.getId());
+		List<BillItemDto> billItems = billSeparateService.findBillItemByBillSeparateId(bill_id, account.getId());
 		if(billItems.isEmpty()) {
 			return new ModelAndView("404");
 		}
-		BillItemDto bill = billSeparateService.findBillSeparateById(bill_id);
+		BillSeparateHistoryDTO bill = billSeparateService.findBillSeparateById(bill_id);
 		model.addAttribute("current_account", account);
 		model.addAttribute("billItems", billItems);
 		model.addAttribute("bill", bill);

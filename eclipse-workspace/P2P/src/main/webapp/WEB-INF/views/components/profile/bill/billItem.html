@@ -33,17 +33,17 @@
                                     <div class="card-body">
                                         <div class="row justify-content-between mb-3">
                                             <div class="col-auto">
-                                                <h6 style="cursor: pointer;" class="color-1 mb-0 change-color" th:if="${bill != null and bill.shopName !=''}" th:text="${bill.shopName}" th:onclick="window.location=[[@{/shop/__${bill.shopId}__}]];">Receipt</h6>
+                                                <h6 style="cursor: pointer;" class="color-1 mb-0 change-color" th:if="${bill != null}"  >Receipt</h6>
                                             </div>
                                             <div class="col-auto "> Order :  <span th:text="${bill_id}"></span> </div>
                                         </div>
-                                        <div th:if="${!billItems.empty or billItems != null}" th:each="item, i : ${billItems}" class="row">
+                                        <div th:if="${!billItems.empty or billItems != null}" th:each="item, i : ${billItems}" class="row" th:onclick="window.location=[[@{/product/__${item.product}__}]]">
                                             <div class="col">
                                                 <div class="card card-2">
                                                     <div class="card-body">
 
                                           
-                                                        <div style="cursor: pointer;" class="media" th:onclick="window.location=[[@{/product/__${item.product}__}]];">
+                                                        <div style="cursor: pointer;" class="media">
                                                             <div class="sq align-self-center "> 
                                                                 <img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" 
                                                                 th:src="${item.img}" width="135" height="135" /> </div>
@@ -60,7 +60,7 @@
                                                                         <small>Price : <span th:inline="text">$ [[${#numbers.formatDecimal(item.price, 0, 'COMMA', 0, 'POINT')}]]</span></small>
                                                                     </div>
                                                                     <div class="col my-auto">
-                                                                        <h6 class="mb-0"><span th:inline="text">$ [[${#numbers.formatDecimal(item.itemBillPrice, 0, 'COMMA', 0, 'POINT')}]]</span></h6>
+                                                                        <h6 class="mb-0"><span th:inline="text">$ [[${#numbers.formatDecimal(item.total, 0, 'COMMA', 0, 'POINT')}]]</span></h6>
                                                                     </div>
                                                                 </div>
                                                             </div>

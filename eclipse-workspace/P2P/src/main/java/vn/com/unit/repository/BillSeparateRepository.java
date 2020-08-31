@@ -35,9 +35,9 @@ public interface BillSeparateRepository extends MirageRepository<BillSeparate, L
 			@Param("sizeOfPage") Integer sizeOfPage,
 			@Param("offset") Integer offset);
 	
-	public List<BillSeparateHistoryDTO> findBillItemByBillSeparateId(@Param("bill_separate_id") Long bill_separate_id,@Param("account") Long account);
+	public List<BillItemDto> findBillItemByBillSeparateId(@Param("bill_separate_id") Long bill_separate_id,@Param("account") Long account);
 	
-	public BillItemDto findBillSeparateItemById(@Param("id") Long id);
+	public BillSeparateHistoryDTO findBillSeparateItemById(@Param("id") Long id);
 	public int countAllBillSeparateByAccountId(
 			@Param("account_id") Long account_id,
 			@Param("status") Long status,

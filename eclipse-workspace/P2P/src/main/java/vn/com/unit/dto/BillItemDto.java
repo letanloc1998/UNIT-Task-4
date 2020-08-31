@@ -7,7 +7,7 @@ public class BillItemDto extends BillItem {
 	private String productName;
 
 	private String brandName;
-	
+	 
 	private String categoryName;
 
 	private String img;
