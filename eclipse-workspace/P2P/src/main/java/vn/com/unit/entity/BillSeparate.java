@@ -2,17 +2,34 @@ package vn.com.unit.entity;
 
 import java.util.Date;
 
+import org.springframework.data.annotation.Id;
+
+import jp.sf.amateras.mirage.annotation.Column;
+import jp.sf.amateras.mirage.annotation.PrimaryKey;
+import jp.sf.amateras.mirage.annotation.Table;
+import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
+@Table(name = "p2p_bill_separate")
 public class BillSeparate {
 
+	
+	
+	@Id
+	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
+	@Column(name = "id")
 	private Long id;
 
+	@Column(name="bill")
 	private Long bill;
-	private Long shop;
-	private Long status;
-	private Long account;
-	private Long refund;
 	
-	private Date createAt;
+	@Column(name="shop")
+	private Long shop;
+	
+	@Column(name="status")
+	private Long status;
+	
+	@Column(name="refund")
+	private Long refund;
+
 
 	public Long getId() {
 		return id;
@@ -54,20 +71,6 @@ public class BillSeparate {
 		this.refund = refund;
 	}
 	
-	public Date getCreateAt() {
-		return createAt;
-	}
 
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
-	}
-
-	public Long getAccount() {
-		return account;
-	}
-
-	public void setAccount(Long account) {
-		this.account = account;
-	}
 	
 }
