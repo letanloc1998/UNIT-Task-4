@@ -21,33 +21,33 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Autowired
 	ShopRepository shopRepository;
-	
+
 	@Autowired
 	ProductRepository productRepository;
-	
+
 	@Autowired
 	BrandRepository brandRepository;
-	
+
 	@Autowired
 	CategoryRepository categoryRepository;
-	
+
 //	@Autowired
 //	private categoryEntityRepository categoryEntityRepository;
-	
+
 	@Override
 	public Category findCategoryByProductId(Long product_id) {
-		
+
 		return categoryRepository.findCategoryByProductId(product_id);
-		
+
 	};
-	
+
 	@Override
-	public List<Category> findAllCategory(){
+	public List<Category> findAllCategory() {
 		return categoryRepository.findAllCategory();
 	}
-	
+
 	@Override
-	public List<Category> findAllCategoryByShopId(Long shop_id){
+	public List<Category> findAllCategoryByShopId(Long shop_id) {
 		return categoryRepository.findAllCategoryByShopId(shop_id);
 	}
 
@@ -77,12 +77,11 @@ public class CategoryServiceImpl implements CategoryService {
 	public Category createCategory(Category category) {
 		// TODO Auto-generated method stub
 		try {
-			
-			Category newCategory = new Category();
-			newCategory.setName(category.getName());
-			newCategory.setDisable(false);
-			Category check_category = categoryRepository.save(newCategory);
-			return check_category;
+
+			Category category_new = new Category();
+			category_new.setName(category.getName());
+			category_new.setDisable(false);
+			return categoryRepository.save(category_new);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -114,19 +113,26 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void updateCategoryById(Category category) {
 		try {
-			categoryRepository.updateCategoryById(category.getId(),category.getName());
+			Category category_temp = new Category();
+
+			category_temp.setId(category.getId());
+			category_temp.setName(category.getName());
+
+//			categoryRepository.updateCategoryById(category.getId(), category.getName());
+			categoryRepository.save(category_temp);
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	public void deleteCategoryById(Long id,Long disable) {
+	public void deleteCategoryById(Long id, Long disable) {
 		// TODO Auto-generated method stub
 		try {
-			categoryRepository.deleteCategoryById(id,disable);
+			categoryRepository.deleteCategoryById(id, disable);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -136,7 +142,5 @@ public class CategoryServiceImpl implements CategoryService {
 //	public categoryEntity createNewCategory(categoryEntity category) {
 //		return categoryEntityRepository.save(category);
 //	}
-
-
 
 }
