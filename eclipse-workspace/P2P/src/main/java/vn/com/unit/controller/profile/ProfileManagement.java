@@ -61,6 +61,7 @@ public class ProfileManagement {
 			}
 			
 			boolean test = accountService.checkPass(account, old_password);
+
 			if(test == true) {
 			accountService.setAccountPassword(account.getId(), new_account.getPassword());
 			return ResponseEntity.status(HttpStatus.OK).body("{ \"msg\" : \"Change Passowrd success!\" }");

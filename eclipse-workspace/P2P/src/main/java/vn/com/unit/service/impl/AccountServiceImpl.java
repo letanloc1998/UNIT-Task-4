@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import vn.com.unit.dto.AccountWithRoleDto;
 import vn.com.unit.entity.Account;
+import vn.com.unit.entity.AccountRole;
 import vn.com.unit.entity.Role;
 import vn.com.unit.repository.AccountRepository;
+import vn.com.unit.repository.AccountRoleRepository;
 import vn.com.unit.repository.RoleRepository;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.RoleService;
@@ -36,6 +38,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private AccountRoleRepository accountRoleRepository;
 
 	@Override
 	public Account findByUsername(String username) {
@@ -144,7 +149,12 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void setRoleByAccountId(Long account_id, Long role_id) {
 		try {
-			accountRepository.setRoleByAccountId(account_id, role_id);
+			AccountRole account_role_temp = new AccountRole();
+			account_role_temp.setAccount(account_id);
+			account_role_temp.setRole(role_id);
+
+//			accountRepository.setRoleByAccountId(account_id, role_id);
+			accountRoleRepository.save(account_role_temp);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -167,8 +177,15 @@ public class AccountServiceImpl implements AccountService {
 	public void setAccountPassword(Long account_id, String password) {
 		try {
 			password = CommonUtils.encodePassword(password);
-
-			accountRepository.setAccountPassword(account_id, password);
+			
+			Account account_temp = new Account();
+			account_temp.setId(account_id);
+			account_temp.setPassword(password);
+			
+//			accountRepository.setAccountPassword(account_id, password);
+			
+			accountRepository.save(account_temp);
+			
 		} catch (Exception e) {
 
 		}
