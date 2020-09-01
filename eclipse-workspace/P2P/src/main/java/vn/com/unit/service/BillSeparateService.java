@@ -18,7 +18,7 @@ public interface BillSeparateService {
 	
 	public int countBillSeparateByPaymentAndStatusAndShopId(Long payment,Long status,Long shop_id);
 	
-	public void saveBillSeparateStatus(Long bill_separate_id, int status);
+	public BillSeparate saveBillSeparateStatus(Long bill_separate_id, int status);
 	
 	public List<BillSeparateHistoryDTO> findAllBillSeparateByAccountId(Long account_id,Long status, Long payment,int limit,int offset);
 	
