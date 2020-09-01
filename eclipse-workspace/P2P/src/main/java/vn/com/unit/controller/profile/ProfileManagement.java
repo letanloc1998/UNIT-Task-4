@@ -34,39 +34,43 @@ public class ProfileManagement {
 	@PutMapping("/account")
 	@ResponseBody
 	public ResponseEntity<Account> editAccount(@RequestBody Account account, Model model) {
-		Long account_id = account.getId();
-		String new_phone = account.getPhone();
-		String new_email = account.getEmail();
-		String new_name = account.getName();
-		accountService.saveAccount(account_id, new_name, new_email, new_phone);
-		return ResponseEntity.ok(account);
+
+		Account account_current = accountService.findCurrentAccount();
+
+		account_current.setPhone(account.getPhone());
+		account_current.setEmail(account.getEmail());
+		account_current.setName(account.getName());
+
+		Account account_new = accountService.save(account_current);
+
+		return ResponseEntity.ok(account_new);
 
 	}
-	
+
 	// edit password
-	
+
 	@PutMapping("/password/{old_password}")
 	@ResponseBody
-	public ResponseEntity<String> editPass(@RequestBody Account new_account, Model model,@PathVariable("old_password") String old_password ) {
-			Account account = accountService.findCurrentAccount();
-			
-			if (new_account.getPassword() == null || new_account.getPassword().equals("")) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Password cannot be empty\" }");
-			}
-			
-			
-			if (new_account.getPassword().length() < 8) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body("{ \"msg\" : \"Password too short - minimum length is 8 characters\" }");
-			}
-			
-			boolean test = accountService.checkPass(account, old_password);
+	public ResponseEntity<String> editPass(@RequestBody Account new_account, Model model,
+			@PathVariable("old_password") String old_password) {
+		Account account = accountService.findCurrentAccount();
 
-			if(test == true) {
+		if (new_account.getPassword() == null || new_account.getPassword().equals("")) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Password cannot be empty\" }");
+		}
+
+		if (new_account.getPassword().length() < 8) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("{ \"msg\" : \"Password too short - minimum length is 8 characters\" }");
+		}
+
+		boolean test = accountService.checkPass(account, old_password);
+
+		if (test == true) {
 			accountService.setAccountPassword(account.getId(), new_account.getPassword());
 			return ResponseEntity.status(HttpStatus.OK).body("{ \"msg\" : \"Change Passowrd success!\" }");
-			}
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Password do not match!\" }");
-			}
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Password do not match!\" }");
+	}
 
 }

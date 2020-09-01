@@ -23,8 +23,8 @@ public interface AccountService {
 
 	public void setAccountPassword(Long account_id, String password);
 	
-	public void saveAccount(Long account_id, String name, String email, String phone);	
-	public void saveAccountV2(Account account);	
+//	public void saveAccount(Long account_id, String name, String email, String phone);	
+//	public void saveAccountV2(Account account);	
 
 	public Account findAccountById(Long id);
 	
@@ -32,4 +32,6 @@ public interface AccountService {
 	
 	public boolean setDisableAccount(Long account_id, Long disable);
 
+	public Account save(Account account);
+	
 }

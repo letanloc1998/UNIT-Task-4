@@ -193,15 +193,15 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	// setInfor
-	@Override
-	public void saveAccount(Long account_id, String name, String email, String phone) {
-		try {
-			accountRepository.saveAccount(account_id, name, email, phone);
-		} catch (Exception e) {
-
-		}
-
-	}
+//	@Override
+//	public void saveAccount(Long account_id, String name, String email, String phone) {
+//		try {
+//			accountRepository.saveAccount(account_id, name, email, phone);
+//		} catch (Exception e) {
+//
+//		}
+//
+//	}
 
 	// getId
 	@Override
@@ -236,15 +236,20 @@ public class AccountServiceImpl implements AccountService {
 		return false;
 	}
 
-	@Override
-	public void saveAccountV2(Account account) {
-		// TODO Auto-generated method stub
-		try {
-			accountRepository.save(account);
+//	@Override
+//	public void saveAccountV2(Account account) {
+//		// TODO Auto-generated method stub
+//		try {
+//			accountRepository.save(account);
+//
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//	}
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+	@Override
+	public Account save(Account account) {
+		return accountRepository.save(account);
 	}
 
 }
