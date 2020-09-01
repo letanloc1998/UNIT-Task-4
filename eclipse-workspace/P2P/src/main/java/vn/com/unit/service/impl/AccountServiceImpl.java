@@ -132,10 +132,15 @@ public class AccountServiceImpl implements AccountService {
 
 			if (account_new != null) {
 
-				accountService.setRoleByAccountId(account_new.getId(), roleService.findRoleIdByName(role_name));
+//				accountService.setRoleByAccountId(account_new.getId(), roleService.findRoleIdByName(role_name));
 
-//				AccountRole account_role_new = new AccountRole();
+				AccountRole account_role_new = new AccountRole();
+				
+				account_role_new.setAccount(account_new.getId());
+				account_role_new.setRole(roleService.findRoleIdByName(role_name));
 
+				accountRoleRepository.save(account_role_new);
+				
 				return account_new;
 			}
 
