@@ -39,6 +39,7 @@
 		    var header = $("meta[name='_csrf_header']").attr("content");
 		    data = `${mode}`;
 		    
+		    //(UNSENT-0, OPENED-1, HEADERS_RECEIVED-2, LOADING-3 và DONE-4)
 	        if(xhr && xhr.readyState != 4){
 	            xhr.abort();
 	        }
