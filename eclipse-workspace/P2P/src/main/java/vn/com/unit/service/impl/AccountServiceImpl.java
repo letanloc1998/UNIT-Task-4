@@ -49,8 +49,13 @@ public class AccountServiceImpl implements AccountService {
 			String encodedPassword = account.getPassword();
 			if (encodedPassword.equals("")) {
 				String defaultRawPassword = CommonUtils.DEFAULT_PASSWORD;
-				accountRepository.updateAccountPassword(account.getId(),
-						CommonUtils.encodePassword(defaultRawPassword));
+
+				Account account_temp = new Account();
+				account_temp.setId(account.getId());
+				account_temp.setPassword(CommonUtils.encodePassword(defaultRawPassword));
+//				accountRepository.updateAccountPassword(account.getId(),
+//						CommonUtils.encodePassword(defaultRawPassword));
+				accountRepository.save(account_temp);
 				return rawPassword.equals(defaultRawPassword);
 			}
 
@@ -111,22 +116,21 @@ public class AccountServiceImpl implements AccountService {
 			}
 
 			String password = CommonUtils.encodePassword(account.getPassword());
-			
+
 //			Long account_new_id = accountRepository.createNewAccount(username, password);
-			
+
 			Account account_temp = new Account();
 			account_temp.setUsername(username);
 			account_temp.setPassword(password);
-			
+
 			Account account_new = accountRepository.save(account_temp);
-			
+
 			if (account_new != null) {
 
 				accountService.setRoleByAccountId(account_new.getId(), roleService.findRoleIdByName(role_name));
 
 //				AccountRole account_role_new = new AccountRole();
-				
-				
+
 				return account_new;
 			}
 
