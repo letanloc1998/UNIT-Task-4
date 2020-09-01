@@ -18,13 +18,13 @@ public class Bill {
 	private Long id;
 	
 	@Column(name = "account")
-	private String account;
+	private Long account;
 	
 	@Column(name = "address")
 	private String address;
 	
 	@Column(name = "payment")
-	private Long payment;
+	private int payment;
 	
 	@Column(name = "create_at")
 	private Date createAt;
@@ -40,11 +40,11 @@ public class Bill {
 		this.id = id;
 	}
 
-	public String getAccount() {
+	public Long getAccount() {
 		return account;
 	}
 
-	public void setAccount(String account) {
+	public void setAccount(Long account) {
 		this.account = account;
 	}
 
@@ -56,11 +56,11 @@ public class Bill {
 		this.address = address;
 	}
 
-	public Long getPayment() {
+	public int getPayment() {
 		return payment;
 	}
 
-	public void setPayment(Long payment) {
+	public void setPayment(int payment) {
 		this.payment = payment;
 	}
 

@@ -16,7 +16,7 @@ public interface BillService {
 
 	public Long calculateBillTotal(Long bill_id);
 
-	public void saveBillPaymentStatus(Long bill_id, int i);
+	public Bill saveBillPaymentStatus(Long bill_id, int i);
 
 	public Bill findBillOfCurrentAccountByBillId(Long id);
 
