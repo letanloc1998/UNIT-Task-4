@@ -68,11 +68,10 @@ public class AdminCategoryController {
 		if (category.getName() == "") {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }");
 		}
-		Long category_id = categoryService.createCategory(category);
-		if (category_id != null) {
-			return ResponseEntity.ok("{ \"id\" : " + category_id + ", \"msg\" : \"Create category successfully\" }");
+		Category check_category = categoryService.createCategory(category);
+		if(check_category != null) {
+			return ResponseEntity.status(HttpStatus.OK).body("{\"msg\" : \"Create category successfully\" }");
 		}
-		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 				.body("{ \"msg\" : \"You can't create an category right now. Try again later\" }");
 		

@@ -74,15 +74,15 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Long createCategory(Category category) {
+	public Category createCategory(Category category) {
 		// TODO Auto-generated method stub
 		try {
 			
 			Category newCategory = new Category();
 			newCategory.setName(category.getName());
 			newCategory.setDisable(false);
-			categoryRepository.save(newCategory);
-			return newCategory.getId();
+			Category check_category = categoryRepository.save(newCategory);
+			return check_category;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

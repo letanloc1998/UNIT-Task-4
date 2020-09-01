@@ -17,7 +17,7 @@ public interface CategoryService {
 	
 	public int countAllCategory();
 		
-	public Long createCategory(Category category);
+	public Category createCategory(Category category);
 //	public categoryEntity createNewCategory(categoryEntity category);
 
 	

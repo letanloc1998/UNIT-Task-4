@@ -65,37 +65,31 @@ public class AdminBrandManagementController {
 		return new ModelAndView("admin/brand/brand-edit");
 	}
 
-	/*
-	 * @PostMapping("/admin/brand/add")
-	 * 
-	 * @ResponseBody public ResponseEntity<String> createCategory(@RequestBody Brand
-	 * brand, Model model) { if (brandService.findBrandByName(brand.getName()) !=
-	 * null) { return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-	 * body("{ \"msg\" : \"brand already exists\" }"); }
-	 * 
-	 * if (brand.getName() == "") { return
-	 * ResponseEntity.status(HttpStatus.BAD_REQUEST).
-	 * body("{ \"msg\" : \"Name cannot be empty\" }"); } Long brand_id =
-	 * brandService.createCategory(brand); if (brand_id != null) { return
-	 * ResponseEntity.ok("{ \"id\" : " + brand_id +
-	 * ", \"msg\" : \"Create brand successfully\" }"); } return
-	 * ResponseEntity.status(HttpStatus.BAD_REQUEST)
-	 * .body("{ \"msg\" : \"You can't create an brand right now. Try again later\" }"
-	 * );
-	 * 
-	 * }
-	 */
 	
+	  @PostMapping("/admin/brand/add")	  
+	  @ResponseBody public ResponseEntity<String> createCategory(@RequestBody Brand
+	  brand, Model model) { if (brandService.findBrandByName(brand.getName()) !=
+	  null) { return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+	  body("{ \"msg\" : \"brand already exists\" }"); }
+	  
+	  if (brand.getName() == "") { return
+	  ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{ \"msg\" : \"Name cannot be empty\" }"); } 
+
+		try {
+			  brandService.createBrand(brand);
+			return ResponseEntity.status(HttpStatus.OK).body("{\"msg\" : \"Create category successfully\" }");
+		}catch(Exception e) {
+			
+		}
+	  return
+	  ResponseEntity.status(HttpStatus.BAD_REQUEST)
+	  .body("{ \"msg\" : \"You can't create an brand right now. Try again later\" }"
+	  );
+	  
+	  }
+	 
 	
-	@PostMapping("/admin/brand/add")
-	@ResponseBody
-	public ResponseEntity<String> createCategory2(@RequestBody Brand brand, Model model) {
 
-		brandService.createBrand(brand);
-		return ResponseEntity.status(HttpStatus.OK)
-				.body("{ \"msg\" : \"You can't create an brand right now. Try again later\" }");
-
-	}
 
 	/*
 	 * @PutMapping("/admin/brand/edit")

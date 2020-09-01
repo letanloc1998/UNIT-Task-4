@@ -7,7 +7,7 @@ import jp.sf.amateras.mirage.annotation.PrimaryKey;
 import jp.sf.amateras.mirage.annotation.PrimaryKey.GenerationType;
 import jp.sf.amateras.mirage.annotation.Table;
 
-@Table(name = "category")
+@Table(name = "p2p_category")
 public class Category {
 
 	@Id
@@ -22,7 +22,7 @@ public class Category {
 	private String img;
 	
 	@Column(name = "disable")
-	private Boolean disable;
+	private boolean disable;
 	
 	public Category() {
 	}
