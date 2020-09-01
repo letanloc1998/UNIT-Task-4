@@ -108,7 +108,7 @@ public class ShopManagement {
 		String address = shop.getAddress();
 		String detail = shop.getDetail();
 		shopService.saveShop(shop_id, name, email, phone, address, detail);
-		;
+
 		return ResponseEntity.ok(shop);
 
 	}
@@ -173,7 +173,7 @@ public class ShopManagement {
 
 		product.setId(null);
 		product.setShop(account.getId());
-		product.setImg(null);
+		product.setImg("");
 
 		// Create product
 		Product product_new = productService.save(product);
@@ -204,19 +204,37 @@ public class ShopManagement {
 	@ResponseBody
 	public ResponseEntity<Product> editShop(@RequestBody Product product, @PathVariable("product_id") Long product_id,
 			Model model) {
+		
+		Product product_old = productService.findOne(product_id);
+		
+		Account account_current = accountService.findCurrentAccount();
+		
+		if (product_old.getShop() != account_current.getId()) {
+			return ResponseEntity.status(HttpStatus.FORBIDDEN).body(product);
+		}
+		
 		String name = product.getName();
 		int category = product.getCategory();
 		int brand = product.getBrand();
 		int price = product.getPrice();
 		int quantity = product.getQuantity();
 		String detail = product.getDetail();
-		productService.saveProduct(product_id, name, price, detail, category, brand, quantity);
+//		productService.saveProduct(product_id, name, price, detail, category, brand, quantity);
 
 //		product.setShop(null);
 //		
 //		product.setId(product_id);
-//		productService.save(product);
-		return ResponseEntity.ok(product);
+		
+		product_old.setName(name);
+		product_old.setCategory(category);
+		product_old.setBrand(brand);
+		product_old.setPrice(price);
+		product_old.setQuantity(quantity);
+		product_old.setDetail(detail);
+		
+		Product product_new = productService.save(product_old);
+		
+		return ResponseEntity.ok(product_new);
 
 	}
 

@@ -38,4 +38,6 @@ public interface ProductService {
 	public Product findOneTopProductPaymentSuccess();
 	
 	public Product save(Product product);
+	
+	public Product findOne(Long id);
 }
