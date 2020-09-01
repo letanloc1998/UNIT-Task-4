@@ -18,6 +18,9 @@ public class Brand {
 	@Column(name = "name")
 	private String name;
 	
+	@Column(name = "disable")
+	private boolean disable;
+
 	public Brand() {
 		super();
 	}
@@ -36,6 +39,15 @@ public class Brand {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+
+	public boolean isDisable() {
+		return disable;
+	}
+
+	public void setDisable(boolean disable) {
+		this.disable = disable;
 	}
 
 }
