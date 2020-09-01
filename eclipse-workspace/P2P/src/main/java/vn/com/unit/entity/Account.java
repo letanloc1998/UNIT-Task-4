@@ -33,7 +33,7 @@ public class Account {
 	private String phone;
 
 	@Column(name = "disable")
-	private Boolean disable;
+	private boolean disable;
 
 	@Column(name = "create_at")
 	private Date createAt;
@@ -48,7 +48,7 @@ public class Account {
 		this.password = account.getPassword();
 		this.email = account.getEmail();
 		this.phone = account.getPhone();
-		this.disable = account.getDisable();
+		this.disable = account.isDisable();
 		this.createAt = account.getCreateAt();
 	}
 
@@ -100,11 +100,11 @@ public class Account {
 		this.phone = phone;
 	}
 
-	public Boolean getDisable() {
+	public boolean isDisable() {
 		return disable;
 	}
 
-	public void setDisable(Boolean disable) {
+	public void setDisable(boolean disable) {
 		this.disable = disable;
 	}
 
