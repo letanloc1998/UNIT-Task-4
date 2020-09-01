@@ -35,15 +35,60 @@
 					th:href="@{/shop/mybills/deny}">Deny List</a> 
 					<a 
 					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/error-payment') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/mybills/error-payment}">Error Payment</a> 					
+					th:href="@{/shop/mybills/error-payment}">Error Payment</a> 	
+					<button class="btn btn-danger"
+					th:onclick="|waitingConfirm('waitingConfirm')|">Danger</button> 	
+									
 				</div>
 			</div>
 		</nav>
 
-		<script th:inline="javascript">
+<!-- 		<script th:inline="javascript">
         const shop = [[${ shops }]]
         console.log([[${ shops }]])
-      </script>
+        
+        
+        function waitingConfirm(){
+		    var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+   		     $.ajax({
+		        type: "POST",
+		        url: `/mybills/waiting-confirm-test`,
+	
+		        beforeSend: function (xhr) {
+		            xhr.setRequestHeader(header, token);
+		        },
+	
+		        success: function (data, status, xhr) {
+					//var data = JSON.parse(data);
+		        	console.log(data)
+		        	data.forEach(function(dt){
+		        		$("#tdata").append("<tr>" + 
+		        		"<td>"+dt.id+"</td>"+
+		        		"<td>"+dt.account+"</td>"+
+		        		"<td>"+dt.address+"</td>"
+		        		+"</tr>"
+		        		)
+		        	})
+		        	//alert("Edit Shop Success!");
+		        	//window.location.href = "/shop/myproduct?mode=view";
+		        },
+		        error: function (request, status, error) {
+		            alert(status + " " + error);
+		           // window.location.href = window.location.href;
+		        }
+		    });    
+	
+		    console.log("End edit");
+        	
+        	
+        }
+        
+        
+        
+        
+        
+      </script> -->
 	</th:block>
 
 </body>

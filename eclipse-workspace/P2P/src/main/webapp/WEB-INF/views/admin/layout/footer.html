@@ -22,7 +22,70 @@
 		
 		  <script th:src="@{/static/admin/js/material-dashboard.js?v=2.1.2}" type="text/javascript"></script>
 		
+		<script th:inline="javascript">
+        const shop = [[${ shops }]]
+        console.log([[${ shops }]])              
+        function waitingConfirm(mode){
+		    var token = $("meta[name='_csrf']").attr("content");
+		    var header = $("meta[name='_csrf_header']").attr("content");
+		    data = ` ${mode}`;
+		    $.ajax({
+		        type: "POST",
+		        url: `/mybills/waiting-confirm-test`,
+		        
+		        
+                dataType: "json",
+                contentType: "application/json",
+                data: data,
+                
+		        beforeSend: function (xhr) {
+		            xhr.setRequestHeader(header, token);
+		        },
+	
+		        success: function (data, status, xhr) {
+					//var data = JSON.parse(data);
+					data.forEach(function(dt){
+		        		$("#tdata").append("<tr>" + 
+		        		"<td>"+dt.id+"</td>"+
+		        		"<td>"+dt.account+"</td>"+
+		        		"<td>"+dt.address+"</td>"+
+		        		"<td>"+dt.totalPrice+"</td>"+
+						"<td class=\"text-center\"><span><a rel=\"tooltip\" title=\"View Detail\" type=\"button\" href=\"/shop/mybill/"+dt.id+"\"class=\"btn btn-large btn-success btn-just-icon\"><i class=\"fas fa-eye\"></i></a></span>"
+						+"<span>" 
+						+"<button rel=\"tooltip\" title=\"Confirm Bill\"  type=\"button\" onclick=\"confirmBill("+dt.id+")\""
+								+"class=\"btn btn-large btn-info btn-just-icon\">" 
+								+"<i class=\"fas fa-check-circle\"></i>"
+							+"</button>"
+						+"</span> <span>"
+								+"<button rel=\"tooltip\" title=\"Deny Bill\" type=\"button\" onclick=\"denyBill("+dt.id+")|\""
+								+"class=\"btn btn-large btn-danger btn-just-icon\">"
+									+"<i class=\"fas fa-trash-alt\"></i>"
+								+"</button>"
+						+"</span></td>"
+		        		+"</tr>"
+		        		)
+		        	})
+		        	console.log(data)
+
+		        	//alert("Edit Shop Success!");
+		        	//window.location.href = "/shop/myproduct?mode=view";
+		        },
+		        error: function (request, status, error) {
+		            alert(status + " " + error);
+		           // window.location.href = window.location.href;
+		        }
+		    });    
+	
+		    console.log("End edit");
+        	
+        	
+        }
+               
+      </script>
+		
 		<script>
+		
+		
 		
 		$(function () {
 			  $('[data-toggle="tooltip"]').tooltip()

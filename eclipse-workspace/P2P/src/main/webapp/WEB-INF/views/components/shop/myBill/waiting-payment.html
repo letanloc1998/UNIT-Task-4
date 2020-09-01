@@ -22,28 +22,15 @@
 								<div class="table-responsive">
 									<table class="table">
 										<thead class=" text-primary">
-												<th>Id Bill</th>
+												<th>Id Bill <span id="test"></span></th>
 											<th>Customer</th>
 											<th style="width: 1000px">Address</th>
 											<th>Total</th>
 											<th class="text-center">Action</th>
 										</thead>
-										<tbody>
+										<tbody id="tdata">
 
-											<tr th:if="${!bills.empty or bills != null}"
-												th:each="bill, i : ${bills}">
-												<td><span th:text="${bill.id}"></span></td>
-												<td><span th:text="${bill.account}"></span></td>
-												<td><span th:text="${bill.address}"></span></td>
-												<td><span th:inline="text">$ [[${#numbers.formatDecimal(bill.totalPrice, 0, 'COMMA', 0, 'POINT')}]]</span></td>
 
-												<td class="text-center">
-												<span> 
-												<a rel="tooltip" title="View Detail" type="button" th:href="@{|/shop/mybill/__${bill.id}__|}"
-														class="btn btn-large btn-success btn-just-icon"> 
-														<i class="fas fa-eye"></i>
-													</a>
-												</span></td>
 										</tbody>
 									</table>
 										<div style="display: flex; align-items: center;">

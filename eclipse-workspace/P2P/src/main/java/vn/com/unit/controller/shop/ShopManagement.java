@@ -1,6 +1,8 @@
 package vn.com.unit.controller.shop;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,9 +22,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import vn.com.unit.dto.BillSeparateShopViewDto;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
+import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillItemService;
 import vn.com.unit.service.BillSeparateService;
@@ -253,4 +258,43 @@ public class ShopManagement {
 		return ResponseEntity.ok(
 				"{\"msg\" : \"Deny bill succes! Please check again!\" }");
 	}
+	
+	
+	//waiting-cofirm-new
+	@PreAuthorize("hasRole('ROLE_VENDOR')")
+	@PostMapping("/mybills/waiting-confirm-test")
+	@ResponseBody
+	public ResponseEntity<List<BillSeparateShopViewDto>> test(Model model, @RequestBody String json) {
+		Long status = (long) 0;
+		Long payment = (long) 1;
+		String test = json.toString();
+		if(test.equals("waitingConfirm")) {
+			status = (long) 0;
+			payment = (long) -1;			
+		}
+
+		
+		Account current_account = accountService.findCurrentAccount();
+		
+		int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, current_account.getId());
+		PageRequest pageable = new PageRequest(1, 8, totalitems);
+		List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, current_account.getId(),pageable.getLimit(),pageable.getOffset());
+		for (BillSeparateShopViewDto bill : bills) {
+			int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
+			bill.setTotalPrice(total);
+		}
+		
+		return ResponseEntity.ok(bills);
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
 }
