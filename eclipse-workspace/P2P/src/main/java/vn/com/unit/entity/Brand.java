@@ -17,7 +17,7 @@ public class Brand {
 
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "disable")
 	private boolean disable;
 
@@ -40,7 +40,6 @@ public class Brand {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 
 	public boolean isDisable() {
 		return disable;
