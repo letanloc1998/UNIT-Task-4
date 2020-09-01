@@ -15,7 +15,7 @@ public class Cart {
 	private Long product;
 	
 	@Column(name = "quantity")
-	private Long quantity;
+	private int quantity;
 	
 	@Column(name = "create_at")
 	private Date createAt;
@@ -39,11 +39,11 @@ public class Cart {
 		this.product = product;
 	}
 
-	public Long getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Long quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 

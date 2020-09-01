@@ -14,16 +14,16 @@ public class Category {
 	@PrimaryKey(generationType = GenerationType.IDENTITY) // Primary key // Auto increment
 	@Column(name = "id")
 	private Long id;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@Column(name = "img")
 	private String img;
-	
+
 	@Column(name = "disable")
 	private boolean disable;
-	
+
 	public Category() {
 	}
 
@@ -51,12 +51,12 @@ public class Category {
 		this.img = img;
 	}
 
-	public Boolean getDisable() {
+	public boolean isDisable() {
 		return disable;
 	}
 
-	public void setDisable(Boolean disable) {
+	public void setDisable(boolean disable) {
 		this.disable = disable;
 	}
-	
+
 }

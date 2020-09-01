@@ -36,4 +36,8 @@ public interface ProductService {
 	public int countAllProductByCategoryId(Long category_id);
 	
 	public Product findOneTopProductPaymentSuccess();
+	
+	public Product save(Product product);
+	
+	public Product findOne(Long id);
 }

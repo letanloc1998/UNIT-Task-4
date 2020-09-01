@@ -11,8 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import vn.com.unit.dto.AccountWithRoleDto;
 import vn.com.unit.entity.Account;
+import vn.com.unit.entity.AccountRole;
 import vn.com.unit.entity.Role;
 import vn.com.unit.repository.AccountRepository;
+import vn.com.unit.repository.AccountRoleRepository;
 import vn.com.unit.repository.RoleRepository;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.RoleService;
@@ -36,6 +38,9 @@ public class AccountServiceImpl implements AccountService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private AccountRoleRepository accountRoleRepository;
 
 	@Override
 	public Account findByUsername(String username) {
@@ -49,8 +54,13 @@ public class AccountServiceImpl implements AccountService {
 			String encodedPassword = account.getPassword();
 			if (encodedPassword.equals("")) {
 				String defaultRawPassword = CommonUtils.DEFAULT_PASSWORD;
-				accountRepository.updateAccountPassword(account.getId(),
-						CommonUtils.encodePassword(defaultRawPassword));
+
+				Account account_temp = new Account();
+				account_temp.setId(account.getId());
+				account_temp.setPassword(CommonUtils.encodePassword(defaultRawPassword));
+//				accountRepository.updateAccountPassword(account.getId(),
+//						CommonUtils.encodePassword(defaultRawPassword));
+				accountRepository.save(account_temp);
 				return rawPassword.equals(defaultRawPassword);
 			}
 
@@ -111,21 +121,25 @@ public class AccountServiceImpl implements AccountService {
 			}
 
 			String password = CommonUtils.encodePassword(account.getPassword());
-			
+
 //			Long account_new_id = accountRepository.createNewAccount(username, password);
-			
+
 			Account account_temp = new Account();
 			account_temp.setUsername(username);
 			account_temp.setPassword(password);
-			
+
 			Account account_new = accountRepository.save(account_temp);
-			
+
 			if (account_new != null) {
 
-				accountService.setRoleByAccountId(account_new.getId(), roleService.findRoleIdByName(role_name));
+//				accountService.setRoleByAccountId(account_new.getId(), roleService.findRoleIdByName(role_name));
 
-//				AccountRole account_role_new = new AccountRole();
+				AccountRole account_role_new = new AccountRole();
 				
+				account_role_new.setAccount(account_new.getId());
+				account_role_new.setRole(roleService.findRoleIdByName(role_name));
+
+				accountRoleRepository.save(account_role_new);
 				
 				return account_new;
 			}
@@ -140,7 +154,12 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public void setRoleByAccountId(Long account_id, Long role_id) {
 		try {
-			accountRepository.setRoleByAccountId(account_id, role_id);
+			AccountRole account_role_temp = new AccountRole();
+			account_role_temp.setAccount(account_id);
+			account_role_temp.setRole(role_id);
+
+//			accountRepository.setRoleByAccountId(account_id, role_id);
+			accountRoleRepository.save(account_role_temp);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -163,8 +182,15 @@ public class AccountServiceImpl implements AccountService {
 	public void setAccountPassword(Long account_id, String password) {
 		try {
 			password = CommonUtils.encodePassword(password);
-
-			accountRepository.setAccountPassword(account_id, password);
+			
+			Account account_temp = new Account();
+			account_temp.setId(account_id);
+			account_temp.setPassword(password);
+			
+//			accountRepository.setAccountPassword(account_id, password);
+			
+			accountRepository.save(account_temp);
+			
 		} catch (Exception e) {
 
 		}
@@ -172,15 +198,15 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	// setInfor
-	@Override
-	public void saveAccount(Long account_id, String name, String email, String phone) {
-		try {
-			accountRepository.saveAccount(account_id, name, email, phone);
-		} catch (Exception e) {
-
-		}
-
-	}
+//	@Override
+//	public void saveAccount(Long account_id, String name, String email, String phone) {
+//		try {
+//			accountRepository.saveAccount(account_id, name, email, phone);
+//		} catch (Exception e) {
+//
+//		}
+//
+//	}
 
 	// getId
 	@Override
@@ -215,15 +241,20 @@ public class AccountServiceImpl implements AccountService {
 		return false;
 	}
 
-	@Override
-	public void saveAccountV2(Account account) {
-		// TODO Auto-generated method stub
-		try {
-			accountRepository.save(account);
+//	@Override
+//	public void saveAccountV2(Account account) {
+//		// TODO Auto-generated method stub
+//		try {
+//			accountRepository.save(account);
+//
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//	}
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+	@Override
+	public Account save(Account account) {
+		return accountRepository.save(account);
 	}
 
 }

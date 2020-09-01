@@ -22,7 +22,7 @@ public class BillSeparate {
 	private Long shop;
 
 	@Column(name = "status")
-	private Long status;
+	private int status;
 
 	@Column(name = "refund")
 	private Long refund;
@@ -62,11 +62,11 @@ public class BillSeparate {
 		this.shop = shop;
 	}
 
-	public Long getStatus() {
+	public int getStatus() {
 		return status;
 	}
 
-	public void setStatus(Long status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 

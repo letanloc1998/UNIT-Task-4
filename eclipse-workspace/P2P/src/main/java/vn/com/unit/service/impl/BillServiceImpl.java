@@ -46,7 +46,12 @@ public class BillServiceImpl implements BillService {
 	@Override
 	public Long createBill(Long account_id, String address) {
 		
-		return billRepository.createBill(account_id, address);
+//		return billRepository.createBill(account_id, address);
+		Bill bill_temp = new Bill();
+		bill_temp.setAccount(account_id);
+		bill_temp.setAddress(address);
+		
+		return billRepository.save(bill_temp).getId();
 	}
 
 	@Override
@@ -62,9 +67,13 @@ public class BillServiceImpl implements BillService {
 	}
 
 	@Override
-	public void saveBillPaymentStatus(Long bill_id, int payment_status) {
-		billRepository.saveBillPaymentStatus(bill_id, payment_status);
+	public Bill saveBillPaymentStatus(Long bill_id, int payment_status) {
+//		billRepository.saveBillPaymentStatus(bill_id, payment_status);
+		Bill bill_temp = new Bill();
+		bill_temp.setId(bill_id);
+		bill_temp.setPayment(payment_status);
 		
+		return billRepository.save(bill_temp);
 	}
 
 	@Override
@@ -75,8 +84,5 @@ public class BillServiceImpl implements BillService {
 		
 		return billRepository.findBillByBillIdAndAccountId(bill_id, current_account_id);
 	}
-	
-	
-	
 
 }

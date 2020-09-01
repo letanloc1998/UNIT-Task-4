@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import vn.com.unit.dto.CartDto;
+import vn.com.unit.entity.Cart;
 import vn.com.unit.repository.CartRepository;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.CartService;
@@ -28,11 +29,11 @@ public class CartServiceImpl implements CartService {
 
 		return this.findAllCartItemByAccountId(curent_account_id);
 	}
-	
+
 	@Override
 	public int countAllCartItemByCurrentAccount(Long account_id) {
 
-		int total = cartRepository.countAllCartItemByAccountId(account_id); 
+		int total = cartRepository.countAllCartItemByAccountId(account_id);
 
 		return total;
 	}
@@ -54,7 +55,7 @@ public class CartServiceImpl implements CartService {
 
 		cartRepository.deleteCartItemCurrentAccount(account_id, product_id);
 	}
-	
+
 	@Override
 	public void addCartItemCurrentAccount(Long product_id, int quantity) {
 		Long curent_account_id = accountService.findCurrentAccount().getId();
@@ -66,11 +67,24 @@ public class CartServiceImpl implements CartService {
 		// Nead optimize here
 		Integer quantity_in_cart = cartRepository.findProductQuantityInCart(curent_account_id, product_id);
 
-		if (quantity_in_cart == null) {
-			cartRepository.addCartItemCurrentAccount(curent_account_id, product_id, quantity);
-		} else {
-			cartRepository.addCartItemCurrentAccount(curent_account_id, product_id, quantity_in_cart + quantity);
+//		if (quantity_in_cart == null) {
+//			cartRepository.addCartItemCurrentAccount(curent_account_id, product_id, quantity);
+//		} else {
+//			cartRepository.addCartItemCurrentAccount(curent_account_id, product_id, quantity_in_cart + quantity);
+//		}
+
+		Integer quantity_new = quantity_in_cart;
+		if (quantity_in_cart != null) {
+			quantity_new = quantity_in_cart + quantity;
 		}
+
+		Cart cart_temp = new Cart();
+
+		cart_temp.setAccount(curent_account_id);
+		cart_temp.setProduct(product_id);
+		cart_temp.setQuantity(quantity_new);
+
+		cartRepository.save(cart_temp);
 
 	}
 

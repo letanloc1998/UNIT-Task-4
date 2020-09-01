@@ -48,9 +48,14 @@ public class BillSeparateServiceImpl implements BillSeparateService {
 	
 	
 	@Override
-	public void saveBillSeparateStatus(Long bill_separate_id, int status) {
-		billSeparateRepository.saveBillSeparateStatus(bill_separate_id, status);
+	public BillSeparate saveBillSeparateStatus(Long bill_separate_id, int status) {
+//		billSeparateRepository.saveBillSeparateStatus(bill_separate_id, status);
 		
+		BillSeparate bill_separate_temp = new BillSeparate();
+		bill_separate_temp.setId(bill_separate_id);
+		bill_separate_temp.setStatus(status);
+		
+		return billSeparateRepository.save(bill_separate_temp);
 	}
 
 	@Override

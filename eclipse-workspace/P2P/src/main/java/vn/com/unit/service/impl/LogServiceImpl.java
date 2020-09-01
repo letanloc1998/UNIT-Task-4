@@ -1,5 +1,6 @@
 package vn.com.unit.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +17,18 @@ public class LogServiceImpl implements LogService {
 
 	@Autowired
 	LogRepository logRepository;
-	
+
 	@Override
 	public void saveLog(String log, String type, String author) {
 		logRepository.saveLog(log, type, author);
+
+		Log log_temp = new Log();
+		log_temp.setLog(log);
+		log_temp.setType(type);
+		log_temp.setAuthor(author);
+		log_temp.setCreateAt(new Date());
+
+		logRepository.save(log_temp);
 	}
 
 	@Override

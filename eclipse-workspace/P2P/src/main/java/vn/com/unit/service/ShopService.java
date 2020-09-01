@@ -2,6 +2,7 @@ package vn.com.unit.service;
 
 import java.util.List;
 
+import vn.com.unit.dto.ShopCreateDto;
 import vn.com.unit.dto.ShopDto;
 import vn.com.unit.entity.Shop;
 
@@ -15,7 +16,7 @@ public interface ShopService {
 	
 	public void createShop(Long account_id,String name, String email, String phone, String address, String detail, int status);
 	
-	public boolean setDisableShop(Long account_id, Long status);
+	public boolean setDisableShop(Long account_id, int status);
 	
 	public List<ShopDto> findAllShop(int limit,int offset);
 	
@@ -25,4 +26,6 @@ public interface ShopService {
 	public List<Shop> searchAllShop();
 	
 	public int countShopByStatus(int status);
+
+	public Shop save(ShopCreateDto shop_create_dto);
 }

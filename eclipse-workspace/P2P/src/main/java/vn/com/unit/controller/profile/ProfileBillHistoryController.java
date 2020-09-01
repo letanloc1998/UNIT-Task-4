@@ -14,20 +14,17 @@ import org.springframework.web.servlet.ModelAndView;
 import vn.com.unit.dto.BillItemDto;
 import vn.com.unit.dto.BillSeparateHistoryDTO;
 import vn.com.unit.entity.Account;
-import vn.com.unit.entity.BillSeparate;
-
 import vn.com.unit.pageable.PageRequest;
 import vn.com.unit.service.AccountService;
 import vn.com.unit.service.BillSeparateService;
-import vn.com.unit.service.BillService;
 
 @Controller
 public class ProfileBillHistoryController {
 	@Autowired
 	private AccountService accountService;
 
-	@Autowired
-	private BillService billService;
+//	@Autowired
+//	private BillService billService;
 
 	@Autowired
 	private BillSeparateService billSeparateService;
