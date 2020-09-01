@@ -60,7 +60,7 @@ public class ShopManagement {
 
 	@Autowired
 	CategoryService categoryService;
-	
+
 	@Autowired
 	BillSeparateService billSeparateService;
 
@@ -128,7 +128,7 @@ public class ShopManagement {
 	// add product
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PostMapping("/add-product")
-	public String addProduct(@ModelAttribute("new_product") Product new_product,
+	public String addProduct(@ModelAttribute("new_product") Product product,
 			@RequestParam("file") MultipartFile multipartFile, Model model) {
 
 //		String url = UploadImgService.uploadCloudinary(multipartFile);
@@ -166,20 +166,32 @@ public class ShopManagement {
 //		
 		// ---------
 
+		// Get file
 		File file = UploadImgService.getFileFromMultipartFile(multipartFile);
+
 		Account account = accountService.findCurrentAccount();
-		
+
+		product.setId(null);
+		product.setShop(account.getId());
+		product.setImg(null);
+
+		// Create product
+		Product product_new = productService.save(product);
+
 		Thread thread = new Thread(new Runnable() {
-		    @Override
-		    public void run() {
+			@Override
+			public void run() {
 				String url = UploadImgService.uploadCloudinary(file);
 
-				new_product.setImg(url);
+				product_new.setImg(url);
 
-				productService.createNewProduct(new_product);
+				// Update img for product
+				productService.save(product_new);
+
 				file.delete();
-		    }
+			}
 		});
+
 		thread.start();
 		// --------
 
@@ -199,7 +211,7 @@ public class ShopManagement {
 		int quantity = product.getQuantity();
 		String detail = product.getDetail();
 		productService.saveProduct(product_id, name, price, detail, category, brand, quantity);
-		
+
 //		product.setShop(null);
 //		
 //		product.setId(product_id);
@@ -218,44 +230,40 @@ public class ShopManagement {
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
-	
-	//confirm bill
+
+	// confirm bill
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PutMapping("/bill/confirm")
 	@ResponseBody
 	public ResponseEntity<String> confirm(Model model, @RequestBody Map<String, String> json) {
 		int status = 1;
-		
+
 		billSeparateService.saveBillSeparateStatus((Long.valueOf(json.get("bill_id"))), status);
-		
-		return ResponseEntity.ok(
-				"{\"msg\" : \"Confirm Bill succes! Please check again!\" }");
+
+		return ResponseEntity.ok("{\"msg\" : \"Confirm Bill succes! Please check again!\" }");
 	}
-	
-	//confirm payment bill
+
+	// confirm payment bill
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PutMapping("/bill/payment")
 	@ResponseBody
 	public ResponseEntity<String> payment(Model model, @RequestBody Map<String, String> json) {
 		int status = 1;
-		
+
 		billService.saveBillPaymentStatus((Long.valueOf(json.get("bill_id"))), status);
-		
-		return ResponseEntity.ok(
-				"{\"msg\" : \"Confirm Bill Payment succes! Please check again!\" }");
+
+		return ResponseEntity.ok("{\"msg\" : \"Confirm Bill Payment succes! Please check again!\" }");
 	}
-	
-	
-	//deny bill
+
+	// deny bill
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PutMapping("/bill/deny")
 	@ResponseBody
 	public ResponseEntity<String> deny(Model model, @RequestBody Map<String, String> json) {
 		int status = 2;
-		
+
 		billSeparateService.saveBillSeparateStatus((Long.valueOf(json.get("bill_id"))), status);
-		
-		return ResponseEntity.ok(
-				"{\"msg\" : \"Deny bill succes! Please check again!\" }");
+
+		return ResponseEntity.ok("{\"msg\" : \"Deny bill succes! Please check again!\" }");
 	}
 }
