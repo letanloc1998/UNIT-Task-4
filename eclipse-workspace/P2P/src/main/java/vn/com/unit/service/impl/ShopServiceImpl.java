@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import vn.com.unit.dto.ShopCreateDto;
 import vn.com.unit.dto.ShopDto;
 import vn.com.unit.entity.Shop;
 import vn.com.unit.repository.ShopRepository;
@@ -146,5 +147,11 @@ public class ShopServiceImpl implements ShopService {
 			// TODO: handle exception
 		}
 		return 0;
+	}
+
+	@Override
+	public Shop save(ShopCreateDto shop_create_dto) {
+		Shop shop_temp = new Shop(shop_create_dto);
+		return shopRepository.save(shop_temp);
 	}
 }

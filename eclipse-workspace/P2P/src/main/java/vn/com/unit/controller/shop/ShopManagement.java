@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import vn.com.unit.dto.ShopCreateDto;
 import vn.com.unit.entity.Account;
 import vn.com.unit.entity.Product;
 import vn.com.unit.entity.Shop;
@@ -68,16 +69,25 @@ public class ShopManagement {
 	@PreAuthorize("hasRole('ROLE_USER')")
 	@PostMapping("/shop/create")
 	@ResponseBody
-	public ResponseEntity<String> createShop(@RequestBody Shop new_shop, Model model) {
+	public ResponseEntity<String> createShop(@RequestBody ShopCreateDto shop_create_dto, Model model) {
 		Account account = accountService.findCurrentAccount();
-		String phone = new_shop.getPhone();
-		String email = new_shop.getEmail();
-		String name = new_shop.getName();
-		String address = new_shop.getAddress();
-		String detail = new_shop.getDetail();
-		int status = 0;
-		shopService.createShop(account.getId(), name, email, phone, address, detail, status);
-		;
+		
+		
+//		String name = new_shop.getName();
+//		String address = new_shop.getAddress();
+//		String email = new_shop.getEmail();
+//		String phone = new_shop.getPhone();
+//		String detail = new_shop.getDetail();
+//		int status = 0;
+//		
+//		shopService.createShop(account.getId(), name, email, phone, address, detail, status);
+		
+		shop_create_dto.setId(account.getId());
+		
+		shop_create_dto.setStatus(0);
+		
+		shopService.save(shop_create_dto);
+
 		return ResponseEntity.status(HttpStatus.OK)
 				.body("{ \"msg\" : \"Your Shop Create Success! Please waitting for admin check!\" }");
 

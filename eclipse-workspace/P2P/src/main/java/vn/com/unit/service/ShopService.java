@@ -2,6 +2,7 @@ package vn.com.unit.service;
 
 import java.util.List;
 
+import vn.com.unit.dto.ShopCreateDto;
 import vn.com.unit.dto.ShopDto;
 import vn.com.unit.entity.Shop;
 
@@ -25,4 +26,6 @@ public interface ShopService {
 	public List<Shop> searchAllShop();
 	
 	public int countShopByStatus(int status);
+
+	public Shop save(ShopCreateDto shop_create_dto);
 }
