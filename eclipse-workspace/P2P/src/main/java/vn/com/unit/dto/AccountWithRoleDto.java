@@ -21,7 +21,7 @@ public class AccountWithRoleDto extends Account {
 		this.roles = roles;
 	}
 
-	public Account getAccount() {
+	public Account extractAccount() {
 		return (Account) this;
 	}
 
