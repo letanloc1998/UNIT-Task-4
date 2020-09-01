@@ -50,7 +50,6 @@ public class ProductServiceImpl implements ProductService {
 		try {
 			product_dto_list = productRepository.findAllProductByShopId(shop_id, limit, offset);
 
-
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -194,13 +193,24 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product createNewProduct(Product product) {
+		product.setId(null);
 		return productRepository.save(product);
 	}
 
 	@Override
 	public boolean setDisableProductByProductId(Long product_id, int status) {
 		try {
-			productRepository.setDisableProductByProductId(product_id, status);
+//			productRepository.setDisableProductByProductId(product_id, status);
+			Product product_temp = new Product();
+			product_temp.setId(product_id);
+			if (0 == status) {
+				product_temp.setDisable(false);
+			} else {
+				product_temp.setDisable(true);
+			}
+
+			productRepository.save(product_temp);
+			
 			return true;
 		} catch (Exception e) {
 

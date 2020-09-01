@@ -199,6 +199,11 @@ public class ShopManagement {
 		int quantity = product.getQuantity();
 		String detail = product.getDetail();
 		productService.saveProduct(product_id, name, price, detail, category, brand, quantity);
+		
+//		product.setShop(null);
+//		
+//		product.setId(product_id);
+//		productService.save(product);
 		return ResponseEntity.ok(product);
 
 	}
