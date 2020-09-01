@@ -12,18 +12,18 @@ package vn.com.unit.dto;
 
 public class ProductShopEditDto {
 
-	private Long id;
-
-	private String name;
-	
-	private int price;
-	
-	private String detail;
-	
-	private int category;
-	
-	private int brand;
-	
-	private int quantity;
+//	private Long id;
+//
+//	private String name;
+//	
+//	private int price;
+//	
+//	private String detail;
+//	
+//	private int category;
+//	
+//	private int brand;
+//	
+//	private int quantity;
 	
 }
