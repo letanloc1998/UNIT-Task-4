@@ -51,11 +51,11 @@ public class Category {
 		this.img = img;
 	}
 
-	public Boolean getDisable() {
+	public boolean isDisable() {
 		return disable;
 	}
 
-	public void setDisable(Boolean disable) {
+	public void setDisable(boolean disable) {
 		this.disable = disable;
 	}
 	
