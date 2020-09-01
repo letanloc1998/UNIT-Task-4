@@ -35,7 +35,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 		if (account != null && accountService.checkLogin(account, rawPassword)) {
 
-			if (account.getDisable() == true) {
+			if (account.isDisable() == true) {
 				throw new BadCredentialsException("Your account has been deleted");
 			}
 			
