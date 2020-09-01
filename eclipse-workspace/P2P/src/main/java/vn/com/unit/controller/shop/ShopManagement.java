@@ -305,15 +305,34 @@ public class ShopManagement {
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PostMapping("/mybills/waiting-confirm-test")
 	@ResponseBody
-	public ResponseEntity<List<BillSeparateShopViewDto>> test(Model model, @RequestBody String json) {
+	public ResponseEntity<List<BillSeparateShopViewDto>> test(Model model, @RequestBody String mode_data) {
 		Long status = (long) 0;
-		Long payment = (long) 1;
-		String test = json.toString();
-		if(test.equals("waitingConfirm")) {
+		Long payment = (long) 0;
+		String mode = mode_data;
+		if(mode.equals("waitingPayment")) {
+			status = (long) 0;
+			payment = (long) 0;			
+		}
+		if(mode.equals("waitingConfirm")) {
+			status = (long) 0;
+			payment = (long) 1;			
+		}
+		if(mode.equals("confirmList")) {
+			status = (long) 1;
+			payment = (long) 1;			
+		}
+		if(mode.equals("successList")) {
+			status = (long) 3;
+			payment = (long) 1;			
+		}
+		if(mode.equals("denyList")) {
+			status = (long) 2;
+			payment = (long) 1;			
+		}
+		if(mode.equals("errorPayment")) {
 			status = (long) 0;
 			payment = (long) -1;			
 		}
-
 		
 		Account current_account = accountService.findCurrentAccount();
 		

@@ -177,10 +177,9 @@ public class ShopController {
 		return new ModelAndView("shop/myProduct/shop-edit-product");
 	}
 
-	@GetMapping("/shop/mybills/{mode}")
+	@GetMapping("/shop/mybills")
 	public ModelAndView bills(
 			Model model,
-			@PathVariable("mode") String mode,
     		@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "8") int limit,
 			HttpServletRequest request
@@ -190,89 +189,6 @@ public class ShopController {
 		Account account = accountService.findCurrentAccount();	
 		Shop shop = shopService.findShopByAccountId(account.getId());
 		model.addAttribute("shop", shop);
-		if(mode.equals("waiting-confirm")) {
-			Long status = (long) 0;
-			Long payment = (long) 1;
-			
-			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShopViewDto bill : bills) {
-				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotalPrice(total);
-			}
-			model.addAttribute("pageable", pageable);
-			model.addAttribute("bills", bills);
-			model.addAttribute("mode", mode);
-			
-			return new ModelAndView("shop/myBill/waiting-confirm");
-		}
-		
-		if(mode.equals("confirm")) {
-			Long status = (long) 1;
-			Long payment = (long) 1;
-			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShopViewDto bill : bills) {
-				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotalPrice(total);
-			}
-			model.addAttribute("bills", bills);
-			model.addAttribute("pageable", pageable);
-			model.addAttribute("mode", mode);
-			
-			return new ModelAndView("shop/myBill/bill-confirm-list");
-		}
-		
-		if(mode.equals("success")) {
-			Long status = (long) 3;
-			Long payment = (long) 1;
-			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShopViewDto bill : bills) {
-				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotalPrice(total);
-			}
-			model.addAttribute("bills", bills);
-			model.addAttribute("pageable", pageable);
-			model.addAttribute("mode", mode);
-			
-			return new ModelAndView("shop/myBill/bill-success-list");
-		}
-		
-		if(mode.equals("deny")) {
-			Long status = (long) 2;
-			Long payment = (long) 1;
-			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShopViewDto bill : bills) {
-				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotalPrice(total);
-			}
-			model.addAttribute("bills", bills);
-			model.addAttribute("pageable", pageable);
-			model.addAttribute("mode", mode);
-			return new ModelAndView("shop/myBill/bill-deny-list");
-		}
-		if(mode.equals("error-payment")) {
-			Long status = (long) 0;
-			Long payment = (long) -1;
-			int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-			PageRequest pageable = new PageRequest(page, limit, totalitems);
-			List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
-			for (BillSeparateShopViewDto bill : bills) {
-				int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
-				bill.setTotalPrice(total);
-			}
-			model.addAttribute("bills", bills);
-			model.addAttribute("pageable", pageable);
-			model.addAttribute("mode", mode);
-			return new ModelAndView("shop/myBill/error-payment");
-		}
-	
 		Long status = (long) 0;
 		Long payment = (long) 0;
 		int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
@@ -284,7 +200,6 @@ public class ShopController {
 		}
 		model.addAttribute("bills", bills);
 		model.addAttribute("pageable", pageable);
-		model.addAttribute("mode", mode);
 		return new ModelAndView("shop/myBill/waiting-payment");
 	}
 	

@@ -18,26 +18,24 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
-					<a 
+					<a style="cursor:pointer"
 					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/waiting-payment') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/mybills/waiting-payment}">Waiting Payment</a>				
-					<a 
+					onclick="return waitingConfirm('waitingPayment')">Waiting Payment</a>				
+					<a style="cursor:pointer"
 					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/waiting-confirm') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/mybills/waiting-confirm}">Waiting Confirm</a>
-					<a 
+					onclick="return waitingConfirm('waitingConfirm')">Waiting Confirm</a>
+					<a style="cursor:pointer"
 					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/confirm') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/mybills/confirm}">Confirm List</a>
-					<a 
+					onclick="return waitingConfirm('confirmList')">Confirm List</a>
+					<a style="cursor:pointer"
 					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/success') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/mybills/success}">Success List</a>
-					<a 
+					onclick="return waitingConfirm('successList')">Success List</a>
+					<a style="cursor:pointer"
 					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/deny') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/mybills/deny}">Deny List</a> 
-					<a 
+					onclick="return waitingConfirm('denyList')">Deny List</a> 
+					<a style="cursor:pointer"	
 					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/error-payment') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-					th:href="@{/shop/mybills/error-payment}">Error Payment</a> 	
-					<button class="btn btn-danger"
-					th:onclick="|waitingConfirm('waitingConfirm')|">Danger</button> 	
+					onclick="return waitingConfirm('errorPayment')">Error Payment</a> 	
 									
 				</div>
 			</div>

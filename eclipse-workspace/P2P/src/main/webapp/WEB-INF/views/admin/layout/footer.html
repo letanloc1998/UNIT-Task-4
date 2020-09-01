@@ -28,7 +28,7 @@
         function waitingConfirm(mode){
 		    var token = $("meta[name='_csrf']").attr("content");
 		    var header = $("meta[name='_csrf_header']").attr("content");
-		    data = ` ${mode}`;
+		    data = `${mode}`;
 		    $.ajax({
 		        type: "POST",
 		        url: `/mybills/waiting-confirm-test`,
@@ -44,8 +44,10 @@
 	
 		        success: function (data, status, xhr) {
 					//var data = JSON.parse(data);
+					var data_table = ""
 					data.forEach(function(dt){
-		        		$("#tdata").append("<tr>" + 
+		        		
+		        		data_table += "<tr>" + 
 		        		"<td>"+dt.id+"</td>"+
 		        		"<td>"+dt.account+"</td>"+
 		        		"<td>"+dt.address+"</td>"+
@@ -63,9 +65,10 @@
 								+"</button>"
 						+"</span></td>"
 		        		+"</tr>"
-		        		)
+		        		
 		        	})
-		        	console.log(data)
+		        		$("#tdata").html(data_table)
+
 
 		        	//alert("Edit Shop Success!");
 		        	//window.location.href = "/shop/myproduct?mode=view";

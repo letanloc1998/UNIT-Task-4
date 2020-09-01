@@ -41,7 +41,7 @@
 							<p>My Products</p>
 					</a></li>
 					<li th:classappend="${#request.getRequestURI().startsWith('/shop/mybill') ? 'nav-item active' : 'nav-item'}">
-					<a class="nav-link" th:href="@{/shop/mybills/waiting-payment}" 
+					<a class="nav-link" th:href="@{/shop/mybills}" 
 						> <i class="material-icons">content_paste</i>
 							<p>My Bill</p>
 					</a></li>
