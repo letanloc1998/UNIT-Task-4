@@ -19,22 +19,22 @@
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
 					<a style="cursor:pointer"
-					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/waiting-payment') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					class="nav-item nav-link"				
 					onclick="return waitingConfirm('waitingPayment')">Waiting Payment</a>				
 					<a style="cursor:pointer"
-					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/waiting-confirm') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					class="nav-item nav-link" 
 					onclick="return waitingConfirm('waitingConfirm')">Waiting Confirm</a>
 					<a style="cursor:pointer"
-					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/confirm') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					class="nav-item nav-link" 
 					onclick="return waitingConfirm('confirmList')">Confirm List</a>
 					<a style="cursor:pointer"
-					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/success') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					class="nav-item nav-link" 
 					onclick="return waitingConfirm('successList')">Success List</a>
 					<a style="cursor:pointer"
-					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/deny') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					class="nav-item nav-link" 
 					onclick="return waitingConfirm('denyList')">Deny List</a> 
 					<a style="cursor:pointer"	
-					th:classappend="${#request.getRequestURI().startsWith('/shop/mybills/error-payment') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+					class="nav-item nav-link" 
 					onclick="return waitingConfirm('errorPayment')">Error Payment</a> 	
 									
 				</div>

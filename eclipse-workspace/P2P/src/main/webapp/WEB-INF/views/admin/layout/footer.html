@@ -24,12 +24,26 @@
 		
 		<script th:inline="javascript">
         const shop = [[${ shops }]]
-        console.log([[${ shops }]])              
+        console.log([[${ shops }]])   
+        
+        $('a').click(function(){
+        	$('a').removeClass('active');
+        	$(this).addClass('active');
+        	
+        })
+        
+        var xhr;
+        
         function waitingConfirm(mode){
 		    var token = $("meta[name='_csrf']").attr("content");
 		    var header = $("meta[name='_csrf_header']").attr("content");
 		    data = `${mode}`;
-		    $.ajax({
+		    
+	        if(xhr && xhr.readyState != 4){
+	            xhr.abort();
+	        }
+	        
+		    xhr = $.ajax({
 		        type: "POST",
 		        url: `/mybills/waiting-confirm-test`,
 		        
@@ -74,7 +88,7 @@
 		        	//window.location.href = "/shop/myproduct?mode=view";
 		        },
 		        error: function (request, status, error) {
-		            alert(status + " " + error);
+		            //alert(status + " " + error);
 		           // window.location.href = window.location.href;
 		        }
 		    });    
