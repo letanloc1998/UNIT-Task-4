@@ -67,7 +67,7 @@ public class BillItemDto extends BillItem {
 		return this.getPrice() * this.getQuantity();
 	}
 	
-	public BillItem getBillItem( ) {
+	public BillItem extractBillItem( ) {
 		return (BillItem) this;
 	}
 	
