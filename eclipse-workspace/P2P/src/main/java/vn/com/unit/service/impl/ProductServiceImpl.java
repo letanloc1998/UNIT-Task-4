@@ -295,8 +295,12 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public Product findOneTopProductPaymentSuccess() {
-		// TODO Auto-generated method stub
 		return productRepository.findOneTopProductPaymentSuccess();
+	}
+
+	@Override
+	public Product save(Product product) {
+		return productRepository.save(product);
 	}
 
 }
