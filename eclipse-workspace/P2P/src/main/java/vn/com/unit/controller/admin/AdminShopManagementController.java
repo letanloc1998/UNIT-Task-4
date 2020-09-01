@@ -91,7 +91,7 @@ public class AdminShopManagementController {
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
-		if (shopService.setDisableShop(shop_id, (long) 1)) {
+		if (shopService.setDisableShop(shop_id, 1)) {
 			List<Role> roles = roleService.findRoleByAccountId(shop_id);
 			int index = IntStream.range(0,roles.size()  )
 					.filter(i -> "ROLE_VENDOR".equals(roles.get(i).getName()))
@@ -113,7 +113,7 @@ public class AdminShopManagementController {
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
-		if (shopService.setDisableShop(shop_id, (long) 2)) {
+		if (shopService.setDisableShop(shop_id, 2)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);

@@ -18,54 +18,79 @@ public class ShopServiceImpl implements ShopService {
 
 	@Autowired
 	ShopRepository shopRepository;
-	
-	
-	
-	
+
 	@Override
 	public Shop findShopByAccountId(Long account_id) {
 		return shopRepository.findShopByAccountId(account_id);
 	}
-	
-	//setInforShop
+
+	// setInforShop
 	@Override
-	public void saveShop(Long shop_id, String name,String email, String phone, String address, String detail) {
+	public void saveShop(Long shop_id, String name, String email, String phone, String address, String detail) {
 		try {
 			shopRepository.saveShop(shop_id, name, email, phone, address, detail);
-		}catch (Exception e) {		
-		}	
+		} catch (Exception e) {
+		}
 	}
-	
-	
-	//createShop
+
+	// createShop
 	@Override
-	public void createShop(Long account_id,String name,String email, String phone, String address, String detail, int status) {
+	public void createShop(Long account_id, String name, String email, String phone, String address, String detail,
+			int status) {
 		try {
-			shopRepository.createShop(account_id, name, email, phone, address, detail,status);
-		}catch (Exception e) {		
-		}	
+//			shopRepository.createShop(account_id, name, email, phone, address, detail, status);
+
+			Shop shop_temp =  new Shop();
+			shop_temp.setId(account_id);
+			shop_temp.setName(name);
+			shop_temp.setEmail(email);
+			shop_temp.setPhone(phone);
+			shop_temp.setAddress(address);
+			shop_temp.setDetail(detail);
+			shop_temp.setStatus(status);
+			
+			shopRepository.save(shop_temp);
+		} catch (Exception e) {
+		}
 	}
-	
+
 	@Override
 	public boolean setActivateShop(Long shop_id, int status) {
 		try {
-			shopRepository.setActivateShop(shop_id,status);
-			return true;
-		} catch(Exception e) {
-			
+			Shop shop_temp = new Shop();
+			shop_temp.setId(shop_id);
+			shop_temp.setStatus(status);
+
+			Shop shop_new = shopRepository.save(shop_temp);
+
+			if (shop_new != null) {
+				return true;
+			}
+		} catch (Exception e) {
+
 		}
 		return false;
 	}
-	
-	//set disable shop
-	
+
+	// set disable shop
+
 	@Override
-	public boolean setDisableShop(Long shop_id, Long status) {
+	public boolean setDisableShop(Long shop_id, int status) {
 		try {
-			shopRepository.setDisableShop(shop_id,status);
-			return true;
-		} catch(Exception e) {
+//			shopRepository.setDisableShop(shop_id,status);
+
+			Shop shop_temp = new Shop();
+			shop_temp.setId(shop_id);
+			shop_temp.setStatus(status);
+
+			Shop shop_new = shopRepository.save(shop_temp);
+
+			if (shop_new != null) {
+				return true;
+			}
 			
+		} catch (Exception e) {
+
 		}
 		return false;
 	}
@@ -87,7 +112,7 @@ public class ShopServiceImpl implements ShopService {
 		// TODO Auto-generated method stub
 		try {
 			return shopRepository.countAllShop();
-			} catch (Exception e) {
+		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return 0;
@@ -104,12 +129,12 @@ public class ShopServiceImpl implements ShopService {
 		}
 		return shops;
 	}
-	
+
 	@Override
-	public List<Shop> searchAllShop(){
-		
+	public List<Shop> searchAllShop() {
+
 		return shopRepository.searchAllShop();
-		
+
 	}
 
 	@Override

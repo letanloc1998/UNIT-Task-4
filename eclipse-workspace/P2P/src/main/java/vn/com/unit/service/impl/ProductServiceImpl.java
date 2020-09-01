@@ -223,7 +223,19 @@ public class ProductServiceImpl implements ProductService {
 			int quantity) {
 
 		try {
-			productRepository.saveProduct(product_id, name, price, quantity, category, brand, detail);
+//			productRepository.saveProduct(product_id, name, price, quantity, category, brand, detail);
+			
+			Product product_temp = new Product();
+			product_temp.setId(product_id);
+			product_temp.setName(name);
+			product_temp.setPrice(price);
+			product_temp.setQuantity(quantity);
+			product_temp.setCategory(category);
+			product_temp.setBrand(brand);
+			product_temp.setDetail(detail);
+			
+			productRepository.save(product_temp);
+			
 		} catch (Exception e) {
 		}
 	}

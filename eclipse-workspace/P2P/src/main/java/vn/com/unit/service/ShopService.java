@@ -15,7 +15,7 @@ public interface ShopService {
 	
 	public void createShop(Long account_id,String name, String email, String phone, String address, String detail, int status);
 	
-	public boolean setDisableShop(Long account_id, Long status);
+	public boolean setDisableShop(Long account_id, int status);
 	
 	public List<ShopDto> findAllShop(int limit,int offset);
 	
