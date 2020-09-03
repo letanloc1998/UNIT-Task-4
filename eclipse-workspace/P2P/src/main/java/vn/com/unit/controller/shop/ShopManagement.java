@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -312,7 +314,7 @@ public class ShopManagement {
 	@PostMapping("/mybills/waiting-confirm-test")
 	@ResponseBody
 	public ResponseEntity<String> test(Model model, 
-			@RequestBody Map<String, String> mode_data) {
+			@RequestBody Map<String, String> mode_data, HttpServletResponse response) {
 		
 		int page = Integer.parseInt(mode_data.get("page"));
 		int limit = Integer.parseInt(mode_data.get("limit"));
@@ -354,6 +356,12 @@ public class ShopManagement {
 		for (BillSeparateShopViewDto bill : bills) {
 			int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
 			bill.setTotalPrice(total);
+//			try {
+//				bill.setAddress(CommonUtils.convertEncode(bill.getAddress()));
+//			} catch (UnsupportedEncodingException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		}
 		model.addAttribute("pageable", pageable);
 		String json = "";
@@ -376,12 +384,15 @@ public class ShopManagement {
 		s.add(json);
 		s.add(json2);
 		String data = s.toString();
-		try {
-			data = CommonUtils.convertEncode(data);
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			data = CommonUtils.convertEncode(data);
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		response.setHeader("Content-Type", "application/json; charset=utf-8");
+		
 		return ResponseEntity.ok(data);
 	}
 	
