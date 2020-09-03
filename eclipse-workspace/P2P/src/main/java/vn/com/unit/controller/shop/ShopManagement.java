@@ -366,7 +366,7 @@ public class ShopManagement {
 		model.addAttribute("pageable", pageable);
 		String json = "";
 		String json2 = "";
-		String json3 = "{\"mode\" :"+mode+"}";
+		String json3 = "{\"mode\" :\""+mode+"\"}";
 		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 		try {
 			json = ow.writeValueAsString(pageable);

@@ -112,11 +112,11 @@
  		        		
  						if(item.current == true){
  							numberOfPage +="<li id=\"current\" class=\"page-item active\">"
- 	 							+"<a onclick=\"return waitingConfirm('waitingPayment',8,"+item.number+")\" class=\"page-link\">"+item.number+" </a>"
+ 	 							+"<a onclick=\"return waitingConfirm('"+data[2].mode+"',8,"+item.number+")\" class=\"page-link\">"+item.number+" </a>"
  	 							+"</li>"
  						}else{
  							numberOfPage +="<li id=\"current\" class=\"page-item\">"
- 	 							+"<a onclick=\"return waitingConfirm('waitingPayment',8,"+item.number+")\" class=\"page-link\">"+item.number+" </a>"
+ 	 							+"<a onclick=\"return waitingConfirm('"+data[2].mode+"',8,"+item.number+")\" class=\"page-link\">"+item.number+" </a>"
  	 							+"</li>"
  						}						
  						if(item.current == true){
@@ -138,12 +138,12 @@
 						+"<ul class=\"pagination\" style=\"margin-bottom: 0px;\">"
 							+"<li id=\"prePage\" class=\"page-item\">"
 								+"<a class=\"page-link\" "
-								+"onclick=\"return waitingConfirm('waitingPayment',"+data[0].limit+","+result2+")\"><i class=\"fas fa-arrow-left\"></i></a>"
+								+"onclick=\"return waitingConfirm('"+data[2].mode+"',"+data[0].limit+","+result2+")\"><i class=\"fas fa-arrow-left\"></i></a>"
 							+"</li>"
 							+numberOfPage							
 							+"<li id=\"nextPage\" class=\"page-item\">" 
 							+"<a class=\"page-link\" "
-							+"onclick=\"return waitingConfirm('waitingPayment',"+data[0].limit+","+result1+")\"><i class=\"fas fa-arrow-right\"></i></a>"
+							+"onclick=\"return waitingConfirm('"+data[2].mode+"',"+data[0].limit+","+result1+")\"><i class=\"fas fa-arrow-right\"></i></a>"
 							+"</li>"
 						+"</ul>"
 					+"</nav>"
