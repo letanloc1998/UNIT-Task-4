@@ -18,9 +18,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 				<div class="navbar-nav">
-					<a style="cursor:pointer"
-					class="nav-item nav-link"				
-					onclick="return waitingConfirm('waitingPayment')">Waiting Payment</a>				
+					<a id="test" style="cursor:pointer"
+					class="nav-item nav-link" role="status"				
+					onclick="return waitingConfirm('waitingPayment')">
+					<span id="test-content" class="">Waiting Payment</span>
+					</a>				
 					<a style="cursor:pointer"
 					class="nav-item nav-link" 
 					onclick="return waitingConfirm('waitingConfirm')">Waiting Confirm</a>
@@ -36,7 +38,10 @@
 					<a style="cursor:pointer"	
 					class="nav-item nav-link" 
 					onclick="return waitingConfirm('errorPayment')">Error Payment</a> 	
-									
+					<button id="loading" class="btn btn-primary" type="button" disabled>
+					  <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+					  Loading...
+					</button>	
 				</div>
 			</div>
 		</nav>
