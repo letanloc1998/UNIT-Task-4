@@ -99,9 +99,7 @@
 											</tr>
 										</tbody>
 									</table>
-									<div th:replace="admin/layout/panigation :: content(${pageable})"></div>
-
-									
+									<div th:replace="admin/layout/panigation :: content(${pageable})"></div>								
 								</div>
 							</div>
 						</div>
@@ -112,7 +110,6 @@
 				function clearFilter() {
 					window.location = '/admin/account/list'
 				}
-				const account = [[${ accounts }]]
 				console.log([[${ pageable }]])
 			</script>
 	</th:block>

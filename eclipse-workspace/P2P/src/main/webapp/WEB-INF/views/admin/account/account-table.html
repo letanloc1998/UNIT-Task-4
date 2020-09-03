@@ -26,13 +26,12 @@
 
     <th:block th:replace="admin/layout/footer :: footer"></th:block>
 
-    <script th:inline="javascript">
-        const accounts = [[${ accounts }]]
+    <script th:inline="javascript"  >
         function DeleteAccount(i) {
+        	const accounts = [[${ pageable.data }]]
             var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
-
-            Swal.fire({
+        Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
                 icon: 'warning',
@@ -51,8 +50,6 @@
                         },
 
                         success: function (data, status, xhr) {
-                            // alert(status);
-                            // To reload the page discarding the POST data(perform a GET request)
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
@@ -68,44 +65,40 @@
                             alert(status);
                             // To reload the page discarding the POST data(perform a GET request)
                             window.location.href = window.location.href;
-                        }
+                        } 
                     });
-
-
-
                 }
-            })
-
-
+            }) 
         }
-        
         function Pagging(limit,page){
-        	 var token = $("meta[name='_csrf']").attr("content");
-             var header = $("meta[name='_csrf_header']").attr("content");
-			
-			var keyword = $("#search-box").val();
-	
+          	 var token = $("meta[name='_csrf']").attr("content");
+               var header = $("meta[name='_csrf_header']").attr("content");
+       		
+       		var keyword = $("#search-box").val();
+       		console.log( $("html"))
 
-             $.ajax({
-                url: `/admin/account/list/?page=${page}&limit=${limit}&keyword=${keyword}`,
-                type: 'GET', 		
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader(header, token);
-                },
-
-                success: function (data, status, xhr) {
-                    $("html").html(data)	
-                },
-                error: function (request, status, error) {
-                    alert(status);
-                    // To reload the page discarding the POST data(perform a GET request)
-                    window.location.href = window.location.href;
-                }
-            });  
-    	}
-    	
+               $.ajax({
+                  url: `/admin/account/list/?page=${page}&limit=${limit}&keyword=${keyword}`,
+                  type: 'GET', 		
+                  beforeSend: function (xhr) {
+                      xhr.setRequestHeader(header, token);
+                  },
+       			
+                  success: function (data, status, xhr) {
+                       var newDoc = document.open("text/html", "replace");
+                      newDoc.write(data);
+                      newDoc.close(); 
+                   
+                  },
+                  error: function (request, status, error) {
+                      alert(status);
+                      // To reload the page discarding the POST data(perform a GET request)
+                      window.location.href = window.location.href;
+                  }
+              });  
+       	}
     </script>
-    
+
 
 </body>
 
