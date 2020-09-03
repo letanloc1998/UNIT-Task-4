@@ -27,11 +27,8 @@
     <th:block th:replace="admin/layout/footer :: footer"></th:block>
 
     <script th:inline="javascript"  >
-    	
-        
         function DeleteAccount(i) {
         	const accounts = [[${ pageable.data }]]
-        	console.log(i)
             var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
         Swal.fire({
@@ -70,20 +67,9 @@
                             window.location.href = window.location.href;
                         } 
                     });
-
-
-
                 }
             }) 
-
-
         }
-     	
-        function test(i){
-        	
-        	console.log(i)
-        }
-        
         function Pagging(limit,page){
           	 var token = $("meta[name='_csrf']").attr("content");
                var header = $("meta[name='_csrf_header']").attr("content");
@@ -99,10 +85,10 @@
                   },
        			
                   success: function (data, status, xhr) {
-              
-                      var newDoc = document.open("text/html", "replace");
+                       var newDoc = document.open("text/html", "replace");
                       newDoc.write(data);
-                      newDoc.close();
+                      newDoc.close(); 
+                   
                   },
                   error: function (request, status, error) {
                       alert(status);

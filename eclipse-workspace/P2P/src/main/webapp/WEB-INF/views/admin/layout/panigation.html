@@ -15,11 +15,14 @@
 			</button>
 			<div class="dropdown-menu">
 				<a class="dropdown-item"
-					th:href="@{/admin/account/list(limit=${10}, page=${1}, keyword=${keyword}) }">10</a>
+					th:onclick="|Pagging(10,1)|"
+					>10</a>
 				<a class="dropdown-item"
-					th:href="@{/admin/account/list(limit=${25}, page=${1}, keyword=${keyword})}">25</a>
+					th:onclick="|Pagging(25,1)|"
+					>25</a>
 				<a class="dropdown-item"
-					th:href="@{/admin/account/list(limit=${50}, page=${1}, keyword=${keyword})}">50</a>
+					th:onclick="|Pagging(50,1)|"
+					>50</a>
 			</div>
 		</div>
 		<nav class="pagination">
