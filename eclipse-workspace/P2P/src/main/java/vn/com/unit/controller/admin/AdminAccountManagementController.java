@@ -46,9 +46,11 @@ public class AdminAccountManagementController {
 		int totalitems = accountService.countAccountActive(keyword,role_id);
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
-		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
+		PageRequest<AccountWithRoleDto> pageable = new PageRequest<AccountWithRoleDto>(page, limit, totalitems, totalpages);
 
 		List<AccountWithRoleDto> accounts = accountService.findAllAccount(pageable.getLimit(), pageable.getOffset(),keyword,role_id);
+		pageable.setData(accounts);
+
 		model.addAttribute("accounts", accounts);
 		model.addAttribute("pageable", pageable);
 		model.addAttribute("keyword", keyword);
@@ -56,6 +58,28 @@ public class AdminAccountManagementController {
 		return new ModelAndView("admin/account/account-table");
 	}
 	
+	
+	@GetMapping("/admin/account/list-ajax")
+	public ResponseEntity<PageRequest>  accountListAjax(Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "role_id", required = false) Long role_id,
+			HttpServletRequest request) {
+
+		int totalitems = accountService.countAccountActive(keyword,role_id);
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+
+		
+		PageRequest<AccountWithRoleDto> pageable = new PageRequest<AccountWithRoleDto>(page, limit, totalitems, totalpages);
+		List<AccountWithRoleDto> accounts = accountService.findAllAccount(pageable.getLimit(), pageable.getOffset(),keyword,role_id);
+		
+		model.addAttribute("accounts", accounts);
+		model.addAttribute("pageable", pageable);
+		model.addAttribute("keyword", keyword);
+		pageable.setData(accounts);
+		return ResponseEntity.ok(pageable);
+	}
 	@GetMapping("/admin/account/{account_id}")
 	public ModelAndView accountList(Model model,
 			 @PathVariable("account_id") Long account_id,

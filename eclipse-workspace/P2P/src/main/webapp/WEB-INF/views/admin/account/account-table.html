@@ -78,7 +78,32 @@
 
 
         }
+        
+        function Pagging(limit,page){
+        	 var token = $("meta[name='_csrf']").attr("content");
+             var header = $("meta[name='_csrf_header']").attr("content");
+
+             $.ajax({
+                url: `/admin/account/list/?page=${page}&limit=${limit}`,
+                type: 'GET', 		
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader(header, token);
+                },
+
+                success: function (data, status, xhr) {
+                    $("html").html(data)	
+                },
+                error: function (request, status, error) {
+                    alert(status);
+                    // To reload the page discarding the POST data(perform a GET request)
+                    window.location.href = window.location.href;
+                }
+            });  
+    	}
+    	
     </script>
+    
+
 </body>
 
 </html>

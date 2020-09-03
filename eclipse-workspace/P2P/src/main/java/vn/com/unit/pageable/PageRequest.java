@@ -3,7 +3,8 @@ package vn.com.unit.pageable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PageRequest {
+
+public class PageRequest<T> {
 	// current page
 	private int page;
 	//số dòng 
@@ -20,6 +21,7 @@ public class PageRequest {
 	private int start;
 	//trang kết thúc
 	private int end;
+	 private List<T> data;
 	//trang giữa
 	private int half;
 	private int preMaxPage;
@@ -45,6 +47,23 @@ public class PageRequest {
 		if(limit > 50) {
 			limit = 50;
 		}
+		this.page = page;
+		this.limit = limit;
+		this.countAll = countAll;
+		this.totalPages = (int) Math.ceil((double) countAll / (double) limit);
+		this.preMaxPage = getPreMaxPage();
+		this.nextMaxPage = getNextMaxPage();
+
+		this.half = getHalf();
+		this.start = getStart();
+		this.end = getEnd();
+		this.items= getItems();
+	}
+	public PageRequest(int page, int limit, int countAll,List<T> data) {
+		if(limit > 50) {
+			limit = 50;
+		}
+		this.data = data;
 		this.page = page;
 		this.limit = limit;
 		this.countAll = countAll;
@@ -190,6 +209,12 @@ public class PageRequest {
 
 	public Integer getLimit() {
 		return this.limit;
+	}
+	public List<T> getData() {
+		return data;
+	}
+	public void setData(List<T> data) {
+		this.data = data;
 	}
 
 }
