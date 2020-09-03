@@ -54,7 +54,6 @@ public class AdminAccountManagementController {
 			model.addAttribute("keyword", keyword);
 
 		}
-		model.addAttribute("accounts", accounts);
 		model.addAttribute("pageable", pageable);
 
 		return new ModelAndView("admin/account/account-table");
