@@ -2,6 +2,8 @@ package vn.com.unit.dto;
 
 import java.util.Date;
 
+import vn.com.unit.pageable.PageRequest;
+
 public class BillSeparateShopViewDto {
 
 	private Long id;
@@ -17,6 +19,7 @@ public class BillSeparateShopViewDto {
 	private int totalPrice;
 
 	private String account;
+	
 
 	public Long getPayment() {
 		return payment;

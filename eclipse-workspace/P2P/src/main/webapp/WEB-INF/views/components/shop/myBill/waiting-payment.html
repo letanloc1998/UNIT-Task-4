@@ -15,7 +15,7 @@
 						<div class="card">
 
 							<div class="card-header card-header-primary">
-								<h4 class="card-title ">All Bill List</h4>
+								<h4 id="khanh" class="card-title ">All Bill List</h4>
 								 <div th:replace="components/shop/myBill/head-nav-bill :: head-nav-bill"></div> 
 							</div>
 							<div class="card-body">
@@ -57,48 +57,13 @@
 
 										</tbody>
 										
-										<!-- show loading when ajax load -->
-										<div class="modal hide" id="pleaseWaitDialog" data-backdrop="static" data-keyboard="false">
-										    <div class="modal-body" style="top:40%; left:40%">
-										        <div id="ajax_loader">
-										            <div class="spinner-border text-primary" role="status">
-														  <span class="sr-only">Loading...</span>
-														</div>
-														<div class="spinner-border text-secondary" role="status">
-														  <span class="sr-only">Loading...</span>
-														</div>
-														<div class="spinner-border text-success" role="status">
-														  <span class="sr-only">Loading...</span>
-														</div>
-														<div class="spinner-border text-danger" role="status">
-														  <span class="sr-only">Loading...</span>
-														</div>
-														<div class="spinner-border text-warning" role="status">
-														  <span class="sr-only">Loading...</span>
-														</div>
-														<div class="spinner-border text-info" role="status">
-														  <span class="sr-only">Loading...</span>
-														</div>
-														<div class="spinner-border text-light" role="status">
-														  <span class="sr-only">Loading...</span>
-														</div>
-														<div class="spinner-border text-dark" role="status">
-														  <span class="sr-only">Loading...</span>
-														</div>
-										        </div>
-										    </div>
-										</div>
 									
 									
 									</table>
-										<div style="display: flex; align-items: center;">
-											<script th:inline="javascript">
-											const pageable=[[${pageable}]]
-											 console.log(pageable)
-											</script>
+										<div id="test123" style="display: flex; align-items: center;">
 											<nav th:if="${pageable.totalPages > 0}" class="pagination">
 												<ul class="pagination" style="margin-bottom: 0px;">
-													<li
+													<li id="prePage"
 														th:class="${pageable.preMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
 														<a class="page-link" th:with="result=${ pageable.page - 1}"
 														th:href="@{/shop/mybills/__${mode}__t(limit=${pageable.limit}, page=${result})}"><i
@@ -108,10 +73,11 @@
 													<li th:each="item : ${pageable.items}"
 														th:class="${item.current == true} ? 'page-item active' : 'page-item'">
 														<!--  --> <a
-														th:href="@{/shop/mybills/__${mode}__(limit=${pageable.limit}, page=${item.number})}"
+													
+														th:onclick="|return waitingConfirm('waitingPayment',${pageable.limit},${item.number})|"
 														class="page-link" th:text="${item.number}"> </a>
 													</li>
-													<li
+													<li id="nextPage"
 														th:class="${pageable.nextMaxPage > 0} ? 'page-item ' : 'page-item disabled'">
 														<a class="page-link" th:with="result=${ pageable.page + 1}"
 														th:href="@{/shop/mybills/__${mode}__(limit=${pageable.limit}, page=${result})}"><i
@@ -131,7 +97,7 @@
 			
 			<script th:inline="javascript">
 			
-	        console.log([[${ pageable }]])
+	       //console.log([[${ pageable }]])
 			function confirmBill(bill_id) {
         	 var token = $("meta[name='_csrf']").attr("content");
 		        var header = $("meta[name='_csrf_header']").attr("content");
