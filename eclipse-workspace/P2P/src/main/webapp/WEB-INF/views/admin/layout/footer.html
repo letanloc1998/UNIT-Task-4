@@ -118,10 +118,7 @@
  							numberOfPage +="<li id=\"current\" class=\"page-item\">"
  	 							+"<a onclick=\"return waitingConfirm('waitingPayment',8,"+item.number+")\" class=\"page-link\">"+item.number+" </a>"
  	 							+"</li>"
- 						}
- 		        		
- 	 		        	
- 							
+ 						}						
  						if(item.current == true){
  							$('#current').addClass('active')
  						}else{
@@ -132,7 +129,7 @@
 					var result1 = data[0].page + 1;
 					var result2 = data[0].page - 1;
 					console.log(typeof (data[0].nextMaxPage))
-					console.log($('prePage'))
+					console.log(data)
 
 					console.log(result1)
 					console.log(result2)
