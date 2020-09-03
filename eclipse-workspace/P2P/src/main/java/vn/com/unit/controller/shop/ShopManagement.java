@@ -1,9 +1,12 @@
 package vn.com.unit.controller.shop;
 
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +25,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
+
 import vn.com.unit.dto.BillSeparateShopViewDto;
 import vn.com.unit.dto.ShopCreateDto;
 import vn.com.unit.entity.Account;
@@ -38,6 +45,7 @@ import vn.com.unit.service.ProductService;
 import vn.com.unit.service.RoleService;
 import vn.com.unit.service.ShopService;
 import vn.com.unit.service.UploadImgService;
+import vn.com.unit.utils.CommonUtils;
 
 @Controller
 
@@ -301,14 +309,19 @@ public class ShopManagement {
 	}
 	
 	
-	//waiting-cofirm-new
+	//list-bill-new
 	@PreAuthorize("hasRole('ROLE_VENDOR')")
 	@PostMapping("/mybills/waiting-confirm-test")
 	@ResponseBody
-	public ResponseEntity<List<BillSeparateShopViewDto>> test(Model model, @RequestBody String mode_data) {
+	public ResponseEntity<String> test(Model model, 
+			@RequestBody Map<String, String> mode_data, HttpServletResponse response) {
+		
+		int page = Integer.parseInt(mode_data.get("page"));
+		int limit = Integer.parseInt(mode_data.get("limit"));
+		
 		Long status = (long) 0;
 		Long payment = (long) 0;
-		String mode = mode_data;
+		String mode = mode_data.get("mode").toString();
 		if(mode.equals("waitingPayment")) {
 			status = (long) 0;
 			payment = (long) 0;			
@@ -337,14 +350,52 @@ public class ShopManagement {
 		Account current_account = accountService.findCurrentAccount();
 		
 		int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, current_account.getId());
-		PageRequest pageable = new PageRequest(1, 8, totalitems);
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
 		List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, current_account.getId(),pageable.getLimit(),pageable.getOffset());
 		for (BillSeparateShopViewDto bill : bills) {
 			int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());
 			bill.setTotalPrice(total);
+//			try {
+//				bill.setAddress(CommonUtils.convertEncode(bill.getAddress()));
+//			} catch (UnsupportedEncodingException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+		}
+		model.addAttribute("pageable", pageable);
+		String json = "";
+		String json2 = "";
+		String json3 = "{\"mode\" :\""+mode+"\"}";
+		ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+		try {
+			json = ow.writeValueAsString(pageable);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		return ResponseEntity.ok(bills);
+		try {
+			json2 = ow.writeValueAsString(bills);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<String> s = new ArrayList<String>();
+		s.add(json);
+		s.add(json2);
+		s.add(json3);
+		String data = s.toString();
+//		try {
+//			data = CommonUtils.convertEncode(data);
+//		} catch (UnsupportedEncodingException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		response.setHeader("Content-Type", "application/json; charset=utf-8");
+		
+		return ResponseEntity.ok(data);
 	}
 	
 	

@@ -192,7 +192,8 @@ public class ShopController {
 		Long status = (long) 0;
 		Long payment = (long) 0;
 		int totalitems = billSeparateService.countBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId());
-		PageRequest pageable = new PageRequest(page, limit, totalitems);
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
 		List<BillSeparateShopViewDto> bills = billSeparateService.findBillSeparateByPaymentAndStatusAndShopId(payment, status, shop.getId(),pageable.getLimit(),pageable.getOffset());
 		for (BillSeparateShopViewDto bill : bills) {
 			int total = billItemService.totalPriceOfBillByBillSeparateId(bill.getId());

@@ -35,20 +35,32 @@
         	$(this).addClass('active');
         	
         })
-        
+
         var xhr;
         $('#loading').hide()
-        function waitingConfirm(mode){
+        function waitingConfirm(mode,limit,page){
 		    var token = $("meta[name='_csrf']").attr("content");
 		    var header = $("meta[name='_csrf_header']").attr("content");
-		    data = `${mode}`;
+		    
+		    let data = `{"mode" : \"${mode}\","page" : "1","limit" : "8"}`;
+		    console.log(page)
+
+            try {             
+                if (typeof limit === 'undefined' || typeof page === 'undefined') {
+                	 data = `{"mode" : \"${mode}\","page" : "1","limit" : "8"}`;
+                }
+                else {
+                	 data = `{"mode" : \"${mode}\","page" : ${page},"limit" : ${limit}}`;
+                }
+            } catch (error) {
+
+            }
+		    console.log(data)
 		    //$('#pleaseWaitDialog').modal();
 		    //(UNSENT-0, OPENED-1, HEADERS_RECEIVED-2, LOADING-3 và DONE-4)
 	        if(xhr && xhr.readyState != 4){
 	            xhr.abort();
-	        }
-	        $('#test').addClass('spinner-grow')
-	        $('#test-content').addClass('sr-only')	        
+	        }        
 	        $('#loading').show()
 		    xhr = $.ajax({
 		    	
@@ -67,14 +79,18 @@
 	
 		        success: function (data, status, xhr) {
 					//var data = JSON.parse(data);
+					const pageable=[[${pageable2}]]
+					console.log(pageable)
 					var data_table = ""
-					data.forEach(function(dt){
-		        		
+					//var json = JSON.parse(JSON.stringify(data))
+					console.log(data[0].maxPage)
+ 					data[1].forEach(function(dt){
+ 						
 		        		data_table += "<tr>" + 
 		        		"<td>"+dt.id+"</td>"+
 		        		"<td>"+dt.account+"</td>"+
 		        		"<td>"+dt.address+"</td>"+
-		        		"<td>"+dt.totalPrice+"</td>"+
+		        		"<td> $ "+dt.totalPrice.toLocaleString('en') +"</td>"+
 						"<td class=\"text-center\"><span><a rel=\"tooltip\" title=\"View Detail\" type=\"button\" href=\"/shop/mybill/"+dt.id+"\"class=\"btn btn-large btn-success btn-just-icon\"><i class=\"fas fa-eye\"></i></a></span>"
 						+"<span>" 
 						+"<button rel=\"tooltip\" title=\"Confirm Bill\"  type=\"button\" onclick=\"confirmBill("+dt.id+")\""
@@ -89,11 +105,64 @@
 						+"</span></td>"
 		        		+"</tr>"
 		        		
-		        	})
+		        	}) 
+ 		        	var data_pagination = ""
+ 		        	var numberOfPage = ""
+ 		        	data[0].items.forEach(function(item){
+ 		        		
+ 						if(item.current == true){
+ 							numberOfPage +="<li id=\"current\" class=\"page-item active\">"
+ 	 							+"<a onclick=\"return waitingConfirm('"+data[2].mode+"',8,"+item.number+")\" class=\"page-link\">"+item.number+" </a>"
+ 	 							+"</li>"
+ 						}else{
+ 							numberOfPage +="<li id=\"current\" class=\"page-item\">"
+ 	 							+"<a onclick=\"return waitingConfirm('"+data[2].mode+"',8,"+item.number+")\" class=\"page-link\">"+item.number+" </a>"
+ 	 							+"</li>"
+ 						}						
+ 						if(item.current == true){
+ 							$('#current').addClass('active')
+ 						}else{
+ 							$('#current').removeClass('active')
+ 						}
+ 		        	})
+					console.log(data[0])
+					var result1 = data[0].page + 1;
+					var result2 = data[0].page - 1;
+					console.log(typeof (data[0].nextMaxPage))
+					console.log(data)
+
+					console.log(result1)
+					console.log(result2)
+		        	data_pagination ="<div style=\"display: flex; align-items: center;\">"
+					+"<nav th:if=\""+data[0].totalPages+"> 0}\" class=\"pagination\">"
+						+"<ul class=\"pagination\" style=\"margin-bottom: 0px;\">"
+							+"<li id=\"prePage\" class=\"page-item\">"
+								+"<a class=\"page-link\" "
+								+"onclick=\"return waitingConfirm('"+data[2].mode+"',"+data[0].limit+","+result2+")\"><i class=\"fas fa-arrow-left\"></i></a>"
+							+"</li>"
+							+numberOfPage							
+							+"<li id=\"nextPage\" class=\"page-item\">" 
+							+"<a class=\"page-link\" "
+							+"onclick=\"return waitingConfirm('"+data[2].mode+"',"+data[0].limit+","+result1+")\"><i class=\"fas fa-arrow-right\"></i></a>"
+							+"</li>"
+						+"</ul>"
+					+"</nav>"
+					+"</div>" 
+
+		        	
 		        		$("#tdata").html(data_table)
+		        		$("#test123").html(data_pagination)
 						$('#loading').hide()
-				        $('#test').removeClass('spinner-grow')
-				        $('#test-content').removeClass('sr-only')	
+						if(data[0].nextMaxPage < 0){
+							$('#nextPage').addClass('disabled')
+						}else{
+							$('#nextPage').removeClass('disabled')}
+						if(data[0].preMaxPage < 0){
+							$('#prePage').addClass('disabled')
+						}else{
+							$('#prePage').removeClass('disabled')}
+					
+																	
 		        	//alert("Edit Shop Success!");
 		        	//window.location.href = "/shop/myproduct?mode=view";
 		        },
