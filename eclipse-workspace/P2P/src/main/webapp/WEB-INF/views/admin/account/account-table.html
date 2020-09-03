@@ -82,9 +82,12 @@
         function Pagging(limit,page){
         	 var token = $("meta[name='_csrf']").attr("content");
              var header = $("meta[name='_csrf_header']").attr("content");
+			
+			var keyword = $("#search-box").val();
+	
 
              $.ajax({
-                url: `/admin/account/list/?page=${page}&limit=${limit}`,
+                url: `/admin/account/list/?page=${page}&limit=${limit}&keyword=${keyword}`,
                 type: 'GET', 		
                 beforeSend: function (xhr) {
                     xhr.setRequestHeader(header, token);

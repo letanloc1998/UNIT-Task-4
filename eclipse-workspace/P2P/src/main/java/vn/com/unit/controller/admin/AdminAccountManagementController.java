@@ -50,10 +50,12 @@ public class AdminAccountManagementController {
 
 		List<AccountWithRoleDto> accounts = accountService.findAllAccount(pageable.getLimit(), pageable.getOffset(),keyword,role_id);
 		pageable.setData(accounts);
+		if(keyword != null) {
+			model.addAttribute("keyword", keyword);
 
+		}
 		model.addAttribute("accounts", accounts);
 		model.addAttribute("pageable", pageable);
-		model.addAttribute("keyword", keyword);
 
 		return new ModelAndView("admin/account/account-table");
 	}
