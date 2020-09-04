@@ -566,6 +566,7 @@ section
 	color: #7f7f7f;
 	float: left;
 }
+
 .header_search_input::-webkit-input-placeholder
 {
 	font-size: 16px !important;

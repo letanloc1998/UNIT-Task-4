@@ -31,6 +31,126 @@
 		<script th:src="@{/static/admin/js/material-dashboard.js?v=2.1.2}" type="text/javascript"></script>
 
         <script th:inline="javascript">
+        
+        //search ajax
+        	$(document).ready(function(){
+        		 $("#result-items").hide()
+          $("#searchBox").keyup(
+        		  function searchProduct() {
+        				var key = $("#searchBox").val()
+        				var data_search = ""
+        				console.log(key)
+        			    var token = $("meta[name='_csrf']").attr("content");
+        		        var header = $("meta[name='_csrf_header']").attr("content");
+        		        data = `${key}`;
+        	        	   $.ajax({
+   		                    url: `/search-ajax`,
+   		                    type: 'POST',
+
+   		                    dataType: "json",
+   		                    contentType: "application/json",
+
+   		                    // data: JSON.stringify(`{"product_id" : ${product_id}}`),
+   		                    data: data,
+   		                    // data: JSON.stringify(data),
+
+   		                    beforeSend: function (xhr) {
+   		                        xhr.setRequestHeader(header, token);
+   		                    },
+
+   		                    success: function (data, status, xhr) {
+   		                    	//md.showAddProductNoti('bottom','right',data.msg)
+   		                    	console.log(data)
+   		                    	$("#result-items").show()
+   		                    //  
+   		                    
+   		                    var i = 0
+   		                    if(data.length > 5){
+   		                     for (i; i < 5; i++) {
+   		                    	data_search += "<div id=\"result-item\" onclick=\"window.location=/product/"+data[i].id+";\" class=\"row\">"
+   								    +"<div class=\"col-sm-3\" >"
+   								    +"<img class=\"img-search\" src=\""+data[i].img+"\">"
+   								    +"</div>"
+   								    +"<div class=\"col-sm-6\">"
+   								    +"<h3 style=\"color: black\">"+data[i].name+"</h3>"
+   								    +"</div>"
+   								    +"<div class=\"col-sm-3\">"
+   								    +"<h3 style=\"color:red\">$"+data[i].price+"</h3>"
+   								    +"</div>"
+   								  +"</div>"
+ 	   		                }	
+   		                    }else{
+   		                     for (i; i < data.length; i++) {
+ 	   		                	data_search += "<div id=\"result-item\" onclick=\"window.location=\"/product/"+data[i].id+";\" class=\"row\">"
+							    +"<div class=\"col-sm-3\" >"
+							    +"<img class=\"img-search\" src=\""+data[i].img+"\">"
+							    +"</div>"
+							    +"<div class=\"col-sm-6\">"
+							    +"<h3 style=\"color: black\">"+data[i].name+"</h3>"
+							    +"</div>"
+							    +"<div class=\"col-sm-3\">"
+							    +"<h3 style=\"color:red\">$"+data[i].price+"</h3>"
+							    +"</div>"
+							  +"</div>"
+ 	   		                }
+   		                    }
+	   		                /* 
+   		                    data.forEach(function(item){
+   		                    	data_search += "<input class=\"header_search_input\" value=\""+item.name+"\" /> <br>"
+   		                    }) */
+   		                    	console.log(data_search)
+   		                    	$("#result-items").html(data_search)
+   		                     },
+   		                    error: function (request, status, error) {
+   		                    	console.log("NO key")
+   		                    	$("#result-items").hide()
+   		                    	//window.location.href = window.location.href;
+   		                    }
+   		                });
+        	        
+        	 	                
+        	           	  
+        	       
+        	           	
+        	     
+        	       }	  
+          
+          );
+        
+        	});
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
             let home = [[@{/}]];
 
             const list_cart_item = [[${cartitems}]];
