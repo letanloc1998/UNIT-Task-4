@@ -61,7 +61,7 @@ public class AdminAccountManagementController {
 	
 	
 	@GetMapping("/admin/account/list-ajax")
-	public ResponseEntity<PageRequest>  accountListAjax(Model model,
+	public  ModelAndView  accountListAjax(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			@RequestParam(value = "keyword", required = false) String keyword,
@@ -79,7 +79,8 @@ public class AdminAccountManagementController {
 		model.addAttribute("pageable", pageable);
 		model.addAttribute("keyword", keyword);
 		pageable.setData(accounts);
-		return ResponseEntity.ok(pageable);
+		return new ModelAndView("components/admin/account/account-list");
+
 	}
 	@GetMapping("/admin/account/{account_id}")
 	public ModelAndView accountList(Model model,

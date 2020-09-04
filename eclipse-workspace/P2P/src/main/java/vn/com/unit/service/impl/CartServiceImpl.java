@@ -73,7 +73,7 @@ public class CartServiceImpl implements CartService {
 //			cartRepository.addCartItemCurrentAccount(curent_account_id, product_id, quantity_in_cart + quantity);
 //		}
 
-		Integer quantity_new = quantity_in_cart;
+		Integer quantity_new = quantity;
 		if (quantity_in_cart != null) {
 			quantity_new = quantity_in_cart + quantity;
 		}
