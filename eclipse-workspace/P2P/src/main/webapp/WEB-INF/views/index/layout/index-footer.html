@@ -80,7 +80,7 @@
    		                    var i = 0
    		                    if(data.length > 5){
    		                     for (i; i < 5; i++) {
-   		                    	data_search += "<div id=\"result-item\" onclick=\"window.location=/product/"+data[i].id+";\" class=\"row\">"
+   		                    	data_search += "<div id=\"result-item\" onclick=\"window.location=\'" + home + "/product/" + data[i].id +"'\" class=\"row\">"
    								    +"<div class=\"col-sm-3\" >"
    								    +"<img class=\"img-search\" src=\""+data[i].img+"\">"
    								    +"</div>"
