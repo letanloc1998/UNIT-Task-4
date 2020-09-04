@@ -85,4 +85,9 @@ public class BillServiceImpl implements BillService {
 		return billRepository.findBillByBillIdAndAccountId(bill_id, current_account_id);
 	}
 
+	@Override
+	public Bill test(Long bill_id) {
+		return billRepository.test(bill_id);
+	}
+
 }
