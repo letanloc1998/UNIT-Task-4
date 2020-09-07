@@ -113,9 +113,12 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void updateCategoryById(Category category) {
 		try {
-			Category category_temp = new Category();
-
-			category_temp.setId(category.getId());
+//			Category category_temp = new Category();
+//
+//			category_temp.setId(category.getId());
+			
+			Category category_temp = categoryRepository.findOne(category.getId());
+			
 			category_temp.setName(category.getName());
 
 //			categoryRepository.updateCategoryById(category.getId(), category.getName());

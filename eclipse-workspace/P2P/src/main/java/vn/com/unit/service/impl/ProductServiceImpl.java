@@ -201,8 +201,9 @@ public class ProductServiceImpl implements ProductService {
 	public boolean setDisableProductByProductId(Long product_id, int status) {
 		try {
 //			productRepository.setDisableProductByProductId(product_id, status);
-			Product product_temp = new Product();
-			product_temp.setId(product_id);
+//			Product product_temp = new Product();
+//			product_temp.setId(product_id);
+			Product product_temp = productRepository.findOne(product_id);
 			if (0 == status) {
 				product_temp.setDisable(false);
 			} else {

@@ -183,8 +183,11 @@ public class AccountServiceImpl implements AccountService {
 		try {
 			password = CommonUtils.encodePassword(password);
 			
-			Account account_temp = new Account();
-			account_temp.setId(account_id);
+//			Account account_temp = new Account();
+//			account_temp.setId(account_id);
+			
+			Account account_temp = accountRepository.findOne(account_id);
+			
 			account_temp.setPassword(password);
 			
 //			accountRepository.setAccountPassword(account_id, password);

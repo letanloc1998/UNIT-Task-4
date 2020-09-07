@@ -49,8 +49,11 @@ public class BrandServiceImpl implements BrandService {
 	
 	@Override
 	public void editBrand(Brand brand) {
-		Brand brand_temp = new Brand();
-		brand_temp.setId(brand.getId());
+//		Brand brand_temp = new Brand();
+//		brand_temp.setId(brand.getId());
+		
+		Brand brand_temp = brandRepository.findBrandById(brand.getId());
+		
 		brand_temp.setName(brand.getName());
 		brandRepository.save(brand_temp);
 	};
