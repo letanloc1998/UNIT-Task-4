@@ -80,8 +80,9 @@ public class ShopServiceImpl implements ShopService {
 		try {
 //			shopRepository.setDisableShop(shop_id,status);
 
-			Shop shop_temp = new Shop();
-			shop_temp.setId(shop_id);
+//			Shop shop_temp = new Shop();
+//			shop_temp.setId(shop_id);
+			Shop shop_temp = shopRepository.findOne(shop_id);
 			shop_temp.setStatus(status);
 
 			Shop shop_new = shopRepository.save(shop_temp);
