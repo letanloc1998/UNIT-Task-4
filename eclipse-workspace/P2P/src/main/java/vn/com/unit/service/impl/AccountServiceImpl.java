@@ -55,8 +55,9 @@ public class AccountServiceImpl implements AccountService {
 			if (encodedPassword.equals("")) {
 				String defaultRawPassword = CommonUtils.DEFAULT_PASSWORD;
 
-				Account account_temp = new Account();
-				account_temp.setId(account.getId());
+//				Account account_temp = new Account();
+//				account_temp.setId(account.getId());
+				Account account_temp = accountRepository.findOne(account.getId());
 				account_temp.setPassword(CommonUtils.encodePassword(defaultRawPassword));
 //				accountRepository.updateAccountPassword(account.getId(),
 //						CommonUtils.encodePassword(defaultRawPassword));
