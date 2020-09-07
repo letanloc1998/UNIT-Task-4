@@ -92,12 +92,14 @@
                },
    
                success: function (data, status, xhr) {
-            	 	console.log(data)
+            	 	/* console.log(data) */
              	  	var data = data.replace('<body', '<body><div id="body"').replace('</body>','</div></body>');
                    var body = $(data).filter('#body');
                    var idTable = $(data).find("#shop-list-table").length;
                    if(idTable > 0){
-                 	  $("#shop-list-table").html(body)
+                 	 /*  $("#shop-list-table").html(body); */
+                 	 console.log(body.html());
+                 	  document.getElementById("shop-list-table").innerHTML = body.html();
                    }else{
                  	  window.location.href = "/login"
                    }   
