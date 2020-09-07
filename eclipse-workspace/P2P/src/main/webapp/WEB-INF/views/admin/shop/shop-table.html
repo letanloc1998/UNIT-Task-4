@@ -27,9 +27,10 @@
 	<th:block th:replace="admin/layout/footer :: footer"></th:block>
 
 	<script th:inline="javascript">
-        const shops = [[${ shops }]]
         
           function DeleteShop(i) {
+              const shops = [[${ pageable.data }]]
+
         	console.log(shops[i].id)
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
@@ -64,7 +65,7 @@
 						                    		})                                         
 						                    		},
                                          error: function (request, status, error) {
-                                             alert(status);
+                                             alert(status,request,error);
                                              // To reload the page discarding the POST data(perform a GET request)
                                              window.location.href = window.location.href;
                                          }
@@ -73,6 +74,73 @@
                 	})
                 	
           
+            }
+        
+        function Pagging(limit,page,mode){
+       	 var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+    		var keyword = $("#search-box").val();
+    		if(!mode && mode!=0){
+    			mode = [[${ mode }]]
+    		}
+	console.log(limit,page,mode)
+            $.ajax({
+               url: `/admin/shop/ajax-list?page=${page}&limit=${limit}&mode=${mode}`,
+               type: 'GET', 		
+               beforeSend: function (xhr) {
+                   xhr.setRequestHeader(header, token);
+               },
+   
+               success: function (data, status, xhr) {
+            	 	console.log(data)
+             	  	var data = data.replace('<body', '<body><div id="body"').replace('</body>','</div></body>');
+                   var body = $(data).filter('#body');
+                   var idTable = $(data).find("#shop-list-table").length;
+                   if(idTable > 0){
+                 	  $("#shop-list-table").html(body)
+                   }else{
+                 	  window.location.href = "/login"
+                   }   
+               },
+               error: function (request, status, error) {
+              /*     
+                   // To reload the page discarding the POST data(perform a GET request)
+                   window.location.href = window.location.href; */
+                   
+             	  alert(request.status);
+               }
+           });  
+    	}
+        
+        function acceptShop(i) {
+            const shops = [[${ pageable.data }]]
+                var token = $("meta[name='_csrf']").attr("content");
+                var header = $("meta[name='_csrf_header']").attr("content");
+                $.ajax({
+                    url: `/admin/shop/accept/${shops[i].id}`,
+                    type: 'PUT',
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success: function (data, status, xhr) {
+                    	Swal.fire({
+                    		  position: 'center',
+                    		  icon: 'success',
+                    		  title: 'Active Success',
+                    		  showConfirmButton: false,
+                    		  timer: 800
+                    		}).then(()=>{
+                               window.location.href = window.location.href;
+
+                    		})
+                    },
+                    error: function (request, status, error) {
+                        alert(status);
+                        window.location.href = window.location.href;
+                    }
+                });
+            
+              
             }
       </script>
 </body>

@@ -39,19 +39,46 @@ public class AdminShopManagementController {
 	@GetMapping("/admin/shop/list")
 	public ModelAndView ShopList(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+			@RequestParam(value = "limit", required = false, defaultValue = "5") int limit,
+			@RequestParam(value = "mode") int mode,
 			HttpServletRequest request) {
-
-		int totalitems = shopService.countShopByStatus(1);
+		
+		int totalitems = shopService.countShopByStatus(mode);
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
-		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
-
-		List<ShopDto> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), 1);
-		model.addAttribute("shops", shops);
+		PageRequest<ShopDto> pageable = new PageRequest<ShopDto>(page, limit, totalitems, totalpages);
+	
+		List<ShopDto> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), mode);
+		
+		model.addAttribute("mode",mode);
+		pageable.setData(shops);
 		model.addAttribute("pageable", pageable);
-
 		return new ModelAndView("admin/shop/shop-table");
+	}
+	@GetMapping("/admin/shop/ajax-list")
+	public ModelAndView ShopAjaxList(Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "limit", required = false, defaultValue = "5") int limit,
+			@RequestParam(value = "mode") int mode,
+			HttpServletRequest request) {
+		
+		int totalitems = shopService.countShopByStatus(mode);
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+
+		PageRequest<ShopDto> pageable = new PageRequest<ShopDto>(page, limit, totalitems, totalpages);
+	
+		List<ShopDto> shops = shopService.findShopByStatus(pageable.getLimit(), pageable.getOffset(), mode);
+		model.addAttribute("mode",mode);
+		model.addAttribute("shops", shops);
+
+		pageable.setData(shops);
+		model.addAttribute("pageable", pageable);
+		if(mode == 3 ) {
+			return new ModelAndView("components/admin/shop/shop-deactive-list");
+		}else if(mode == 0) {
+			return new ModelAndView("components/admin/shop/shop-accept-list");
+		}
+		return new ModelAndView("components/admin/shop/shop-list");
 	}
 
 	@GetMapping("/admin/shop/accept-list")
@@ -110,13 +137,13 @@ public class AdminShopManagementController {
 
 	@DeleteMapping("/admin/shop/delete/{shop_id}")
 	public ResponseEntity<Boolean> AdminDisableShop(Model model, @PathVariable("shop_id") Long shop_id,
-			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
-			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
 			HttpServletRequest request) {
-		if (shopService.setDisableShop(shop_id, 2)) {
+		if (shopService.setDisableShop(shop_id, 3)) {
 			return ResponseEntity.status(HttpStatus.OK).body(null);
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 	}
+	
+	
 
 }

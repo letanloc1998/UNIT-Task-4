@@ -115,7 +115,7 @@ public class AdminCategoryController {
 		return ResponseEntity.ok("{ \"msg\" : \"update category successfully\" }");
 	}
 	@DeleteMapping("/admin/category/delete/{category_id}")
-	public ResponseEntity<Boolean> AdminDisableShop(Model model, @PathVariable("category_id") Long category_id,
+	public ResponseEntity<Boolean> AdminDisableCategory(Model model, @PathVariable("category_id") Long category_id,
 			HttpServletRequest request) {
 		categoryService.deleteCategoryById(category_id,(long) 1);
 		return  ResponseEntity.ok(null);

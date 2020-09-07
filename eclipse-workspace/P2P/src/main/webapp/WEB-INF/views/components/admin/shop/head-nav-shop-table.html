@@ -16,21 +16,23 @@
 						<ul class="nav nav-tabs" data-tabs="tabs">
 							<li class="nav-item"><a 
 								th:classappend="${#request.getRequestURI().startsWith('/admin/shop/list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-								th:href="@{/admin/shop/list}">Active List</a></li>
-							<li class="nav-item"><a 
+								th:onclick="|Pagging(${pageable.limit},${pageable.page},1)|"
+								>Active List</a></li>
+								
+							<li class="nav-item"><a
+								th:onclick="|Pagging(${pageable.limit},${pageable.page},0)|" 
 								th:classappend="${#request.getRequestURI().startsWith('/admin/shop/accept-list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-								th:href="@{/admin/shop/accept-list}">Accept List</a></li>
+								>Accept List</a></li>
 							<li class="nav-item"><a 
+								th:onclick="|Pagging(${pageable.limit},${pageable.page},3)|"
 								th:classappend="${#request.getRequestURI().startsWith('/admin/shop/deactive-list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
-								th:href="@{/admin/shop/deactive-list}">Deactive List</a> </li>
+								>Deactive List</a> </li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script th:inline="javascript">
-        console.log([[${ shops }]])
-      </script>
+
 	</th:block>
 
 </body>

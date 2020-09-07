@@ -85,7 +85,6 @@ public class ShopServiceImpl implements ShopService {
 //			shop_temp.setId(shop_id);
 			Shop shop_temp = shopRepository.findOne(shop_id);
 			shop_temp.setStatus(status);
-
 			Shop shop_new = shopRepository.save(shop_temp);
 
 			if (shop_new != null) {
