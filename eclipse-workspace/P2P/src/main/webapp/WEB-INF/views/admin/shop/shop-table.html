@@ -27,10 +27,10 @@
 	<th:block th:replace="admin/layout/footer :: footer"></th:block>
 
 	<script th:inline="javascript">
-        var shops = [[${ pageable.data }]];
+        var shops = [[${ pageable.data }]]; 
           function DeleteShop(i) {
-              
-
+        	 /* const shops = [[${ pageable.data }]]; */
+				
         	console.log(shops[i].id)
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");

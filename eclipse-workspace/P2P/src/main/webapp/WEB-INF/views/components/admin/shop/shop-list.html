@@ -48,6 +48,8 @@
 				</tbody>
 			</table>
 			<div th:replace="admin/layout/panigation :: content(${pageable})"></div>
+			<img src="erroasdasdasdr.png" th:onerror="shops = [[${pageable.data}]]; this.onerror=null;this.parentNode.removeChild(this);this.onerror=null;" />
+		
 		</div>
 		
 
