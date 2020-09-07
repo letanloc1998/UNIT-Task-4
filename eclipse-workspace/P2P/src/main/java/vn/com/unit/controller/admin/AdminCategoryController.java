@@ -38,18 +38,41 @@ public class AdminCategoryController {
 
 		int totalitems =  categoryService.countAllCategory();
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
-		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
+		PageRequest<Category> pageable = new PageRequest<Category>(page, limit, totalitems, totalpages);
 		List<Category> categories = categoryService.findCategoryPageable(pageable.getLimit(), pageable.getOffset());
-		model.addAttribute("categories", categories);
 		model.addAttribute("pageable", pageable);
+		pageable.setData(categories);
 		return new ModelAndView("admin/category/category-table");
 	}
+	
+	
+	
+	@GetMapping("/admin/category/ajax-list")
+	public ModelAndView accountAjaxList(Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+			HttpServletRequest request) {
+
+		int totalitems =  categoryService.countAllCategory();
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+		PageRequest<Category> pageable = new PageRequest<Category>(page, limit, totalitems, totalpages);
+		List<Category> categories = categoryService.findCategoryPageable(pageable.getLimit(), pageable.getOffset());
+		model.addAttribute("pageable", pageable);
+		pageable.setData(categories);
+		return new ModelAndView("components/admin/category/category-list");
+	}
+	
+	
+	
 	@GetMapping("/admin/category/add")
 	public ModelAndView categoryAdd(Model model,
 			HttpServletRequest request) {
 
 		return new ModelAndView("admin/category/category-add");
 	}
+	
+	
+	
 	
 	@GetMapping("/admin/category/edit/{category_id}")
 	public ModelAndView categoryEdit(@PathVariable("category_id") long category_id, Model model,

@@ -43,15 +43,34 @@ public class AdminBrandManagementController {
 		int totalitems = brandService.countAllBrand();
 		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
 
-		PageRequest pageable = new PageRequest(page, limit, totalitems, totalpages);
+		PageRequest<Brand> pageable = new PageRequest<Brand>(page, limit, totalitems, totalpages);
 
 		List<Brand> brands = brandService.findBrandPageable(pageable.getLimit(), pageable.getOffset());
-		model.addAttribute("brands", brands);
+		pageable.setData(brands);
 		model.addAttribute("pageable", pageable);
 
 		return new ModelAndView("admin/brand/brand-table");
 	}
+	@GetMapping("/admin/brand/ajax-list")
+	public ModelAndView BrandAjaxList(Model model,
+			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
+			@RequestParam(value = "limit", required = false, defaultValue = "10") int limit,
+			HttpServletRequest request) {
 
+		int totalitems = brandService.countAllBrand();
+		int totalpages = (int) Math.ceil((double) totalitems / (double) limit);
+
+		PageRequest<Brand> pageable = new PageRequest<Brand>(page, limit, totalitems, totalpages);
+
+		List<Brand> brands = brandService.findBrandPageable(pageable.getLimit(), pageable.getOffset());
+		pageable.setData(brands);
+		model.addAttribute("pageable", pageable);
+		return new ModelAndView("components/admin/brand/brand-list");
+		
+	}
+	
+	
+	
 	@GetMapping("/admin/brand/add")
 	public ModelAndView categoryAdd(Model model, HttpServletRequest request) {
 
