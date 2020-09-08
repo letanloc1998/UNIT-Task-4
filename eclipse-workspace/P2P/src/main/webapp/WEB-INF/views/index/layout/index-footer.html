@@ -31,6 +31,71 @@
 		<script th:src="@{/static/admin/js/material-dashboard.js?v=2.1.2}" type="text/javascript"></script>
 
 		<script th:inline="javascript">
+		
+		
+		const searchForm = document.querySelector("#search-form");
+		const searchFormInput = searchForm.querySelector("input");
+		
+		
+		const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+		
+		if(SpeechRecognition){
+			console.log("Support");
+			searchForm.insertAdjacentHTML("beforeend",'<button id="searchBtn" type="button" class="header_search_button trans_300"><i class=" fas fa-microphone"></i></button>')
+			const micBtn = searchForm.querySelector("button");
+			const micIcon = micBtn.querySelector("i");
+			
+			const recognition = new SpeechRecognition();
+			//recognition.continuous = true;
+			
+			micBtn.addEventListener("click",micBtnClick);
+			function micBtnClick(){
+				if(micIcon.classList.contains("fa-microphone")){
+					recognition.start();					
+				}else{					
+					recognition.stop();
+				}
+				
+				recognition.addEventListener("start",startSpeechRecognition);
+				function startSpeechRecognition(){
+					micIcon.classList.remove("fa-microphone");
+					micIcon.classList.add("fa-microphone-slash");
+					console.log("Speech Recognition Active");
+					searchFormInput.focus();
+				}
+				recognition.addEventListener("end",endSpeechRecognition);
+				function endSpeechRecognition(){
+					micIcon.classList.remove("fa-microphone-slash");
+					micIcon.classList.add("fa-microphone");
+				 	console.log("Speech Recognition DeActive")
+				}
+				
+				recognition.addEventListener("result", resultOfSpeechRecognition);
+				function resultOfSpeechRecognition(event){
+					const transcript = event.results[0][0].transcript;
+					searchFormInput.value = transcript;
+					setTimeout(() =>{
+						searchForm.submit();
+					},750);
+				}
+			}
+		}else{
+			console.log("No support")
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 			let home = [[@{/}]];
 
 			const list_cart_item = [[${ cartitems }]];
