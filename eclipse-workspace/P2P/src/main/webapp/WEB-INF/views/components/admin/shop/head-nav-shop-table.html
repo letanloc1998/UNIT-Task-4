@@ -14,16 +14,19 @@
 				<div class="nav-tabs-navigation">
 					<div class="nav-tabs-wrapper">
 						<ul class="nav nav-tabs" data-tabs="tabs">
-							<li class="nav-item"><a 
-								th:classappend="${#request.getRequestURI().startsWith('/admin/shop/list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
+							<li class="nav-item"><a
+								style="cursor: pointer" 
+								th:classappend="${mode == 1 ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
 								th:onclick="|Pagging(${pageable.limit},${pageable.page},1)|"
 								>Active List</a></li>
 								
 							<li class="nav-item"><a
+							style="cursor: pointer" 
 								th:onclick="|Pagging(${pageable.limit},${pageable.page},0)|" 
 								th:classappend="${#request.getRequestURI().startsWith('/admin/shop/accept-list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
 								>Accept List</a></li>
 							<li class="nav-item"><a 
+							style="cursor: pointer" 
 								th:onclick="|Pagging(${pageable.limit},${pageable.page},3)|"
 								th:classappend="${#request.getRequestURI().startsWith('/admin/shop/deactive-list') ? 'nav-item nav-link active' : 'nav-item nav-link' }" 
 								>Deactive List</a> </li>
