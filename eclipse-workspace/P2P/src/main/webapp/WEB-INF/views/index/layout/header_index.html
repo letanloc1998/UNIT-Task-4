@@ -135,7 +135,7 @@
                                 <div class="header_search_content">
                                     <div class="header_search_form_container">
                                     
-                                        <form autocomplete="off" th:action="@{/product-by-search}" class="header_search_form clearfix">
+                                        <form id="search-form" autocomplete="off" target="_blank" th:action="@{/product-by-search}" class="header_search_form clearfix">
                                             <input id="searchBox"name="name" required="required" class="header_search_input"
                                                 placeholder="Search for products..." >
                                             
@@ -152,9 +152,10 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="header_search_button trans_300" value="Submit" onclick="clearSearch()">
+                                            <!-- <button type="submit" class="header_search_button trans_300" value="Submit" onclick="clearSearch()">
                                                 <img th:src="@{/static/index-template/images/search.png}" alt="">
-                                            </button>
+                                            </button> -->
+                                            
                                         </form>
                                         <div id="result-items">
                                           
