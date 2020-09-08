@@ -40,7 +40,7 @@ public class AdminShopManagementController {
 	public ModelAndView ShopList(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "5") int limit,
-			@RequestParam(value = "mode") int mode,
+			@RequestParam(value = "mode",defaultValue = "1") int mode,
 			HttpServletRequest request) {
 		
 		int totalitems = shopService.countShopByStatus(mode);
@@ -59,7 +59,7 @@ public class AdminShopManagementController {
 	public ModelAndView ShopAjaxList(Model model,
 			@RequestParam(value = "page", required = false, defaultValue = "1") int page,
 			@RequestParam(value = "limit", required = false, defaultValue = "5") int limit,
-			@RequestParam(value = "mode") int mode,
+			@RequestParam(value = "mode", defaultValue = "1") int mode,
 			HttpServletRequest request) {
 		
 		int totalitems = shopService.countShopByStatus(mode);

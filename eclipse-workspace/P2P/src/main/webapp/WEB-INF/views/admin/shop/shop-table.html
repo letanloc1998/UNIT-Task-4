@@ -28,7 +28,7 @@
 
 	<script th:inline="javascript">
         var shops = [[${ pageable.data }]]; 
-          function DeleteShop(i) {
+          function DeleteShop(i,mode) {
         	 /* const shops = [[${ pageable.data }]]; */
 				
         	console.log(shops[i].id)
@@ -61,7 +61,9 @@
 					                    		  showConfirmButton: false,
 					                    		  timer: 800
 						                    		}).then(()=>{
-						                                window.location.href = window.location.href;
+						                    			Pagging([[${ pageable.limit }]],[[${ pageable.page }]],mode)
+
+						                                
 						                    		})                                         
 						                    		},
                                          error: function (request, status, error) {
@@ -114,10 +116,11 @@
            });  
     	}
         
-        function acceptShop(i) {
+        function acceptShop(i,mode) {
             /* const shops = [[${ pageable.data }]] */
                 var token = $("meta[name='_csrf']").attr("content");
                 var header = $("meta[name='_csrf_header']").attr("content");
+                console.log(mode)
                 $.ajax({
                     url: `/admin/shop/accept/${shops[i].id}`,
                     type: 'PUT',
@@ -132,8 +135,8 @@
                     		  showConfirmButton: false,
                     		  timer: 800
                     		}).then(()=>{
-                               window.location.href = window.location.href;
-
+                    			Pagging([[${ pageable.limit }]],[[${ pageable.page }]],mode)
+ 
                     		})
                     },
                     error: function (request, status, error) {
