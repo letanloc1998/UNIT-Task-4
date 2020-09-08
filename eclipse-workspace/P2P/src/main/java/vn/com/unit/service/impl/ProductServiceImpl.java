@@ -249,7 +249,9 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public List<Product> searchProductByName(String name) {
+		return productRepository.findProductByName(name);
 		// List<Product> product = new ArrayList<Product>();
+		/*
 		try {
 			// product = productRepository.findProductByName(name);
 			if (name != null) {
@@ -259,6 +261,7 @@ public class ProductServiceImpl implements ProductService {
 
 		}
 		return productRepository.findAllActiveProductOfShopActiveOfVendorActive();
+		*/
 	}
 
 	@Override
